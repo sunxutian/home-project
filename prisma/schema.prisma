@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model House {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  addressLine1    String
+  city            String
+  state           String
+  postalCode      String
+  systems         String?
+  appliances      String?
+  warrantyDetails String?
+  serviceNotes    String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  tasks           Task[]
+  records         Record[]
+  contacts        Contact[]
+}
+
+model HouseholdMember {
+  id        String   @id @default(cuid())
+  name      String
+  color     String?
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tasks     Task[]
+}
+
+model Task {
+  id             String            @id @default(cuid())
+  houseId        String
+  title          String
+  category       String
+  dueDate        String?
+  dueAt          DateTime?
+  status         TaskStatus        @default(OPEN)
+  notes          String?
+  recurrence     String?
+  scheduleKey    String?
+  sourceMetadata String?
+  assigneeId     String?
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  house          House             @relation(fields: [houseId], references: [id], onDelete: Cascade)
+  assignee       HouseholdMember?  @relation(fields: [assigneeId], references: [id], onDelete: SetNull)
+  occurrences    TaskOccurrence[]
+}
+
+model TaskOccurrence {
+  id          String     @id @default(cuid())
+  taskId      String
+  occurrence  String
+  status      TaskStatus @default(OPEN)
+  completedAt DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  task        Task       @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@unique([taskId, occurrence])
+}
+
+model Record {
+  id         String    @id @default(cuid())
+  houseId    String
+  title      String
+  type       String
+  date       String
+  provider   String
+  notes      String?
+  fileUrl    String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  house      House     @relation(fields: [houseId], references: [id], onDelete: Cascade)
+  contacts   Contact[]
+}
+
+model Contact {
+  id             String    @id @default(cuid())
+  houseId        String
+  linkedRecordId String?
+  name           String
+  type           String
+  phone          String
+  email          String
+  notes          String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  house          House     @relation(fields: [houseId], references: [id], onDelete: Cascade)
+  linkedRecord   Record?   @relation(fields: [linkedRecordId], references: [id], onDelete: SetNull)
+}
+
+enum TaskStatus {
+  OPEN
+  DONE
+}
