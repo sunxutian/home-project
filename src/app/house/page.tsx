@@ -1,4 +1,16 @@
-export default function HousePage() {
+import { requireAuth } from "@/lib/auth";
+import { getHouseView } from "@/lib/queries";
+
+export const dynamic = "force-dynamic";
+
+export default async function HousePage() {
+  await requireAuth();
+  const house = await getHouseView();
+
+  if (!house) {
+    return <main className="page-stack"><h1>Property Reference</h1><p>No house data found.</p></main>;
+  }
+
   return (
     <main className="page-stack">
       <header className="page-header">
@@ -9,19 +21,25 @@ export default function HousePage() {
         <dl className="snapshot-list">
           <div>
             <dt>Address</dt>
-            <dd>130 Durie Ave, Closter, NJ 07624</dd>
+            <dd>
+              {house.addressLine1}, {house.city}, {house.state} {house.postalCode}
+            </dd>
           </div>
           <div>
             <dt>Systems</dt>
-            <dd>Boiler, sump pump, central air</dd>
+            <dd>{house.systems ?? "Not added yet"}</dd>
           </div>
           <div>
             <dt>Appliances</dt>
-            <dd>Washer, dryer, refrigerator</dd>
+            <dd>{house.appliances ?? "Not added yet"}</dd>
+          </div>
+          <div>
+            <dt>Warranty Details</dt>
+            <dd>{house.warrantyDetails ?? "Not added yet"}</dd>
           </div>
           <div>
             <dt>Service Notes</dt>
-            <dd>Boiler serviced in March 2026</dd>
+            <dd>{house.serviceNotes ?? "Not added yet"}</dd>
           </div>
         </dl>
       </section>

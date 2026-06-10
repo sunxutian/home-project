@@ -160,6 +160,50 @@ h2 {
   border-bottom: 1px solid rgba(27, 27, 24, 0.08);
 }
 
+.login-shell {
+  min-height: 80vh;
+  display: grid;
+  place-items: center;
+}
+
+.login-card {
+  width: min(100%, 420px);
+  padding: 1.5rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 252, 247, 0.9);
+  border: 1px solid rgba(27, 27, 24, 0.08);
+  box-shadow: 0 18px 35px rgba(88, 58, 21, 0.08);
+}
+
+.login-form {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.login-form input,
+.login-form button {
+  font: inherit;
+  padding: 0.8rem 0.9rem;
+  border-radius: 0.8rem;
+}
+
+.login-form input {
+  border: 1px solid rgba(27, 27, 24, 0.15);
+  background: white;
+}
+
+.login-form button {
+  border: 0;
+  background: #1f5b48;
+  color: #f9f6ef;
+  cursor: pointer;
+}
+
+.form-error {
+  color: #8e2f22;
+}
+
 @media (max-width: 720px) {
   .app-shell {
     padding: 1.25rem 0.9rem 3rem;

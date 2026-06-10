@@ -1,8 +1,18 @@
+import React from "react";
 import { render, screen } from "@testing-library/react";
-import HomePage from "@/app/page";
+import { HomeDashboard } from "@/components/dashboard/home-dashboard";
 
 test("renders dashboard heading", async () => {
-  render(await HomePage());
+  render(
+    <HomeDashboard
+      addressLine1="130 Durie Ave"
+      city="Closter"
+      state="NJ"
+      postalCode="07624"
+      today={[{ title: "Review utility bill", date: "2026-03-22" }]}
+      nextUp={[{ title: "Take out garbage", date: "2026-03-24" }]}
+    />
+  );
   expect(
     screen.getByRole("heading", {
       name: /house dashboard/i

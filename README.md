@@ -30,11 +30,25 @@ cp .env.example .env
 XDG_CACHE_HOME=/tmp npm run prisma:generate
 ```
 
-4. Start the app:
+4. Create the local SQLite database schema:
+
+```bash
+XDG_CACHE_HOME=/tmp npm run prisma:push
+```
+
+5. Seed the dashboard data:
+
+```bash
+node --import tsx prisma/seed.ts
+```
+
+6. Start the app:
 
 ```bash
 npm run dev
 ```
+
+7. Sign in at `/login` with the shared password from `.env`.
 
 ## Verification
 

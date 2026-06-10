@@ -1,9 +1,12 @@
-const members = [
-  { name: "Household", status: "Active" },
-  { name: "Shared", status: "Active" }
-];
+import { requireAuth } from "@/lib/auth";
+import { getSettingsView } from "@/lib/queries";
 
-export default function SettingsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function SettingsPage() {
+  await requireAuth();
+  const members = await getSettingsView();
+
   return (
     <main className="page-stack">
       <header className="page-header">
@@ -13,9 +16,9 @@ export default function SettingsPage() {
       <section className="panel">
         <ul className="panel-list">
           {members.map((member) => (
-            <li key={member.name}>
+            <li key={member.id}>
               <strong>{member.name}</strong>
-              <span>{member.status}</span>
+              <span>{member.active ? "Active" : "Inactive"}</span>
             </li>
           ))}
         </ul>

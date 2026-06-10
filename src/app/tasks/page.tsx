@@ -1,10 +1,12 @@
-const taskRows = [
-  { title: "Take out garbage", category: "municipal", cadence: "Tuesday / Friday" },
-  { title: "Take out recycling", category: "municipal", cadence: "Wednesday" },
-  { title: "Replace HVAC filter", category: "maintenance", cadence: "One-time" }
-];
+import { requireAuth } from "@/lib/auth";
+import { getTasksView } from "@/lib/queries";
 
-export default function TasksPage() {
+export const dynamic = "force-dynamic";
+
+export default async function TasksPage() {
+  await requireAuth();
+  const { tasks, members } = await getTasksView();
+
   return (
     <main className="page-stack">
       <header className="page-header">
@@ -17,19 +19,32 @@ export default function TasksPage() {
             <tr>
               <th>Task</th>
               <th>Category</th>
-              <th>Cadence</th>
+              <th>Schedule</th>
+              <th>Assignee</th>
             </tr>
           </thead>
           <tbody>
-            {taskRows.map((task) => (
-              <tr key={task.title}>
+            {tasks.map((task) => (
+              <tr key={task.id}>
                 <td>{task.title}</td>
                 <td>{task.category}</td>
-                <td>{task.cadence}</td>
+                <td>{task.scheduleKey ? task.scheduleKey : task.dueDate ?? "one-time"}</td>
+                <td>{task.assignee?.name ?? "Unassigned"}</td>
               </tr>
             ))}
           </tbody>
         </table>
+      </section>
+      <section className="panel">
+        <h2>Assignable Household Members</h2>
+        <ul className="panel-list">
+          {members.map((member) => (
+            <li key={member.id}>
+              <strong>{member.name}</strong>
+              <span>{member.active ? "Active" : "Inactive"}</span>
+            </li>
+          ))}
+        </ul>
       </section>
     </main>
   );
