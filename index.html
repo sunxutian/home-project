@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Travel Dashboard</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #06080f;
+      --bg2: #0d1017;
+      --card: rgba(16, 20, 36, 0.85);
+      --card-solid: #10142a;
+      --glass: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.06);
+      --text: #f1f5f9;
+      --text2: #94a3b8;
+      --text3: #64748b;
+      --text4: #475569;
+      --blue: #3b82f6;
+      --cyan: #06b6d4;
+      --purple: #8b5cf6;
+      --amber: #f59e0b;
+      --emerald: #10b981;
+      --rose: #f43f5e;
+      --orange: #f97316;
+      --pink: #ec4899;
+      --lime: #84cc16;
+      --sky: #0ea5e9;
+      --red: #ef4444;
+    }
+
+    body.light-theme {
+      --bg: #f8fafc;
+      --bg2: #f1f5f9;
+      --card: rgba(255, 255, 255, 0.85);
+      --card-solid: #ffffff;
+      --glass: rgba(15, 23, 42, 0.03);
+      --glass-border: rgba(15, 23, 42, 0.08);
+      --text: #0f172a;
+      --text2: #475569;
+      --text3: #64748b;
+      --text4: #94a3b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      overflow: hidden;
+      background: linear-gradient(170deg, #0a1628 0%, #06080f 40%, #0f0a1a 100%);
+      text-align: center;
+      padding: 40px 20px;
+    }
+    body.light-theme .hero {
+      background: linear-gradient(170deg, #f0f7ff 0%, #f8fafc 40%, #faf5ff 100%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 20% 50%, rgba(59,130,246,0.08), transparent),
+        radial-gradient(ellipse 500px 350px at 80% 30%, rgba(139,92,246,0.06), transparent);
+    }
+    body.light-theme .hero::before {
+      background:
+        radial-gradient(ellipse 600px 400px at 20% 50%, rgba(59,130,246,0.04), transparent),
+        radial-gradient(ellipse 500px 350px at 80% 30%, rgba(139,92,246,0.03), transparent);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero h1 {
+      font-size: 44px; font-weight: 900; letter-spacing: -1px; margin-bottom: 8px;
+      background: linear-gradient(135deg, #fff 0%, var(--cyan) 50%, var(--purple) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    body.light-theme .hero h1 {
+      background: linear-gradient(135deg, #0f172a 0%, var(--blue) 50%, var(--purple) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-sub { font-size: 16px; color: var(--text2); margin-bottom: 20px; }
+
+    .hero-actions { display: flex; gap: 12px; justify-content: center; margin-bottom: 24px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 600;
+      text-decoration: none; cursor: pointer; transition: all 0.2s ease;
+      border: 1px solid var(--glass-border); background: var(--glass); color: var(--text);
+    }
+    .btn:hover { background: rgba(59,130,246,0.1); border-color: var(--blue); transform: translateY(-1px); }
+    .btn.btn-primary { background: var(--blue); color: #fff; border: none; }
+    .btn.btn-primary:hover { background: #2563eb; }
+
+    /* ===== CONFIG DRAWER ===== */
+    .drawer-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+      backdrop-filter: blur(4px);
+    }
+    .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+    .drawer {
+      position: fixed; top: 0; right: -400px; width: 100%; max-width: 400px; height: 100%;
+      background: var(--bg2); border-left: 1px solid var(--glass-border);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.5); z-index: 2001;
+      transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex; flex-direction: column; padding: 24px;
+    }
+    .drawer.open { right: 0; }
+    .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .drawer-close { font-size: 20px; cursor: pointer; color: var(--text3); }
+    .drawer-close:hover { color: var(--text); }
+    .form-group { margin-bottom: 18px; }
+    .form-label { display: block; font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; margin-bottom: 6px; }
+    .form-input {
+      width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--glass-border);
+      background: var(--bg); color: var(--text); font-size: 13px; font-family: inherit;
+    }
+    .form-input:focus { border-color: var(--blue); outline: none; }
+    .help-text { font-size: 11px; color: var(--text3); margin-top: 6px; line-height: 1.4; }
+
+    /* ===== NAV TABS ===== */
+    .day-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,8,15,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      display: flex; justify-content: center; gap: 4px;
+      padding: 10px 16px; overflow-x: auto;
+    }
+    body.light-theme .day-nav { background: rgba(248, 250, 252, 0.92); border-bottom-color: rgba(15,23,42,0.08); }
+    .day-nav::-webkit-scrollbar { display: none; }
+    .day-tab {
+      font-size: 12px; font-weight: 600; padding: 8px 16px;
+      border-radius: 8px; border: 1px solid transparent; cursor: pointer;
+      color: var(--text3); white-space: nowrap;
+      transition: all 0.3s ease; background: transparent;
+    }
+    .day-tab:hover { color: var(--text2); background: var(--glass); }
+    .day-tab.active {
+      color: var(--blue); background: rgba(59,130,246,0.1);
+      border-color: rgba(59,130,246,0.2);
+    }
+
+    /* ===== LAYOUT ===== */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    .main-layout { display: flex; flex-direction: column; gap: 24px; }
+    .timeline-column, .map-column { width: 100%; }
+
+    @media (min-width: 1024px) {
+      .container { max-width: 1300px; }
+      .main-layout {
+        display: grid; grid-template-columns: 1.15fr 0.85fr;
+        gap: 40px; align-items: start;
+      }
+      .map-column {
+        position: sticky; top: 80px;
+        height: calc(100vh - 120px); margin-top: 48px;
+      }
+      .map-section { height: 100%; margin: 0; display: flex; flex-direction: column; }
+      #overview-map { flex-grow: 1; height: 100% !important; }
+    }
+
+    /* ===== TIMELINE ===== */
+    .day-section { padding: 48px 0 32px; }
+    .day-header {
+      display: flex; align-items: flex-end; gap: 16px; margin-bottom: 28px;
+      padding-bottom: 16px; border-bottom: 1px solid var(--glass-border);
+    }
+    .day-number {
+      font-family: 'JetBrains Mono', monospace; font-size: 44px; font-weight: 800;
+      line-height: 1; background: linear-gradient(135deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .day-info .day-date { font-size: 15px; font-weight: 600; color: var(--text); }
+    .day-info .day-theme { font-size: 13px; color: var(--text3); margin-top: 2px; }
+
+    .tl { position: relative; padding-left: 36px; }
+    .tl::before {
+      content: ''; position: absolute; left: 11px; top: 16px; bottom: 16px;
+      width: 2px; background: linear-gradient(180deg, var(--blue), var(--cyan));
+    }
+
+    .tl-item {
+      position: relative; margin-bottom: 12px;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 14px; padding: 16px 18px;
+      transition: all 0.3s ease;
+    }
+    .tl-item:hover {
+      background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1);
+      transform: translateX(4px);
+    }
+    .tl-item::before {
+      content: ''; position: absolute; left: -30px; top: 20px;
+      width: 10px; height: 10px; border-radius: 50%;
+      border: 2px solid var(--blue); background: var(--bg);
+    }
+
+    .tl-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+    .tl-time {
+      font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600;
+      padding: 2px 10px; border-radius: 6px; background: rgba(59,130,246,0.12); color: var(--blue);
+    }
+    .tl-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tl-tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 5px; }
+    .tag-flight { background: rgba(59,130,246,0.12); color: var(--blue); }
+    .tag-hotel { background: rgba(139,92,246,0.12); color: var(--purple); }
+    .tag-sight { background: rgba(245,158,11,0.12); color: var(--amber); }
+    .tag-food { background: rgba(16,185,129,0.12); color: var(--emerald); }
+    .tag-transport { background: rgba(249,115,22,0.12); color: var(--orange); }
+
+    .tl-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .tl-title-cn { font-size: 12px; color: var(--text3); margin-bottom: 6px; }
+    .tl-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+    .tl-desc strong { color: var(--text); }
+
+    /* Warnings / Food recommendations in timeline */
+    .food-rec, .tip-card {
+      margin-top: 8px; padding: 10px 12px; border-radius: 10px;
+      display: flex; align-items: flex-start; gap: 8px; font-size: 11px;
+    }
+    .food-rec { background: rgba(16,185,129,0.05); border: 1px solid rgba(16,185,129,0.12); color: var(--emerald); }
+    .tip-card.warn { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.15); color: var(--amber); }
+    .tip-card.info { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.15); color: var(--blue); }
+    .food-icon, .tip-icon { font-size: 14px; flex-shrink: 0; }
+
+    /* Links inside timeline cards */
+    .tl-links { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+    .tl-link-btn {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 10px; font-weight: 600; padding: 4px 8px; border-radius: 6px;
+      text-decoration: none; transition: all 0.2s ease;
+      background: var(--glass); border: 1px solid var(--glass-border); color: var(--text2);
+    }
+    .tl-link-btn:hover {
+      background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.3);
+      color: var(--blue); transform: translateY(-1px);
+    }
+    body.light-theme .tl-link-btn { background: rgba(15,23,42,0.03); border-color: rgba(15,23,42,0.08); }
+    body.light-theme .tl-link-btn:hover { background: rgba(59,130,246,0.08); border-color: var(--blue); color: var(--blue); }
+
+    /* ===== MAP SECTION ===== */
+    .map-section {
+      margin: 32px 0 48px; border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--glass-border); background: var(--bg2);
+    }
+    .map-section-header {
+      background: var(--card); padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .map-section-header h3 { font-size: 13px; font-weight: 700; color: var(--text); }
+    .map-section-header .map-badge { font-size: 10px; font-weight: 600; }
+    #overview-map { height: 350px; width: 100%; }
+    .leaflet-tile-pane { filter: brightness(0.7) contrast(1.1) saturate(0.85); }
+    body.light-theme .leaflet-tile-pane { filter: none; }
+    .leaflet-control-zoom a { background: var(--card-solid) !important; color: var(--text) !important; border-color: var(--glass-border) !important; }
+    .leaflet-control-attribution { background: rgba(6,8,15,0.85) !important; color: var(--text4) !important; font-size: 9px !important; }
+    .leaflet-popup-content-wrapper { background: var(--card-solid) !important; border: 1px solid var(--glass-border) !important; border-radius: 10px !important; color: var(--text) !important; }
+    .leaflet-popup-tip { background: var(--card-solid) !important; }
+    .map-marker { display:flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50%; font-size:14px; border:2px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+
+    /* ===== FOOD GUIDE ===== */
+    .food-guide { padding: 48px 0 64px; border-top: 1px solid var(--glass-border); }
+    .food-guide h2 {
+      font-size: 22px; font-weight: 800; margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--emerald), var(--lime));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .food-guide .fg-sub { font-size: 13px; color: var(--text3); margin-bottom: 24px; }
+    .food-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .food-card {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 12px; padding: 16px; transition: all 0.3s ease;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .food-card:hover { background: rgba(255,255,255,0.06); transform: translateY(-2px); }
+    .food-card .fc-cat { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .food-card .fc-name { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .food-card .fc-desc { font-size: 11px; color: var(--text2); line-height: 1.5; margin-bottom: 6px; }
+    .food-card .fc-loc { font-size: 10px; color: var(--text4); }
+
+    /* ===== COUNTDOWN ===== */
+    .countdown-strip { display: flex; align-items: center; justify-content: center; gap: 24px; padding: 14px 0; margin-top: 20px; }
+    .cd-item { text-align: center; }
+    .cd-item .cd-val {
+      font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 700;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .cd-item .cd-lbl { font-size: 9px; font-weight: 600; color: var(--text4); text-transform: uppercase; letter-spacing: 1px; }
+    .cd-sep { font-family: 'JetBrains Mono', monospace; font-size: 20px; color: var(--text4); opacity: 0.4; }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+      padding: 60px 20px; text-align: center; border: 1px dashed var(--glass-border);
+      border-radius: 16px; margin: 40px 0; background: var(--glass);
+    }
+    .empty-state h2 { font-size: 20px; margin-bottom: 12px; }
+    .empty-state p { font-size: 13px; color: var(--text2); margin-bottom: 20px; }
+
+    /* ===== THEME TOGGLE ===== */
+    .theme-toggle-btn {
+      position: fixed; bottom: 24px; right: 24px; width: 48px; height: 48px; border-radius: 50%;
+      background: var(--card-solid); border: 1px solid var(--glass-border); color: var(--text);
+      display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3); z-index: 1000;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .theme-toggle-btn:hover { transform: scale(1.1) rotate(15deg); border-color: var(--blue); }
+    body.light-theme .theme-toggle-btn { box-shadow: 0 4px 20px rgba(15,23,42,0.15); }
+
+    /* Spinner */
+    .spinner {
+      display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Theme">☀️</button>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-actions">
+      <button class="btn" id="btnConfig">⚙️ Import Google Sheet</button>
+    </div>
+    <h1 id="tripTitle">Trip Itinerary</h1>
+    <div class="hero-sub" id="tripDates">Dynamic Travel Dashboard</div>
+    
+    <div class="countdown-strip" id="countdownStrip" style="display: none;">
+      <div class="cd-item"><div class="cd-val" id="cd-d">--</div><div class="cd-lbl">Days</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-item"><div class="cd-val" id="cd-h">--</div><div class="cd-lbl">Hours</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-item"><div class="cd-val" id="cd-m">--</div><div class="cd-lbl">Mins</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-item"><div class="cd-val" id="cd-s">--</div><div class="cd-lbl">Secs</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONFIG DRAWER ===== -->
+<div class="drawer-overlay" id="drawerOverlay">
+  <div class="drawer" id="configDrawer">
+    <div class="drawer-header">
+      <h3>Google Sheet Import</h3>
+      <span class="drawer-close" id="drawerClose">&times;</span>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="sheetUrl">Google Sheet Link / ID</label>
+      <input type="text" class="form-input" id="sheetUrl" placeholder="Paste full link or sheet ID here...">
+      <div class="help-text">Make sure the link is set to <strong>"Anyone with the link can view"</strong> (click Share > Change to Anyone with Link).</div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="itineraryTab">Itinerary Tab Name</label>
+      <input type="text" class="form-input" id="itineraryTab" value="Sheet2" placeholder="e.g. Sheet2">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="foodTab">Food Guide Tab Name</label>
+      <input type="text" class="form-input" id="foodTab" value="Food Recommendations" placeholder="e.g. Food Recommendations">
+    </div>
+    <button class="btn btn-primary" id="btnSync" style="width: 100%; justify-content: center; height: 40px;">
+      <span>Sync Calendar Data</span>
+    </button>
+  </div>
+</div>
+
+<!-- ===== DAY NAVIGATION ===== -->
+<nav class="day-nav" id="dayNav" style="display: none;"></nav>
+
+<!-- ===== MAIN CONTAINER ===== -->
+<div class="container" style="margin-top: 32px;">
+  <!-- Empty State -->
+  <div class="empty-state" id="emptyState">
+    <h2>Welcome to your Travel Dashboard!</h2>
+    <p>Please click the "Import Google Sheet" button above to sync your itinerary and custom spots.</p>
+    <button class="btn btn-primary" id="btnImportPrompt">Import My First Sheet</button>
+  </div>
+
+  <div class="main-layout" id="mainLayout" style="display: none;">
+    <div class="timeline-column" id="timelineColumn">
+      <!-- Days will render here dynamically -->
+    </div>
+    
+    <div class="map-column">
+      <div class="map-section">
+        <div class="map-section-header">
+          <h3>📍 Attractions Map</h3>
+          <span class="map-badge" id="map-active-day">All Days</span>
+        </div>
+        <div id="overview-map"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOD GUIDE ===== -->
+  <section class="food-guide" id="sec-food" style="display: none;">
+    <h2>🍽 Local Food Recommendations</h2>
+    <div class="fg-sub">Curated dishes, desserts, and local cafes matching your locations</div>
+    <div class="food-grid" id="foodGrid">
+      <!-- Food items render here dynamically -->
+    </div>
+  </section>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ===== THEME TOGGLE =====
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const savedTheme = localStorage.getItem('theme');
+const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+const isLight = savedTheme === 'light' || (!savedTheme && systemPrefersLight);
+
+if (isLight) {
+  body.classList.add('light-theme');
+  if (themeToggle) themeToggle.textContent = '🌙';
+} else {
+  body.classList.remove('light-theme');
+  if (themeToggle) themeToggle.textContent = '☀️';
+}
+
+// ===== DRAWER INTERACTIONS =====
+const btnConfig = document.getElementById('btnConfig');
+const btnImportPrompt = document.getElementById('btnImportPrompt');
+const drawerOverlay = document.getElementById('drawerOverlay');
+const configDrawer = document.getElementById('configDrawer');
+const drawerClose = document.getElementById('drawerClose');
+
+function openDrawer() {
+  drawerOverlay.classList.add('open');
+  configDrawer.classList.add('open');
+}
+function closeDrawer() {
+  drawerOverlay.classList.remove('open');
+  configDrawer.classList.remove('open');
+}
+
+btnConfig.addEventListener('click', openDrawer);
+btnImportPrompt.addEventListener('click', openDrawer);
+drawerClose.addEventListener('click', closeDrawer);
+drawerOverlay.addEventListener('click', (e) => {
+  if (e.target === drawerOverlay) closeDrawer();
+});
+
+// ===== PRE-DEFINED MARKER COORDINATES =====
+const KNOWN_POIS = {
+  "artika": { name: "Artika Hotel", cn: "酒店", ll: [41.0063, 28.9745], color: "#8b5cf6", emoji: "🏨" },
+  "kofteci": { name: "Tarihi Sultanahmet Köftecisi", cn: "百年肉丸店", ll: [41.0076, 28.9772], color: "#ef4444", emoji: "🍢" },
+  "seven hills": { name: "Seven Hills Restaurant", cn: "海鸥景观餐厅", ll: [41.0088, 28.9816], color: "#ef4444", emoji: "🍳" },
+  "sophia": { name: "Hagia Sophia", cn: "圣索菲亚大教堂", ll: [41.0086, 28.9802], color: "#f59e0b", emoji: "⛪" },
+  "blue mosque": { name: "Blue Mosque", cn: "蓝色清真寺", ll: [41.0054, 28.9768], color: "#3b82f6", emoji: "🕌" },
+  "sehzade": { name: "Şehzade Cağ Kebap", cn: "烤羊肉串", ll: [41.0129, 28.9776], color: "#ef4444", emoji: "🍖" },
+  "topkapi": { name: "Topkapi Palace", cn: "托普卡帕宫", ll: [41.0115, 28.9834], color: "#f97316", emoji: "🏛️" },
+  "dervish": { name: "Whirling Dervish Show", cn: "旋转舞表演", ll: [41.0075, 28.9750], color: "#ef4444", emoji: "💃" },
+  "dock": { name: "Bosphorus Dock", cn: "游船码头", ll: [41.0175, 28.9735], color: "#0ea5e9", emoji: "🚢" },
+  "cruise": { name: "Bosphorus Dock", cn: "游船码头", ll: [41.0175, 28.9735], color: "#0ea5e9", emoji: "🚢" },
+  "emin usta": { name: "Süper Mario Emin Usta", cn: "网红烤鱼卷", ll: [41.0216, 28.9740], color: "#ef4444", emoji: "🐟" },
+  "dolmabahce": { name: "Dolmabahçe Palace", cn: "新皇宫", ll: [41.0391, 29.0005], color: "#06b6d4", emoji: "🏛️" },
+  "taksim": { name: "Taksim Square", cn: "塔克西姆广场", ll: [41.0370, 28.9850], color: "#8b5cf6", emoji: "📍" },
+  "istiklal": { name: "Istiklal Street", cn: "独立大街", ll: [41.0338, 28.9778], color: "#a855f7", emoji: "🚋" },
+  "galata tower": { name: "Galata Tower", cn: "加拉塔塔", ll: [41.0256, 28.9741], color: "#f59e0b", emoji: "🗼" },
+  "gulluoglu": { name: "Karaköy Güllüoğlu", cn: "百年软糖/巴克拉瓦", ll: [41.0242, 28.9760], color: "#ef4444", emoji: "🥮" },
+  "grand bazaar": { name: "Grand Bazaar", cn: "大巴扎", ll: [41.0106, 28.9681], color: "#f43f5e", emoji: "🛍️" },
+  "cavusoglu": { name: "Gaziantepli Çavuşoğlu", cn: "大巴扎薄饼", ll: [41.0112, 28.9690], color: "#ef4444", emoji: "🥙" },
+  "spice bazaar": { name: "Spice Bazaar", cn: "香料市场", ll: [41.0164, 28.9709], color: "#ec4899", emoji: "🧂" },
+  "mehmet efendi": { name: "Kurukahveci Mehmet Efendi", cn: "百年咖啡", ll: [41.0166, 28.9712], color: "#ef4444", emoji: "☕" },
+  "haci bekir": { name: "Ali Muhiddin Hacı Bekir", cn: "百年软糖店", ll: [41.0172, 28.9723], color: "#ef4444", emoji: "🍬" }
+};
+
+// Colors mapping for days
+const dayColors = ["#0ea5e9", "#06b6d4", "#f59e0b", "#8b5cf6", "#f43f5e", "#10b981", "#3b82f6", "#ec4899"];
+
+// State
+let itineraryData = [];
+let foodData = [];
+let map, tileLayer;
+let currentMarkers = [];
+let currentPolylines = [];
+let countdownInterval;
+let isScrollingFromTab = false;
+let scrollTimeout;
+
+// ===== MAP SETUP =====
+map = L.map('overview-map', { center: [41.012, 28.976], zoom: 13, zoomControl: true });
+function updateMapTheme(isLight) {
+  if (tileLayer) map.removeLayer(tileLayer);
+  const url = isLight 
+    ? 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
+    : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+  tileLayer = L.tileLayer(url, { attribution: '&copy; OSM &copy; CARTO', maxZoom: 19 }).addTo(map);
+}
+updateMapTheme(document.body.classList.contains('light-theme'));
+
+themeToggle.addEventListener('click', () => {
+  const currentIsLight = body.classList.toggle('light-theme');
+  themeToggle.textContent = currentIsLight ? '🌙' : '☀️';
+  localStorage.setItem('theme', currentIsLight ? 'light' : 'dark');
+  updateMapTheme(currentIsLight);
+});
+
+// ===== GOOGLE SHEETS PARSER =====
+function extractSpreadsheetId(urlOrId) {
+  if (!urlOrId) return "";
+  const matches = urlOrId.match(/\/d\/([a-zA-Z0-9-_]+)/);
+  return matches ? matches[1] : urlOrId.trim();
+}
+
+// Extract any raw http/https links from notes text
+function extractUrls(text) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const urls = [];
+  let cleanText = text;
+  const matches = text.match(urlRegex);
+  if (matches) {
+    matches.forEach(url => {
+      // Avoid matching other brackets
+      const cleanUrl = url.replace(/[\[\]\(\)\{\}]/g, '');
+      urls.push(cleanUrl);
+      cleanText = cleanText.replace(url, "");
+    });
+  }
+  return { urls, cleanText: cleanText.trim() };
+}
+
+// Parse custom coordinate from notes text (e.g. "41.025, 28.97")
+function extractCoordinates(text) {
+  const coordRegex = /\[?\s*([45]\d\.\d+)\s*,\s*([23]\d\.\d+)\s*\]?/;
+  const match = text.match(coordRegex);
+  if (match) {
+    return [parseFloat(match[1]), parseFloat(match[2])];
+  }
+  return null;
+}
+
+// Parse text content for known POIs
+function findKnownPoi(title, notes, dining) {
+  const checkText = (title + " " + notes + " " + dining).toLowerCase();
+  for (const key in KNOWN_POIS) {
+    if (checkText.includes(key)) {
+      return KNOWN_POIS[key];
+    }
+  }
+  return null;
+}
+
+async function fetchSheetJSON(sheetId, tabName) {
+  const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(tabName)}`;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`Failed to fetch tab "${tabName}"`);
+  const text = await response.text();
+  const jsonStart = text.indexOf('{');
+  const jsonEnd = text.lastIndexOf('}') + 1;
+  const jsonStr = text.substring(jsonStart, jsonEnd);
+  return JSON.parse(jsonStr).table;
+}
+
+function parseItinerary(table) {
+  const rows = table.rows;
+  if (!rows || rows.length === 0) return [];
+  
+  let colIndices = { date: 1, time: 2, item: 3, transport: 4, dining: 5, notes: 6, foodRec: 7 };
+  
+  // Find header row dynamically
+  for (let r = 0; r < Math.min(rows.length, 5); r++) {
+    const row = rows[r];
+    if (!row || !row.c) continue;
+    const cells = row.c.map(cell => cell ? (cell.f || cell.v || "").toString().trim() : "");
+    if (cells.includes("日期") || cells.includes("时间") || cells.includes("项目")) {
+      colIndices.date = cells.indexOf("日期");
+      colIndices.time = cells.indexOf("时间");
+      colIndices.item = cells.indexOf("项目");
+      colIndices.transport = cells.indexOf("交通");
+      colIndices.dining = cells.indexOf("餐饮");
+      colIndices.notes = cells.indexOf("备注");
+      colIndices.foodRec = cells.indexOf("特色餐饮推荐 (街头小吃与咖啡甜点)");
+      break;
+    }
+  }
+
+  const days = [];
+  let currentDay = null;
+
+  for (let r = colIndices.date !== -1 ? 2 : 1; r < rows.length; r++) {
+    const row = rows[r];
+    if (!row || !row.c) continue;
+
+    const getCellVal = (idx) => {
+      if (idx === -1 || idx >= row.c.length) return "";
+      const cell = row.c[idx];
+      return cell ? (cell.f || cell.v || "").toString().trim() : "";
+    };
+
+    const dateVal = getCellVal(colIndices.date);
+    const timeVal = getCellVal(colIndices.time);
+    const itemVal = getCellVal(colIndices.item);
+    const transportVal = getCellVal(colIndices.transport);
+    const diningVal = getCellVal(colIndices.dining);
+    const notesVal = getCellVal(colIndices.notes);
+    const foodRecVal = getCellVal(colIndices.foodRec);
+
+    if (!dateVal && !timeVal && !itemVal && !notesVal) continue;
+
+    if (dateVal) {
+      const dateLines = dateVal.split('\n');
+      currentDay = {
+        dateString: dateLines[0],
+        theme: dateLines.slice(1).join(' '),
+        items: []
+      };
+      days.push(currentDay);
+    }
+
+    if (itemVal || timeVal) {
+      if (!currentDay) {
+        currentDay = { dateString: "Schedule", theme: "", items: [] };
+        days.push(currentDay);
+      }
+      
+      currentDay.items.push({
+        time: timeVal,
+        title: itemVal,
+        transport: transportVal,
+        dining: diningVal,
+        notes: notesVal,
+        foodRec: foodRecVal
+      });
+    }
+  }
+  return days;
+}
+
+function parseFoodRecommendations(table) {
+  const rows = table.rows;
+  if (!rows || rows.length === 0) return [];
+
+  let colIndices = { area: 1, category: 2, name: 3, desc: 4, loc: 5 };
+  
+  for (let r = 0; r < Math.min(rows.length, 10); r++) {
+    const row = rows[r];
+    if (!row || !row.c) continue;
+    const cells = row.c.map(cell => cell ? (cell.f || cell.v || "").toString().trim() : "");
+    if (cells.includes("Name") || cells.includes("Category") || cells.includes("Area / Schedule Match")) {
+      colIndices.area = cells.indexOf("Area / Schedule Match");
+      colIndices.category = cells.indexOf("Category");
+      colIndices.name = cells.indexOf("Name");
+      colIndices.desc = cells.indexOf("Must Try / Description");
+      colIndices.loc = cells.indexOf("Location Notes");
+      break;
+    }
+  }
+
+  const items = [];
+  const startRow = Math.max(0, rows.findIndex(row => {
+    if (!row || !row.c) return false;
+    const cells = row.c.map(cell => cell ? (cell.f || cell.v || "").toString().trim() : "");
+    return cells.includes("Name") || cells.includes("Category");
+  })) + 1;
+
+  for (let r = startRow; r < rows.length; r++) {
+    const row = rows[r];
+    if (!row || !row.c) continue;
+
+    const getCellVal = (idx) => {
+      if (idx === -1 || idx >= row.c.length) return "";
+      const cell = row.c[idx];
+      return cell ? (cell.f || cell.v || "").toString().trim() : "";
+    };
+
+    const name = getCellVal(colIndices.name);
+    if (!name) continue;
+
+    items.push({
+      area: getCellVal(colIndices.area),
+      category: getCellVal(colIndices.category),
+      name: name,
+      desc: getCellVal(colIndices.desc),
+      loc: getCellVal(colIndices.loc)
+    });
+  }
+  return items;
+}
+
+// ===== RENDER DATA =====
+function renderDashboard(days, foods) {
+  itineraryData = days;
+  foodData = foods;
+
+  // Update Title and Subtitle from first day
+  if (days.length > 0) {
+    document.getElementById('tripTitle').textContent = "My Trip Itinerary";
+    document.getElementById('tripDates').textContent = `${days[0].dateString} — ${days[days.length - 1].dateString}`;
+  }
+
+  // Render Nav Tabs
+  const dayNav = document.getElementById('dayNav');
+  dayNav.innerHTML = '';
+  dayNav.style.display = days.length > 0 ? 'flex' : 'none';
+  
+  if (days.length > 0) {
+    // Overview tab
+    const overviewTab = document.createElement('div');
+    overviewTab.className = 'day-tab active';
+    overviewTab.textContent = '✈ Overview';
+    overviewTab.dataset.target = 'overview';
+    dayNav.appendChild(overviewTab);
+
+    // Day tabs
+    days.forEach((day, index) => {
+      const tab = document.createElement('div');
+      tab.className = 'day-tab';
+      tab.textContent = `Day ${index + 1}`;
+      tab.dataset.target = `sec-d${index}`;
+      dayNav.appendChild(tab);
+    });
+
+    // Food Tab
+    if (foods.length > 0) {
+      const foodTab = document.createElement('div');
+      foodTab.className = 'day-tab';
+      foodTab.textContent = '🍽 Food Guide';
+      foodTab.dataset.target = 'sec-food';
+      dayNav.appendChild(foodTab);
+    }
+  }
+
+  // Render Timelines
+  const timelineCol = document.getElementById('timelineColumn');
+  timelineCol.innerHTML = '';
+
+  days.forEach((day, dayIdx) => {
+    const color = dayColors[dayIdx % dayColors.length];
+    const section = document.createElement('section');
+    section.className = `day-section d-sec-${dayIdx}`;
+    section.id = `sec-d${dayIdx}`;
+    
+    // Custom day style
+    const styleEl = document.createElement('style');
+    styleEl.textContent = `
+      .d-sec-${dayIdx} .day-number { background: linear-gradient(135deg, ${color}, #fff); -webkit-background-clip: text; }
+      .d-sec-${dayIdx} .tl::before { background: linear-gradient(180deg, ${color}, rgba(255,255,255,0.1)); }
+      .d-sec-${dayIdx} .tl-item::before { border-color: ${color}; }
+      .d-sec-${dayIdx} .tl-time { background: ${color}20; color: ${color}; }
+    `;
+    document.head.appendChild(styleEl);
+
+    section.innerHTML = `
+      <div class="day-header">
+        <div class="day-number">${String(dayIdx + 1).padStart(2, '0')}</div>
+        <div class="day-info">
+          <div class="day-date">${day.dateString}</div>
+          <div class="day-theme">${day.theme}</div>
+        </div>
+      </div>
+      <div class="tl"></div>
+    `;
+    
+    const tlContainer = section.querySelector('.tl');
+    day.items.forEach(item => {
+      const tlItem = document.createElement('div');
+      tlItem.className = 'tl-item';
+      
+      // Determine Tags
+      let tagClass = 'tag-sight';
+      let tagLabel = 'Sight';
+      const checkText = (item.title + " " + item.notes).toLowerCase();
+      if (checkText.includes('lunch') || checkText.includes('dinner') || checkText.includes('snack') || checkText.includes('eat') || checkText.includes('food')) {
+        tagClass = 'tag-food';
+        tagLabel = 'Food';
+      } else if (checkText.includes('flight') || checkText.includes('fly') || checkText.includes('airport')) {
+        tagClass = 'tag-flight';
+        tagLabel = 'Flight';
+      } else if (checkText.includes('hotel') || checkText.includes('stay') || checkText.includes('check in')) {
+        tagClass = 'tag-hotel';
+        tagLabel = 'Stay';
+      } else if (checkText.includes('taxi') || checkText.includes('tram') || checkText.includes('funicular') || checkText.includes('metro') || checkText.includes('walk')) {
+        tagClass = 'tag-transport';
+        tagLabel = 'Transport';
+      }
+
+      // Extract URLs
+      const { urls: noteUrls, cleanText: noteClean } = extractUrls(item.notes || "");
+      const { urls: titleUrls, cleanText: titleClean } = extractUrls(item.title || "");
+      const allUrls = [...titleUrls, ...noteUrls];
+
+      // Format description with bolding
+      const formatText = (txt) => {
+        return txt.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      };
+
+      let html = `
+        <div class="tl-top">
+          <span class="tl-time">${item.time || 'All Day'}</span>
+          <div class="tl-tags"><span class="tl-tag ${tagClass}">${tagLabel}</span></div>
+        </div>
+        <div class="tl-title">${formatText(titleClean)}</div>
+      `;
+
+      if (item.transport) {
+        html += `<div class="tl-title-cn">🚇 ${item.transport}</div>`;
+      }
+      if (noteClean) {
+        html += `<div class="tl-desc">${formatText(noteClean)}</div>`;
+      }
+
+      // Check warnings in notes
+      if (noteClean.toLowerCase().includes('warning') || noteClean.includes('⚠️') || noteClean.toLowerCase().includes('busy')) {
+        html += `
+          <div class="tip-card warn">
+            <span class="tip-icon">⚠️</span>
+            <span class="tip-text">${formatText(noteClean)}</span>
+          </div>
+        `;
+      }
+
+      // Food matches
+      if (item.foodRec) {
+        html += `
+          <div class="food-rec">
+            <span class="food-icon">🍽️</span>
+            <span class="food-text">${formatText(item.foodRec)}</span>
+          </div>
+        `;
+      }
+
+      // Dynamic buttons (Google Maps, TripAdvisor search, and any custom sheet links)
+      let linkButtons = '';
+      const poi = findKnownPoi(item.title, item.notes, item.dining);
+      const coord = extractCoordinates(item.notes);
+
+      if (poi || coord) {
+        const query = poi ? poi.name : item.title.split('\n')[0];
+        linkButtons += `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query + ' Istanbul')}" target="_blank" class="tl-link-btn">📍 Google Maps</a>`;
+      }
+
+      if (tagLabel === 'Food') {
+        const query = item.title.replace(/lunch|dinner|eat|at|restaurant/gi, '').trim();
+        linkButtons += `<a href="https://www.tripadvisor.com/Search?q=${encodeURIComponent(query + ' Istanbul')}" target="_blank" class="tl-link-btn">💬 TripAdvisor</a>`;
+      }
+
+      // Custom URLs
+      allUrls.forEach((url, uIdx) => {
+        const label = url.includes('klook') ? '🎟️ Klook Voucher' : `🔗 Ticket / Link ${uIdx + 1}`;
+        const btnStyle = url.includes('klook') ? 'style="background:rgba(249,115,22,0.08); border-color:rgba(249,115,22,0.3); color:var(--orange);"' : '';
+        linkButtons += `<a href="${url}" target="_blank" class="tl-link-btn" ${btnStyle}>${label}</a>`;
+      });
+
+      if (linkButtons) {
+        html += `<div class="tl-links">${linkButtons}</div>`;
+      }
+
+      tlItem.innerHTML = html;
+      tlContainer.appendChild(tlItem);
+    });
+
+    timelineCol.appendChild(section);
+  });
+
+  // Render Food Guide
+  const foodGrid = document.getElementById('foodGrid');
+  foodGrid.innerHTML = '';
+  const foodSec = document.getElementById('sec-food');
+  
+  if (foods.length > 0) {
+    foodSec.style.display = 'block';
+    foods.forEach(food => {
+      const card = document.createElement('div');
+      card.className = 'food-card';
+      
+      let catColor = 'var(--amber)';
+      if (food.category.toLowerCase().includes('dessert') || food.category.includes('sweet')) catColor = 'var(--emerald)';
+      else if (food.category.toLowerCase().includes('cafe') || food.category.includes('coffee')) catColor = 'var(--purple)';
+
+      card.innerHTML = `
+        <div>
+          <div class="fc-cat" style="color:${catColor};">🍔 ${food.category} · ${food.area}</div>
+          <div class="fc-name">${food.name}</div>
+          <div class="fc-desc">${food.desc}</div>
+        </div>
+        <div>
+          <div class="fc-loc">📍 ${food.loc}</div>
+          <div class="tl-links" style="margin-top: 10px;">
+            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(food.name + ' ' + food.loc + ' Istanbul')}" target="_blank" class="tl-link-btn">📍 Map</a>
+            <a href="https://www.tripadvisor.com/Search?q=${encodeURIComponent(food.name + ' Istanbul')}" target="_blank" class="tl-link-btn">💬 TripAdvisor</a>
+          </div>
+        </div>
+      `;
+      foodGrid.appendChild(card);
+    });
+  } else {
+    foodSec.style.display = 'none';
+  }
+
+  // Display layout, hide empty state
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('mainLayout').style.display = 'grid';
+
+  // Trigger countdown if possible
+  setupCountdown(days);
+
+  // Setup listeners for navigation and scroll synchronization
+  setupNavigationSync();
+
+  // Initialize Map Markers
+  updateMapMarkers('overview');
+}
+
+// ===== COUNTDOWN SETUP =====
+function setupCountdown(days) {
+  clearInterval(countdownInterval);
+  const countdownStrip = document.getElementById('countdownStrip');
+  
+  // Try to find the first departure time. Let's scan notes or titles on Day 1 or Departure.
+  let depDate = null;
+  for (const day of days) {
+    for (const item of day.items) {
+      if (item.title.toLowerCase().includes('depart') || item.title.toLowerCase().includes('起飞') || item.title.toLowerCase().includes('flight') || item.title.toLowerCase().includes('fly')) {
+        // Construct date string
+        const dateMatch = day.dateString.match(/(\d+)\/(\d+)/);
+        if (dateMatch) {
+          const month = parseInt(dateMatch[1]) - 1;
+          const date = parseInt(dateMatch[2]);
+          const timeMatch = item.time.match(/(\d+):(\d+)/);
+          const hours = timeMatch ? parseInt(timeMatch[1]) : 19;
+          const mins = timeMatch ? parseInt(timeMatch[2]) : 30;
+          
+          depDate = new Date(2026, month, date, hours, mins, 0);
+          break;
+        }
+      }
+    }
+    if (depDate) break;
+  }
+
+  if (!depDate && days.length > 0) {
+    const dateMatch = days[0].dateString.match(/(\d+)\/(\d+)/);
+    if (dateMatch) {
+      depDate = new Date(2026, parseInt(dateMatch[1]) - 1, parseInt(dateMatch[2]), 9, 0, 0);
+    }
+  }
+
+  if (depDate) {
+    countdownStrip.style.display = 'flex';
+    function tick() {
+      const d = depDate - new Date();
+      if (d <= 0) {
+        countdownStrip.style.display = 'none';
+        clearInterval(countdownInterval);
+        return;
+      }
+      const D = Math.floor(d/864e5), H = Math.floor(d%864e5/36e5),
+            M = Math.floor(d%36e5/6e4), S = Math.floor(d%6e4/1e3);
+      document.getElementById('cd-d').textContent = String(D).padStart(2,'0');
+      document.getElementById('cd-h').textContent = String(H).padStart(2,'0');
+      document.getElementById('cd-m').textContent = String(M).padStart(2,'0');
+      document.getElementById('cd-s').textContent = String(S).padStart(2,'0');
+    }
+    tick();
+    countdownInterval = setInterval(tick, 1000);
+  } else {
+    countdownStrip.style.display = 'none';
+  }
+}
+
+// ===== MAP INTERACTIVE UPDATE =====
+function updateMapMarkers(targetId) {
+  // Clear existing
+  currentMarkers.forEach(m => map.removeLayer(m));
+  currentMarkers = [];
+  currentPolylines.forEach(p => map.removeLayer(p));
+  currentPolylines = [];
+
+  const badge = document.getElementById('map-active-day');
+  let activePois = [];
+  let showRoute = false;
+  let dayColor = 'var(--blue)';
+
+  if (targetId === 'overview' || targetId === 'sec-food') {
+    // Show all POIs
+    badge.textContent = targetId === 'overview' ? 'Trip Overview' : 'Local Food Guide';
+    badge.style.color = 'var(--blue)';
+    
+    // Add all unique POIs
+    const seen = new Set();
+    
+    // Collect from itinerary
+    itineraryData.forEach(day => {
+      day.items.forEach(item => {
+        const customCoord = extractCoordinates(item.notes);
+        if (customCoord) {
+          const key = customCoord.join(',');
+          if (!seen.has(key)) {
+            seen.add(key);
+            activePois.push({
+              name: item.title.split('\n')[0],
+              cn: "Custom Spot",
+              ll: customCoord,
+              color: "#f43f5e",
+              emoji: "📍"
+            });
+          }
+        }
+        const poi = findKnownPoi(item.title, item.notes, item.dining);
+        if (poi && !seen.has(poi.name)) {
+          seen.add(poi.name);
+          activePois.push(poi);
+        }
+      });
+    });
+
+    // Collect from food guide
+    foodData.forEach(food => {
+      const checkText = food.name.toLowerCase();
+      for (const key in KNOWN_POIS) {
+        if (checkText.includes(key) && !seen.has(KNOWN_POIS[key].name)) {
+          seen.add(KNOWN_POIS[key].name);
+          activePois.push(KNOWN_POIS[key]);
+        }
+      }
+    });
+  } else {
+    // Show specific day
+    const dayIdx = parseInt(targetId.replace('sec-d', ''));
+    const day = itineraryData[dayIdx];
+    dayColor = dayColors[dayIdx % dayColors.length];
+    badge.textContent = `Day ${dayIdx + 1}: ${day.dateString}`;
+    badge.style.color = dayColor;
+    showRoute = true;
+
+    day.items.forEach(item => {
+      const customCoord = extractCoordinates(item.notes);
+      if (customCoord) {
+        activePois.push({
+          name: item.title.split('\n')[0],
+          cn: "Custom Spot",
+          ll: customCoord,
+          color: dayColor,
+          emoji: "📍"
+        });
+        return;
+      }
+      const poi = findKnownPoi(item.title, item.notes, item.dining);
+      if (poi) {
+        activePois.push(poi);
+      }
+    });
+  }
+
+  if (activePois.length === 0) return;
+
+  const latlngs = [];
+  const markerBounds = L.latLngBounds();
+
+  activePois.forEach((p, index) => {
+    const color = p.color || dayColor;
+    const icon = L.divIcon({
+      className: '',
+      html: `<div class="map-marker" style="background:${color}; border-color:${dayColor};">${p.emoji || '📍'}</div>`,
+      iconSize: [30, 30], iconAnchor: [15, 15], popupAnchor: [0, -18]
+    });
+
+    const stopLabel = showRoute ? `<span style="color:${dayColor}; font-weight:bold;">[Stop ${index + 1}]</span> ` : '';
+    const marker = L.marker(p.ll, { icon }).addTo(map)
+      .bindPopup(`<div style="font-family:Inter,sans-serif;"><strong style="font-size:13px;">${stopLabel}${p.name}</strong><br><span style="font-size:11px;color:#94a3b8;">${p.cn || ''}</span></div>`);
+    
+    currentMarkers.push(marker);
+    latlngs.push(p.ll);
+    markerBounds.extend(p.ll);
+  });
+
+  if (showRoute && latlngs.length >= 2) {
+    const polyline = L.polyline(latlngs, {
+      color: dayColor,
+      weight: 3,
+      opacity: 0.8,
+      dashArray: '8, 8',
+      lineJoin: 'round'
+    }).addTo(map);
+    currentPolylines.push(polyline);
+  }
+
+  if (latlngs.length > 0) {
+    if (latlngs.length === 1) {
+      map.setView(latlngs[0], 14, { animate: true });
+    } else {
+      map.fitBounds(markerBounds, { padding: [40, 40], maxZoom: 15, animate: true });
+    }
+  }
+}
+
+// ===== NAV & SCROLL SYNC =====
+function setupNavigationSync() {
+  document.querySelectorAll('.day-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      isScrollingFromTab = true;
+      clearTimeout(scrollTimeout);
+
+      document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const targetId = tab.dataset.target;
+      updateMapMarkers(targetId);
+
+      if (targetId === 'overview') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const target = document.getElementById(targetId);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      scrollTimeout = setTimeout(() => { isScrollingFromTab = false; }, 1000);
+    });
+  });
+
+  const sections = document.querySelectorAll('.day-section, .food-guide');
+  const observer = new IntersectionObserver(entries => {
+    if (isScrollingFromTab) return;
+    
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        document.querySelectorAll('.day-tab').forEach(t => {
+          t.classList.toggle('active', t.dataset.target === id);
+        });
+        updateMapMarkers(id);
+      }
+    });
+  }, { rootMargin: '-40% 0px -40% 0px' });
+  sections.forEach(s => observer.observe(s));
+}
+
+// ===== SYNC SHEET LOGIC =====
+const btnSync = document.getElementById('btnSync');
+const sheetUrlInput = document.getElementById('sheetUrl');
+const itineraryTabInput = document.getElementById('itineraryTab');
+const foodTabInput = document.getElementById('foodTab');
+
+btnSync.addEventListener('click', async () => {
+  const inputVal = sheetUrlInput.value.trim();
+  const sheetId = extractSpreadsheetId(inputVal);
+  if (!sheetId) {
+    alert("Please enter a valid Google Sheet URL or ID.");
+    return;
+  }
+
+  const itinTab = itineraryTabInput.value.trim() || "Sheet2";
+  const foodTab = foodTabInput.value.trim() || "Food Recommendations";
+
+  btnSync.disabled = true;
+  btnSync.innerHTML = `<span class="spinner"></span> <span style="margin-left:8px;">Syncing...</span>`;
+
+  try {
+    const itinTable = await fetchSheetJSON(sheetId, itinTab);
+    const parsedItin = parseItinerary(itinTable);
+
+    let parsedFood = [];
+    try {
+      const foodTable = await fetchSheetJSON(sheetId, foodTab);
+      parsedFood = parseFoodRecommendations(foodTable);
+    } catch (e) {
+      console.warn("Could not load food recommendations tab:", e);
+    }
+
+    // Save configurations and data to LocalStorage
+    localStorage.setItem('sheetId', sheetId);
+    localStorage.setItem('itinTab', itinTab);
+    localStorage.setItem('foodTab', foodTab);
+    localStorage.setItem('cachedItinerary', JSON.stringify(parsedItin));
+    localStorage.setItem('cachedFood', JSON.stringify(parsedFood));
+
+    // Render Dashboard
+    renderDashboard(parsedItin, parsedFood);
+    closeDrawer();
+  } catch (err) {
+    alert("Error syncing sheet: " + err.message + "\n\nDouble check that the Google Sheet sharing setting is set to 'Anyone with the link can view'.");
+  } finally {
+    btnSync.disabled = false;
+    btnSync.innerHTML = "Sync Calendar Data";
+  }
+});
+
+// ===== INITIALIZATION ON PAGE LOAD =====
+window.addEventListener('load', () => {
+  // 1. Check for URL parameters first (e.g. ?sheet=ID)
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramSheetId = urlParams.get('sheet');
+  if (paramSheetId) {
+    sheetUrlInput.value = paramSheetId;
+    btnSync.click();
+    return;
+  }
+
+  // 2. Otherwise load cached values from localStorage
+  const savedId = localStorage.getItem('sheetId');
+  const savedItinTab = localStorage.getItem('itinTab');
+  const savedFoodTab = localStorage.getItem('foodTab');
+  const cachedItin = localStorage.getItem('cachedItinerary');
+  const cachedFood = localStorage.getItem('cachedFood');
+
+  if (savedId) {
+    sheetUrlInput.value = savedId;
+    if (savedItinTab) itineraryTabInput.value = savedItinTab;
+    if (savedFoodTab) foodTabInput.value = savedFoodTab;
+  }
+
+  if (cachedItin) {
+    const days = JSON.parse(cachedItin);
+    const foods = cachedFood ? JSON.parse(cachedFood) : [];
+    renderDashboard(days, foods);
+  }
+});
+</script>
+</body>
+</html>
