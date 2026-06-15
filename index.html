@@ -330,6 +330,12 @@
       border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-in-out infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== DROPDOWN ===== */
+    .dropdown-content a:hover {
+      background: rgba(59,130,246,0.12);
+      color: var(--blue);
+    }
   </style>
 </head>
 <body>
@@ -339,8 +345,15 @@
 <!-- ===== HERO ===== -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-actions">
+    <div class="hero-actions" style="display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap;">
       <button class="btn" id="btnConfig">⚙️ Import Google Sheet</button>
+      <div class="dropdown" style="position: relative; display: inline-block;">
+        <button class="btn" id="btnTrips" style="gap: 4px;">✈️ Predefined Trips <span style="font-size: 8px; vertical-align: middle;">▼</span></button>
+        <div class="dropdown-content" id="tripsDropdown" style="display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 6px; background: var(--card-solid); border: 1px solid var(--glass-border); border-radius: 8px; min-width: 180px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); z-index: 1000; text-align: left; overflow: hidden;">
+          <a href="istanbul-trip/index.html" style="display: block; padding: 10px 14px; color: var(--text); text-decoration: none; font-size: 11px; font-weight: 500; border-bottom: 1px solid var(--glass-border); transition: background 0.2s ease;">🇹🇷 Istanbul Trip (Original)</a>
+          <a href="istanbul-trip/flights.html" style="display: block; padding: 10px 14px; color: var(--text); text-decoration: none; font-size: 11px; font-weight: 500; transition: background 0.2s ease;">✈️ JFK ⇄ IST Flight Calendar</a>
+        </div>
+      </div>
     </div>
     <h1 id="tripTitle">Trip Itinerary</h1>
     <div class="hero-sub" id="tripDates">Dynamic Travel Dashboard</div>
@@ -1227,6 +1240,20 @@ window.addEventListener('load', () => {
     renderDashboard(days, foods);
   }
 });
+
+// ===== PREDEFINED TRIPS DROPDOWN =====
+const btnTrips = document.getElementById('btnTrips');
+const tripsDropdown = document.getElementById('tripsDropdown');
+if (btnTrips && tripsDropdown) {
+  btnTrips.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isVisible = tripsDropdown.style.display === 'block';
+    tripsDropdown.style.display = isVisible ? 'none' : 'block';
+  });
+  document.addEventListener('click', () => {
+    tripsDropdown.style.display = 'none';
+  });
+}
 </script>
 </body>
 </html>
