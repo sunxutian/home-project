@@ -44,3 +44,11 @@ To import your Google Sheet:
 2. Click **Share** in the top right.
 3. Change the General Access option to **"Anyone with the link can view"**.
 4. Copy the link and paste it into the "Import Google Sheet" drawer on this website!
+
+---
+
+## 📁 Sub-Projects in this Repository
+
+- **[🚗 Family 6-Seater Vehicle Evaluator & Cost Calculator](car-calculator/)**: Interactive multi-page comparison tool for family 3-row EVs, PHEVs, and Hybrids (Kia EV9, Tesla Model Y L, Grand Highlander, Mazda CX-90, Volvo XC90) with Bergen County NJ financing, insurance, 3rd-row usability, and battery degradation analytics.
+- **[🇹🇷 Istanbul Trip Guide](istanbul-trip/)**: Dedicated travel planning and flight schedule guide.
+
