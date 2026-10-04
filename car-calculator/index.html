@@ -67,6 +67,25 @@
       background: #374151;
       border-radius: 4px;
     }
+
+    /* Google Translate Seamless Integration */
+    .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame {
+      display: none !important;
+    }
+    body {
+      top: 0px !important;
+      position: static !important;
+    }
+    #goog-gt-tt, .goog-te-balloon-frame {
+      display: none !important;
+    }
+    .goog-text-highlight {
+      background: none !important;
+      box-shadow: none !important;
+    }
+    font font {
+      background: transparent !important;
+    }
   </style>
 </head>
 <body class="bg-[#090d16] text-slate-100 min-h-screen font-sans antialiased selection:bg-blue-600 selection:text-white pb-28">
@@ -82,20 +101,23 @@
         </div>
         <div>
           <div class="text-base font-bold text-white leading-tight flex items-center gap-2">
-            Family 6-Seater Hub
+            <span id="brandTitle">Family 6-Seater Hub</span>
             <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-semibold border border-emerald-500/30">📍 Closter, NJ 07624</span>
           </div>
-          <div class="text-xs text-slate-400">Trade-in: 2018 GLE 350 + $15k Cash | Expert Ratings & Cost Guide</div>
+          <div class="text-xs text-slate-400" id="brandSubtitle">Trade-in: 2018 GLE 350 + $15k Cash | Expert Ratings & Cost Guide</div>
         </div>
       </div>
 
       <!-- Quick Action Buttons -->
       <div class="flex items-center space-x-2">
-        <button onclick="openTradeInGuide()" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center gap-1.5">
-          <span>🏷️</span> GLE 350 Guide
+        <button onclick="toggleTranslate()" id="langToggleBtn" class="text-xs px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow-md shadow-emerald-600/30 transition flex items-center gap-1.5 cursor-pointer">
+          <span>🌐</span> <span id="langBtnText">中文翻译 (Translate to Chinese)</span>
         </button>
-        <button onclick="resetDefaults()" class="text-xs px-3 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 border border-blue-500/30 transition">
-          ↺ Reset
+        <button onclick="openTradeInGuide()" id="btnTradeInGuide" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center gap-1.5">
+          <span>🏷️</span> <span id="textTradeInGuide">GLE 350 Guide</span>
+        </button>
+        <button onclick="resetDefaults()" id="btnResetDefaults" class="text-xs px-3 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 border border-blue-500/30 transition">
+          <span id="textResetDefaults">↺ Reset</span>
         </button>
       </div>
     </div>
@@ -105,35 +127,35 @@
       <nav class="flex space-x-1 sm:space-x-2 overflow-x-auto custom-scroll py-2" aria-label="Tabs">
         
         <button onclick="switchTab('calculator')" id="tab-calculator" class="nav-tab px-3.5 py-2 text-xs font-semibold rounded-lg transition flex items-center gap-2 whitespace-nowrap bg-blue-600 text-white shadow-md shadow-blue-600/30">
-          <span>💰</span> Cost Calculator
+          <span>💰</span> <span id="lblTabCalculator">Cost Calculator</span>
         </button>
 
         <button onclick="switchTab('ratings')" id="tab-ratings" class="nav-tab px-3.5 py-2 text-xs font-semibold rounded-lg transition flex items-center gap-2 whitespace-nowrap text-slate-400 hover:text-slate-200 hover:bg-slate-800/60">
-          <span>⭐</span> Online Ratings & Reviews
+          <span>⭐</span> <span id="lblTabRatings">Online Ratings & Reviews</span>
         </button>
 
         <button onclick="switchTab('compare')" id="tab-compare" class="nav-tab px-3.5 py-2 text-xs font-semibold rounded-lg transition flex items-center gap-2 whitespace-nowrap text-slate-400 hover:text-slate-200 hover:bg-slate-800/60">
-          <span>🚘</span> Car Compare & Kid Tech
+          <span>🚘</span> <span id="lblTabCompare">Car Compare & Kid Tech</span>
         </button>
 
         <button onclick="switchTab('service')" id="tab-service" class="nav-tab px-3.5 py-2 text-xs font-semibold rounded-lg transition flex items-center gap-2 whitespace-nowrap text-slate-400 hover:text-slate-200 hover:bg-slate-800/60">
-          <span>🔧</span> Service & Maintenance
+          <span>🔧</span> <span id="lblTabService">Service & Maintenance</span>
         </button>
 
         <button onclick="switchTab('insurance')" id="tab-insurance" class="nav-tab px-3.5 py-2 text-xs font-semibold rounded-lg transition flex items-center gap-2 whitespace-nowrap text-slate-400 hover:text-slate-200 hover:bg-slate-800/60">
-          <span>🛡️</span> Insurance Analysis (NJ)
+          <span>🛡️</span> <span id="lblTabInsurance">Insurance Analysis (NJ)</span>
         </button>
 
         <button onclick="switchTab('dealers')" id="tab-dealers" class="nav-tab px-3.5 py-2 text-xs font-semibold rounded-lg transition flex items-center gap-2 whitespace-nowrap text-slate-400 hover:text-slate-200 hover:bg-slate-800/60">
-          <span>📍</span> Local NJ Dealers & Stock
+          <span>📍</span> <span id="lblTabDealers">Local NJ Dealers & Stock</span>
         </button>
 
         <button onclick="switchTab('degradation')" id="tab-degradation" class="nav-tab px-3.5 py-2 text-xs font-semibold rounded-lg transition flex items-center gap-2 whitespace-nowrap text-slate-400 hover:text-slate-200 hover:bg-slate-800/60">
-          <span>🔋</span> EV Battery Degradation
+          <span>🔋</span> <span id="lblTabDegradation">EV Battery Degradation</span>
         </button>
 
         <button onclick="switchTab('ev9-vs-model-y')" id="tab-ev9-vs-model-y" class="nav-tab px-3.5 py-2 text-xs font-semibold rounded-lg transition flex items-center gap-2 whitespace-nowrap text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-indigo-500/30 bg-indigo-950/20">
-          <span>⚔️</span> EV9 vs. Model Y L Head-to-Head
+          <span>⚔️</span> <span id="lblTabEv9VsModelY">EV9 vs. Model Y L Head-to-Head</span>
         </button>
 
       </nav>
@@ -152,19 +174,19 @@
         <div class="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-slate-800/80">
           <div>
             <h2 class="text-xl font-bold text-white flex items-center gap-2">
-              <span>⚙️</span> Financial & Down Payment Settings
+              <span>⚙️</span> <span id="lblFinTitle">Financial & Down Payment Settings</span>
             </h2>
-            <p class="text-xs sm:text-sm text-slate-400">Live adjusters for trade-in, cash down, loan terms, and NJ incentives.</p>
+            <p class="text-xs sm:text-sm text-slate-400" id="lblFinDesc">Live adjusters for trade-in, cash down, loan terms, and NJ incentives.</p>
           </div>
           <!-- Total Down Payment Highlight -->
           <div class="bg-blue-950/60 border border-blue-500/40 rounded-xl px-4 py-2.5 flex items-center gap-4">
             <div>
-              <div class="text-[11px] text-blue-300 uppercase tracking-wider font-semibold">Total Upfront Equity</div>
+              <div class="text-[11px] text-blue-300 uppercase tracking-wider font-semibold" id="lblTotalEquityTitle">Total Upfront Equity</div>
               <div class="text-2xl font-extrabold text-blue-400 font-mono" id="totalDownDisplay">$29,000</div>
             </div>
             <div class="text-xs text-slate-400 border-l border-blue-500/30 pl-3">
-              <div>Trade-in: <span id="tradeSummary" class="text-slate-200 font-medium">$14,000</span></div>
-              <div>Cash: <span id="cashSummary" class="text-slate-200 font-medium">$15,000</span></div>
+              <div><span id="lblTradePrefix">Trade-in:</span> <span id="tradeSummary" class="text-slate-200 font-medium">$14,000</span></div>
+              <div><span id="lblCashPrefix">Cash:</span> <span id="cashSummary" class="text-slate-200 font-medium">$15,000</span></div>
             </div>
           </div>
         </div>
@@ -176,24 +198,24 @@
           <div class="space-y-2 bg-slate-900/60 p-4 rounded-xl border border-slate-800/80">
             <div class="flex justify-between items-center">
               <label class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                <span>🚗</span> Trade-in (2018 GLE 350)
+                <span>🚗</span> <span id="lblTradeInTitle">Trade-in (2018 GLE 350)</span>
               </label>
               <span class="text-xs font-mono font-bold text-blue-400" id="tradeInValDisplay">$14,000</span>
             </div>
             <input type="range" id="tradeInInput" min="8000" max="24000" step="500" value="14000" oninput="updateAll()" class="w-full">
             <div class="flex justify-between text-[10px] text-slate-500">
               <span>$8k</span>
-              <span>$14k (Avg Trade)</span>
+              <span id="lblTradeInSub">$14k (Avg Trade)</span>
               <span>$24k (High)</span>
             </div>
-            <p class="text-[11px] text-slate-400 leading-tight">70k miles base GLE 350 dealer trade estimate.</p>
+            <p class="text-[11px] text-slate-400 leading-tight" id="lblTradeInNote">70k miles base GLE 350 dealer trade estimate.</p>
           </div>
 
           <!-- 2. Cash Down Payment -->
           <div class="space-y-2 bg-slate-900/60 p-4 rounded-xl border border-slate-800/80">
             <div class="flex justify-between items-center">
               <label class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                <span>💵</span> Cash Down
+                <span>💵</span> <span id="lblCashDownTitle">Cash Down</span>
               </label>
               <span class="text-xs font-mono font-bold text-emerald-400" id="cashDownValDisplay">$15,000</span>
             </div>
@@ -203,24 +225,24 @@
               <span>$15,000</span>
               <span>$40,000</span>
             </div>
-            <p class="text-[11px] text-slate-400 leading-tight">Your planned cash savings contribution.</p>
+            <p class="text-[11px] text-slate-400 leading-tight" id="lblCashDownNote">Your planned cash savings contribution.</p>
           </div>
 
           <!-- 3. Loan Term & Rate Strategy -->
           <div class="space-y-2 bg-slate-900/60 p-4 rounded-xl border border-slate-800/80">
             <div class="flex justify-between items-center">
               <label class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                <span>📅</span> Loan Term (Months)
+                <span>📅</span> <span id="lblLoanTermTitle">Loan Term (Months)</span>
               </label>
               <span class="text-xs font-mono font-bold text-purple-400" id="loanTermDisplay">60 Mo</span>
             </div>
             <div class="grid grid-cols-3 gap-1.5 pt-1">
-              <button onclick="setLoanTerm(48)" id="term48" class="text-xs py-1.5 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 transition font-medium">48 Mo</button>
-              <button onclick="setLoanTerm(60)" id="term60" class="text-xs py-1.5 rounded-lg border border-blue-500 bg-blue-600 text-white font-bold transition">60 Mo</button>
-              <button onclick="setLoanTerm(72)" id="term72" class="text-xs py-1.5 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 transition font-medium">72 Mo</button>
+              <button onclick="setLoanTerm(48)" id="term48" class="text-xs py-1.5 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 transition font-medium"><span id="lblTerm48">48 Mo</span></button>
+              <button onclick="setLoanTerm(60)" id="term60" class="text-xs py-1.5 rounded-lg border border-blue-500 bg-blue-600 text-white font-bold transition"><span id="lblTerm60">60 Mo</span></button>
+              <button onclick="setLoanTerm(72)" id="term72" class="text-xs py-1.5 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 transition font-medium"><span id="lblTerm72">72 Mo</span></button>
             </div>
             <div class="flex items-center justify-between pt-1">
-              <span class="text-[11px] text-slate-400">Baseline Std APR:</span>
+              <span class="text-[11px] text-slate-400" id="lblBaseApr">Baseline Std APR:</span>
               <input type="number" id="baseAprInput" value="6.0" step="0.25" min="0" max="15" onchange="updateAll()" class="w-16 px-1.5 py-0.5 text-xs text-right bg-slate-800 border border-slate-700 rounded font-mono text-slate-200">
               <span class="text-xs text-slate-400">%</span>
             </div>
@@ -231,19 +253,19 @@
             <div>
               <div class="flex items-center justify-between">
                 <label class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                  <span>🔥</span> Apply Verified Promos
+                  <span>🔥</span> <span id="lblPromoToggleTitle">Apply Verified Promos</span>
                 </label>
                 <label class="relative inline-flex items-center cursor-pointer">
                   <input type="checkbox" id="promoToggle" checked onchange="updateAll()" class="sr-only peer">
                   <div class="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                 </label>
               </div>
-              <p class="text-[11px] text-slate-400 mt-1.5 leading-snug">
+              <p class="text-[11px] text-slate-400 mt-1.5 leading-snug" id="lblPromoDesc">
                 Applies confirmed local deals: Ramsey Mazda (<span class="text-emerald-400 font-semibold">0% APR</span>), Jack Daniels Kia (<span class="text-emerald-400 font-semibold">0% APR + $5k</span>), Tesla (<span class="text-blue-400 font-semibold">1.99%</span>).
               </p>
             </div>
             <div class="text-[11px] text-slate-400 border-t border-slate-800 pt-2 flex items-center justify-between">
-              <span>NJ Sales Tax (Trade credit):</span>
+              <span id="lblSalesTaxNote">NJ Sales Tax (Trade credit):</span>
               <span class="font-mono text-emerald-400 font-semibold">6.625%</span>
             </div>
           </div>
@@ -259,16 +281,16 @@
               </div>
               <div>
                 <h3 class="text-sm font-bold text-white flex items-center gap-2">
-                  Level 2 Home Wall Charger & Installation
-                  <span class="text-[10px] bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 px-2 py-0.5 rounded-full">Rockland Electric & Charge Up NJ Eligible</span>
+                  <span id="lblChargerTitle">Level 2 Home Wall Charger & Installation</span>
+                  <span class="text-[10px] bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 px-2 py-0.5 rounded-full" id="lblChargerBadge">Rockland Electric & Charge Up NJ Eligible</span>
                 </h3>
-                <p class="text-xs text-slate-400">Essential for full EV (EV9/Model Y). Optional for PHEV. $0 for Traditional Hybrid.</p>
+                <p class="text-xs text-slate-400" id="lblChargerSub">Essential for full EV (EV9/Model Y). Optional for PHEV. $0 for Traditional Hybrid.</p>
               </div>
             </div>
 
             <!-- Master Charger Toggle -->
             <div class="flex items-center gap-3 bg-slate-900/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
-              <span class="text-xs font-semibold text-slate-300">Include in Monthly Cost:</span>
+              <span class="text-xs font-semibold text-slate-300" id="lblIncludeCharger">Include in Monthly Cost:</span>
               <label class="relative inline-flex items-center cursor-pointer">
                 <input type="checkbox" id="includeChargerToggle" checked onchange="updateAll()" class="sr-only peer">
                 <div class="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-500"></div>
@@ -279,7 +301,7 @@
           <!-- Charger Cost Inputs -->
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs pt-1">
             <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-800">
-              <div class="text-slate-400 mb-1">Hardware (Tesla/ChargePoint)</div>
+              <div class="text-slate-400 mb-1" id="lblChargerHw">Hardware (Tesla/ChargePoint)</div>
               <div class="flex items-center">
                 <span class="text-slate-400 mr-1">$</span>
                 <input type="number" id="chargerHardwareCost" value="550" step="50" onchange="updateAll()" class="w-full bg-slate-800 border border-slate-700 rounded px-2 py-1 font-mono text-slate-200">
@@ -287,7 +309,7 @@
             </div>
 
             <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-800">
-              <div class="text-slate-400 mb-1">Installation (Labor + 240V Line)</div>
+              <div class="text-slate-400 mb-1" id="lblChargerInstall">Installation (Labor + 240V Line)</div>
               <div class="flex items-center">
                 <span class="text-slate-400 mr-1">$</span>
                 <input type="number" id="chargerInstallCost" value="1000" step="100" onchange="updateAll()" class="w-full bg-slate-800 border border-slate-700 rounded px-2 py-1 font-mono text-slate-200">
@@ -295,7 +317,7 @@
             </div>
 
             <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-800">
-              <div class="text-slate-400 mb-1">RECO & Charge Up NJ Rebates</div>
+              <div class="text-slate-400 mb-1" id="lblChargerRebate">RECO & Charge Up NJ Rebates</div>
               <div class="flex items-center">
                 <span class="text-emerald-400 mr-1">-$</span>
                 <input type="number" id="chargerRebateCredit" value="500" step="50" onchange="updateAll()" class="w-full bg-slate-800 border border-slate-700 rounded px-2 py-1 font-mono text-emerald-400">
@@ -304,11 +326,11 @@
 
             <div class="bg-blue-950/40 p-3 rounded-lg border border-blue-500/40 flex flex-col justify-between">
               <div class="flex justify-between items-center text-slate-300">
-                <span class="font-semibold">Net Charger Setup:</span>
+                <span class="font-semibold" id="lblNetCharger">Net Charger Setup:</span>
                 <span class="font-mono font-bold text-blue-400 text-sm" id="netChargerDisplay">$1,050</span>
               </div>
               <div class="text-[11px] text-slate-400 pt-1 border-t border-slate-800 flex justify-between">
-                <span>Amortized over loan:</span>
+                <span id="lblAmortized">Amortized over loan:</span>
                 <span class="font-mono font-bold text-white" id="monthlyChargerDisplay">+$18 / mo</span>
               </div>
             </div>
@@ -316,8 +338,8 @@
 
           <!-- Degradation Cross-Link Banner -->
           <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-blue-500/20 text-xs">
-            <span class="text-slate-400">Curious about EV battery lifespan, degradation rate, and warranty replacement?</span>
-            <button onclick="switchTab('degradation')" class="text-cyan-300 hover:text-cyan-200 font-semibold flex items-center gap-1.5 transition underline decoration-cyan-500/40 underline-offset-4">
+            <span class="text-slate-400" id="lblDegBanner">Curious about EV battery lifespan, degradation rate, and warranty replacement?</span>
+            <button onclick="switchTab('degradation')" class="text-cyan-300 hover:text-cyan-200 font-semibold flex items-center gap-1.5 transition underline decoration-cyan-500/40 underline-offset-4" id="lblDegBannerBtn">
               <span>🔋</span> View EV Battery Degradation & Longevity Guide ↗
             </button>
           </div>
@@ -354,9 +376,9 @@
       <section class="space-y-4">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <h2 class="text-xl font-bold text-white flex items-center gap-2">
-            <span>🚘</span> All-In Monthly Cost Comparison
+            <span>🚘</span> <span id="lblMonthlyCostTitle">All-In Monthly Cost Comparison</span>
           </h2>
-          <div class="text-xs text-slate-400">
+          <div class="text-xs text-slate-400" id="lblMonthlyCostSub">
             Loan + Auto Insurance + Fuel/Power + Routine Maint. + Charger Amortization
           </div>
         </div>
@@ -371,16 +393,16 @@
         <div class="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-slate-800">
           <div>
             <h2 class="text-lg font-bold text-white flex items-center gap-2">
-              <span>📊</span> Monthly Cash Outflow Distribution
+              <span>📊</span> <span id="lblChartTitle">Monthly Cash Outflow Distribution</span>
             </h2>
-            <p class="text-xs text-slate-400">Visual breakdown of Loan, Insurance, Fuel/Power, Service, and Charger costs.</p>
+            <p class="text-xs text-slate-400" id="lblChartSub">Visual breakdown of Loan, Insurance, Fuel/Power, Service, and Charger costs.</p>
           </div>
           <div class="flex flex-wrap items-center gap-4 text-xs">
-            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-blue-500"></span> Loan</div>
-            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-purple-500"></span> Insurance</div>
-            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-amber-500"></span> Fuel / Power</div>
-            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-emerald-500"></span> Maint. & Tires</div>
-            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-cyan-400"></span> Wall Charger</div>
+            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-blue-500"></span> <span id="lblLegendLoan">Loan</span></div>
+            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-purple-500"></span> <span id="lblLegendIns">Insurance</span></div>
+            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-amber-500"></span> <span id="lblLegendFuel">Fuel / Power</span></div>
+            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-emerald-500"></span> <span id="lblLegendMaint">Maint. & Tires</span></div>
+            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-cyan-400"></span> <span id="lblLegendCharger">Wall Charger</span></div>
           </div>
         </div>
 
@@ -2594,6 +2616,263 @@
 
   <!-- JAVASCRIPT APP LOGIC & PAGE ROUTER -->
   <script>
+    // Dual Translation Engine: Instant Client-Side i18n + Seamless Google Translate
+    let currentLang = 'en';
+
+    const i18n = {
+      en: {
+        langBtnText: '中文翻译 (Translate to Chinese)',
+        brandTitle: 'Family 6-Seater Hub',
+        brandSubtitle: 'Trade-in: 2018 GLE 350 + $15k Cash | Expert Ratings & Cost Guide',
+        textTradeInGuide: 'GLE 350 Guide',
+        textResetDefaults: '↺ Reset',
+        lblTabCalculator: 'Cost Calculator',
+        lblTabRatings: 'Online Ratings & Reviews',
+        lblTabCompare: 'Car Compare & Kid Tech',
+        lblTabService: 'Service & Maintenance',
+        lblTabInsurance: 'Insurance Analysis (NJ)',
+        lblTabDealers: 'Local NJ Dealers & Stock',
+        lblTabDegradation: 'EV Battery Degradation',
+        lblTabEv9VsModelY: 'EV9 vs. Model Y L Head-to-Head',
+        lblFinTitle: 'Financial & Down Payment Settings',
+        lblFinDesc: 'Live adjusters for trade-in, cash down, loan terms, and NJ incentives.',
+        lblTotalEquityTitle: 'Total Upfront Equity',
+        lblTradePrefix: 'Trade-in:',
+        lblCashPrefix: 'Cash:',
+        lblTradeInTitle: 'Trade-in (2018 GLE 350)',
+        lblTradeInSub: '$14k (Avg Trade)',
+        lblTradeInNote: '70k miles base GLE 350 dealer trade estimate.',
+        lblCashDownTitle: 'Cash Down',
+        lblCashDownNote: 'Your planned cash savings contribution.',
+        lblLoanTermTitle: 'Loan Term (Months)',
+        lblTerm48: '48 Mo',
+        lblTerm60: '60 Mo',
+        lblTerm72: '72 Mo',
+        lblBaseApr: 'Baseline Std APR:',
+        lblPromoToggleTitle: 'Apply Verified Promos',
+        lblPromoDesc: 'Applies confirmed local deals: Ramsey Mazda (0% APR), Jack Daniels Kia (0% APR + $5k), Tesla (1.99%).',
+        lblSalesTaxNote: 'NJ Sales Tax (Trade credit):',
+        lblChargerTitle: 'Level 2 Home Wall Charger & Installation',
+        lblChargerBadge: 'Rockland Electric & Charge Up NJ Eligible',
+        lblChargerSub: 'Essential for full EV (EV9/Model Y). Optional for PHEV. $0 for Traditional Hybrid.',
+        lblIncludeCharger: 'Include in Monthly Cost:',
+        lblChargerHw: 'Hardware (Tesla/ChargePoint)',
+        lblChargerInstall: 'Installation (Labor + 240V Line)',
+        lblChargerRebate: 'RECO & Charge Up NJ Rebates',
+        lblNetCharger: 'Net Charger Setup:',
+        lblAmortized: 'Amortized over loan:',
+        lblDegBanner: 'Curious about EV battery lifespan, degradation rate, and warranty replacement?',
+        lblDegBannerBtn: 'View EV Battery Degradation & Longevity Guide ↗',
+        lblMonthlyCostTitle: 'All-In Monthly Cost Comparison',
+        lblMonthlyCostSub: 'Loan + Auto Insurance + Fuel/Power + Routine Maint. + Charger Amortization',
+        lblChartTitle: 'Monthly Cash Outflow Distribution',
+        lblChartSub: 'Visual breakdown of Loan, Insurance, Fuel/Power, Service, and Charger costs.',
+        lblLegendLoan: 'Loan',
+        lblLegendIns: 'Insurance',
+        lblLegendFuel: 'Fuel / Power',
+        lblLegendMaint: 'Maint. & Tires',
+        lblLegendCharger: 'Wall Charger'
+      },
+      zh: {
+        langBtnText: 'English (还原英文)',
+        brandTitle: '家庭6座中大型SUV智能评测中心',
+        brandSubtitle: '置换: 2018 GLE 350 + $15k现金 | 专家评测与养车全成本指南',
+        textTradeInGuide: 'GLE 350置换指南',
+        textResetDefaults: '↺ 恢复默认',
+        lblTabCalculator: '月供总成本计算器',
+        lblTabRatings: '全网权威评测',
+        lblTabCompare: '空间对比与儿童配置',
+        lblTabService: '售后保养与维保成本',
+        lblTabInsurance: '新泽西车险深度分析',
+        lblTabDealers: '本地车行现车与行情',
+        lblTabDegradation: '纯电电池寿命与衰减',
+        lblTabEv9VsModelY: 'EV9 vs. Model Y L 深度对决',
+        lblFinTitle: '购车财务与首付参数设置',
+        lblFinDesc: '实时调节旧车置换估值、现金首付、车贷期限及新泽西本地购车优惠补贴。',
+        lblTotalEquityTitle: '首付总额 (旧车置换+现金)',
+        lblTradePrefix: '旧车置换:',
+        lblCashPrefix: '现金首付:',
+        lblTradeInTitle: '旧车置换估值 (2018 GLE 350)',
+        lblTradeInSub: '$14k (车行平均置换价)',
+        lblTradeInNote: '7万英里车况良好 GLE 350 车行置换估值。',
+        lblCashDownTitle: '现金首付 (Cash Down)',
+        lblCashDownNote: '家庭计划动用的购车现金储蓄。',
+        lblLoanTermTitle: '车贷还款期限 (月份)',
+        lblTerm48: '48期 (4年)',
+        lblTerm60: '60期 (5年)',
+        lblTerm72: '72期 (6年)',
+        lblBaseApr: '基准常规商业贷款利率:',
+        lblPromoToggleTitle: '启用确认的厂家特惠利率与返现',
+        lblPromoDesc: '应用已确认的新泽西本地促销：Ramsey Mazda (0%免息), Jack Daniels Kia (0%免息+$5,000返现), Tesla (1.99%低息)。',
+        lblSalesTaxNote: '新泽西销售税抵扣 (置换差价计税):',
+        lblChargerTitle: '2级家用充电桩硬件及电路安装',
+        lblChargerBadge: '符合 Rockland Electric 电力补贴与新泽西 Charge Up NJ 优惠',
+        lblChargerSub: '纯电动车 (EV9/Model Y) 必备；插电混动可选；传统油电混动 $0 无需安装。',
+        lblIncludeCharger: '平摊计入每月养车成本:',
+        lblChargerHw: '充电桩硬件 (Tesla/ChargePoint)',
+        lblChargerInstall: '持证电工上门安装 (240V专线+人工)',
+        lblChargerRebate: '电力公司与新泽西州返现补贴',
+        lblNetCharger: '充电桩净安装支出:',
+        lblAmortized: '按车贷月数平摊:',
+        lblDegBanner: '想了解电动车电池能开多少年、年衰减率以及官方质保更换门槛？',
+        lblDegBannerBtn: '查看电动车电池衰减与寿命深度指南 ↗',
+        lblMonthlyCostTitle: '全包月度养车成本对比 (All-In Monthly Cost)',
+        lblMonthlyCostSub: '车贷月供 + 车险 + 燃油/电费 + 常规保养轮胎 + 家用充电桩月平摊',
+        lblChartTitle: '每月支出构成比例分布 (Monthly Cash Outflow)',
+        lblChartSub: '直观展示每月车贷、保险、电费/油费、保养以及充电桩费用的构成比例。',
+        lblLegendLoan: '车贷本息',
+        lblLegendIns: '汽车保险',
+        lblLegendFuel: '能源 (油费/电费)',
+        lblLegendMaint: '常规保养与轮胎',
+        lblLegendCharger: '家用充电桩'
+      }
+    };
+
+    const vehicleTranslations = {
+      zh: {
+        kia_ev9: {
+          name: '起亚 Kia EV9',
+          trim: 'Land AWD (纯电全驱三排6座)',
+          tag: 'C&D 10/10满分 • 顶级电动旗舰',
+          roomBadge: '纯平地台 & 独立二排机长座椅',
+          thirdRowLegroom: '32.0 英寸 (纯平地台很舒展)',
+          thirdRowHeadroom: '39.5 英寸',
+          trunkBehindRow3: '20.2 立方英尺 (+ 3.2 前备箱)',
+          carSeatAccess: '中央宽敞过道 + 一键电动前倾',
+          chargerNeed: '必备 (2级家充约9小时充满 vs 120V需75小时)',
+          ratingSummary: 'Car and Driver 10/10满分 | Edmunds 8.4/10',
+          rearScreen: '独立数显空调触控板 (无视频娱乐屏)',
+          usbPorts: '6个Type-C + 车内115V AC家用插座',
+          kidHighlight: '🔌 车载115V家用插座可给Switch/笔记本供电 + 靠背专属USB-C！',
+          notes: 'Paramus Jack Daniels Kia享0% APR 60期零利率 + $5,000返现优惠。10年/10万英里原厂质保，电动车保养极低。'
+        },
+        grand_highlander: {
+          name: '丰田 Grand Highlander Hybrid',
+          trim: 'XLE / Limited AWD (双擎混动)',
+          tag: 'CR 可靠性第1 • 综合油耗 34 MPG',
+          roomBadge: '真正的全尺寸成人第三排',
+          thirdRowLegroom: '33.5 英寸 (全场成人标杆)',
+          thirdRowHeadroom: '37.2 英寸',
+          trunkBehindRow3: '20.6 立方英尺 (超大储物)',
+          carSeatAccess: '二排中央宽敞穿行通道',
+          chargerNeed: '无需充电 (无需安装家用充电桩)',
+          ratingSummary: 'Car and Driver 9.5/10 | CR 可靠性同级第1',
+          rearScreen: '后排数显空调控制 (无原厂视频屏)',
+          usbPorts: '全三排共标配 7个 Type-C 充电口',
+          kidHighlight: '📱 前排座椅靠背专属iPad插槽 + 丰田超低故障率与保值率！',
+          notes: '距离Closter最近车行：9W公路上Parkway Toyota（车程12分钟）。送2年免费ToyotaCare保养。'
+        },
+        tesla_model_y_l: {
+          name: '特斯拉 Tesla Model Y L (6座版)',
+          trim: '长轴距尊享全驱版 (3排6座)',
+          tag: '最新: 后排8英寸独立娱乐屏',
+          roomBadge: '轴距加长15cm (+6寸) & 独立机长座',
+          thirdRowLegroom: '32.4 英寸 (比标轴大增15cm)',
+          thirdRowHeadroom: '35.8 英寸',
+          trunkBehindRow3: '14.5 立方英尺 (+ 4.1 前备箱)',
+          carSeatAccess: '2+2+2 机长座椅中央穿行通道',
+          chargerNeed: '必备 (2级家充约8小时充满 vs 120V需45小时)',
+          ratingSummary: 'Edmunds 8.2/10 | 车主满意度 90%',
+          rearScreen: '后排8英寸触摸屏 (支持Netflix、B站/YouTube、Disney+、车载游戏、空调)',
+          usbPorts: '4个 Type-C (前排+后排双65W超级快充)',
+          kidHighlight: '👑 孩子们可通过后排专属屏幕配蓝牙耳机看动画大片与玩游戏！',
+          notes: '✨ 全新长轴距版：轴距加长6英寸，真2+2+2机长座，成人可坐第三排。Paramus交付中心提车。'
+        },
+        mazda_cx90: {
+          name: '马自达 Mazda CX-90 PHEV',
+          trim: 'Premium Sport AWD (插电式混动)',
+          tag: '0% APR 零利率 • 豪华内饰',
+          roomBadge: '豪华用料但第三排空间中规中矩',
+          thirdRowLegroom: '30.4 英寸 (略挤，适宜儿童)',
+          thirdRowHeadroom: '36.8 英寸',
+          trunkBehindRow3: '14.9 立方英尺',
+          carSeatAccess: '二排手动翻折滑动',
+          chargerNeed: '建议安装 (2级慢充2.5小时充满)',
+          ratingSummary: 'Car and Driver 8.5/10 | IIHS 顶级安全',
+          rearScreen: '后排空调出风口控制 (无视频屏)',
+          usbPorts: '全车标配 6个 USB 接口',
+          kidHighlight: '🛋️ 日系豪华真皮座椅，隔音舒适，适宜日常上下学接送。',
+          notes: 'Wayne Mazda特惠：享0% APR 60期免息。直列六缸/插混平台驾驶质感优秀。'
+        },
+        volvo_xc90: {
+          name: '沃尔沃 Volvo XC90 T8 Recharge',
+          trim: 'Plus / Ultimate AWD (插电混动)',
+          tag: 'IIHS 顶级安全评价 • 455匹大马力',
+          roomBadge: '安全标杆但第三排腿部紧凑',
+          thirdRowLegroom: '31.9 英寸 (第三排坐垫偏低)',
+          thirdRowHeadroom: '36.3 英寸',
+          trunkBehindRow3: '11.2 立方英尺 (后备箱偏小)',
+          carSeatAccess: '二排座椅折叠滑动 (带儿童增高垫)',
+          chargerNeed: '建议安装 (2级慢充约4-5小时)',
+          ratingSummary: 'C&D 7.5/10 | Edmunds 6.5/10',
+          rearScreen: '四温区触控空调控制面板',
+          usbPorts: '4个 Type-C + CleanZone 清洁座舱系统',
+          kidHighlight: '💺 二排中央集成式儿童专属增高安全坐垫 + 遮阳帘。',
+          notes: 'Ramsey Volvo享2.99%促销利率。北欧顶级奢华安全，但欧系零件与工时费后期维护偏高。'
+        },
+        tesla_model_y: {
+          name: '特斯拉 Tesla Model Y (标轴7座版)',
+          trim: 'Long Range AWD 标轴7座',
+          tag: '标准轴距 (第三排极度拥挤)',
+          roomBadge: '⚠️ 第三排极度狭窄 / 坐满无后备箱',
+          thirdRowLegroom: '26.5 英寸 (成人腿部顶死)',
+          thirdRowHeadroom: '34.6 英寸 (头部直接顶后玻璃)',
+          trunkBehindRow3: '4.4 立方英尺 (无法放下婴儿车)',
+          carSeatAccess: '安装儿童座椅后无法进出',
+          chargerNeed: '必备 (2级家充约8小时充满 vs 120V需40小时)',
+          ratingSummary: 'Edmunds 7.9/10 (第三排评分: 1/5)',
+          rearScreen: '无后排屏幕 (仅前排中控屏)',
+          usbPorts: '后排 2个 Type-C 接口',
+          kidHighlight: '⚠️ 标准轴距版无后排娱乐屏，第三排压抑且腿部空间局促。',
+          notes: '⚠️ 重点提示：标轴版第三排仅有26.5英寸腿部空间且后脑勺贴近倾斜尾门玻璃，强烈建议选择Model Y L长轴距版！'
+        }
+      }
+    };
+
+    function applyLanguage(lang) {
+      const texts = i18n[lang] || i18n.en;
+      for (const [id, val] of Object.entries(texts)) {
+        const el = document.getElementById(id);
+        if (el) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = val;
+          } else {
+            el.innerText = val;
+          }
+        }
+      }
+      
+      const langBtn = document.getElementById('langToggleBtn');
+      if (langBtn) {
+        if (lang === 'zh') {
+          langBtn.className = 'text-xs px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-md shadow-blue-600/30 transition flex items-center gap-1.5 cursor-pointer';
+        } else {
+          langBtn.className = 'text-xs px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow-md shadow-emerald-600/30 transition flex items-center gap-1.5 cursor-pointer';
+        }
+      }
+    }
+
+    function triggerGoogleTranslate(lang) {
+      const code = (lang === 'zh') ? 'zh-CN' : 'en';
+      document.cookie = `googtrans=/en/${code}; path=/;`;
+      if (window.location.hostname) {
+        document.cookie = `googtrans=/en/${code}; path=/; domain=${window.location.hostname};`;
+      }
+      const select = document.querySelector('.goog-te-combo');
+      if (select) {
+        select.value = (lang === 'zh') ? 'zh-CN' : '';
+        select.dispatchEvent(new Event('change'));
+      }
+    }
+
+    function toggleTranslate() {
+      currentLang = (currentLang === 'en') ? 'zh' : 'en';
+      applyLanguage(currentLang);
+      updateAll();
+      updateDegradationSim();
+      triggerGoogleTranslate(currentLang);
+    }
+
     // Tab / Page switching logic
     function switchTab(pageId) {
       document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
@@ -2828,7 +3107,7 @@
 
     function setLoanTerm(term) {
       currentTerm = term;
-      document.getElementById('loanTermDisplay').innerText = term + ' Mo';
+      document.getElementById('loanTermDisplay').innerText = term + (currentLang === 'zh' ? '期' : ' Mo');
       [48, 60, 72].forEach(t => {
         const btn = document.getElementById('term' + t);
         if (t === term) {
@@ -2848,6 +3127,7 @@
     }
 
     function updateAll() {
+      const isZh = (currentLang === 'zh');
       const tradeIn = parseFloat(document.getElementById('tradeInInput').value);
       const cashDown = parseFloat(document.getElementById('cashDownInput').value);
       const totalDown = tradeIn + cashDown;
@@ -2863,7 +3143,7 @@
       const monthlyChargerAmortized = includeCharger ? (netChargerSetup / currentTerm) : 0;
 
       document.getElementById('netChargerDisplay').innerText = '$' + netChargerSetup.toLocaleString();
-      document.getElementById('monthlyChargerDisplay').innerText = includeCharger ? `+$${Math.round(monthlyChargerAmortized)} / mo` : '$0 (Excluded)';
+      document.getElementById('monthlyChargerDisplay').innerText = includeCharger ? `+$${Math.round(monthlyChargerAmortized)} ${isZh ? '/ 月' : '/ mo'}` : (isZh ? '$0 (未计入)' : '$0 (Excluded)');
 
       const annualMiles = parseFloat(document.getElementById('annualMilesInput').value) || 12000;
       const monthlyMiles = annualMiles / 12;
@@ -2886,6 +3166,17 @@
       chartContainer.innerHTML = '';
 
       defaultVehicles.forEach((car) => {
+        const zhCar = (vehicleTranslations.zh && vehicleTranslations.zh[car.id]) || {};
+        const carName = (isZh && zhCar.name) ? zhCar.name : car.name;
+        const carTrim = (isZh && zhCar.trim) ? zhCar.trim : car.trim;
+        const carTag = (isZh && zhCar.tag) ? zhCar.tag : car.tag;
+        const carRatingSummary = (isZh && zhCar.ratingSummary) ? zhCar.ratingSummary : car.ratingSummary;
+        const carRearScreen = (isZh && zhCar.rearScreen) ? zhCar.rearScreen : car.rearScreen;
+        const carKidHighlight = (isZh && zhCar.kidHighlight) ? zhCar.kidHighlight : car.kidHighlight;
+        const carThirdRowLegroom = (isZh && zhCar.thirdRowLegroom) ? zhCar.thirdRowLegroom : car.thirdRowLegroom;
+        const carTrunk = (isZh && zhCar.trunkBehindRow3) ? zhCar.trunkBehindRow3 : car.trunkBehindRow3;
+        const carAccess = (isZh && zhCar.carSeatAccess) ? zhCar.carSeatAccess : car.carSeatAccess;
+
         const netPurchasePrice = car.msrp - (usePromo ? car.promoRebate : 0);
         const taxableAmount = Math.max(0, netPurchasePrice - tradeIn);
         const salesTax = taxableAmount * salesTaxRate;
@@ -2912,15 +3203,15 @@
           mpgDisplayBadge = `
             <div class="flex items-center justify-between text-xs bg-emerald-950/40 p-2 rounded-lg border border-emerald-800/40 mb-3">
               <span class="text-emerald-300 font-semibold flex items-center gap-1.5">⚡ ${car.evMpge} MPGe</span>
-              <span class="font-mono text-emerald-400 font-bold">${car.evEfficiency} mi/kWh (${car.evRange} mi range)</span>
+              <span class="font-mono text-emerald-400 font-bold">${car.evEfficiency} mi/kWh (${car.evRange} ${isZh ? '英里续航' : 'mi range'})</span>
             </div>`;
         } else if (car.powertrainType === 'HYBRID') {
           const gasPrice = (car.fuelType.includes('Premium')) ? gasPremium : gasRegular;
           monthlyEnergy = (monthlyMiles / car.gasMpg) * gasPrice;
           mpgDisplayBadge = `
             <div class="flex items-center justify-between text-xs bg-blue-950/40 p-2 rounded-lg border border-blue-800/40 mb-3">
-              <span class="text-blue-300 font-semibold flex items-center gap-1.5">⛽ ${car.gasMpg} MPG Combined</span>
-              <span class="font-mono text-blue-400 font-bold">${car.fuelType}</span>
+              <span class="text-blue-300 font-semibold flex items-center gap-1.5">⛽ ${car.gasMpg} MPG ${isZh ? '综合油耗' : 'Combined'}</span>
+              <span class="font-mono text-blue-400 font-bold">${isZh ? (car.fuelType.includes('Premium') ? '91+ 高标汽油' : '87号 常规汽油') : car.fuelType}</span>
             </div>`;
         } else if (car.powertrainType === 'PHEV') {
           const gasPrice = (car.fuelType.includes('Premium')) ? gasPremium : gasRegular;
@@ -2931,8 +3222,8 @@
           monthlyEnergy = electricCost + gasCost;
           mpgDisplayBadge = `
             <div class="flex items-center justify-between text-xs bg-indigo-950/40 p-2 rounded-lg border border-indigo-800/40 mb-3">
-              <span class="text-indigo-300 font-semibold flex items-center gap-1.5">🔌 ${car.evMpge} MPGe / ${car.gasMpg} MPG Gas</span>
-              <span class="font-mono text-indigo-400 font-bold">${car.evRange} mi EV Range</span>
+              <span class="text-indigo-300 font-semibold flex items-center gap-1.5">🔌 ${car.evMpge} MPGe / ${car.gasMpg} MPG ${isZh ? '油耗' : 'Gas'}</span>
+              <span class="font-mono text-indigo-400 font-bold">${car.evRange} ${isZh ? '英里纯电续航' : 'mi EV Range'}</span>
             </div>`;
         }
 
@@ -2951,28 +3242,28 @@
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
               <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${tagColor}">
-                ${car.tag}
+                ${carTag}
               </span>
               <span class="text-xs font-mono font-semibold text-slate-400">
                 ${car.powertrainType}
               </span>
             </div>
 
-            <h3 class="text-lg font-bold text-white leading-tight">${car.name}</h3>
-            <p class="text-xs text-slate-400 mb-2">${car.trim}</p>
+            <h3 class="text-lg font-bold text-white leading-tight">${carName}</h3>
+            <p class="text-xs text-slate-400 mb-2">${carTrim}</p>
 
             <!-- Expert Rating Pill -->
             <div class="text-[11px] text-amber-300 bg-amber-950/30 border border-amber-800/40 px-2 py-1 rounded-md mb-3 flex items-center gap-1.5 font-medium">
-              <span>⭐</span> ${car.ratingSummary}
+              <span>⭐</span> ${carRatingSummary}
             </div>
 
             <div class="bg-slate-900/90 rounded-xl p-3.5 border border-slate-800 mb-3">
-              <div class="text-[11px] text-slate-400 uppercase tracking-wider font-medium">All-In Monthly Cost</div>
+              <div class="text-[11px] text-slate-400 uppercase tracking-wider font-medium">${isZh ? '全包月度养车总成本' : 'All-In Monthly Cost'}</div>
               <div class="flex items-baseline gap-2">
                 <span class="text-3xl font-extrabold font-mono text-white">$${Math.round(totalMonthly).toLocaleString()}</span>
-                <span class="text-xs text-slate-400">/ mo</span>
+                <span class="text-xs text-slate-400">${isZh ? '/ 月' : '/ mo'}</span>
               </div>
-              <div class="text-[10px] text-slate-500 mt-1">Loan + Insurance + Energy + Maint. ${carChargerCost > 0 ? '+ Charger' : ''}</div>
+              <div class="text-[10px] text-slate-500 mt-1">${isZh ? '车贷 + 保险 + 能源(电/油) + 保养' : 'Loan + Insurance + Energy + Maint.'} ${carChargerCost > 0 ? (isZh ? '+ 充电桩' : '+ Charger') : ''}</div>
             </div>
 
             ${mpgDisplayBadge}
@@ -2980,32 +3271,32 @@
             <div class="space-y-1.5 text-xs border-b border-slate-800/80 pb-3 mb-3">
               <div class="flex justify-between items-center">
                 <span class="text-slate-400 flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-blue-500"></span> Loan (${apr}% APR / ${termToUse}m):
+                  <span class="w-2 h-2 rounded-full bg-blue-500"></span> ${isZh ? '每月车贷' : 'Loan'} (${apr}% APR / ${termToUse}${isZh ? '期' : 'm'}):
                 </span>
                 <span class="font-mono font-bold text-slate-200">$${Math.round(monthlyLoan)}</span>
               </div>
               <div class="flex justify-between items-center">
                 <span class="text-slate-400 flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-purple-500"></span> Auto Insurance (Est.):
+                  <span class="w-2 h-2 rounded-full bg-purple-500"></span> ${isZh ? '汽车保险 (预估)' : 'Auto Insurance (Est.)'}:
                 </span>
-                <span class="font-mono font-semibold text-purple-300">$${car.monthlyInsurance} / mo</span>
+                <span class="font-mono font-semibold text-purple-300">$${car.monthlyInsurance} ${isZh ? '/ 月' : '/ mo'}</span>
               </div>
               <div class="flex justify-between items-center">
                 <span class="text-slate-400 flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-amber-500"></span> Fuel / Power (NJ):
+                  <span class="w-2 h-2 rounded-full bg-amber-500"></span> ${isZh ? '燃油 / 电力 (NJ)' : 'Fuel / Power (NJ)'}:
                 </span>
-                <span class="font-mono text-slate-300">$${Math.round(monthlyEnergy)} / mo</span>
+                <span class="font-mono text-slate-300">$${Math.round(monthlyEnergy)} ${isZh ? '/ 月' : '/ mo'}</span>
               </div>
               <div class="flex justify-between items-center">
                 <span class="text-slate-400 flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Routine Maint. & Tires:
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span> ${isZh ? '常规保养与轮胎' : 'Routine Maint. & Tires'}:
                 </span>
-                <span class="font-mono font-semibold ${car.monthlyMaintenance > 80 ? 'text-rose-300' : 'text-emerald-400'}">$${car.monthlyMaintenance} / mo</span>
+                <span class="font-mono font-semibold ${car.monthlyMaintenance > 80 ? 'text-rose-300' : 'text-emerald-400'}">$${car.monthlyMaintenance} ${isZh ? '/ 月' : '/ mo'}</span>
               </div>
               ${carChargerCost > 0 ? `
               <div class="flex justify-between items-center text-cyan-300">
                 <span class="flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Level 2 Charger Setup:
+                  <span class="w-2 h-2 rounded-full bg-cyan-400"></span> ${isZh ? '2级家用充电桩平摊' : 'Level 2 Charger Setup'}:
                 </span>
                 <span class="font-mono font-semibold">+$${Math.round(carChargerCost)}</span>
               </div>` : ''}
@@ -3014,14 +3305,14 @@
             <!-- Kid Tech Box -->
             <div class="bg-cyan-950/20 border border-cyan-500/30 rounded-lg p-2.5 mb-3 text-xs space-y-1">
               <div class="flex items-center justify-between text-cyan-300 font-semibold">
-                <span class="flex items-center gap-1"><span>📺</span> 2nd-Row Kid Tech:</span>
-                <span class="text-[10px] bg-cyan-900/60 px-1.5 py-0.5 rounded text-cyan-200">${car.rearScreen.includes('8"') ? 'Factory Screen' : 'Tablet Ready'}</span>
+                <span class="flex items-center gap-1"><span>📺</span> ${isZh ? '二排儿童娱乐配置:' : '2nd-Row Kid Tech:'}</span>
+                <span class="text-[10px] bg-cyan-900/60 px-1.5 py-0.5 rounded text-cyan-200">${car.rearScreen.includes('8"') ? (isZh ? '原厂独立娱乐屏' : 'Factory Screen') : (isZh ? '支持平板扩展' : 'Tablet Ready')}</span>
               </div>
               <div class="text-[11px] text-slate-300 leading-tight">
-                <strong>Screen:</strong> ${car.rearScreen}
+                <strong>${isZh ? '屏幕配置:' : 'Screen:'}</strong> ${carRearScreen}
               </div>
               <div class="text-[10px] text-emerald-300 font-medium pt-0.5">
-                ${car.kidHighlight}
+                ${carKidHighlight}
               </div>
             </div>
 
@@ -3030,27 +3321,27 @@
               <div class="flex items-center justify-between font-semibold">
                 <span class="flex items-center gap-1.5">
                   <span>${car.roomRating >= 4 ? '💺' : '⚠️'}</span>
-                  <span>3rd Row Legroom:</span>
+                  <span>${isZh ? '第三排腿部空间:' : '3rd Row Legroom:'}</span>
                 </span>
-                <span class="font-mono text-xs ${car.roomRating < 3 ? 'text-rose-400 font-bold' : 'text-emerald-400 font-bold'}">${car.thirdRowLegroom}</span>
+                <span class="font-mono text-xs ${car.roomRating < 3 ? 'text-rose-400 font-bold' : 'text-emerald-400 font-bold'}">${carThirdRowLegroom}</span>
               </div>
               <div class="text-[11px] text-slate-300 flex justify-between">
-                <span>Trunk w/ 6 aboard:</span>
-                <span class="font-medium text-slate-200">${car.trunkBehindRow3}</span>
+                <span>${isZh ? '满载6人后备箱容积:' : 'Trunk w/ 6 aboard:'}</span>
+                <span class="font-medium text-slate-200">${carTrunk}</span>
               </div>
               <div class="text-[10px] text-slate-400 flex items-center justify-between pt-0.5 border-t border-slate-700/40">
-                <span><strong>Access:</strong> ${car.carSeatAccess}</span>
-                <button onclick="switchTab('compare')" class="text-blue-400 hover:text-blue-300 underline font-medium">Specs ↗</button>
+                <span><strong>${isZh ? '上下车通道:' : 'Access:'}</strong> ${carAccess}</span>
+                <button onclick="switchTab('compare')" class="text-blue-400 hover:text-blue-300 underline font-medium">${isZh ? '空间参数 ↗' : 'Specs ↗'}</button>
               </div>
             </div>
           </div>
 
           <div class="pt-3 border-t border-slate-800 flex items-center justify-between gap-2 text-xs">
             <a href="${car.inventoryUrl}" target="_blank" class="flex-1 text-center py-2 px-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold transition flex items-center justify-center gap-1.5 shadow-md shadow-blue-600/20">
-              <span>📍</span> Local Inventory ↗
+              <span>📍</span> ${isZh ? '本地现车库存 ↗' : 'Local Inventory ↗'}
             </a>
             <button onclick="switchTab('ratings')" class="py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium transition" title="View Full Reviews">
-              Reviews ↗
+              ${isZh ? '权威评测 ↗' : 'Reviews ↗'}
             </button>
           </div>
         `;
@@ -3068,15 +3359,15 @@
         barRow.className = 'space-y-1.5';
         barRow.innerHTML = `
           <div class="flex justify-between text-xs">
-            <span class="font-semibold text-slate-200">${car.name}</span>
-            <span class="font-mono font-bold text-white">$${Math.round(totalMonthly)} / mo</span>
+            <span class="font-semibold text-slate-200">${carName}</span>
+            <span class="font-mono font-bold text-white">$${Math.round(totalMonthly)} ${isZh ? '/ 月' : '/ mo'}</span>
           </div>
           <div class="w-full h-4 bg-slate-800 rounded-full flex overflow-hidden">
-            <div style="width: ${pctLoan}%" class="bg-blue-500 h-full" title="Loan: $${Math.round(monthlyLoan)}"></div>
-            <div style="width: ${pctIns}%" class="bg-purple-500 h-full" title="Insurance: $${car.monthlyInsurance}"></div>
-            <div style="width: ${pctEnergy}%" class="bg-amber-500 h-full" title="Energy: $${Math.round(monthlyEnergy)}"></div>
-            <div style="width: ${pctMaint}%" class="bg-emerald-500 h-full" title="Maintenance: $${car.monthlyMaintenance}"></div>
-            ${pctCharger > 0 ? `<div style="width: ${pctCharger}%" class="bg-cyan-400 h-full" title="Charger: $${Math.round(carChargerCost)}"></div>` : ''}
+            <div style="width: ${pctLoan}%" class="bg-blue-500 h-full" title="${isZh ? '车贷' : 'Loan'}: $${Math.round(monthlyLoan)}"></div>
+            <div style="width: ${pctIns}%" class="bg-purple-500 h-full" title="${isZh ? '保险' : 'Insurance'}: $${car.monthlyInsurance}"></div>
+            <div style="width: ${pctEnergy}%" class="bg-amber-500 h-full" title="${isZh ? '能源' : 'Energy'}: $${Math.round(monthlyEnergy)}"></div>
+            <div style="width: ${pctMaint}%" class="bg-emerald-500 h-full" title="${isZh ? '保养' : 'Maintenance'}: $${car.monthlyMaintenance}"></div>
+            ${pctCharger > 0 ? `<div style="width: ${pctCharger}%" class="bg-cyan-400 h-full" title="${isZh ? '充电桩' : 'Charger'}: $${Math.round(carChargerCost)}"></div>` : ''}
           </div>
         `;
         chartContainer.appendChild(barRow);
@@ -3100,7 +3391,11 @@
     }
 
     function openTradeInGuide() {
-      alert("2018 Mercedes-Benz GLE 350 (~70,000 miles):\n\n• Average Dealer Trade-In: $13,500 – $15,000\n• CarMax / Online Firm Buyout: $14,500 – $16,500\n• Private Party Sale: $16,500 – $18,500\n\nNJ Tax Benefit: In New Jersey, you only pay 6.625% sales tax on the DIFFERENCE between purchase price and trade-in! Trading in for $14,000 saves you $927.50 in NJ state sales tax!");
+      if (currentLang === 'zh') {
+        alert("2018款 奔驰 Mercedes-Benz GLE 350 (~70,000英里) 置换指南：\n\n• 车行平均置换价 (Dealer Trade-In): $13,500 – $15,000\n• CarMax / 线上快速收购价: $14,500 – $16,500\n• 私人买卖价 (Private Party): $16,500 – $18,500\n\n新泽西州置换税费优惠 (NJ Tax Benefit)：\n在新泽西州，置换旧车只需按【新车价格与旧车置换价的差额】支付 6.625% 销售税！\n以 $14,000 置换价计算，直接为您节省 $927.50 的新泽西州销售税！");
+      } else {
+        alert("2018 Mercedes-Benz GLE 350 (~70,000 miles):\n\n• Average Dealer Trade-In: $13,500 – $15,000\n• CarMax / Online Firm Buyout: $14,500 – $16,500\n• Private Party Sale: $16,500 – $18,500\n\nNJ Tax Benefit: In New Jersey, you only pay 6.625% sales tax on the DIFFERENCE between purchase price and trade-in! Trading in for $14,000 saves you $927.50 in NJ state sales tax!");
+      }
     }
 
     // Battery Degradation Simulator Logic
@@ -3159,12 +3454,13 @@
       const car = degCarData[carKey];
       if (!car) return;
 
+      const isZh = (currentLang === 'zh');
       const age = parseInt(document.getElementById('degAgeSlider').value) || 5;
       const habit = document.getElementById('degHabitSelect').value || 'ideal';
       const estMiles = age * 12000;
 
       const ageDisplay = document.getElementById('degAgeMilesDisplay');
-      if (ageDisplay) ageDisplay.innerText = `${age} Years (~${estMiles.toLocaleString()} mi)`;
+      if (ageDisplay) ageDisplay.innerText = isZh ? `${age} 年 (~${estMiles.toLocaleString()} 英里)` : `${age} Years (~${estMiles.toLocaleString()} mi)`;
 
       const carNameDisplay = document.getElementById('simCarName');
       if (carNameDisplay) carNameDisplay.innerText = car.name;
@@ -3195,7 +3491,7 @@
       if (healthDisplay) healthDisplay.innerText = healthPct.toFixed(1) + '%';
 
       const lossDisplay = document.getElementById('simDegradationLoss');
-      if (lossDisplay) lossDisplay.innerText = `Total Loss: -${totalLossPct.toFixed(1)}%`;
+      if (lossDisplay) lossDisplay.innerText = isZh ? `累计损耗: -${totalLossPct.toFixed(1)}%` : `Total Loss: -${totalLossPct.toFixed(1)}%`;
 
       const healthBar = document.getElementById('simHealthBar');
       if (healthBar) {
@@ -3213,13 +3509,13 @@
       }
 
       const rangeDisplay = document.getElementById('simRangeDisplay');
-      if (rangeDisplay) rangeDisplay.innerText = usableRange + ' mi';
+      if (rangeDisplay) rangeDisplay.innerText = usableRange + (isZh ? ' 英里' : ' mi');
 
       const rangeDelta = document.getElementById('simRangeDelta');
-      if (rangeDelta) rangeDelta.innerText = `-${rangeLoss} miles vs new (${car.baseRange} mi)`;
+      if (rangeDelta) rangeDelta.innerText = isZh ? `相比新车减少 -${rangeLoss} 英里 (新车满电 ${car.baseRange} mi)` : `-${rangeLoss} miles vs new (${car.baseRange} mi)`;
 
       const winterDisplay = document.getElementById('simWinterDisplay');
-      if (winterDisplay) winterDisplay.innerText = winterRange + ' mi';
+      if (winterDisplay) winterDisplay.innerText = winterRange + (isZh ? ' 英里' : ' mi');
 
       // Warranty cushion
       const cushion = (healthPct - 70).toFixed(1);
@@ -3227,21 +3523,21 @@
       const warrantyBadge = document.getElementById('warrantyStatusBadge');
       if (healthPct >= 70) {
         if (warrantyMargin) {
-          warrantyMargin.innerText = `+${cushion}% Safety Cushion Above 70% Floor`;
+          warrantyMargin.innerText = isZh ? `+${cushion}% 高于70%官方质保底线安全余量` : `+${cushion}% Safety Cushion Above 70% Floor`;
           warrantyMargin.className = 'font-mono font-bold text-emerald-400';
         }
         if (warrantyBadge) {
           warrantyBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
-          warrantyBadge.innerHTML = '✓ Well Above 70% Warranty Floor';
+          warrantyBadge.innerHTML = isZh ? '✓ 远高于70%电池质保底线' : '✓ Well Above 70% Warranty Floor';
         }
       } else {
         if (warrantyMargin) {
-          warrantyMargin.innerText = `Below 70% Trigger (Warranty Replacement Eligible)`;
+          warrantyMargin.innerText = isZh ? `低于70%阈值 (符合免费更换电池标准)` : `Below 70% Trigger (Warranty Replacement Eligible)`;
           warrantyMargin.className = 'font-mono font-bold text-rose-400';
         }
         if (warrantyBadge) {
           warrantyBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-rose-500/20 text-rose-400 border border-rose-500/30';
-          warrantyBadge.innerHTML = '⚠️ Warranty Claim Triggered';
+          warrantyBadge.innerHTML = isZh ? '⚠️ 触发电池质保更换' : '⚠️ Warranty Claim Triggered';
         }
       }
 
@@ -3254,14 +3550,22 @@
       const contextBox = document.getElementById('simContextSummary');
       if (contextBox) {
         if (carKey.includes('volvo') || carKey.includes('mazda')) {
-          contextBox.innerHTML = `
+          contextBox.innerHTML = isZh ? `
+            <div>• <strong>日常纯电通勤:</strong> 纯电续航 <span class="text-purple-300 font-semibold">${usableRange} 英里</span>，完全覆盖 Closter 周边接送孩子和超市购物需求（日均15-20英里），纯电零油耗。</div>
+            <div>• <strong>燃油混动兜底:</strong> 即使长途行驶，油箱提供超过400英里的续航，长途自驾毫无续航焦虑。</div>
+            <div>• <strong>新泽西 CARB 排放质保:</strong> 在NJ，该电池享受州政府规定的 <span class="text-emerald-400 font-semibold">10年 / 150,000英里</span> TZEV 电池与排放超长原厂质保。</div>
+          ` : `
             <div>• <strong>Daily EV Commute:</strong> At <span class="text-purple-300 font-semibold">${usableRange} miles</span> of pure electric range, it handles the standard Closter school & supermarket runs (~15-20 miles) with zero gas burned.</div>
             <div>• <strong>Hybrid Gas Backup:</strong> Even with high mileage, the gas engine provides limitless 400+ mile range with zero road-trip anxiety.</div>
             <div>• <strong>NJ CARB Protection:</strong> In NJ, this battery is protected for <span class="text-emerald-400 font-semibold">10 Years / 150,000 miles</span> under state TZEV emissions warranty rules.</div>
           `;
         } else {
           const daysOfCommute = Math.max(1, Math.floor(usableRange / 25));
-          contextBox.innerHTML = `
+          contextBox.innerHTML = isZh ? `
+            <div>• <strong>Closter 家庭用车余量:</strong> 按照 Bergen 郡家庭平均日行 25 英里计算，<strong class="text-cyan-300">${usableRange} 英里</strong> 的满电续航可支持 <strong class="text-emerald-400 font-semibold">${daysOfCommute} 天整的日常通勤与接送</strong>，一周仅需充一次电！</div>
+            <div>• <strong>跨州出游续航无忧:</strong> 从 Closter 开往费城（~105英里）或新泽西海滩 Jersey Shore（~75英里），满电一站直达毫无压力，抵达时仍留有充足电量。</div>
+            <div>• <strong>夜间2级家充回血:</strong> 在家使用2级充电桩（7.7–11.5 kW），补充100英里续航只需 <strong class="text-white">夜间 3-4 小时</strong>，享受新泽西夜间低谷电价（~$0.13/kWh），成本极低。</div>
+          ` : `
             <div>• <strong>Closter Family Errand Buffer:</strong> With an average Bergen County family driving 25 miles/day, <strong class="text-cyan-300">${usableRange} miles</strong> provides <strong class="text-emerald-400 font-semibold">${daysOfCommute} full days of driving</strong> on a single charge!</div>
             <div>• <strong>Road Trip Capability:</strong> A drive from Closter to Philadelphia (~105 mi) or the Jersey Shore (~75 mi) remains an effortless 100% non-stop trip with generous reserve battery remaining.</div>
             <div>• <strong>Level 2 Overnight Recovery:</strong> On your home charger (7.7–11.5 kW), restoring 100 miles of range takes only <strong class="text-white">~3 to 4 hours overnight</strong> at cheap off-peak rates (~$0.13/kWh).</div>
@@ -3282,5 +3586,18 @@
       updateDegradationSim();
     });
   </script>
+
+  <!-- Google Translate Element & Loader -->
+  <div id="google_translate_element" style="position: absolute; opacity: 0; pointer-events: none; z-index: -9999; height: 0; width: 0; overflow: hidden;"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'zh-CN,en',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
