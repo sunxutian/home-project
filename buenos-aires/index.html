@@ -132,7 +132,8 @@
         <a href="#booking-calendar" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-rose-600 dark:hover:text-rose-400 text-rose-600 dark:text-rose-400 font-bold transition-colors" data-i18n="nav_deadlines">🚨 Deadlines</a>
         <a href="#hotel" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-arg-blue dark:hover:text-sky-400 transition-colors" data-i18n="nav_hotel">🏨 Hotel (2 Confirmed)</a>
         <a href="#ranked-restaurants" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-arg-blue dark:hover:text-sky-400 transition-colors" data-i18n="nav_dining">🥩 Dining & Hidden Gems</a>
-        <a href="#ranked-attractions" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-arg-blue dark:hover:text-sky-400 transition-colors" data-i18n="nav_attractions">🎡 Attractions</a>
+        <a href="#ranked-attractions"
+        <a href="#day-trips" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-teal-600 dark:hover:text-teal-400 text-teal-600 dark:text-teal-400 font-bold transition-colors" data-i18n="nav_daytrips">🚆 Day Trips</a> class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-arg-blue dark:hover:text-sky-400 transition-colors" data-i18n="nav_attractions">🎡 Attractions</a>
         <a href="#flights" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-arg-blue dark:hover:text-sky-400 transition-colors" data-i18n="nav_flights">Flights</a>
         <a href="#budget" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-arg-blue dark:hover:text-sky-400 transition-colors" data-i18n="nav_budget">Budget</a>
       </nav>
@@ -509,6 +510,27 @@
                 <text x="12" y="95" font-size="9" class="fill-slate-600 dark:fill-slate-300">• 4:15 PM Hotel departure pickup</text>
               </g>
 
+                            <!-- San Isidro Landmark Station (Halfway to Tigre on Mitre Line) -->
+              <g id="hub-sanisidro" transform="translate(230, 85)" class="cursor-pointer" onclick="document.getElementById('day-trips').scrollIntoView({behavior:'smooth'})">
+                <circle cx="0" cy="0" r="11" class="fill-blue-500 stroke-white" stroke-width="2" />
+                <text x="0" y="4" font-size="9" font-weight="black" fill="#FFFFFF" text-anchor="middle">2</text>
+                <rect x="-45" y="14" width="90" height="17" rx="8" class="fill-slate-900/90 stroke-blue-400" stroke-width="1" />
+                <text x="0" y="26" font-size="8" font-weight="bold" fill="#38BDF8" text-anchor="middle">⛪ San Isidro</text>
+              </g>
+
+              <!-- Temaikèn Biopark Hub (Escobar - 50 km NW) -->
+              <g id="hub-temaiken" transform="translate(140, 150)" class="cursor-pointer" onclick="document.getElementById('day-trips').scrollIntoView({behavior:'smooth'})">
+                <rect x="-65" y="-14" width="130" height="28" rx="14" class="fill-amber-500/90 stroke-white" stroke-width="1.5" />
+                <text x="0" y="4" font-size="9.5" font-weight="black" fill="#0B2545" text-anchor="middle">🦒 3. Temaikèn (Escobar)</text>
+              </g>
+
+              <!-- La Plata Hub (Southeast 58 km) -->
+              <g id="hub-laplata" transform="translate(820, 560)" class="cursor-pointer" onclick="document.getElementById('day-trips').scrollIntoView({behavior:'smooth'})">
+                <circle cx="0" cy="0" r="11" class="fill-purple-600 stroke-white" stroke-width="2" />
+                <text x="0" y="4" font-size="9" font-weight="black" fill="#FFFFFF" text-anchor="middle">4</text>
+                <rect x="-55" y="14" width="110" height="18" rx="9" class="fill-slate-900/90 stroke-purple-400" stroke-width="1" />
+                <text x="0" y="26.5" font-size="8" font-weight="bold" fill="#E879F9" text-anchor="middle">🦕 La Plata (Dinos)</text>
+              </g>
               <!-- Dynamic Route Paths Layer -->
               <g id="svg-route-corridors"></g>
               <g id="svg-route-loop"></g>
@@ -1885,6 +1907,578 @@
       </div>
     </section>
 
+    <!-- SECTION: DAY TRIP OPTIONS & COMPARISON -->
+    <section id="day-trips" class="scroll-mt-20 space-y-8">
+      <!-- Section Header -->
+      <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="w-7 h-7 rounded-lg bg-teal-600 text-white flex items-center justify-center font-bold text-sm">5</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white" data-i18n="dt_main_title">
+              Top Day Trip Options & Family Comparison
+            </h2>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-3xl" data-i18n="dt_main_sub">
+            4 vetted regional excursions from Palermo Suites for 4 Adults + 2 Kids (Ages 6 & 4). Compare transit ease, kid excitement, travel costs, and authentic Google traveler reviews.
+          </p>
+        </div>
+        <div class="flex items-center space-x-2 shrink-0">
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-teal-100 dark:bg-teal-950/80 text-teal-800 dark:text-teal-300 border border-teal-200 dark:border-teal-800" data-i18n="dt_badge">
+            4 Excursion Options Compared
+          </span>
+        </div>
+      </div>
+
+      <!-- COMPARISON MATRIX TABLE -->
+      <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-md space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+          <div class="flex items-center space-x-2">
+            <span class="text-lg">📊</span>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white" data-i18n="dt_table_title">
+              Side-by-Side Family Comparison Matrix
+            </h3>
+          </div>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden sm:inline" data-i18n="dt_table_scroll_hint">
+            ← Scroll horizontally on mobile →
+          </span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b border-slate-200 dark:border-slate-800 text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 bg-slate-50/80 dark:bg-slate-800/40">
+                <th class="py-3 px-3.5 rounded-l-xl">Destination & Rank</th>
+                <th class="py-3 px-3">Distance & Transit Time</th>
+                <th class="py-3 px-3">Transit Mode for 6</th>
+                <th class="py-3 px-3">Kids Factor (Ages 4 & 6)</th>
+                <th class="py-3 px-3">Family Cost (6 Pax)</th>
+                <th class="py-3 px-3">Operating Days</th>
+                <th class="py-3 px-3.5 rounded-r-xl">Family Verdict</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-700 dark:text-slate-300">
+              <!-- 1. Tigre -->
+              <tr class="hover:bg-teal-50/40 dark:hover:bg-teal-950/20 transition-colors">
+                <td class="py-3.5 px-3.5">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-6 h-6 rounded-md bg-teal-600 text-white font-black text-xs flex items-center justify-center shrink-0">1</span>
+                    <div>
+                      <strong class="text-sm font-bold text-slate-900 dark:text-white block">Tigre (Paraná Delta)</strong>
+                      <span class="text-[10px] font-bold text-teal-600 dark:text-teal-400">#1 Best Overall Public Transit</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="font-bold text-slate-900 dark:text-white block">32 km North</span>
+                  <span class="text-[11px] text-slate-500">~55 min train / 45m van</span>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold text-[10px] inline-block mb-1">Easiest Transit</span>
+                  <p class="text-[11px] text-slate-600 dark:text-slate-400">Mitre train direct from Retiro/Belgrano C (every 15 min), or private van.</p>
+                </td>
+                <td class="py-3.5 px-3">
+                  <div class="flex items-center text-amber-500 font-bold mb-0.5">★★★★★ <span class="text-slate-800 dark:text-slate-200 ml-1">5.0</span></div>
+                  <p class="text-[11px] text-slate-600 dark:text-slate-400">Smooth wooden boat cruise, island views, zero stairs, flat stroller promenade.</p>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="font-bold text-emerald-600 dark:text-emerald-400">$30–$50 USD</span>
+                  <span class="text-[10px] text-slate-400 block">(Train <$1/ea + Boat)</span>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="font-semibold text-slate-900 dark:text-white">Daily</span>
+                  <span class="text-[10px] text-slate-400 block">(Market active daily)</span>
+                </td>
+                <td class="py-3.5 px-3.5">
+                  <span class="px-2.5 py-1 rounded-lg bg-teal-100 dark:bg-teal-950/80 text-teal-800 dark:text-teal-300 font-bold text-[11px] inline-block">
+                    Top Family Pick 🏆
+                  </span>
+                  <p class="text-[10.5px] text-slate-500 mt-1">Zero car hassle, peaceful water breeze, easy day trip.</p>
+                </td>
+              </tr>
+
+              <!-- 2. San Isidro -->
+              <tr class="hover:bg-teal-50/40 dark:hover:bg-teal-950/20 transition-colors">
+                <td class="py-3.5 px-3.5">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-6 h-6 rounded-md bg-blue-600 text-white font-black text-xs flex items-center justify-center shrink-0">2</span>
+                    <div>
+                      <strong class="text-sm font-bold text-slate-900 dark:text-white block">San Isidro</strong>
+                      <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400">Shortest & Most Relaxed</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="font-bold text-slate-900 dark:text-white block">20 km North</span>
+                  <span class="text-[11px] text-slate-500">~35 min train (Same Line)</span>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 font-bold text-[10px] inline-block mb-1">Same Train as Tigre</span>
+                  <p class="text-[11px] text-slate-600 dark:text-slate-400">Mitre Line train stop halfway to Tigre. Perfect half-day or Tigre combo.</p>
+                </td>
+                <td class="py-3.5 px-3">
+                  <div class="flex items-center text-amber-500 font-bold mb-0.5">★★★★☆ <span class="text-slate-800 dark:text-slate-200 ml-1">4.2</span></div>
+                  <p class="text-[11px] text-slate-600 dark:text-slate-400">Plaza Mitre open lawns to run around, cathedral square, quiet cafes.</p>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="font-bold text-emerald-600 dark:text-emerald-400">$6–$12 USD</span>
+                  <span class="text-[10px] text-slate-400 block">(Minimal train fares)</span>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="font-semibold text-slate-900 dark:text-white">Daily</span>
+                  <span class="text-[10px] text-slate-400 block">(Fairs on weekends)</span>
+                </td>
+                <td class="py-3.5 px-3.5">
+                  <span class="px-2.5 py-1 rounded-lg bg-blue-100 dark:bg-blue-950/80 text-blue-800 dark:text-blue-300 font-bold text-[11px] inline-block">
+                    Best Tigre Combo 🌿
+                  </span>
+                  <p class="text-[10.5px] text-slate-500 mt-1">Combine with Tigre on the same morning train line.</p>
+                </td>
+              </tr>
+
+              <!-- 3. Temaikèn -->
+              <tr class="hover:bg-teal-50/40 dark:hover:bg-teal-950/20 transition-colors">
+                <td class="py-3.5 px-3.5">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-6 h-6 rounded-md bg-amber-500 text-slate-950 font-black text-xs flex items-center justify-center shrink-0">3</span>
+                    <div>
+                      <strong class="text-sm font-bold text-slate-900 dark:text-white block">Temaikèn Biopark</strong>
+                      <span class="text-[10px] font-bold text-amber-600 dark:text-amber-400">Best Wildlife & Biopark</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="font-bold text-slate-900 dark:text-white block">50 km Northwest</span>
+                  <span class="text-[11px] text-slate-500">~1h 15m – 1h 30m</span>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 font-bold text-[10px] inline-block mb-1">Bus 60 + 2x Uber</span>
+                  <p class="text-[11px] text-slate-600 dark:text-slate-400">Bus 60 direct from Plaza Italia. Return: take 2 Ubers ($25/car) for tired kids.</p>
+                </td>
+                <td class="py-3.5 px-3">
+                  <div class="flex items-center text-amber-500 font-bold mb-0.5">★★★★★ <span class="text-slate-800 dark:text-slate-200 ml-1">4.9</span></div>
+                  <p class="text-[11px] text-slate-600 dark:text-slate-400">360° walk-through aviary, shark/ray tunnel, playgrounds next to dining!</p>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="font-bold text-emerald-600 dark:text-emerald-400">~$120–$160 USD</span>
+                  <span class="text-[10px] text-slate-400 block">(Park tickets + Ubers)</span>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="font-semibold text-rose-600 dark:text-rose-400">Wed–Sun Only</span>
+                  <span class="text-[10px] text-slate-400 block">10 AM – 6 PM (Closed M/T)</span>
+                </td>
+                <td class="py-3.5 px-3.5">
+                  <span class="px-2.5 py-1 rounded-lg bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 font-bold text-[11px] inline-block">
+                    Kids Absolute Favorite 🦒
+                  </span>
+                  <p class="text-[10.5px] text-slate-500 mt-1">World-class zoo; incredible amenities & play areas.</p>
+                </td>
+              </tr>
+
+              <!-- 4. La Plata -->
+              <tr class="hover:bg-teal-50/40 dark:hover:bg-teal-950/20 transition-colors">
+                <td class="py-3.5 px-3.5">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-6 h-6 rounded-md bg-purple-600 text-white font-black text-xs flex items-center justify-center shrink-0">4</span>
+                    <div>
+                      <strong class="text-sm font-bold text-slate-900 dark:text-white block">La Plata</strong>
+                      <span class="text-[10px] font-bold text-purple-600 dark:text-purple-400">Best for Dinosaurs & History</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="font-bold text-slate-900 dark:text-white block">58 km Southeast</span>
+                  <span class="text-[11px] text-slate-500">~1h 30m – 1h 45m</span>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 font-bold text-[10px] inline-block mb-1">Roca Train / Bus</span>
+                  <p class="text-[11px] text-slate-600 dark:text-slate-400">Constitución train hub or direct express bus from Metrobus del Bajo.</p>
+                </td>
+                <td class="py-3.5 px-3">
+                  <div class="flex items-center text-amber-500 font-bold mb-0.5">★★★★☆ <span class="text-slate-800 dark:text-slate-200 ml-1">4.3</span></div>
+                  <p class="text-[11px] text-slate-600 dark:text-slate-400">Giant dinosaur skeletons, Ice Age fossils, mummies, sprawling Bosque park.</p>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="font-bold text-emerald-600 dark:text-emerald-400">$20–$40 USD</span>
+                  <span class="text-[10px] text-slate-400 block">(Museum + Transit)</span>
+                </td>
+                <td class="py-3.5 px-3">
+                  <span class="font-semibold text-rose-600 dark:text-rose-400">Wed–Sun Only</span>
+                  <span class="text-[10px] text-slate-400 block">10 AM – 6 PM (Closed M/T)</span>
+                </td>
+                <td class="py-3.5 px-3.5">
+                  <span class="px-2.5 py-1 rounded-lg bg-purple-100 dark:bg-purple-950/80 text-purple-800 dark:text-purple-300 font-bold text-[11px] inline-block">
+                    Dino & Fossil Lovers 🦕
+                  </span>
+                  <p class="text-[10.5px] text-slate-500 mt-1">Epic museum; transit transfer requires vigilance.</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- IN-DEPTH DETAILS CARDS (4 DESTINATIONS) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- CARD 1: TIGRE -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-md space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <span class="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-teal-100 dark:bg-teal-950 text-teal-800 dark:text-teal-300 border border-teal-200 dark:border-teal-800" data-i18n="dt_t1_badge">
+                  #1 Best Overall Public Transit Day Trip
+                </span>
+                <h3 class="text-xl font-black text-slate-900 dark:text-white mt-1.5 flex items-center space-x-2">
+                  <span>🚤</span>
+                  <span>Tigre & Paraná Delta</span>
+                </h3>
+              </div>
+              <a href="https://maps.google.com/?q=Estacion+Tigre+Mitre" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors shrink-0" title="View Tigre Station on Google Maps">
+                <i data-lucide="map-pin" class="w-4 h-4 text-teal-600"></i>
+              </a>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="dt_t1_desc">
+              Tigre is the classic river-delta town north of Buenos Aires, offering boat cruises through wooded island canals, boardwalks, and waterfront markets with zero car needed once you step off the train.
+            </p>
+
+            <!-- How to Get There -->
+            <div class="rounded-2xl p-3.5 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs space-y-1">
+              <span class="font-bold text-teal-700 dark:text-teal-400 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
+                <span>🚆</span>
+                <span data-i18n="dt_transit_label">How to Get There (~1 hr 15 min total):</span>
+              </span>
+              <p class="text-slate-600 dark:text-slate-300" data-i18n="dt_t1_transit">
+                Take an Uber/Subte Line D to Retiro (Mitre Line) or Belgrano C, then catch the Mitre Line (Ramal Tigre) commuter train directly to Tigre terminal (~55 minutes on train, departing every 15–20 minutes). Or direct private 7-passenger van (~45 min via Panamericana).
+              </p>
+            </div>
+
+            <!-- What to do with Kids -->
+            <div class="rounded-2xl p-3.5 bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/50 text-xs space-y-1">
+              <span class="font-bold text-emerald-800 dark:text-emerald-300 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
+                <span>👶</span>
+                <span data-i18n="dt_kids_label">What to Do With Kids (Ages 6 & 4):</span>
+              </span>
+              <p class="text-emerald-900/90 dark:text-emerald-200" data-i18n="dt_t1_kids">
+                Board a 1-hour wooden catamaran cruise through the Paraná Delta right next to the train station, then walk along the riverside promenade to browse Puerto de Frutos for handmade crafts, snacks, and river views.
+              </p>
+            </div>
+
+            <!-- 6-Person Tip -->
+            <div class="rounded-2xl p-3.5 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-xs space-y-1">
+              <span class="font-bold text-amber-800 dark:text-amber-300 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
+                <span>💡</span>
+                <span data-i18n="dt_tip_label">Tip for 6 People:</span>
+              </span>
+              <p class="text-amber-900 dark:text-amber-200 text-[11px]" data-i18n="dt_t1_tip">
+                Reviewers note that Tigre Station can occasionally have issues recharging SUBE cards, so load your SUBE cards at a Palermo kiosk/Subte station before leaving (children under 3 ride free; ages 4 and 6 need standard SUBE taps, only ~$0.50–$1 USD each way).
+              </p>
+            </div>
+
+            <!-- Real Reviews -->
+            <div class="space-y-2 pt-1">
+              <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block" data-i18n="dt_reviews_label">
+                Google Traveler Reviews:
+              </span>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
+                <div class="flex items-center justify-between text-[10px]">
+                  <span class="font-bold text-slate-900 dark:text-white">Willian A Lopes</span>
+                  <span class="text-amber-500 font-bold">★★★★★ · 5 mo ago</span>
+                </div>
+                <p class="italic">"Beautiful and functional station, easy and cheap access to and from The City of Buenos Aires."</p>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
+                <div class="flex items-center justify-between text-[10px]">
+                  <span class="font-bold text-slate-900 dark:text-white">Qihua M</span>
+                  <span class="text-amber-500 font-bold">★★★★☆ · 1 yr ago</span>
+                </div>
+                <p class="italic">"It is a very nice local attraction for a day trip from Buenos Aires, my friend and I really enjoyed the river cruise and the local cuisine and coffeehouses! Cheers!"</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            <span class="text-[11px] font-bold text-teal-600 dark:text-teal-400" data-i18n="dt_status_scheduled">
+              ✓ Featured on Day 4 of Proposed Master Itinerary
+            </span>
+            <a href="https://maps.google.com/?q=Estacion+Fluvial+Tigre" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs flex items-center space-x-1 shadow-sm">
+              <span>🗺️ Tigre Pier Map</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 2: SAN ISIDRO -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-md space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <span class="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800" data-i18n="dt_t2_badge">
+                  Shortest, Most Relaxed Half-to-Full Day Trip
+                </span>
+                <h3 class="text-xl font-black text-slate-900 dark:text-white mt-1.5 flex items-center space-x-2">
+                  <span>⛪</span>
+                  <span>San Isidro (Historic Suburb)</span>
+                </h3>
+              </div>
+              <a href="https://maps.google.com/?q=Catedral+de+San+Isidro" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors shrink-0" title="View San Isidro on Google Maps">
+                <i data-lucide="map-pin" class="w-4 h-4 text-blue-600"></i>
+              </a>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="dt_t2_desc">
+              San Isidro is an upscale, leafy historic suburb along the same Mitre Line on the way to Tigre, making it easy to visit on its own or combine with Tigre on the same train line.
+            </p>
+
+            <!-- How to Get There -->
+            <div class="rounded-2xl p-3.5 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs space-y-1">
+              <span class="font-bold text-blue-700 dark:text-blue-400 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
+                <span>🚆</span>
+                <span data-i18n="dt_transit_label">How to Get There (~50–60 min total):</span>
+              </span>
+              <p class="text-slate-600 dark:text-slate-300" data-i18n="dt_t2_transit">
+                Take the Mitre Line (Ramal Tigre) from Retiro (or connect via Belgrano C) to San Isidro station (~35 minutes on train), or take local Bus 60 from Palermo along Av. Cabildo.
+              </p>
+            </div>
+
+            <!-- What to do with Kids -->
+            <div class="rounded-2xl p-3.5 bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/50 text-xs space-y-1">
+              <span class="font-bold text-emerald-800 dark:text-emerald-300 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
+                <span>👶</span>
+                <span data-i18n="dt_kids_label">What to Do With Kids (Ages 6 & 4):</span>
+              </span>
+              <p class="text-emerald-900/90 dark:text-emerald-200" data-i18n="dt_t2_kids">
+                Walk up cobblestone streets to the soaring Neo-Gothic San Isidro Cathedral, let the kids run on the shaded lawns of Plaza Mitre, and browse the weekend artisan fair before stopping at a family-friendly café or riverside park.
+              </p>
+            </div>
+
+            <!-- Pro Tip -->
+            <div class="rounded-2xl p-3.5 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/60 text-xs space-y-1">
+              <span class="font-bold text-blue-800 dark:text-blue-300 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
+                <span>💡</span>
+                <span data-i18n="dt_combo_tip_label">Tigre Combo Strategy:</span>
+              </span>
+              <p class="text-blue-900 dark:text-blue-200 text-[11px]" data-i18n="dt_t2_tip">
+                Since San Isidro is halfway along the exact same Mitre train line to Tigre, you can stop off for 1.5 hours in the morning, tour the cathedral and park, and then hop back on the train for the final 20 minutes to Tigre!
+              </p>
+            </div>
+
+            <!-- Real Reviews -->
+            <div class="space-y-2 pt-1">
+              <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block" data-i18n="dt_reviews_label">
+                Google Traveler Reviews:
+              </span>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
+                <div class="flex items-center justify-between text-[10px]">
+                  <span class="font-bold text-slate-900 dark:text-white">Alex Matheson</span>
+                  <span class="text-amber-500 font-bold">★★★★★ · 7 d ago</span>
+                </div>
+                <p class="italic">"I visited on a lazy November Saturday afternoon. This is a beautiful cathedral that serves as the main church for the Diocese of San Isidro."</p>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
+                <div class="flex items-center justify-between text-[10px]">
+                  <span class="font-bold text-slate-900 dark:text-white">Rajeev Ajmani</span>
+                  <span class="text-amber-500 font-bold">★★★★☆ · 8 mo ago</span>
+                </div>
+                <p class="italic">"It was nice, quiet excursion after some hectic days in Buenos Aires and El Calafate."</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            <span class="text-[11px] font-bold text-blue-600 dark:text-blue-400">
+              Half-Day Option · Low Walking Fatigue
+            </span>
+            <a href="https://maps.google.com/?q=Plaza+Mitre+San+Isidro" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center space-x-1 shadow-sm">
+              <span>🗺️ San Isidro Map</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 3: TEMAIKÈN BIOPARK -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-md space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <span class="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800" data-i18n="dt_t3_badge">
+                  4.5 ★ Rating · Best Wildlife & Biopark for Kids
+                </span>
+                <h3 class="text-xl font-black text-slate-900 dark:text-white mt-1.5 flex items-center space-x-2">
+                  <span>🦒</span>
+                  <span>Bioparque Temaikèn (Escobar)</span>
+                </h3>
+              </div>
+              <a href="https://maps.google.com/?q=Bioparque+Temaiken+Escobar" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors shrink-0" title="View Temaikèn on Google Maps">
+                <i data-lucide="map-pin" class="w-4 h-4 text-amber-600"></i>
+              </a>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="dt_t3_desc">
+              Temaikèn is a massive, world-class biopark and aquarium in Belén de Escobar (~50 km northwest of Palermo) featuring walk-through aviaries, hippos, Patagonian wildlife, an underwater shark/ray tunnel, and shaded playgrounds next to restaurants.
+            </p>
+
+            <!-- How to Get There & Hours -->
+            <div class="rounded-2xl p-3.5 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs space-y-1">
+              <span class="font-bold text-amber-700 dark:text-amber-400 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
+                <span>🚌</span>
+                <span data-i18n="dt_transit_label">How to Get There (~1 hr 15m – 1 hr 30m):</span>
+              </span>
+              <p class="text-slate-600 dark:text-slate-300" data-i18n="dt_t3_transit">
+                Catch Bus 60 (Ramal Escobar / Panamericana) directly from Avenida Santa Fe / Plaza Italia (a 7-minute walk from your hotel in Palermo) straight to Escobar/Temaikèn—no train transfer required.
+              </p>
+              <div class="pt-1 flex items-center space-x-2 text-[10.5px] font-bold text-rose-600 dark:text-rose-400">
+                <span>⏰ Hours:</span>
+                <span>Open Wed–Sun 10:00 AM – 6:00 PM (Closed Mondays & Tuesdays).</span>
+              </div>
+            </div>
+
+            <!-- What to do with Kids -->
+            <div class="rounded-2xl p-3.5 bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/50 text-xs space-y-1">
+              <span class="font-bold text-emerald-800 dark:text-emerald-300 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
+                <span>👶</span>
+                <span data-i18n="dt_kids_label">What to Do With Kids (Ages 6 & 4):</span>
+              </span>
+              <p class="text-emerald-900/90 dark:text-emerald-200" data-i18n="dt_t3_kids">
+                The gigantic 360° walk-through aviary with hundreds of birds, underwater shark and ray aquarium tunnel, Patagonian animals, and shaded play structures situated right next to food stands so parents can eat peacefully while kids play. Water spray fans around the park cool down warm summer afternoons!
+              </p>
+            </div>
+
+            <!-- 6-Person Tip -->
+            <div class="rounded-2xl p-3.5 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-xs space-y-1">
+              <span class="font-bold text-amber-800 dark:text-amber-300 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
+                <span>💡</span>
+                <span data-i18n="dt_tip_label">Tip for 6 People:</span>
+              </span>
+              <p class="text-amber-900 dark:text-amber-200 text-[11px]" data-i18n="dt_t3_tip">
+                On the return trip for 6 people, taking two Ubers back to Palermo costs ~$25 USD per car and saves waiting for a bus with tired kids. Ticket on the gate or direct in advance (avoid third-party marked-up tours).
+              </p>
+            </div>
+
+            <!-- Real Reviews -->
+            <div class="space-y-2 pt-1">
+              <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block" data-i18n="dt_reviews_label">
+                Google Traveler Reviews:
+              </span>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
+                <div class="flex items-center justify-between text-[10px]">
+                  <span class="font-bold text-slate-900 dark:text-white">Emily Rose</span>
+                  <span class="text-amber-500 font-bold">★★★★★ · 2 y ago</span>
+                </div>
+                <p class="italic">"We visited with our toddler expecting a small little zoo. What we got was a very high-quality experience that I would recommend to anyone many times over... The amenities were also great - clean bathrooms, good food, playgrounds by the restaurants to make eating with kids so much smoother!"</p>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
+                <div class="flex items-center justify-between text-[10px]">
+                  <span class="font-bold text-slate-900 dark:text-white">alberto pavoncelli</span>
+                  <span class="text-amber-500 font-bold">★★★★☆ · 2 y ago</span>
+                </div>
+                <p class="italic">"Nice park very well kept and animals are in great shape... Lot of kids. You can eat there and spend about 3 hours. There is a bus from Buenos Aires but I suggest a uber for 25$."</p>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
+                <div class="flex items-center justify-between text-[10px]">
+                  <span class="font-bold text-slate-900 dark:text-white">Amanda Pressey</span>
+                  <span class="text-amber-500 font-bold">★★★★★ · 3 y ago</span>
+                </div>
+                <p class="italic">"Gorgeous birds and animals in lovely settings... Food and drinks available on site were great... For those coming from cooler climates, they have water spray fans at intervals around the park to help with the heat."</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            <span class="text-[11px] font-bold text-amber-600 dark:text-amber-400">
+              Top Alternative to City Zoo
+            </span>
+            <a href="https://maps.google.com/?q=Bioparque+Temaiken" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs flex items-center space-x-1 shadow-sm">
+              <span>🗺️ Temaikèn Map</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 4: LA PLATA -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-md space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <span class="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-800" data-i18n="dt_t4_badge">
+                  Best for Dinosaurs & Natural History
+                </span>
+                <h3 class="text-xl font-black text-slate-900 dark:text-white mt-1.5 flex items-center space-x-2">
+                  <span>🦕</span>
+                  <span>La Plata (Provincial Capital)</span>
+                </h3>
+              </div>
+              <a href="https://maps.google.com/?q=Museo+de+La+Plata" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors shrink-0" title="View La Plata Museum on Google Maps">
+                <i data-lucide="map-pin" class="w-4 h-4 text-purple-600"></i>
+              </a>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="dt_t4_desc">
+              La Plata, the provincial capital ~58 km southeast of Buenos Aires, is famous for its diagonal street grid, massive Neo-Gothic cathedral, and South America's premier natural history museum.
+            </p>
+
+            <!-- How to Get There & Hours -->
+            <div class="rounded-2xl p-3.5 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs space-y-1">
+              <span class="font-bold text-purple-700 dark:text-purple-400 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
+                <span>🚆</span>
+                <span data-i18n="dt_transit_label">How to Get There (~1h 30m – 1h 45m total):</span>
+              </span>
+              <p class="text-slate-600 dark:text-slate-300" data-i18n="dt_t4_transit">
+                Take Subte Line D to Line C down to Plaza Constitución, then ride the electric Roca Line train (~1 hour 10 minutes) to Estación De Tren - La Plata. Alternatively, catch a direct express bus from Metrobus del Bajo.
+              </p>
+              <div class="pt-1 flex items-center space-x-2 text-[10.5px] font-bold text-purple-600 dark:text-purple-400">
+                <span>⏰ Museum Hours:</span>
+                <span>Open Wed–Sun 10:00 AM – 6:00 PM (Closed Mondays & Tuesdays).</span>
+              </div>
+            </div>
+
+            <!-- What to do with Kids -->
+            <div class="rounded-2xl p-3.5 bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/50 text-xs space-y-1">
+              <span class="font-bold text-emerald-800 dark:text-emerald-300 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
+                <span>👶</span>
+                <span data-i18n="dt_kids_label">What to Do With Kids (Ages 6 & 4):</span>
+              </span>
+              <p class="text-emerald-900/90 dark:text-emerald-200" data-i18n="dt_t4_kids">
+                Head straight to Museo de La Plata inside Paseo del Bosque park—the kids will be awed by the giant dinosaur skeletons, Ice Age mammal fossils (glyptodonts & giant ground sloths), and Egyptian mummies! Stroll down the diagonal boulevards to the grand Cathedral of La Plata.
+              </p>
+            </div>
+
+            <!-- Logistics Warning / Tip -->
+            <div class="rounded-2xl p-3.5 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800/60 text-xs space-y-1">
+              <span class="font-bold text-rose-800 dark:text-rose-300 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
+                <span>⚠️</span>
+                <span data-i18n="dt_logistics_label">Logistics Note for Family of 6:</span>
+              </span>
+              <p class="text-rose-900 dark:text-rose-200 text-[11px]" data-i18n="dt_t4_tip">
+                Constitución is a very busy, crowded southern transit hub. Keep a close eye on belongings and kids during the transfer, or consider booking a direct private charter van from Palermo Suites for comfort.
+              </p>
+            </div>
+
+            <!-- Real Reviews -->
+            <div class="space-y-2 pt-1">
+              <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block" data-i18n="dt_reviews_label">
+                Local Resident & Traveler Review:
+              </span>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
+                <div class="flex items-center justify-between text-[10px]">
+                  <span class="font-bold text-slate-900 dark:text-white">Local Resident (Google Review)</span>
+                  <span class="text-amber-500 font-bold">★★★★☆</span>
+                </div>
+                <p class="italic">"This is the city where I was born. It has many beer bars. Some good restaurants, museums, historic places and landmarks. Its architecture is wonderful and the way it was built can be confusing but it helps to go from one point of the city to the next in no time!... Also, La Plata is the city of our well-known Universidad de La Plata."</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            <span class="text-[11px] font-bold text-purple-600 dark:text-purple-400">
+              Paleontology & Dinosaur Skeletons
+            </span>
+            <a href="https://maps.google.com/?q=Museo+de+La+Plata" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs flex items-center space-x-1 shadow-sm">
+              <span>🗺️ La Plata Museum Map</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- SECTION: FLIGHT CONFIRMATIONS -->
     <section id="flights" class="scroll-mt-20 space-y-4">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
@@ -2077,6 +2671,20 @@
         nav_subtitle: "Dec 4–12, 2026 · 6 Nights · Family of 6 (4 Adults, 2 Kids)",
         nav_timeline: "📅 Daily Timeline",
         nav_routes: "🗺️ Hotel Routes",
+        nav_daytrips: "🚆 Day Trips",
+        dt_main_title: "Top Day Trip Options & Family Comparison",
+        dt_main_sub: "4 vetted regional excursions from Palermo Suites for 4 Adults + 2 Kids (Ages 6 & 4). Compare transit ease, kid excitement, travel costs, and authentic Google traveler reviews.",
+        dt_badge: "4 Excursion Options Compared",
+        dt_table_title: "Side-by-Side Family Comparison Matrix",
+        dt_table_scroll_hint: "← Scroll horizontally on mobile →",
+        dt_transit_label: "How to Get There:",
+        dt_kids_label: "What to Do With Kids (Ages 6 & 4):",
+        dt_tip_label: "Tip for 6 People:",
+        dt_combo_tip_label: "Tigre Combo Strategy:",
+        dt_logistics_label: "Logistics Note for Family of 6:",
+        dt_reviews_label: "Google Traveler Reviews:",
+        dt_status_scheduled: "✓ Featured on Day 4 of Proposed Master Itinerary",
+
         route_pill: "Interactive Day-by-Day Routes",
         route_origin_badge: "Base: Palermo Suites (Paraguay 4646)",
         route_heading: "Interactive Daily Routes from Hotel",
