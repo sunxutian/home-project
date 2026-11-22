@@ -388,8 +388,185 @@
             </div>
           </div>
 
-          <!-- Leaflet Map Container -->
-          <div id="route-map" class="w-full h-[400px] sm:h-[480px] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 relative z-0"></div>
+          <!-- Interactive Estimated Master Map Container (No API Key Required) -->
+          <div class="relative w-full h-[420px] sm:h-[500px] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-[#080E1E] shadow-inner select-none" id="estimated-map-wrapper">
+            <!-- SVG Estimated Map -->
+            <svg id="ba-estimated-svg" viewBox="0 0 950 640" class="w-full h-full object-cover">
+              <defs>
+                <!-- Glowing Filter -->
+                <filter id="glow-gold" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+                <filter id="glow-emerald" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="3.5" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+
+              <!-- Landmass BG -->
+              <rect width="950" height="640" class="fill-slate-50 dark:fill-[#091124]" />
+
+              <!-- Subtle Map Grid -->
+              <g class="stroke-slate-300/40 dark:stroke-slate-700/30" stroke-width="0.75" stroke-dasharray="4,6">
+                <line x1="80" y1="0" x2="80" y2="640" />
+                <line x1="240" y1="0" x2="240" y2="640" />
+                <line x1="400" y1="0" x2="400" y2="640" />
+                <line x1="560" y1="0" x2="560" y2="640" />
+                <line x1="720" y1="0" x2="720" y2="640" />
+                <line x1="880" y1="0" x2="880" y2="640" />
+                <line x1="0" y1="120" x2="950" y2="120" />
+                <line x1="0" y1="240" x2="950" y2="240" />
+                <line x1="0" y1="360" x2="950" y2="360" />
+                <line x1="0" y1="480" x2="950" y2="480" />
+                <line x1="0" y1="600" x2="950" y2="600" />
+              </g>
+
+              <!-- Water: Río de la Plata Estuary -->
+              <path d="M 640 0 C 690 120, 720 220, 750 340 C 780 440, 810 520, 860 640 L 950 640 L 950 0 Z" class="fill-sky-100/80 dark:fill-[#081B33]" />
+              <path d="M 640 0 C 690 120, 720 220, 750 340 C 780 440, 810 520, 860 640" fill="none" class="stroke-sky-300 dark:stroke-sky-700/60" stroke-width="2" />
+              <text x="835" y="220" transform="rotate(68 835 220)" class="fill-sky-700/30 dark:fill-sky-400/25 font-black text-[12px] tracking-[0.25em]">RÍO DE LA PLATA (ESTUARY)</text>
+
+              <!-- Puerto Madero Docks -->
+              <g class="opacity-50">
+                <rect x="715" y="380" width="10" height="100" rx="3" class="fill-sky-400 dark:fill-sky-600" />
+                <rect x="730" y="380" width="10" height="100" rx="3" class="fill-sky-400 dark:fill-sky-600" />
+                <text x="725" y="370" font-size="8.5" font-weight="bold" class="fill-slate-500 dark:fill-slate-400" text-anchor="middle">PUERTO MADERO</text>
+              </g>
+
+              <!-- Major Avenue Arteries (Schematic Guidelines) -->
+              <g class="stroke-slate-300/80 dark:stroke-slate-700/60" stroke-width="1.5">
+                <!-- Av. Santa Fe / Cabildo -->
+                <path d="M 340 100 L 590 380" stroke-dasharray="6,4" />
+                <!-- Av. del Libertador -->
+                <path d="M 400 90 L 680 390" stroke-dasharray="6,4" />
+                <!-- Av. 9 de Julio -->
+                <path d="M 570 330 L 730 490" stroke-dasharray="6,4" />
+              </g>
+
+              <!-- Neighborhood Zones -->
+              <!-- 1. Palermo (Green Heart & Base) -->
+              <rect x="295" y="90" width="320" height="200" rx="22" class="fill-emerald-500/10 stroke-emerald-500/40" stroke-width="1.5" stroke-dasharray="4,4" />
+              <text x="310" y="112" class="fill-emerald-700 dark:fill-emerald-400 font-extrabold text-[11px] tracking-wider">🌿 PALERMO (PARKS & FOOD BASE)</text>
+              <!-- Lake -->
+              <path d="M 470 128 C 495 120, 525 125, 545 140 C 535 155, 495 158, 470 145 Z" class="fill-sky-400/40 stroke-sky-400" stroke-width="1" />
+              <text x="505" y="142" font-size="8.5" class="fill-sky-700 dark:fill-sky-300 font-bold" text-anchor="middle">Bosques & Lake ⛵</text>
+
+              <!-- 2. Recoleta -->
+              <rect x="525" y="270" width="200" height="130" rx="18" class="fill-indigo-500/10 stroke-indigo-500/40" stroke-width="1.5" stroke-dasharray="4,4" />
+              <text x="540" y="290" class="fill-indigo-700 dark:fill-indigo-400 font-extrabold text-[11px] tracking-wider">🏛️ RECOLETA (CULTURE)</text>
+
+              <!-- 3. San Telmo & Centro -->
+              <rect x="545" y="390" width="210" height="130" rx="18" class="fill-amber-500/10 stroke-amber-500/40" stroke-width="1.5" stroke-dasharray="4,4" />
+              <text x="560" y="410" class="fill-amber-700 dark:fill-amber-400 font-extrabold text-[11px] tracking-wider">🎭 SAN TELMO & CENTRO</text>
+              <!-- Obelisco -->
+              <g transform="translate(635, 408)">
+                <polygon points="0,-12 3,0 -3,0" class="fill-slate-400 dark:fill-slate-300" />
+                <text x="6" y="-3" font-size="8" font-weight="bold" class="fill-slate-500 dark:fill-slate-400">Obelisco</text>
+              </g>
+
+              <!-- 4. La Boca -->
+              <rect x="585" y="525" width="210" height="100" rx="18" class="fill-rose-500/10 stroke-rose-500/40" stroke-width="1.5" stroke-dasharray="4,4" />
+              <text x="600" y="545" class="fill-rose-700 dark:fill-rose-400 font-extrabold text-[11px] tracking-wider">🎨 LA BOCA (CAMINITO TANGO)</text>
+
+              <!-- Inset Excursion Cards (Left Column) -->
+              <!-- Tigre Card Inset -->
+              <g id="hub-tigre" transform="translate(25, 25)" class="cursor-pointer">
+                <rect width="225" height="105" rx="16" class="fill-white/95 dark:fill-slate-800/90 stroke-teal-500/50" stroke-width="1.5" />
+                <rect x="8" y="8" width="34" height="34" rx="8" class="fill-teal-100 dark:fill-teal-950 text-teal-600" />
+                <text x="25" y="31" font-size="16" text-anchor="middle">🚤</text>
+                <text x="48" y="24" font-size="11.5" font-weight="bold" class="fill-slate-900 dark:fill-white">Tigre Delta Islands</text>
+                <text x="48" y="38" font-size="9.5" font-weight="semibold" class="fill-teal-600 dark:fill-teal-400">32 km North · 🚐 45m Van</text>
+                <line x1="10" y1="48" x2="215" y2="48" class="stroke-slate-200 dark:stroke-slate-700" stroke-width="0.8" />
+                <text x="12" y="65" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Wooden boat canal cruise</text>
+                <text x="12" y="80" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Vivanco riverfront dining</text>
+                <text x="12" y="95" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Puerto de Frutos market</text>
+              </g>
+
+              <!-- Estancia Card Inset -->
+              <g id="hub-estancia" transform="translate(25, 240)" class="cursor-pointer">
+                <rect width="225" height="105" rx="16" class="fill-white/95 dark:fill-slate-800/90 stroke-amber-500/50" stroke-width="1.5" />
+                <rect x="8" y="8" width="34" height="34" rx="8" class="fill-amber-100 dark:fill-amber-950 text-amber-600" />
+                <text x="25" y="31" font-size="16" text-anchor="middle">🐎</text>
+                <text x="48" y="24" font-size="11.5" font-weight="bold" class="fill-slate-900 dark:fill-white">Estancia El Ombú</text>
+                <text x="48" y="38" font-size="9.5" font-weight="semibold" class="fill-amber-600 dark:fill-amber-400">115 km NW · 🚐 90m Van</text>
+                <line x1="10" y1="48" x2="215" y2="48" class="stroke-slate-200 dark:stroke-slate-700" stroke-width="0.8" />
+                <text x="12" y="65" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Horseback & sulky rides</text>
+                <text x="12" y="80" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Giant wood-fire Asado BBQ</text>
+                <text x="12" y="95" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Gaucho music & horse show</text>
+              </g>
+
+              <!-- EZE Airport Card Inset -->
+              <g id="hub-eze" transform="translate(25, 490)" class="cursor-pointer">
+                <rect width="225" height="105" rx="16" class="fill-white/95 dark:fill-slate-800/90 stroke-blue-500/50" stroke-width="1.5" />
+                <rect x="8" y="8" width="34" height="34" rx="8" class="fill-blue-100 dark:fill-blue-950 text-blue-600" />
+                <text x="25" y="31" font-size="16" text-anchor="middle">✈️</text>
+                <text x="48" y="24" font-size="11.5" font-weight="bold" class="fill-slate-900 dark:fill-white">EZE Ezeiza Airport</text>
+                <text x="48" y="38" font-size="9.5" font-weight="semibold" class="fill-blue-600 dark:fill-blue-400">34 km SW · 🚐 50m Van</text>
+                <line x1="10" y1="48" x2="215" y2="48" class="stroke-slate-200 dark:stroke-slate-700" stroke-width="0.8" />
+                <text x="12" y="65" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Nonstop Delta LA 8871 (Inbound)</text>
+                <text x="12" y="80" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Nonstop Delta LA 8872 (8:05 PM)</text>
+                <text x="12" y="95" font-size="9" class="fill-slate-600 dark:fill-slate-300">• 4:15 PM Hotel departure pickup</text>
+              </g>
+
+              <!-- Dynamic Route Paths Layer -->
+              <g id="svg-route-corridors"></g>
+              <g id="svg-route-loop"></g>
+
+              <!-- Dynamic Waypoint Pins Layer -->
+              <g id="svg-route-pins"></g>
+
+              <!-- Fixed Hotel Base Marker (Center Anchor: Paraguay 4646) -->
+              <g id="svg-hotel-base" transform="translate(410, 220)" class="cursor-pointer" onclick="showStopDetails(0)">
+                <!-- Pulsing Radar Circle -->
+                <circle cx="0" cy="0" r="26" fill="none" stroke="#F6B40E" stroke-width="2.5" opacity="0.6">
+                  <animate attributeName="r" values="16;34" dur="2s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.8;0" dur="2s" repeatCount="indefinite" />
+                </circle>
+                <!-- Base Circle -->
+                <circle cx="0" cy="0" r="17" fill="#F6B40E" stroke="#0B2545" stroke-width="2.5" />
+                <text x="0" y="6" font-size="16" text-anchor="middle">🏨</text>
+
+                <!-- Base Label Badge -->
+                <g transform="translate(0, 30)">
+                  <rect x="-80" y="-11" width="160" height="22" rx="11" class="fill-slate-900 stroke-amber-400" stroke-width="1.5" />
+                  <text x="0" y="4" font-size="10" font-weight="bold" fill="#F6B40E" text-anchor="middle">★ Palermo Suites (Base)</text>
+                </g>
+              </g>
+            </svg>
+
+            <!-- Interactive Pin Tooltip Popup Card -->
+            <div id="svg-pin-tooltip" class="absolute z-20 hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-200 dark:border-slate-700 rounded-2xl p-4 shadow-2xl max-w-xs transition-all pointer-events-auto text-xs space-y-2">
+              <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2">
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300" id="tt-time">
+                  12:45 PM
+                </span>
+                <button onclick="closePinTooltip()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm font-bold">✕</button>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-sm text-slate-900 dark:text-white" id="tt-title">Stop Title</h4>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5" id="tt-desc">Description</p>
+              </div>
+              <div class="bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-xl p-2 text-[10.5px] text-amber-900 dark:text-amber-200" id="tt-tip">
+                👶 Kid Tip
+              </div>
+              <div class="pt-1 flex items-center justify-between">
+                <span class="text-[10px] font-semibold text-slate-500 dark:text-slate-400" id="tt-dist">From Hotel: 1.4 km</span>
+                <a id="tt-gmaps" href="#" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold text-[10px] flex items-center space-x-1">
+                  <span>📍 Map</span>
+                  <span>&rarr;</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Overlay Mode Badge (Top-Left) -->
+            <div class="absolute top-3 left-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-1.5 shadow-sm pointer-events-none flex items-center space-x-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span class="text-[11px] font-bold text-slate-800 dark:text-slate-200" id="est-map-badge-text">
+                Estimated Transit Map · No API Key Required
+              </span>
+            </div>
+          </div>
 
           <!-- Map Legend & Transit Summary -->
           <div class="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400 pt-1">
@@ -486,11 +663,11 @@
                     Delta flight LA 8871 lands at 10:55 AM. Clear customs (use Family Lane if open). 11:45 AM: Private van driver meets party at arrivals. 12:45 PM: Arrive at Palermo Suites (Paraguay 4646). Store all 6 bags securely with 24-hr front desk while suites are finalized.
                   </p>
                   <div class="flex flex-wrap gap-2 pt-1">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Aeropuerto+Internacional+Ministro+Pistarini+EZE" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=Aeropuerto+Internacional+Ministro+Pistarini+EZE" target="_blank" class="map-link">
                       <i data-lucide="map-pin" class="w-3.5 h-3.5 text-blue-500"></i>
                       <span>EZE Airport</span>
                     </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Palermo+Suites+Buenos+Aires+Paraguay+4646" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=Palermo+Suites+Buenos+Aires+Paraguay+4646" target="_blank" class="map-link">
                       <i data-lucide="hotel" class="w-3.5 h-3.5 text-indigo-500"></i>
                       <span>Palermo Suites (Paraguay 4646)</span>
                     </a>
@@ -515,7 +692,7 @@
                     <div class="p-3 rounded-xl bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 space-y-1">
                       <div class="flex justify-between items-center">
                         <span class="font-bold text-amber-950 dark:text-amber-200">⭐ Top Pick: La Hormiga</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=La+Hormiga+Armenia+Palermo+Buenos+Aires" target="_blank" class="text-amber-700 dark:text-amber-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        <a href="https://maps.google.com/?q=La+Hormiga+Armenia+Palermo+Buenos+Aires" target="_blank" class="text-amber-700 dark:text-amber-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
                       </div>
                       <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d1_gem1">
                         Armenia 1680. Unpretentious family favorite. Massive cuts of bife de chorizo, crispy french fries, provolone cheese, and zero reservation stress.
@@ -524,7 +701,7 @@
                     <div class="p-3 rounded-xl bg-purple-50/70 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 space-y-1">
                       <div class="flex justify-between items-center">
                         <span class="font-bold text-purple-950 dark:text-purple-200">💎 Hidden Gem: Club Eros</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Club+Eros+Palermo+Buenos+Aires" target="_blank" class="text-purple-700 dark:text-purple-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        <a href="https://maps.google.com/?q=Club+Eros+Palermo+Buenos+Aires" target="_blank" class="text-purple-700 dark:text-purple-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
                       </div>
                       <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d1_gem2">
                         Honduras 4706. Authentic neighborhood community sports club where local families dine. Giant milanesa a caballo (fried eggs & steak) under $10 USD.
@@ -549,11 +726,11 @@
                     Check into the 2 separate 33m² apartments. Freshen up with showers. Walk 10 mins to Bosques de Palermo (Parque 3 de Febrero). Walk across white bridges in El Rosedal (18,000 blooming roses) and rent a pedal paddleboat on the calm lake to feed the ducks.
                   </p>
                   <div class="flex flex-wrap gap-2 pt-1">
-                    <a href="https://www.google.com/maps/search/?api=1&query=El+Rosedal+de+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=El+Rosedal+de+Palermo+Buenos+Aires" target="_blank" class="map-link">
                       <i data-lucide="flower" class="w-3.5 h-3.5 text-pink-500"></i>
                       <span>El Rosedal Rose Garden</span>
                     </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Lago+de+Regatas+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=Lago+de+Regatas+Palermo+Buenos+Aires" target="_blank" class="map-link">
                       <i data-lucide="anchor" class="w-3.5 h-3.5 text-sky-500"></i>
                       <span>Paddleboat Lake Pier</span>
                     </a>
@@ -576,16 +753,16 @@
                     <div class="p-3 rounded-xl bg-pink-50/70 dark:bg-pink-950/30 border border-pink-200 dark:border-pink-800 space-y-1">
                       <div class="flex justify-between items-center">
                         <span class="font-bold text-pink-950 dark:text-pink-200">🍦 Gelato: Lucciano's Palermo</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Lucciano%27s+Palermo+Buenos+Aires" target="_blank" class="text-pink-700 dark:text-pink-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        <a href="https://maps.google.com/?q=Lucciano%27s+Palermo+Buenos+Aires" target="_blank" class="text-pink-700 dark:text-pink-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
                       </div>
                       <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d1_gem3">
-                        Novelty minion and penguin shaped 3D popsicles for kids + artisan dulce de leche. Or try <a href="https://www.google.com/maps/search/?api=1&query=Antiche+Tentazioni+Palermo+Buenos+Aires" target="_blank" class="underline font-bold">Antiche Tentazioni</a> for flowing chocolate taps.
+                        Novelty minion and penguin shaped 3D popsicles for kids + artisan dulce de leche. Or try <a href="https://maps.google.com/?q=Antiche+Tentazioni+Palermo+Buenos+Aires" target="_blank" class="underline font-bold">Antiche Tentazioni</a> for flowing chocolate taps.
                       </p>
                     </div>
                     <div class="p-3 rounded-xl bg-red-50/70 dark:bg-red-950/30 border border-red-200 dark:border-red-800 space-y-1">
                       <div class="flex justify-between items-center">
                         <span class="font-bold text-red-950 dark:text-red-200">🥩 Dinner: Las Cholas</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Las+Cholas+Arce+Palermo+Buenos+Aires" target="_blank" class="text-red-700 dark:text-red-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        <a href="https://maps.google.com/?q=Las+Cholas+Arce+Palermo+Buenos+Aires" target="_blank" class="text-red-700 dark:text-red-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
                       </div>
                       <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d1_gem4">
                         Arce 306, Las Cañitas. Kids are handed crayons to color directly on the paper tablecloths! Giant grilled meat boards (*tablas*), clay-pot humita, and high chairs.
@@ -625,7 +802,7 @@
                     Walk 6 mins to Plaza Italia entrance. Patagonian maras (mini hares), peacocks, flamingos, coypus, and ducks wander freely alongside visitors. Wide paved paths, zero stairs, shady benches, and modern bathrooms.
                   </p>
                   <div class="flex flex-wrap gap-2 pt-1">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Ecoparque+Buenos+Aires+Plaza+Italia" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=Ecoparque+Buenos+Aires+Plaza+Italia" target="_blank" class="map-link">
                       <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-600"></i>
                       <span>Ecoparque Map</span>
                     </a>
@@ -649,7 +826,7 @@
                     <div class="p-3 rounded-xl bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 space-y-1">
                       <div class="flex justify-between items-center">
                         <span class="font-bold text-amber-950 dark:text-amber-200">🏆 Kid Gem: La Payuca (Arenales 3443)</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=La+Payuca+Arenales+Buenos+Aires" target="_blank" class="text-amber-700 dark:text-amber-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        <a href="https://maps.google.com/?q=La+Payuca+Arenales+Buenos+Aires" target="_blank" class="text-amber-700 dark:text-amber-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
                       </div>
                       <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d2_gem1">
                         Features a dedicated multi-level playroom (*salón para niños*) with attendants, games, and monitors. Adults relax over premium steak while kids play safely!
@@ -658,7 +835,7 @@
                     <div class="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 space-y-1">
                       <div class="flex justify-between items-center">
                         <span class="font-bold text-emerald-950 dark:text-emerald-200">🌿 Garden Gem: Croque Madame</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Croque+Madame+Palacio+Errazuriz+Buenos+Aires" target="_blank" class="text-emerald-700 dark:text-emerald-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        <a href="https://maps.google.com/?q=Croque+Madame+Palacio+Errazuriz+Buenos+Aires" target="_blank" class="text-emerald-700 dark:text-emerald-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
                       </div>
                       <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d2_gem2">
                         Secluded museum courtyard tables under ancient sycamore trees. French croque monsieur, quiches, fresh fruit juices, and artisanal cakes.
@@ -683,11 +860,11 @@
                     Air-conditioned 360° laser space projection show inside the futuristic dome. Afterwards, cross the avenue to Jardín Japonés: kids feed giant golden and orange koi fish from arched wooden bridges.
                   </p>
                   <div class="flex flex-wrap gap-2 pt-1">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Planetario+Galileo+Galilei+Buenos+Aires" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=Planetario+Galileo+Galilei+Buenos+Aires" target="_blank" class="map-link">
                       <i data-lucide="sparkles" class="w-3.5 h-3.5 text-indigo-500"></i>
                       <span>Planetario Map</span>
                     </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Jardin+Japones+Buenos+Aires" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=Jardin+Japones+Buenos+Aires" target="_blank" class="map-link">
                       <i data-lucide="fish" class="w-3.5 h-3.5 text-pink-500"></i>
                       <span>Jardín Japonés (Koi Feeding)</span>
                     </a>
@@ -709,7 +886,7 @@
                     José A. Cabrera 5099. Arriving at 7:30–8:00 PM opening means no long lines. Steaks arrive surrounded by dozens of complimentary tasting bowls (sweet corn pudding, mashed sweet potato, chimichurri). Free giant lollipops for the kids when leaving!
                   </p>
                   <div class="flex flex-wrap gap-2 pt-1">
-                    <a href="https://www.google.com/maps/search/?api=1&query=La+Cabrera+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=La+Cabrera+Palermo+Buenos+Aires" target="_blank" class="map-link">
                       <i data-lucide="utensils" class="w-3.5 h-3.5 text-red-600"></i>
                       <span>La Cabrera Map</span>
                     </a>
@@ -747,11 +924,11 @@
                     2 Ubers south to Av. Santa Fe 1860. Grab morning espresso on the crimson velvet theater stage while kids browse children's books in the lower tier. Afterwards, walk to Plaza Francia to see the monumental 200-year-old Gomero rubber tree.
                   </p>
                   <div class="flex flex-wrap gap-2 pt-1">
-                    <a href="https://www.google.com/maps/search/?api=1&query=El+Ateneo+Grand+Splendid+Buenos+Aires" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=El+Ateneo+Grand+Splendid+Buenos+Aires" target="_blank" class="map-link">
                       <i data-lucide="book-open" class="w-3.5 h-3.5 text-purple-600"></i>
                       <span>El Ateneo Bookstore</span>
                     </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Gomero+de+la+Recoleta+Buenos+Aires" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=Gomero+de+la+Recoleta+Buenos+Aires" target="_blank" class="map-link">
                       <i data-lucide="trees" class="w-3.5 h-3.5 text-emerald-600"></i>
                       <span>Giant 200-yr Gomero Tree</span>
                     </a>
@@ -775,7 +952,7 @@
                     <div class="p-3 rounded-xl bg-red-50/70 dark:bg-red-950/30 border border-red-200 dark:border-red-800 space-y-1">
                       <div class="flex justify-between items-center">
                         <span class="font-bold text-red-950 dark:text-red-200">🏆 Top Gem: Parrilla Peña</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Parrilla+Pena+Rodriguez+Pena+Buenos+Aires" target="_blank" class="text-red-700 dark:text-red-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        <a href="https://maps.google.com/?q=Parrilla+Pena+Rodriguez+Pena+Buenos+Aires" target="_blank" class="text-red-700 dark:text-red-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
                       </div>
                       <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d3_gem1">
                         Rodríguez Peña 682. Frequented almost purely by locals. Complimentary hot fried beef empanadas on arrival, incredible bife de lomo, homemade fries, and flan mixto.
@@ -784,7 +961,7 @@
                     <div class="p-3 rounded-xl bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 space-y-1">
                       <div class="flex justify-between items-center">
                         <span class="font-bold text-amber-950 dark:text-amber-200">🥟 Empanada Gem: La Cocina</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=La+Cocina+Pueyrredon+Recoleta+Buenos+Aires" target="_blank" class="text-amber-700 dark:text-amber-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        <a href="https://maps.google.com/?q=La+Cocina+Pueyrredon+Recoleta+Buenos+Aires" target="_blank" class="text-amber-700 dark:text-amber-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
                       </div>
                       <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d3_gem2">
                         Pueyrredón 1508. Famous hole-in-the-wall for Catamarca baked empanadas. Must try the "Pikichu" (sweet-savory cheese & onion) and sweet beef.
@@ -809,11 +986,11 @@
                     Inside Centro Cultural Recoleta. 100% interactive experiments: laser mirrors, static electricity orbs, giant soap bubbles, and gravity momentum tracks where kids play and touch everything freely.
                   </p>
                   <div class="flex flex-wrap gap-2 pt-1">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Museo+Participativo+de+Ciencias+Prohibido+No+Tocar+Recoleta" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=Museo+Participativo+de+Ciencias+Prohibido+No+Tocar+Recoleta" target="_blank" class="map-link">
                       <i data-lucide="flask-conical" class="w-3.5 h-3.5 text-cyan-600"></i>
                       <span>Science Museum Map</span>
                     </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Rapanui+Recoleta+Buenos+Aires" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=Rapanui+Recoleta+Buenos+Aires" target="_blank" class="map-link">
                       <i data-lucide="gift" class="w-3.5 h-3.5 text-amber-600"></i>
                       <span>Rapanui Recoleta (Franui Raspberries)</span>
                     </a>
@@ -835,7 +1012,7 @@
                     Arévalo 1545. Chef Donato de Santis' cozy Italian trattoria. Ricotta ravioli, fluffy potato gnocchi with four-cheese cream sauce, and authentic cannoli.
                   </p>
                   <div class="flex flex-wrap gap-2 pt-1">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Cucina+Paradiso+Arevalo+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=Cucina+Paradiso+Arevalo+Palermo+Buenos+Aires" target="_blank" class="map-link">
                       <i data-lucide="utensils" class="w-3.5 h-3.5 text-blue-600"></i>
                       <span>Cucina Paradiso Map</span>
                     </a>
@@ -873,7 +1050,7 @@
                     Private 7-passenger van picks up family at Palermo Suites at 9:00 AM. Arrive at Estación Fluvial de Tigre. Board a classic wooden catamaran to cruise the labyrinth of waterways, seeing stilt houses, water schoolbuses, and lush willows.
                   </p>
                   <div class="flex flex-wrap gap-2 pt-1">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Estacion+Fluvial+de+Tigre+Buenos+Aires" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=Estacion+Fluvial+de+Tigre+Buenos+Aires" target="_blank" class="map-link">
                       <i data-lucide="ship" class="w-3.5 h-3.5 text-sky-600"></i>
                       <span>Tigre River Station</span>
                     </a>
@@ -897,7 +1074,7 @@
                     <div class="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 space-y-1">
                       <div class="flex justify-between items-center">
                         <span class="font-bold text-emerald-950 dark:text-emerald-200">🏝️ Island Pick: Gato Blanco</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+Gato+Blanco+Delta+Tigre" target="_blank" class="text-emerald-700 dark:text-emerald-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        <a href="https://maps.google.com/?q=Restaurante+Gato+Blanco+Delta+Tigre" target="_blank" class="text-emerald-700 dark:text-emerald-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
                       </div>
                       <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d4_gem1">
                         Accessible only by boat. Expansive grassy lawns under weeping willow trees for kids to stretch their legs. Fresh grilled pacú river fish, pastas, and steaks.
@@ -906,7 +1083,7 @@
                     <div class="p-3 rounded-xl bg-sky-50/70 dark:bg-sky-950/30 border border-sky-200 dark:border-sky-800 space-y-1">
                       <div class="flex justify-between items-center">
                         <span class="font-bold text-sky-950 dark:text-sky-200">🛶 Mainland Pick: Vivanco</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+Vivanco+Tigre" target="_blank" class="text-sky-700 dark:text-sky-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        <a href="https://maps.google.com/?q=Restaurante+Vivanco+Tigre" target="_blank" class="text-sky-700 dark:text-sky-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
                       </div>
                       <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d4_gem2">
                         Located inside the historic Tigre Rowing Club. Broad terrace right on the riverbank with homemade pastas and kid-friendly milanesas.
@@ -927,7 +1104,7 @@
                     <span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">Evening Rest</span>
                   </div>
                   <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d4_s3_desc">
-                    Shop handmade wicker and wooden toys at Puerto de Frutos. 4:30 PM: Private van brings party back to hotel for rest. 7:45 PM: Casual pizza dinner at historic <a href="https://www.google.com/maps/search/?api=1&query=Pizzeria+Guerrin+Avenida+Corrientes+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">Pizzería Güerrin</a> or soccer-themed neighborhood favorite <a href="https://www.google.com/maps/search/?api=1&query=La+Guitarrita+Palermo+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">La Guitarrita</a> in Palermo.
+                    Shop handmade wicker and wooden toys at Puerto de Frutos. 4:30 PM: Private van brings party back to hotel for rest. 7:45 PM: Casual pizza dinner at historic <a href="https://maps.google.com/?q=Pizzeria+Guerrin+Avenida+Corrientes+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">Pizzería Güerrin</a> or soccer-themed neighborhood favorite <a href="https://maps.google.com/?q=La+Guitarrita+Palermo+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">La Guitarrita</a> in Palermo.
                   </p>
                 </div>
               </div>
@@ -962,7 +1139,7 @@
                     Call 2 Ubers south to Caminito in La Boca. Bright pastel zinc conventillos, outdoor street tango dancers, Maradona murals, and Boca Juniors stadium. Stay on the pedestrian tourist perimeter for hassle-free family photos.
                   </p>
                   <div class="flex flex-wrap gap-2 pt-1">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Caminito+La+Boca+Buenos+Aires" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=Caminito+La+Boca+Buenos+Aires" target="_blank" class="map-link">
                       <i data-lucide="camera" class="w-3.5 h-3.5 text-amber-600"></i>
                       <span>Caminito Map</span>
                     </a>
@@ -986,7 +1163,7 @@
                     <div class="p-3 rounded-xl bg-red-50/70 dark:bg-red-950/30 border border-red-200 dark:border-red-800 space-y-1">
                       <div class="flex justify-between items-center">
                         <span class="font-bold text-red-950 dark:text-red-200">🥩 Steak Pick: La Brigada</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Parrilla+La+Brigada+San+Telmo+Buenos+Aires" target="_blank" class="text-red-700 dark:text-red-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        <a href="https://maps.google.com/?q=Parrilla+La+Brigada+San+Telmo+Buenos+Aires" target="_blank" class="text-red-700 dark:text-red-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
                       </div>
                       <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d5_gem1">
                         Estados Unidos 465. Soccer memorabilia everywhere. Waiters slice tender beef filets with an ordinary spoon right in front of the kids!
@@ -995,7 +1172,7 @@
                     <div class="p-3 rounded-xl bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 space-y-1">
                       <div class="flex justify-between items-center">
                         <span class="font-bold text-amber-950 dark:text-amber-200">💎 Hidden Bodegón: El Obrero</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=El+Obrero+La+Boca+Buenos+Aires" target="_blank" class="text-amber-700 dark:text-amber-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        <a href="https://maps.google.com/?q=El+Obrero+La+Boca+Buenos+Aires" target="_blank" class="text-amber-700 dark:text-amber-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
                       </div>
                       <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d5_gem2">
                         Agustín R. Caffarena 64. Working-class tavern dating to 1954. Giant milanesas, fried eggs, and fries loved by visiting celebrities and local families.
@@ -1016,7 +1193,7 @@
                     <span class="text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded">Palermo Downtime</span>
                   </div>
                   <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d5_s3_desc">
-                    Head back to Palermo. Let kids play on the modern swings and turf at Plaza Armenia. Grab gelato from <a href="https://www.google.com/maps/search/?api=1&query=Heladeria+Scannapieco+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">Heladería Scannapieco</a> (crafting traditional Italian gelato since 1938). Dinner: crispy milanesas at <a href="https://www.google.com/maps/search/?api=1&query=El+Preferido+de+Palermo+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">El Preferido de Palermo</a>.
+                    Head back to Palermo. Let kids play on the modern swings and turf at Plaza Armenia. Grab gelato from <a href="https://maps.google.com/?q=Heladeria+Scannapieco+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">Heladería Scannapieco</a> (crafting traditional Italian gelato since 1938). Dinner: crispy milanesas at <a href="https://maps.google.com/?q=El+Preferido+de+Palermo+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">El Preferido de Palermo</a>.
                   </p>
                 </div>
               </div>
@@ -1051,7 +1228,7 @@
                     Private 7-passenger van departs Palermo Suites. Drive through the Argentine pampas to historic San Antonio de Areco. Arrive ~10:30 AM: welcomed with hot fried beef empanadas and fresh juices.
                   </p>
                   <div class="flex flex-wrap gap-2 pt-1">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Estancia+El+Ombu+de+Areco+San+Antonio+de+Areco" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=Estancia+El+Ombu+de+Areco+San+Antonio+de+Areco" target="_blank" class="map-link">
                       <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-700"></i>
                       <span>Estancia El Ombú Map</span>
                     </a>
@@ -1136,10 +1313,10 @@
                     <span class="text-[11px] font-semibold text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded">3 min walk</span>
                   </div>
                   <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d7_s2_desc">
-                    Walk 3 blocks to open-air brick railway outlet mall. Buy Havanna dulce de leche alfajores. Lunch at <a href="https://www.google.com/maps/search/?api=1&query=Il+Quotidiano+Palermo+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">Il Quotidiano</a> (fresh pasta & salads) or <a href="https://www.google.com/maps/search/?api=1&query=Le+Pain+Quotidien+Distrito+Arcos+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">Le Pain Quotidien</a>.
+                    Walk 3 blocks to open-air brick railway outlet mall. Buy Havanna dulce de leche alfajores. Lunch at <a href="https://maps.google.com/?q=Il+Quotidiano+Palermo+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">Il Quotidiano</a> (fresh pasta & salads) or <a href="https://maps.google.com/?q=Le+Pain+Quotidien+Distrito+Arcos+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">Le Pain Quotidien</a>.
                   </p>
                   <div class="flex flex-wrap gap-2 pt-1">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Distrito+Arcos+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=Distrito+Arcos+Palermo+Buenos+Aires" target="_blank" class="map-link">
                       <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-purple-600"></i>
                       <span>Distrito Arcos Mall Map</span>
                     </a>
@@ -1161,7 +1338,7 @@
                     4:15 PM sharp: 7-passenger private van picks up party and bags at Palermo Suites lobby. Arrive EZE at 5:00 PM (~3 hours before 8:05 PM departure). Flight LA 8872 lands Saturday, Dec 12 at 5:08 AM at JFK!
                   </p>
                   <div class="flex flex-wrap gap-2 pt-1">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Aeropuerto+Internacional+Ministro+Pistarini+EZE" target="_blank" class="map-link">
+                    <a href="https://maps.google.com/?q=Aeropuerto+Internacional+Ministro+Pistarini+EZE" target="_blank" class="map-link">
                       <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-600"></i>
                       <span>EZE Airport Map</span>
                     </a>
@@ -1325,7 +1502,7 @@
           </div>
 
           <div class="flex space-x-2 pt-1 border-t border-slate-100 dark:border-slate-800">
-            <a href="https://www.google.com/maps/search/?api=1&query=Palermo+Suites+Buenos+Aires+Paraguay+4646" target="_blank" class="map-link">
+            <a href="https://maps.google.com/?q=Palermo+Suites+Buenos+Aires+Paraguay+4646" target="_blank" class="map-link">
               <i data-lucide="map" class="w-3.5 h-3.5 text-rose-500"></i>
               <span data-i18n="link_gmaps">Google Maps Pin</span>
             </a>
@@ -1415,7 +1592,7 @@
 
           <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
             <span class="text-xs font-bold text-slate-800 dark:text-slate-200">~$22–$35 USD / person</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=La+Payuca+Arenales+Buenos+Aires" target="_blank" class="map-link">
+            <a href="https://maps.google.com/?q=La+Payuca+Arenales+Buenos+Aires" target="_blank" class="map-link">
               <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-600"></i>
               <span data-i18n="link_map">Map</span>
             </a>
@@ -1445,7 +1622,7 @@
 
           <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
             <span class="text-xs font-bold text-slate-800 dark:text-slate-200">~$15–$25 USD / person</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=Las+Cholas+Arce+Palermo+Buenos+Aires" target="_blank" class="map-link">
+            <a href="https://maps.google.com/?q=Las+Cholas+Arce+Palermo+Buenos+Aires" target="_blank" class="map-link">
               <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-600"></i>
               <span data-i18n="link_map">Map</span>
             </a>
@@ -1475,7 +1652,7 @@
 
           <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
             <span class="text-xs font-bold text-slate-800 dark:text-slate-200">~$18–$28 USD / person</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=Parrilla+Pena+Rodriguez+Pena+Buenos+Aires" target="_blank" class="map-link">
+            <a href="https://maps.google.com/?q=Parrilla+Pena+Rodriguez+Pena+Buenos+Aires" target="_blank" class="map-link">
               <i data-lucide="map-pin" class="w-3.5 h-3.5 text-red-600"></i>
               <span data-i18n="link_map">Map</span>
             </a>
@@ -1512,7 +1689,7 @@
           <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
             <span class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="fd_1_price">~$45–$70 USD / person</span>
             <div class="flex space-x-1.5">
-              <a href="https://www.google.com/maps/search/?api=1&query=Don+Julio+Palermo+Buenos+Aires" target="_blank" class="map-link">
+              <a href="https://maps.google.com/?q=Don+Julio+Palermo+Buenos+Aires" target="_blank" class="map-link">
                 <i data-lucide="map-pin" class="w-3.5 h-3.5 text-red-600"></i>
                 <span data-i18n="link_map">Map</span>
               </a>
@@ -1554,7 +1731,7 @@
           <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
             <span class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="fd_2_price">~$30–$45 USD / person</span>
             <div class="flex space-x-1.5">
-              <a href="https://www.google.com/maps/search/?api=1&query=La+Cabrera+Palermo+Buenos+Aires" target="_blank" class="map-link">
+              <a href="https://maps.google.com/?q=La+Cabrera+Palermo+Buenos+Aires" target="_blank" class="map-link">
                 <i data-lucide="map-pin" class="w-3.5 h-3.5 text-red-600"></i>
                 <span data-i18n="link_map">Map</span>
               </a>
@@ -1590,7 +1767,7 @@
           <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
             <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400" data-i18n="fd_4_price">~$3–$5 USD / cup</span>
             <div class="flex space-x-1.5">
-              <a href="https://www.google.com/maps/search/?api=1&query=Heladeria+Cadore+Avenida+Corrientes+Buenos+Aires" target="_blank" class="map-link">
+              <a href="https://maps.google.com/?q=Heladeria+Cadore+Avenida+Corrientes+Buenos+Aires" target="_blank" class="map-link">
                 <i data-lucide="ice-cream" class="w-3.5 h-3.5 text-sky-600"></i>
                 <span data-i18n="link_map">Map</span>
               </a>
@@ -1643,7 +1820,7 @@
           </div>
           <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
             <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium" data-i18n="att_1_target">Ideal for: Toddlers to Grandparents</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=Ecoparque+Buenos+Aires+Plaza+Italia" target="_blank" class="map-link">
+            <a href="https://maps.google.com/?q=Ecoparque+Buenos+Aires+Plaza+Italia" target="_blank" class="map-link">
               <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-600"></i>
               <span data-i18n="link_map">Map</span>
             </a>
@@ -1750,7 +1927,7 @@
             </div>
           </div>
           <div class="flex items-center justify-between pt-1 border-t border-slate-100 dark:border-slate-800">
-            <a href="https://www.google.com/maps/search/?api=1&query=John+F+Kennedy+International+Airport+JFK" target="_blank" class="map-link">
+            <a href="https://maps.google.com/?q=John+F+Kennedy+International+Airport+JFK" target="_blank" class="map-link">
               <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
               <span>JFK Map</span>
             </a>
@@ -1787,7 +1964,7 @@
             </div>
           </div>
           <div class="flex items-center justify-between pt-1 border-t border-slate-100 dark:border-slate-800">
-            <a href="https://www.google.com/maps/search/?api=1&query=Aeropuerto+Internacional+Ministro+Pistarini+EZE" target="_blank" class="map-link">
+            <a href="https://maps.google.com/?q=Aeropuerto+Internacional+Ministro+Pistarini+EZE" target="_blank" class="map-link">
               <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
               <span>EZE Map</span>
             </a>
@@ -2489,29 +2666,25 @@
 
 
     // ==========================================
-    // INTERACTIVE DAY-BY-DAY ROUTES FROM HOTEL
-    // ==========================================
-    const hotelBase = {
-      name_en: "Palermo Suites Buenos Aires (Paraguay 4646)",
-      name_zh: "Palermo Suites 酒店大本营（Paraguay 4646）",
-      coord: [-34.5802, -58.4233]
-    };
-
-    const routesData = {
+    // INTERACTIVE DAY-BY-DAY ROUTES FROM HOTEL (ESTIMATED SVG ENGINE - NO API KEY REQUIRED)
+    // =========================================================================================
+    const estRoutesData = {
       d1: {
         title_en: "Day 1 (Sat 12/5) — Arrival & Palermo Greenery Loop",
         title_zh: "第 1 天（12/5 周六）— 抵达与巴勒莫绿地环线",
         stats_en: "Loop: ~6.6 km · 🚶 Stroller Walk + 🚗 2x Uber",
         stats_zh: "环线全程：约 6.6 km · 🚶 推车漫步 + 🚗 2台Uber",
-        family_tip_en: "👶 Family Tip: Wide, leafy sidewalks down Av. Santa Fe & Av. Sarmiento to El Rosedal. Very stroller-friendly. Kids can rent pedal paddleboats on the lake!",
+        family_tip_en: "👶 Family Tip: Leafy sidewalks down Av. Santa Fe & Av. Sarmiento to El Rosedal. Very stroller-friendly. Kids can rent pedal paddleboats on the lake!",
         family_tip_zh: "👶 亲子贴士：从酒店前往玫瑰花园沿途林荫遮蔽，人行道宽敞平坦，极适合推婴儿车。湖中可全家租脚踏船，傍晚去 Rapanui 品尝手工冰淇淋！",
         gmaps_url: "https://www.google.com/maps/dir/Palermo+Suites+Buenos+Aires,+Paraguay+4646/Las+Cholas,+Arce+306/El+Rosedal+de+Palermo/Rapanui,+Malabia+1584/Palermo+Suites+Buenos+Aires,+Paraguay+4646",
+        path_d: "M 410 220 Q 370 190 360 145 Q 430 130 495 140 Q 450 220 380 265 Q 400 240 410 220",
+        corridor_d: "",
         stops: [
-          { num: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店大堂", coord: [-34.5802, -58.4233], time: "12:45 PM", desc_en: "Drop bags at 24h desk; freshen up before lunch.", desc_zh: "寄存行李，洗漱稍作休整后出门午餐。", isHotel: true },
-          { num: "1", name_en: "Las Cholas (Arce 306)", name_zh: "Las Cholas 亲子烤肉餐厅", coord: [-34.5684, -58.4357], time: "1:15 PM", desc_en: "Crayon-drawing paper tablecloths for kids & rustic clay-pot cazuelas.", desc_zh: "桌上铺画纸供孩子蜡笔画画，招牌瓦罐炖牛肉与烤牛排。", gmaps: "https://www.google.com/maps/search/?api=1&query=Las+Cholas+Arce+306+Buenos+Aires" },
-          { num: "2", name_en: "El Rosedal & Bosques de Palermo", name_zh: "玫瑰花园与巴勒莫湖区", coord: [-34.5711, -58.4172], time: "3:00 PM", desc_en: "18,000 blooming roses, arched bridges, and calm lake paddleboats.", desc_zh: "万朵盛开玫瑰花园，白色拱桥与家庭脚踏船。", gmaps: "https://www.google.com/maps/search/?api=1&query=El+Rosedal+de+Palermo" },
-          { num: "3", name_en: "Rapanui Palermo (Malabia 1584)", name_zh: "Rapanui 巧克力甜品城堡", coord: [-34.5898, -58.4278], time: "5:30 PM", desc_en: "Artisanal gelato & chocolate-dipped raspberries (FraNui).", desc_zh: "顶级手工冰淇淋与 Franui 巧克力覆盆子。", gmaps: "https://www.google.com/maps/search/?api=1&query=Rapanui+Malabia+1584+Buenos+Aires" },
-          { num: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 酒店", coord: [-34.5802, -58.4233], time: "7:00 PM", desc_en: "Return to your 2 confirmed suites to unpack & rest.", desc_zh: "回酒店整理已确认的2间独立套房，洗漱安歇倒时差。", isHotel: true }
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店大堂", x: 410, y: 220, time: "12:45 PM", desc_en: "Drop bags at 24h desk; freshen up before lunch.", desc_zh: "寄存行李，洗漱稍作休整后出门午餐。", dist: "Base", tip_en: "Free luggage storage & 24h desk.", tip_zh: "24小时前台免费存包。", isHotel: true },
+          { num: "1", icon: "🥩", name_en: "Las Cholas (Arce 306)", name_zh: "Las Cholas 亲子烤肉餐厅", x: 360, y: 145, time: "1:15 PM", desc_en: "Crayon-drawing paper tablecloths for kids & clay-pot cazuelas.", desc_zh: "桌上铺画纸供孩子蜡笔画画，招牌瓦罐炖牛肉与烤牛排。", dist: "1.8 km", tip_en: "Paper tablecloths & crayons for kids!", tip_zh: "桌上铺画纸让小朋友边画边等餐！", gmaps: "https://maps.google.com/?q=Las+Cholas+Arce+306+Buenos+Aires" },
+          { num: "2", icon: "🌹", name_en: "El Rosedal & Bosques de Palermo", name_zh: "玫瑰花园与巴勒莫湖区", x: 495, y: 140, time: "3:00 PM", desc_en: "18,000 blooming roses, arched bridges, and calm lake paddleboats.", desc_zh: "万朵盛开玫瑰花园，白色拱桥与家庭脚踏船。", dist: "1.4 km", tip_en: "Rent pedal paddleboat to feed lake ducks.", tip_zh: "湖面租脚踏船喂天鹅野鸭。", gmaps: "https://maps.google.com/?q=El+Rosedal+de+Palermo" },
+          { num: "3", icon: "🍦", name_en: "Rapanui Palermo (Malabia 1584)", name_zh: "Rapanui 巧克力甜品城堡", x: 380, y: 265, time: "5:30 PM", desc_en: "Artisanal gelato & chocolate-dipped raspberries (FraNui).", desc_zh: "顶级手工冰淇淋与 Franui 巧克力覆盆子。", dist: "2.2 km", tip_en: "Try FraNui frozen chocolate raspberries!", tip_zh: "必尝招牌冻巧克力覆盆子！", gmaps: "https://maps.google.com/?q=Rapanui+Malabia+1584+Buenos+Aires" },
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 酒店", x: 410, y: 220, time: "7:00 PM", desc_en: "Return to your 2 confirmed suites to unpack & rest.", desc_zh: "回酒店整理已确认的2间独立套房，洗漱安歇倒时差。", dist: "1.2 km", tip_en: "Unpack across 2 confirmed suites.", tip_zh: "入住两间套房，舒适休息。", isHotel: true }
         ],
         legs: [
           { from_en: "Palermo Suites", to_en: "Las Cholas", from_zh: "酒店", to_zh: "Las Cholas 餐厅", dist: "1.8 km", time_en: "7 min Uber / 22 min walk", time_zh: "Uber 7分钟 / 步行22分钟", mode_en: "🚗 2x Uber or shaded walk", mode_zh: "🚗 2台Uber（约$3.5美元）或散步", tip_en: "Take 2 Ubers side-by-side or walk along quiet Las Cañitas streets.", tip_zh: "建议打两台Uber直达，或顺着林荫街道漫步。" },
@@ -2529,13 +2702,15 @@
         family_tip_en: "👶 Family Tip: Ecoparque is literally 800m from your hotel! Free entry, zero cars, totally flat paved paths. Lunch at La Payuca features a dedicated supervised indoor playground (Pelotero) with camera screens!",
         family_tip_zh: "👶 亲子贴士：Ecoparque 离酒店仅 800 米！免费入园，园区内无机动车，水豚在脚边散步。La Payuca 烤肉餐厅更有专属儿童看护游乐区（Pelotero），大人吃肉喝酒超放松！",
         gmaps_url: "https://www.google.com/maps/dir/Palermo+Suites+Buenos+Aires,+Paraguay+4646/Ecoparque+Buenos+Aires/La+Payuca,+Arenales+3443/Planetario+Galileo+Galilei/Palermo+Suites+Buenos+Aires,+Paraguay+4646",
+        path_d: "M 410 220 L 455 185 Q 460 230 480 265 Q 520 220 535 165 L 510 130 Q 450 170 410 220",
+        corridor_d: "",
         stops: [
-          { num: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店出发", coord: [-34.5802, -58.4233], time: "9:15 AM", desc_en: "Breakfast in suite before an easy 10-min morning stroll.", desc_zh: "在套房内享用免费早餐后轻松出发。", isHotel: true },
-          { num: "1", name_en: "Ecoparque Buenos Aires", name_zh: "Ecoparque 生态野生动物园", coord: [-34.5805, -58.4190], time: "9:30 AM", desc_en: "Free-roaming capybaras, maras, flamingos, peacocks.", desc_zh: "自由穿梭的水豚（Capybara）、巴塔哥尼亚豚鼠、火烈鸟与孔雀。", gmaps: "https://www.google.com/maps/search/?api=1&query=Ecoparque+Buenos+Aires" },
-          { num: "2", name_en: "La Payuca (Arenales 3443)", name_zh: "La Payuca 亲子烤肉餐厅", coord: [-34.5888, -58.4101], time: "12:30 PM", desc_en: "Supervised multi-level kids playroom (Pelotero) with TV monitors & prime steak.", desc_zh: "专属儿童看护游乐园（带监控屏幕）、儿童套餐与上等阿根廷牛排。", gmaps: "https://www.google.com/maps/search/?api=1&query=La+Payuca+Arenales+3443+Buenos+Aires" },
-          { num: "3", name_en: "Planetario Galileo Galilei", name_zh: "伽利略天文馆球幕影院", coord: [-34.5698, -58.4116], time: "2:30 PM", desc_en: "UFO-shaped landmark, astronomical dome show & outdoor meteorite touch zone.", desc_zh: "标志性飞碟造型建筑，沉浸式天象球幕秀与真实的史前陨石触摸区。", gmaps: "https://www.google.com/maps/search/?api=1&query=Planetario+Galileo+Galilei+Buenos+Aires" },
-          { num: "4", name_en: "Parque 3 de Febrero Playground", name_zh: "湖畔儿童游乐场", coord: [-34.5715, -58.4150], time: "4:30 PM", desc_en: "Large lakeside play structures, swings, ducks and open lawns.", desc_zh: "湖畔大型儿童游乐场，滑梯秋千俱全，看天鹅野鸭游水。", gmaps: "https://www.google.com/maps/search/?api=1&query=Parque+3+de+Febrero+Buenos+Aires" },
-          { num: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", coord: [-34.5802, -58.4233], time: "6:30 PM", desc_en: "6-minute Uber back to hotel to recharge.", desc_zh: "打车6分钟返回酒店休息放松。", isHotel: true }
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店出发", x: 410, y: 220, time: "9:15 AM", desc_en: "Breakfast in suite before an easy 10-min morning stroll.", desc_zh: "在套房内享用免费早餐后轻松出发。", dist: "Base", tip_en: "Complimentary breakfast included.", tip_zh: "房费已包含免费早餐。", isHotel: true },
+          { num: "1", icon: "🦫", name_en: "Ecoparque Buenos Aires", name_zh: "Ecoparque 生态野生动物园", x: 455, y: 185, time: "9:30 AM", desc_en: "Free-roaming capybaras, maras, flamingos, peacocks.", desc_zh: "自由穿梭的水豚（Capybara）、巴塔哥尼亚豚鼠、火烈鸟与孔雀。", dist: "800 m", tip_en: "Free entry, stroller friendly, friendly capybaras!", tip_zh: "免费入园，婴儿车无障碍，水豚超温顺！", gmaps: "https://maps.google.com/?q=Ecoparque+Buenos+Aires" },
+          { num: "2", icon: "🥩", name_en: "La Payuca (Arenales 3443)", name_zh: "La Payuca 亲子烤肉餐厅", x: 480, y: 265, time: "12:30 PM", desc_en: "Supervised multi-level kids playroom (Pelotero) with TV monitors & prime steak.", desc_zh: "专属儿童看护游乐园（带监控屏幕）、儿童套餐与上等阿根廷牛排。", dist: "1.2 km", tip_en: "Staff supervises kids while parents enjoy steak & Malbec.", tip_zh: "专业看护阿姨带娃玩，大人静心享牛排美酒。", gmaps: "https://maps.google.com/?q=La+Payuca+Arenales+3443+Buenos+Aires" },
+          { num: "3", icon: "🪐", name_en: "Planetario Galileo Galilei", name_zh: "伽利略天文馆球幕影院", x: 535, y: 165, time: "2:30 PM", desc_en: "UFO-shaped landmark, astronomical dome show & outdoor meteorite touch zone.", desc_zh: "标志性飞碟造型建筑，沉浸式天象球幕秀与真实的史前陨石触摸区。", dist: "2.1 km", tip_en: "Touch real 4,000-year-old Campo del Cielo meteorites!", tip_zh: "触摸四千年前坠落的真实天外陨石！", gmaps: "https://maps.google.com/?q=Planetario+Galileo+Galilei+Buenos+Aires" },
+          { num: "4", icon: "🎡", name_en: "Parque 3 de Febrero Playground", name_zh: "湖畔儿童游乐场", x: 510, y: 130, time: "4:30 PM", desc_en: "Large lakeside play structures, swings, ducks and open lawns.", desc_zh: "湖畔大型儿童游乐场，滑梯秋千俱全，看天鹅野鸭游水。", dist: "400 m", tip_en: "Shaded lakeside swings and slides.", tip_zh: "树荫湖畔秋千与滑梯放松。", gmaps: "https://maps.google.com/?q=Parque+3+de+Febrero+Buenos+Aires" },
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", x: 410, y: 220, time: "6:30 PM", desc_en: "6-minute Uber back to hotel to recharge.", desc_zh: "打车6分钟返回酒店休息放松。", dist: "1.8 km", tip_en: "Quick 6-minute Uber hop.", tip_zh: "6分钟车程即刻回到酒店。", isHotel: true }
         ],
         legs: [
           { from_en: "Palermo Suites", to_en: "Ecoparque BA", from_zh: "酒店", to_zh: "Ecoparque 生态园", dist: "800 m", time_en: "10 min walk", time_zh: "步行10分钟", mode_en: "🚶 Flat Sidewalk (Stroller Paradise)", mode_zh: "🚶 平坦人行道（推车极佳）", tip_en: "Walk straight down Paraguay to Plaza Italia gate.", tip_zh: "顺着 Paraguay 街直行至 Plaza Italia 大门，十分钟即达。" },
@@ -2554,13 +2729,15 @@
         family_tip_en: "👶 Family Tip: Recoleta streets are wide and European. The science museum ('Prohibido No Tocar') is 100% interactive for kids! Parrilla Peña gives kids warm empanadas the second you sit down.",
         family_tip_zh: "👶 亲子贴士：雷科莱塔人行道宽敞极具欧洲风情。儿童科技馆“禁止不摸”全部项目均可亲自动手互动！Parrilla Peña 牛排馆入座即送热乎牛肉馅饼，孩子不挨饿。",
         gmaps_url: "https://www.google.com/maps/dir/Palermo+Suites+Buenos+Aires,+Paraguay+4646/Cementerio+de+la+Recoleta/El+Ateneo+Grand+Splendid/Parrilla+Pe%C3%B1a,+Rodr%C3%ADguez+Pe%C3%B1a+682/Museo+Participativo+de+Ciencias/Palermo+Suites+Buenos+Aires,+Paraguay+4646",
+        path_d: "M 410 220 Q 520 250 610 300 L 575 355 L 605 385 Q 630 350 630 310 Q 520 260 410 220",
+        corridor_d: "",
         stops: [
-          { num: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店出发", coord: [-34.5802, -58.4233], time: "9:15 AM", desc_en: "Call 2 Ubers directly to Cementerio de la Recoleta.", desc_zh: "酒店门口呼叫2台Uber直达雷科莱塔公墓大门。", isHotel: true },
-          { num: "1", name_en: "Cementerio de la Recoleta", name_zh: "雷科莱塔公墓与法兰西广场", coord: [-34.5878, -58.3927], time: "9:45 AM", desc_en: "Marble mausoleums, Evita Perón's tomb, shade under giant rubber trees.", desc_zh: "世界著名大理石雕塑群像与贝隆夫人墓地，广场外百年榕树绿荫如盖。", gmaps: "https://www.google.com/maps/search/?api=1&query=Cementerio+de+la+Recoleta" },
-          { num: "2", name_en: "El Ateneo Grand Splendid", name_zh: "雅典人书店（大剧院改建）", coord: [-34.5960, -58.3942], time: "11:30 AM", desc_en: "Opera theater converted into bookstore with stage cafe & kids mezzanine.", desc_zh: "百年歌剧院改建的梦幻书店，舞台变为咖啡座，设有儿童专属绘本区。", gmaps: "https://www.google.com/maps/search/?api=1&query=El+Ateneo+Grand+Splendid+Buenos+Aires" },
-          { num: "3", name_en: "Parrilla Peña (Rodríguez Peña 682)", name_zh: "Parrilla Peña 宝藏烤肉店", coord: [-34.6033, -58.3908], time: "1:00 PM", desc_en: "Complimentary fried beef empanadas upon arrival; unmatched Bife de Chorizo.", desc_zh: "入座即赠送酥脆热牛肉馅饼，西冷牛排鲜嫩多汁，绝无游客溢价。", gmaps: "https://www.google.com/maps/search/?api=1&query=Parrilla+Pe%C3%B1a+Rodriguez+Pe%C3%B1a+682+Buenos+Aires" },
-          { num: "4", name_en: "Museo 'Prohibido No Tocar'", name_zh: "“禁止不摸”儿童互动科技馆", coord: [-34.5873, -58.3923], time: "3:00 PM", desc_en: "100% hands-on physics, giant soap bubbles, optical illusions for kids.", desc_zh: "纯动手体验馆，巨型肥皂泡泡、光学错觉迷宫与物理实验。", gmaps: "https://www.google.com/maps/search/?api=1&query=Museo+Participativo+de+Ciencias+Prohibido+No+Tocar" },
-          { num: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", coord: [-34.5802, -58.4233], time: "6:00 PM", desc_en: "12-minute Uber ride back to your hotel in Palermo.", desc_zh: "打车约12分钟轻松返回巴勒莫酒店大堂。", isHotel: true }
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店出发", x: 410, y: 220, time: "9:15 AM", desc_en: "Call 2 Ubers directly to Cementerio de la Recoleta.", desc_zh: "酒店门口呼叫2台Uber直达雷科莱塔公墓大门。", dist: "Base", tip_en: "Meet drivers right at Paraguay 4646.", tip_zh: "正门口叫车超方便。", isHotel: true },
+          { num: "1", icon: "🏛️", name_en: "Cementerio de la Recoleta", name_zh: "雷科莱塔公墓与法兰西广场", x: 610, y: 300, time: "9:45 AM", desc_en: "Marble mausoleums, Evita Perón's tomb, shade under giant rubber trees.", desc_zh: "世界著名大理石雕塑群像与贝隆夫人墓地，广场外百年榕树绿荫如盖。", dist: "3.5 km", tip_en: "Gigantic Gomero tree outside has climbing roots!", tip_zh: "广场外巨大的百岁榕树根系宛如巨伞！", gmaps: "https://maps.google.com/?q=Cementerio+de+la+Recoleta" },
+          { num: "2", icon: "📚", name_en: "El Ateneo Grand Splendid", name_zh: "雅典人书店（大剧院改建）", x: 575, y: 355, time: "11:30 AM", desc_en: "Opera theater converted into bookstore with stage cafe & kids mezzanine.", desc_zh: "百年歌剧院改建的梦幻书店，舞台变为咖啡座，设有儿童专属绘本区。", dist: "1.3 km", tip_en: "Basement has dedicated children's reading section.", tip_zh: "地下层有小朋友专属绘本天地与软垫座椅。", gmaps: "https://maps.google.com/?q=El+Ateneo+Grand+Splendid+Buenos+Aires" },
+          { num: "3", icon: "🥩", name_en: "Parrilla Peña (Rodríguez Peña 682)", name_zh: "Parrilla Peña 宝藏烤肉店", x: 605, y: 385, time: "1:00 PM", desc_en: "Complimentary fried beef empanadas upon arrival; unmatched Bife de Chorizo.", desc_zh: "入座即赠送酥脆热牛肉馅饼，西冷牛排鲜嫩多汁，绝无游客溢价。", dist: "900 m", tip_en: "Kids get warm fried empanadas immediately!", tip_zh: "一入座就送热气腾腾酥脆牛肉馅饼！", gmaps: "https://maps.google.com/?q=Parrilla+Pena+Rodriguez+Pena+Buenos+Aires" },
+          { num: "4", icon: "🔬", name_en: "Museo 'Prohibido No Tocar'", name_zh: "“禁止不摸”儿童互动科技馆", x: 630, y: 310, time: "3:00 PM", desc_en: "100% hands-on physics, giant soap bubbles, optical illusions for kids.", desc_zh: "纯动手体验馆，巨型肥皂泡泡、光学错觉迷宫与物理实验。", dist: "1.8 km", tip_en: "Entire museum encourages kids to touch everything!", tip_zh: "全馆宗旨就是“随便摸随便碰”，孩子超嗨！", gmaps: "https://maps.google.com/?q=Museo+Participativo+de+Ciencias+Prohibido+No+Tocar" },
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", x: 410, y: 220, time: "6:00 PM", desc_en: "12-minute Uber ride back to your hotel in Palermo.", desc_zh: "打车约12分钟轻松返回巴勒莫酒店大堂。", dist: "3.6 km", tip_en: "Fast 12-min ride back to Palermo.", tip_zh: "打车经 Libertador 快速主干道回酒店。", isHotel: true }
         ],
         legs: [
           { from_en: "Palermo Suites", to_en: "Cementerio Recoleta", from_zh: "酒店", to_zh: "雷科莱塔公墓", dist: "3.5 km", time_en: "12 min Uber", time_zh: "Uber 12分钟", mode_en: "🚗 2x Uber (~$5 total)", mode_zh: "🚗 2台Uber（共约$5美元）", tip_en: "Direct ride to Junín entrance in front of Plaza Francia.", tip_zh: "直接导航到 Junín 街公墓正门广场。" },
@@ -2579,13 +2756,15 @@
         family_tip_en: "👶 Family Tip: The private 7-passenger van picks your family up right at Palermo Suites front door. The wooden boat ride through island canals is smooth, shaded, and hypnotic for kids. Great fresh air away from the city!",
         family_tip_zh: "👶 亲子贴士：私人7座商务车直接在酒店门口接送，免去全家换乘火车的奔波。运河木制游船平稳无大浪，两岸绿意葱茏，孩子吹着河风非常惬意！",
         gmaps_url: "https://www.google.com/maps/dir/Palermo+Suites+Buenos+Aires,+Paraguay+4646/Estacion+Fluvial+de+Tigre/Restaurante+Vivanco,+Tigre/Puerto+de+Frutos,+Tigre/Palermo+Suites+Buenos+Aires,+Paraguay+4646",
+        path_d: "",
+        corridor_d: "M 410 220 Q 280 130 240 75",
         stops: [
-          { num: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店大堂出发", coord: [-34.5802, -58.4233], time: "9:00 AM", desc_en: "Private 7-passenger van arrives at hotel entrance on Paraguay 4646.", desc_zh: "预订的7人专属商务车准时在酒店正门口等候接驾。", isHotel: true },
-          { num: "1", name_en: "Estación Fluvial de Tigre", name_zh: "老虎洲水上码头客运站", coord: [-34.4216, -58.5786], time: "10:15 AM", desc_en: "Board private wooden launch or catamaran through Paraná Delta.", desc_zh: "登上复古木制游船或全景双体船，穿越三角洲水系。", gmaps: "https://www.google.com/maps/search/?api=1&query=Estacion+Fluvial+de+Tigre" },
-          { num: "2", name_en: "Paraná Delta Island Cruise", name_zh: "巴拉那河三角洲水上巡游", coord: [-34.4160, -58.5700], time: "10:30 AM", desc_en: "Scenic 1h15m cruise past stilt houses, water taxis & rowing clubs.", desc_zh: "1小时15分钟巡游，观赏高脚水上木屋与赛艇俱乐部。", gmaps: "https://www.google.com/maps/search/?api=1&query=Delta+del+Parana+Tigre" },
-          { num: "3", name_en: "Restaurante Vivanco (Tigre)", name_zh: "Vivanco 河畔亲子餐厅", coord: [-34.4225, -58.5835], time: "1:00 PM", desc_en: "Historic rowing club setting overlooking the river; outdoor children's play area.", desc_zh: "百年赛艇俱乐部河景餐厅，设有户外儿童游乐区，招牌烤河鱼与脆香炸肉排。", gmaps: "https://www.google.com/maps/search/?api=1&query=Restaurante+Vivanco+Tigre" },
-          { num: "4", name_en: "Puerto de Frutos (Market)", name_zh: "水果市场露天工艺品集市", coord: [-34.4178, -58.5739], time: "2:45 PM", desc_en: "Bustling open-air riverfront bazaar for wicker crafts, wood toys, jams.", desc_zh: "河畔工艺品市集，柳条编制手袋、木制玩具与手工果酱。", gmaps: "https://www.google.com/maps/search/?api=1&query=Puerto+de+Frutos+Tigre" },
-          { num: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", coord: [-34.5802, -58.4233], time: "5:30 PM", desc_en: "Private van whisks family smoothly back down Panamericana highway.", desc_zh: "私人专车沿高速平稳送全家返回酒店，车上午睡小憩。", isHotel: true }
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店大堂出发", x: 410, y: 220, time: "9:00 AM", desc_en: "Private 7-passenger van arrives at hotel entrance on Paraguay 4646.", desc_zh: "预订的7人专属商务车准时在酒店正门口等候接驾。", dist: "Base", tip_en: "Van waits right at hotel door.", tip_zh: "商务包车在酒店大门口准时等候。", isHotel: true },
+          { num: "1", icon: "🚤", name_en: "Estación Fluvial de Tigre", name_zh: "老虎洲水上码头客运站", x: 80, y: 75, time: "10:15 AM", desc_en: "Board private wooden launch or catamaran through Paraná Delta.", desc_zh: "登上复古木制游船或全景双体船，穿越三角洲水系。", dist: "32 km", tip_en: "Boarding pier for scenic river boats.", tip_zh: "风景如画的三角洲游船登船码头。", gmaps: "https://maps.google.com/?q=Estacion+Fluvial+de+Tigre" },
+          { num: "2", icon: "🌿", name_en: "Paraná Delta Island Cruise", name_zh: "巴拉那河三角洲水上巡游", x: 140, y: 65, time: "10:30 AM", desc_en: "Scenic 1h15m cruise past stilt houses, water taxis & rowing clubs.", desc_zh: "1小时15分钟巡游，观赏高脚水上木屋与赛艇俱乐部。", dist: "12 km boat", tip_en: "Smooth water ride, zero waves, kids love watching floating grocery boats!", tip_zh: "水流平稳无风浪，看水上校车与水上流动超市！", gmaps: "https://maps.google.com/?q=Delta+del+Parana+Tigre" },
+          { num: "3", icon: "🍽️", name_en: "Restaurante Vivanco (Tigre)", name_zh: "Vivanco 河畔亲子餐厅", x: 95, y: 105, time: "1:00 PM", desc_en: "Historic rowing club setting overlooking the river; outdoor children's play area.", desc_zh: "百年赛艇俱乐部河景餐厅，设有户外儿童游乐区，招牌烤河鱼与脆香炸肉排。", dist: "400 m", tip_en: "Spacious riverside garden with play area.", tip_zh: "河畔宽敞花园，附设儿童游乐秋千滑梯。", gmaps: "https://maps.google.com/?q=Restaurante+Vivanco+Tigre" },
+          { num: "4", icon: "🧺", name_en: "Puerto de Frutos (Market)", name_zh: "水果市场露天工艺品集市", x: 165, y: 105, time: "2:45 PM", desc_en: "Bustling open-air riverfront bazaar for wicker crafts, wood toys, jams.", desc_zh: "河畔工艺品市集，柳条编制手袋、木制玩具与手工果酱。", dist: "900 m", tip_en: "Handmade wooden toy puzzles for kids.", tip_zh: "特色手作木玩益智积木与果酱点心。", gmaps: "https://maps.google.com/?q=Puerto+de+Frutos+Tigre" },
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", x: 410, y: 220, time: "5:30 PM", desc_en: "Private van whisks family smoothly back down Panamericana highway.", desc_zh: "私人专车沿高速平稳送全家返回酒店，车上午睡小憩。", dist: "33 km", tip_en: "Comfortable air-conditioned van nap for kids.", tip_zh: "车内打盹补觉，平稳回城。", isHotel: true }
         ],
         legs: [
           { from_en: "Palermo Suites", to_en: "Estación Fluvial Tigre", from_zh: "酒店", to_zh: "水运码头", dist: "32 km", time_en: "45 min van", time_zh: "商务专车45分钟", mode_en: "🚐 Private 7-Passenger Van (~$60 round-trip)", mode_zh: "🚐 7座商务专车（往返约$60美元）", tip_en: "Smooth highway trip via Acceso Norte. Driver waits on call.", tip_zh: "北部高速一路畅行，司机待命接送。" },
@@ -2604,14 +2783,16 @@
         family_tip_en: "👶 Family Tip: Stay strictly on main Caminito tourist strip in La Boca for safety. Head early before 11:30 AM to beat tour buses. In San Telmo, visit the comic character statues (Mafalda!) which kids love to pose with.",
         family_tip_zh: "👶 亲子贴士：在博卡区请严格在 Caminito 核心步行街内活动。上午10点前抵达游客最少最安全。在圣特尔莫可以带孩子找可爱的“玛法达”（Mafalda）漫画长椅合影！",
         gmaps_url: "https://www.google.com/maps/dir/Palermo+Suites+Buenos+Aires,+Paraguay+4646/Caminito,+La+Boca/Mercado+de+San+Telmo/Paseo+de+la+Historieta/Heladeria+Cadore,+Av.+Corrientes+1695/Club+Eros,+Honduras+4706/Palermo+Suites+Buenos+Aires,+Paraguay+4646",
+        path_d: "M 410 220 Q 580 390 685 570 Q 660 520 645 480 L 670 470 Q 640 430 615 410 Q 480 320 395 255 L 410 220",
+        corridor_d: "",
         stops: [
-          { num: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店出发", coord: [-34.5802, -58.4233], time: "9:00 AM", desc_en: "Call 2 Ubers directly to Caminito (Valle Iberlucea & Magallanes).", desc_zh: "酒店门口呼叫两台Uber直奔博卡彩色街。", isHotel: true },
-          { num: "1", name_en: "Caminito (La Boca)", name_zh: "博卡彩色步行街（Caminito）", coord: [-34.6394, -58.3629], time: "9:30 AM", desc_en: "Vivid colorful tin houses, open-air tango dancers, lively street artists.", desc_zh: "五彩斑斓的铁皮木屋、现场街头探戈起舞与街头画师。", gmaps: "https://www.google.com/maps/search/?api=1&query=Caminito+La+Boca+Buenos+Aires" },
-          { num: "2", name_en: "Mercado de San Telmo", name_zh: "圣特尔莫百年室内集市", coord: [-34.6206, -58.3719], time: "12:00 PM", desc_en: "1897 wrought-iron market: fresh empanadas from El Hornero & antiques.", desc_zh: "1897年老集市：品尝排队王 El Hornero 刚出炉的热肉馅饼与古董摊。", gmaps: "https://www.google.com/maps/search/?api=1&query=Mercado+de+San+Telmo+Buenos+Aires" },
-          { num: "3", name_en: "Paseo de la Historieta (Mafalda)", name_zh: "漫画大道与玛法达长椅雕像", coord: [-34.6190, -58.3610], time: "1:45 PM", desc_en: "Life-sized statues of iconic Argentine comic characters for fun family photos.", desc_zh: "街角等身阿根廷漫画主角雕像（玛法达），小朋友超喜欢的拍照打卡点。", gmaps: "https://www.google.com/maps/search/?api=1&query=Monumento+a+Mafalda+San+Telmo" },
-          { num: "4", name_en: "Heladería Cadore (Corrientes 1695)", name_zh: "Cadore 意大利百年传奇冰淇淋", coord: [-34.6044, -58.3900], time: "3:30 PM", desc_en: "Voted top 10 ice creams worldwide: legendary slow-cooked Dulce de Leche.", desc_zh: "全球排名前十的传世冰淇淋店：慢熬14小时的焦糖牛奶与开心果必尝。", gmaps: "https://www.google.com/maps/search/?api=1&query=Heladeria+Cadore+Av+Corrientes+1695+Buenos+Aires" },
-          { num: "5", name_en: "Club Eros (Honduras 4706)", name_zh: "Club Eros 社区体育会小食堂", coord: [-34.5875, -58.4277], time: "6:30 PM", desc_en: "Neighborhood sports club: giant golden milanesas, steaks, cheap local prices.", desc_zh: "老社区体育俱乐部内部食堂：巨型黄金炸肉排、烤牛排，本地家庭最爱。", gmaps: "https://www.google.com/maps/search/?api=1&query=Club+Eros+Honduras+4706+Buenos+Aires" },
-          { num: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", coord: [-34.5802, -58.4233], time: "8:15 PM", desc_en: "Easy 15-minute walk down Honduras & Paraguay back to hotel.", desc_zh: "顺着林荫街道散步15分钟轻松返回酒店。", isHotel: true }
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店出发", x: 410, y: 220, time: "9:00 AM", desc_en: "Call 2 Ubers directly to Caminito (Valle Iberlucea & Magallanes).", desc_zh: "酒店门口呼叫两台Uber直奔博卡彩色街。", dist: "Base", tip_en: "Rideshares arrive in 3-5 mins.", tip_zh: "门前叫车约3-5分钟即达。", isHotel: true },
+          { num: "1", icon: "🎨", name_en: "Caminito (La Boca)", name_zh: "博卡彩色步行街（Caminito）", x: 685, y: 570, time: "9:30 AM", desc_en: "Vivid colorful tin houses, open-air tango dancers, lively street artists.", desc_zh: "五彩斑斓的铁皮木屋、现场街头探戈起舞与街头画师。", dist: "10 km", tip_en: "Super colorful houses for photos; arrive early before midday crowd.", tip_zh: "五彩木屋色彩艳丽超好拍，上午早到避开人流。", gmaps: "https://maps.google.com/?q=Caminito+La+Boca+Buenos+Aires" },
+          { num: "2", icon: "🥟", name_en: "Mercado de San Telmo", name_zh: "圣特尔莫百年室内集市", x: 645, y: 480, time: "12:00 PM", desc_en: "1897 wrought-iron market: fresh empanadas from El Hornero & antiques.", desc_zh: "1897年老集市：品尝排队王 El Hornero 刚出炉的热肉馅饼与古董摊。", dist: "3.2 km", tip_en: "Get warm baked cheese & ham empanadas for kids at El Hornero.", tip_zh: "El Hornero 芝士火腿馅饼孩子们最爱吃。", gmaps: "https://maps.google.com/?q=Mercado+de+San+Telmo+Buenos+Aires" },
+          { num: "3", icon: "📸", name_en: "Paseo de la Historieta (Mafalda)", name_zh: "漫画大道与玛法达长椅雕像", x: 670, y: 470, time: "1:45 PM", desc_en: "Life-sized statues of iconic Argentine comic characters for fun family photos.", desc_zh: "街角等身阿根廷漫画主角雕像（玛法达），小朋友超喜欢的拍照打卡点。", dist: "350 m", tip_en: "Sit next to Mafalda for an iconic Buenos Aires family souvenir photo!", tip_zh: "坐在玛法达身边合影留念，阿根廷最萌地标！", gmaps: "https://maps.google.com/?q=Monumento+a+Mafalda+San+Telmo" },
+          { num: "4", icon: "🍨", name_en: "Heladería Cadore (Corrientes 1695)", name_zh: "Cadore 意大利百年传奇冰淇淋", x: 615, y: 410, time: "3:30 PM", desc_en: "Voted top 10 ice creams worldwide: legendary slow-cooked Dulce de Leche.", desc_zh: "全球排名前十的传世冰淇淋店：慢熬14小时的焦糖牛奶与开心果必尝。", dist: "2.8 km", tip_en: "World-famous Dulce de Leche Tradicional.", tip_zh: "世界排名前十的焦糖牛奶与开心果口味！", gmaps: "https://maps.google.com/?q=Heladeria+Cadore+Av+Corrientes+1695+Buenos+Aires" },
+          { num: "5", icon: "🥩", name_en: "Club Eros (Honduras 4706)", name_zh: "Club Eros 社区体育会小食堂", x: 395, y: 255, time: "6:30 PM", desc_en: "Neighborhood sports club: giant golden milanesas, steaks, cheap local prices.", desc_zh: "老社区体育俱乐部内部食堂：巨型黄金炸肉排、烤牛排，本地家庭最爱。", dist: "4.8 km", tip_en: "Huge plate-sized milanesas kids will love, very casual.", tip_zh: "比盘子还大的金黄炸肉排与现切牛排，极接地气。", gmaps: "https://maps.google.com/?q=Club+Eros+Honduras+4706+Buenos+Aires" },
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", x: 410, y: 220, time: "8:15 PM", desc_en: "Easy 15-minute walk down Honduras & Paraguay back to hotel.", desc_zh: "顺着林荫街道散步15分钟轻松返回酒店。", dist: "1.4 km", tip_en: "Pleasant, safe evening neighborhood walk.", tip_zh: "晚间安全惬意的巴勒莫林荫散步。", isHotel: true }
         ],
         legs: [
           { from_en: "Palermo Suites", to_en: "Caminito (La Boca)", from_zh: "酒店", to_zh: "博卡彩色街", dist: "10 km", time_en: "22 min Uber", time_zh: "Uber 22分钟", mode_en: "🚗 2x Uber (~$6 total)", mode_zh: "🚗 2台Uber（共约$6美元）", tip_en: "Take Uber directly to tourist strip; never walk outside tourist perimeter.", tip_zh: "打车直达步行街核心入口，切勿在非旅游街区步行。" },
@@ -2631,13 +2812,15 @@
         family_tip_en: "👶 Family Tip: Full day immersed in nature and fresh air! Friendly Argentine Criollo horses & pony rides for the kids, tractor rides, open soccer lawns, and an enormous wood-fired Asado lunch with endless meats and wine for adults.",
         family_tip_zh: "👶 亲子贴士：远离城市喧嚣的一整天大自然体验！庄园有极其温顺的马匹供儿童和大人骑行，还可坐古董马车游草原。正宗原木炭火烤全牛盛宴，无限量供应顶级牛肉与红酒！",
         gmaps_url: "https://www.google.com/maps/dir/Palermo+Suites+Buenos+Aires,+Paraguay+4646/Estancia+El+Omb%C3%BA+de+Areco,+San+Antonio+de+Areco/Palermo+Suites+Buenos+Aires,+Paraguay+4646",
+        path_d: "",
+        corridor_d: "M 410 220 Q 280 270 240 295",
         stops: [
-          { num: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店大堂出发", coord: [-34.5802, -58.4233], time: "8:45 AM", desc_en: "Private 7-passenger van picks family up at hotel front door.", desc_zh: "预订的7座商务专车准时在酒店正门口接驾出发。", isHotel: true },
-          { num: "1", name_en: "Estancia El Ombú de Areco", name_zh: "高乔庄园迎宾礼", coord: [-34.2850, -59.4350], time: "10:30 AM", desc_en: "300-hectare historic ranch; hot empanadas, fresh juices & Torrontés wine.", desc_zh: "抵达占地300公顷的百年传统牧场，品尝现烤迎宾肉馅饼、果汁与美酒。", gmaps: "https://www.google.com/maps/search/?api=1&query=Estancia+El+Ombu+de+Areco" },
-          { num: "2", name_en: "Pampas Horseback & Sulky Rides", name_zh: "草原温顺骑马与马车巡游", coord: [-34.2830, -59.4370], time: "11:30 AM", desc_en: "Gentle horseback rides across wide pampas pastures or horse-drawn carriage for kids.", desc_zh: "在牛仔护卫下骑温顺良驹漫游大草原，或全家乘坐老式双轮木马车悠闲兜风。", gmaps: "https://www.google.com/maps/search/?api=1&query=Estancia+El+Ombu+de+Areco" },
-          { num: "3", name_en: "Grand Wood-Fire Asado Feast", name_zh: "露天原木炭火烤肉盛宴", coord: [-34.2855, -59.4345], time: "1:00 PM", desc_en: "All-you-can-eat wood-fired feast: Bife de Chorizo, ribs, chorizo sausages & Malbec wine.", desc_zh: "无限量现切阿根廷烤全肉盛宴：牛肋排、香肠、蔬菜沙拉与红酒。", gmaps: "https://www.google.com/maps/search/?api=1&query=Estancia+El+Ombu+de+Areco" },
-          { num: "4", name_en: "Gaucho Folklore & Horse Whisperer", name_zh: "高乔歌舞与神级驯马术", coord: [-34.2845, -59.4355], time: "2:30 PM", desc_en: "Live guitar, folklore dancing, and gentle gaucho horse whisperer demonstration.", desc_zh: "高乔民间吉他弹唱、欢快民族歌舞，以及令人惊叹的“马语者”温和驯马演示。", gmaps: "https://www.google.com/maps/search/?api=1&query=Estancia+El+Ombu+de+Areco" },
-          { num: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", coord: [-34.5802, -58.4233], time: "6:30 PM", desc_en: "Smooth private van ride back to Palermo Suites; relax in your suites for the evening.", desc_zh: "专属商务车平稳送回酒店，全家可在房间度过悠闲舒适的夜晚。", isHotel: true }
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店出发", x: 410, y: 220, time: "8:45 AM", desc_en: "Private 7-passenger van picks family up at hotel front door.", desc_zh: "预订的7座商务专车准时在酒店正门口接驾出发。", dist: "Base", tip_en: "Full day private charter van on call.", tip_zh: "全天专属包车，司机随时待命。", isHotel: true },
+          { num: "1", icon: "🐎", name_en: "Estancia El Ombú de Areco", name_zh: "高乔庄园迎宾礼", x: 80, y: 285, time: "10:30 AM", desc_en: "300-hectare historic ranch; hot empanadas, fresh juices & Torrontés wine.", desc_zh: "抵达占地300公顷的百年传统牧场，品尝现烤迎宾肉馅饼、果汁与美酒。", dist: "115 km", tip_en: "Fresh warm empanadas & juices upon arrival.", tip_zh: "刚出炉的热肉馅饼与鲜榨果汁迎宾礼。", gmaps: "https://maps.google.com/?q=Estancia+El+Ombu+de+Areco" },
+          { num: "2", icon: "🏇", name_en: "Pampas Horseback & Sulky Rides", name_zh: "草原温顺骑马与马车巡游", x: 145, y: 285, time: "11:30 AM", desc_en: "Gentle horseback rides across wide pampas pastures or horse-drawn carriage for kids.", desc_zh: "在牛仔护卫下骑温顺良驹漫游大草原，或全家乘坐老式双轮木马车悠闲兜风。", dist: "Ranch", tip_en: "Very calm horses suitable for children & beginners.", tip_zh: "马匹经过专业训练，极度温顺适合小朋友与初学者。", gmaps: "https://maps.google.com/?q=Estancia+El+Ombu+de+Areco" },
+          { num: "3", icon: "🥩", name_en: "Grand Wood-Fire Asado Feast", name_zh: "露天原木炭火烤肉盛宴", x: 95, y: 320, time: "1:00 PM", desc_en: "All-you-can-eat wood-fired feast: Bife de Chorizo, ribs, chorizo sausages & Malbec wine.", desc_zh: "无限量现切阿根廷烤全肉盛宴：牛肋排、香肠、蔬菜沙拉与红酒。", dist: "Ranch", tip_en: "Unlimited premium grilled meats, salads & desserts.", tip_zh: "无限量牛排、烤香肠、沙拉与甜点大快朵颐。", gmaps: "https://maps.google.com/?q=Estancia+El+Ombu+de+Areco" },
+          { num: "4", icon: "🎸", name_en: "Gaucho Folklore & Horse Whisperer", name_zh: "高乔歌舞与神级驯马术", x: 160, y: 320, time: "2:30 PM", desc_en: "Live guitar, folklore dancing, and gentle gaucho horse whisperer demonstration.", desc_zh: "高乔民间吉他弹唱、欢快民族歌舞，以及令人惊叹的“马语者”温和驯马演示。", dist: "Ranch", tip_en: "Mind-blowing horse whisperer demonstration.", tip_zh: "令人惊叹的人马合一神级驯马表演。", gmaps: "https://maps.google.com/?q=Estancia+El+Ombu+de+Areco" },
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", x: 410, y: 220, time: "6:30 PM", desc_en: "Smooth private van ride back to Palermo Suites; relax in your suites for the evening.", desc_zh: "专属商务车平稳送回酒店，全家可在房间度过悠闲舒适的夜晚。", dist: "115 km", tip_en: "Scenic evening ride back to Palermo.", tip_zh: "欣赏傍晚潘帕斯田园风光，平稳回酒店。", isHotel: true }
         ],
         legs: [
           { from_en: "Palermo Suites", to_en: "Estancia El Ombú", from_zh: "酒店", to_zh: "高乔大庄园", dist: "115 km", time_en: "90 min van", time_zh: "商务专车90分钟", mode_en: "🚐 Private 7-Passenger Van (~$180-$220 day charter)", mode_zh: "🚐 7座专属包车（全天往返约$180-$220美元）", tip_en: "Scenic highway drive across open fertile plains of Buenos Aires province.", tip_zh: "沿8号国道平稳行驶，窗外是一望无际的潘帕斯广袤田野与牛群。" },
@@ -2654,70 +2837,37 @@
         family_tip_en: "👶 Family Tip: Check out at 12 PM and leave bags with front desk. Distrito Arcos is an open-air mall just 4 blocks up Paraguay St with clean restrooms, playgrounds, and great alfajores (Havanna) for gifts! Van picks up at hotel at 4:15 PM.",
         family_tip_zh: "👶 亲子贴士：中午12点退房并将行李寄存在24小时前台。Distrito Arcos 露天商街离酒店仅4个街区（450米），绿树成荫，有儿童户外设施、干净洗手间与 Havanna 伴手礼店。下午4:15专车在酒店大堂接驳前往机场！",
         gmaps_url: "https://www.google.com/maps/dir/Palermo+Suites+Buenos+Aires,+Paraguay+4646/Distrito+Arcos,+Paraguay+4979/Heladeria+Scannapieco,+Niceto+Vega+4983/Palermo+Suites+Buenos+Aires,+Paraguay+4646/Aeropuerto+Internacional+Ministro+Pistarini",
+        path_d: "M 410 220 L 410 175 L 360 215 L 410 220",
+        corridor_d: "M 410 220 Q 310 420 240 545",
         stops: [
-          { num: "🏨", name_en: "Palermo Suites (Check-Out)", name_zh: "Palermo Suites 退房存包", coord: [-34.5802, -58.4233], time: "11:45 AM", desc_en: "Check out of 2 suites (12 PM). Free luggage storage at 24h front desk.", desc_zh: "退房两间套房，前台免费妥善保管全部行李。", isHotel: true },
-          { num: "1", name_en: "Distrito Arcos Premium Outlet", name_zh: "Distrito Arcos 露天红砖商街", coord: [-34.5778, -58.4262], time: "12:15 PM", desc_en: "Open-air viaduct mall: outdoor cafes, kids playground, Havanna alfajores, leather.", desc_zh: "复古红砖高架拱门改建的露天商街：绿树喷泉、儿童游乐角、露天午餐与伴手礼。", gmaps: "https://www.google.com/maps/search/?api=1&query=Distrito+Arcos+Palermo+Buenos+Aires" },
-          { num: "2", name_en: "Heladería Scannapieco (Niceto Vega 4983)", name_zh: "Scannapieco 意式百年老字号冰淇淋", coord: [-34.5878, -58.4350], time: "2:30 PM", desc_en: "Founded in 1938: legendary Zabaglione, Pistachio, and chocolate farewell.", desc_zh: "1938年老字号：传奇沙巴翁酒香蛋黄味、浓郁开心果与黑巧克力最后一顿告别。", gmaps: "https://www.google.com/maps/search/?api=1&query=Heladeria+Scannapieco+Niceto+Vega+4983+Buenos+Aires" },
-          { num: "🏨", name_en: "Palermo Suites (Meet Airport Van)", name_zh: "返回 Palermo Suites 会合专车", coord: [-34.5802, -58.4233], time: "4:00 PM", desc_en: "Retrieve stored bags; private 7-passenger airport van departs at 4:15 PM sharp.", desc_zh: "取回行李，7人座送机商务专车下午4:15准时在门口等候。", isHotel: true },
-          { num: "✈️", name_en: "Aeropuerto Internacional Ezeiza (EZE)", name_zh: "EZE 埃塞萨国际机场", coord: [-34.8150, -58.5348], time: "5:15 PM", desc_en: "Check-in for nonstop Delta flight LA 8872 to JFK (Departs 8:05 PM).", desc_zh: "提前近3小时抵达航站楼办理登机，乘坐直飞纽约航班（LA 8872，晚 8:05 起飞）。", gmaps: "https://www.google.com/maps/search/?api=1&query=Ministro+Pistarini+International+Airport+Ezeiza" }
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Check-Out)", name_zh: "Palermo Suites 退房存包", x: 410, y: 220, time: "11:45 AM", desc_en: "Check out of 2 suites (12 PM). Free luggage storage at 24h front desk.", desc_zh: "退房两间套房，前台免费妥善保管全部行李。", dist: "Base", tip_en: "Free luggage storage after checkout.", tip_zh: "退房后前台免费妥善寄存行李。", isHotel: true },
+          { num: "1", icon: "🛍️", name_en: "Distrito Arcos Premium Outlet", name_zh: "Distrito Arcos 露天红砖商街", x: 410, y: 175, time: "12:15 PM", desc_en: "Open-air viaduct mall: outdoor cafes, kids playground, Havanna alfajores, leather.", desc_zh: "复古红砖高架拱门改建的露天商街：绿树喷泉、儿童游乐角、露天午餐与伴手礼。", dist: "450 m", tip_en: "Outdoor playground & Havanna alfajores for gifts!", tip_zh: "露天儿童游乐角与 Havanna 伴手礼盒！", gmaps: "https://maps.google.com/?q=Distrito+Arcos+Palermo+Buenos+Aires" },
+          { num: "2", icon: "🍨", name_en: "Heladería Scannapieco (Niceto Vega 4983)", name_zh: "Scannapieco 意式百年老字号冰淇淋", x: 360, y: 215, time: "2:30 PM", desc_en: "Founded in 1938: legendary Zabaglione, Pistachio, and chocolate farewell.", desc_zh: "1938年老字号：传奇沙巴翁酒香蛋黄味、浓郁开心果与黑巧克力最后一顿告别。", dist: "1.1 km", tip_en: "Traditional 1938 Italian artisanal gelato.", tip_zh: "传承自1938年的意大利传统经典手艺。", gmaps: "https://maps.google.com/?q=Heladeria+Scannapieco+Niceto+Vega+4983+Buenos+Aires" },
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Meet Airport Van)", name_zh: "返回 Palermo Suites 会合专车", x: 410, y: 220, time: "4:00 PM", desc_en: "Retrieve stored bags; private 7-passenger airport van departs at 4:15 PM sharp.", desc_zh: "取回行李，7人座送机商务专车下午4:15准时在门口等候。", dist: "1.3 km", tip_en: "Van departs hotel at 4:15 PM sharp.", tip_zh: "送机商务专车4:15准时启程。", isHotel: true },
+          { num: "✈️", icon: "✈️", name_en: "Aeropuerto Ezeiza (EZE)", name_zh: "EZE 埃塞萨国际机场", x: 140, y: 545, time: "5:15 PM", desc_en: "Check-in for nonstop Delta flight LA 8872 to JFK (Departs 8:05 PM).", desc_zh: "提前近3小时抵达航站楼办理登机，乘坐直飞纽约航班（LA 8872，晚 8:05 起飞）。", dist: "34 km", tip_en: "Arrive 3 hours before 8:05 PM flight.", tip_zh: "提前近3小时充裕办理值机安检。", gmaps: "https://maps.google.com/?q=Ministro+Pistarini+International+Airport+Ezeiza" }
         ],
         legs: [
           { from_en: "Palermo Suites", to_en: "Distrito Arcos", from_zh: "酒店", to_zh: "Distrito Arcos 商街", dist: "450 m", time_en: "6 min walk", time_zh: "步行6分钟", mode_en: "🚶 Short 4-Block Walk (Super Easy!)", mode_zh: "🚶 轻松步行4个街区（仅450米）", tip_en: "Walk straight north on Paraguay past Godoy Cruz.", tip_zh: "顺着 Paraguay 街向北直走4个路口即达露天商街入口。" },
           { from_en: "Distrito Arcos", to_en: "Heladería Scannapieco", from_zh: "Distrito Arcos", to_zh: "Scannapieco 冰淇淋", dist: "1.1 km", time_en: "12 min walk / 4 min Uber", time_zh: "步行12分钟 / Uber 4分钟", mode_en: "🚶 Leisurely Walk or 🚗 2x Uber", mode_zh: "🚶 悠闲散步 或 🚗 2台Uber", tip_en: "Pleasant stroll through quiet residential Palermo Hollywood.", tip_zh: "穿过宁静的 Palermo Hollywood 街区，享用阿根廷最后一顿经典冰淇淋。" },
-          { from_en: "Heladería Scannapieco", to_en: "Palermo Suites", from_zh: "Scannapieco", to_zh: "返回酒店大堂", dist: "1.3 km", time_en: "14 min walk / 5 min Uber", time_zh: "步行14分钟 / Uber 5分钟", mode_en: "🚶 Walk or 🚗 2x Uber", mode_zh: "🚶 散步 或 🚗 2台Uber", tip_en: "Return to hotel by 4:00 PM to meet your private airport van.", tip_zh: "下午4点前回到酒店大堂取行李，与司机碰头。" },
+          { from_en: "Heladería Scannapieco", to_en: "Palermo Suites", from_zh: "Scannapieco 冰淇淋", to_zh: "返回酒店大堂", dist: "1.3 km", time_en: "14 min walk / 5 min Uber", time_zh: "步行14分钟 / Uber 5分钟", mode_en: "🚶 Walk or 🚗 2x Uber", mode_zh: "🚶 散步 或 🚗 2台Uber", tip_en: "Return to hotel by 4:00 PM to meet your private airport van.", tip_zh: "下午4点前回到酒店大堂取行李，与司机碰头。" },
           { from_en: "Palermo Suites", to_en: "EZE Airport", from_zh: "酒店", to_zh: "EZE 国际机场", dist: "34 km", time_en: "50-60 min van", time_zh: "商务专车约50-60分钟", mode_en: "🚐 Pre-Booked Private 7-Passenger Van (~$65-$75)", mode_zh: "🚐 提前预订的7座商务专车（单程约$65-$75美元）", tip_en: "Departs hotel at 4:15 PM sharp; smooth highway transfer to Terminal departure doors.", tip_zh: "下午4:15准时出发，高速直奔航站楼出发层。" }
         ]
       }
     };
 
-    let routeMap = null;
-    let currentTileLayer = null;
-    let routeLayerGroup = null;
     let currentRouteDay = 'd1';
 
-    function initRouteMap() {
-      const mapContainer = document.getElementById("route-map");
-      if (!mapContainer || routeMap) return;
-
-      // Center initially on Palermo Suites Hotel
-      routeMap = L.map("route-map", {
-        scrollWheelZoom: false
-      }).setView([-34.5802, -58.4233], 14);
-
-      routeLayerGroup = L.layerGroup().addTo(routeMap);
-      updateMapTheme();
-
-      // Render Day 1 by default
+    function initEstimatedMap() {
       selectRouteDay('d1');
-
-      // Invalidate size once visible
-      setTimeout(() => {
-        if (routeMap) routeMap.invalidateSize();
-      }, 300);
-    }
-
-    function updateMapTheme() {
-      if (!routeMap) return;
-      const isDark = document.documentElement.classList.contains('dark');
-      if (currentTileLayer) routeMap.removeLayer(currentTileLayer);
-
-      const tileUrl = isDark
-        ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-        : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
-
-      currentTileLayer = L.tileLayer(tileUrl, {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-      }).addTo(routeMap);
     }
 
     function selectRouteDay(dayKey) {
-      if (!routesData[dayKey]) return;
+      if (!estRoutesData[dayKey]) return;
       currentRouteDay = dayKey;
-      const data = routesData[dayKey];
+      const data = estRoutesData[dayKey];
       const isZh = (currentLang === 'zh');
 
-      // Update pills
+      // Update pill buttons
       document.querySelectorAll(".route-pill").forEach(pill => {
         if (pill.getAttribute("data-routeday") === dayKey) {
           pill.className = "route-pill px-3.5 py-2 rounded-xl border border-emerald-400 bg-emerald-500 text-white shadow-sm flex items-center space-x-1.5 transition-all shrink-0";
@@ -2726,75 +2876,190 @@
         }
       });
 
-      // Update titles & links
+      // Update titles, tips, stats
       document.getElementById("route-map-title").textContent = isZh ? data.title_zh : data.title_en;
       document.getElementById("route-transit-summary").textContent = isZh ? data.stats_zh : data.stats_en;
       document.getElementById("route-family-tip").textContent = isZh ? data.family_tip_zh : data.family_tip_en;
       document.getElementById("btn-open-gmaps-full").href = data.gmaps_url;
       document.getElementById("route-leg-badge").textContent = `${data.legs.length} ${isZh ? '段路程 · 往返' : 'Legs · Round Trip'}`;
 
-      // Render Legs List
+      // Render step legs list on right
       renderRouteLegs(dayKey);
 
-      // Render on Map
-      if (routeMap && routeLayerGroup) {
-        routeLayerGroup.clearLayers();
+      // Render on SVG Map
+      renderSvgMapRoutes(dayKey);
 
-        const coords = [];
-        data.stops.forEach((stop, idx) => {
-          coords.push(stop.coord);
+      // Close any open tooltip
+      closePinTooltip();
+    }
 
-          // Marker Icon
-          let markerHtml = '';
-          if (stop.isHotel) {
-            markerHtml = `<div style="background: #F6B40E; color: #0B2545; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.35); border: 2.5px solid white;">🏨</div>`;
-          } else {
-            markerHtml = `<div style="background: #2563EB; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2.5px solid white;">${stop.num}</div>`;
-          }
+    function renderSvgMapRoutes(dayKey) {
+      const data = estRoutesData[dayKey];
+      if (!data) return;
 
-          const customIcon = L.divIcon({
-            className: 'custom-map-pin',
-            html: markerHtml,
-            iconSize: [32, 32],
-            iconAnchor: [16, 16],
-            popupAnchor: [0, -18]
-          });
+      const loopGroup = document.getElementById("svg-route-loop");
+      const corridorGroup = document.getElementById("svg-route-corridors");
+      const pinsGroup = document.getElementById("svg-route-pins");
+      if (!loopGroup || !pinsGroup) return;
 
-          const stopName = isZh ? stop.name_zh : stop.name_en;
-          const stopDesc = isZh ? stop.desc_zh : stop.desc_en;
-          const gmapsBtn = stop.gmaps 
-            ? `<a href="${stop.gmaps}" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:6px; font-size:11px; font-weight:bold; color:#2563EB; text-decoration:none;">📍 ${isZh ? '在 Google Maps 查看' : 'View on Google Maps'} &rarr;</a>` 
-            : '';
+      loopGroup.innerHTML = "";
+      pinsGroup.innerHTML = "";
+      if (corridorGroup) corridorGroup.innerHTML = "";
 
-          const popupContent = `
-            <div style="font-family:'Plus Jakarta Sans','Noto Sans SC',sans-serif; min-width:180px; padding:2px;">
-              <div style="font-size:11px; font-weight:bold; color:#059669; text-transform:uppercase;">${stop.time}</div>
-              <div style="font-size:13px; font-weight:800; color:#0F172A; margin:2px 0;">${stopName}</div>
-              <div style="font-size:11px; color:#475569; line-height:1.3;">${stopDesc}</div>
-              ${gmapsBtn}
-            </div>
-          `;
-
-          L.marker(stop.coord, { icon: customIcon })
-            .bindPopup(popupContent)
-            .addTo(routeLayerGroup);
-        });
-
-        // Draw Polyline
-        const polyline = L.polyline(coords, {
-          color: '#10B981',
-          weight: 4,
-          opacity: 0.85,
-          dashArray: '6, 8',
-          lineJoin: 'round'
-        }).addTo(routeLayerGroup);
-
-        routeMap.fitBounds(polyline.getBounds(), { padding: [40, 40] });
+      // 1. Draw highway corridor (for Tigre, Estancia, EZE)
+      if (data.corridor_d && corridorGroup) {
+        const corridor = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        corridor.setAttribute("d", data.corridor_d);
+        corridor.setAttribute("fill", "none");
+        corridor.setAttribute("stroke", "#F59E0B");
+        corridor.setAttribute("stroke-width", "4");
+        corridor.setAttribute("stroke-linecap", "round");
+        corridor.setAttribute("stroke-dasharray", "8,8");
+        corridor.setAttribute("opacity", "0.85");
+        corridorGroup.appendChild(corridor);
       }
+
+      // 2. Draw Main Route Loop Path
+      if (data.path_d) {
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", data.path_d);
+        path.setAttribute("fill", "none");
+        path.setAttribute("stroke", "#10B981");
+        path.setAttribute("stroke-width", "4.5");
+        path.setAttribute("stroke-linecap", "round");
+        path.setAttribute("stroke-linejoin", "round");
+        path.setAttribute("stroke-dasharray", "8,6");
+        path.setAttribute("opacity", "0.9");
+        loopGroup.appendChild(path);
+      }
+
+      // 3. Draw Numbered Waypoint Pins
+      data.stops.forEach((stop, idx) => {
+        // Skip rendering duplicate stop 0 hotel pin since central hotel base is permanently rendered
+        if (stop.isHotel && idx === 0) return;
+
+        const pinG = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        pinG.setAttribute("transform", `translate(${stop.x}, ${stop.y})`);
+        pinG.setAttribute("class", "cursor-pointer group");
+        pinG.setAttribute("onclick", `showStopDetails(${idx})`);
+
+        // Glowing circle under pin
+        const glow = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        glow.setAttribute("cx", "0");
+        glow.setAttribute("cy", "0");
+        glow.setAttribute("r", "16");
+        glow.setAttribute("fill", stop.isHotel ? "#F6B40E" : "#2563EB");
+        glow.setAttribute("opacity", "0.3");
+        pinG.appendChild(glow);
+
+        // Pin Body
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("cx", "0");
+        circle.setAttribute("cy", "0");
+        circle.setAttribute("r", "13");
+        circle.setAttribute("fill", stop.isHotel ? "#F6B40E" : "#2563EB");
+        circle.setAttribute("stroke", "#FFFFFF");
+        circle.setAttribute("stroke-width", "2");
+        pinG.appendChild(circle);
+
+        // Pin Text (Number or Emoji)
+        const txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        txt.setAttribute("x", "0");
+        txt.setAttribute("y", "4.5");
+        txt.setAttribute("font-size", stop.isHotel ? "13" : "11");
+        txt.setAttribute("font-weight", "900");
+        txt.setAttribute("fill", stop.isHotel ? "#0B2545" : "#FFFFFF");
+        txt.setAttribute("text-anchor", "middle");
+        txt.textContent = stop.num;
+        pinG.appendChild(txt);
+
+        // Mini Label Badge under Pin
+        const labelG = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        labelG.setAttribute("transform", "translate(0, 22)");
+
+        const isZh = (currentLang === 'zh');
+        const stopName = isZh ? stop.name_zh : stop.name_en;
+        const shortName = stopName.length > 14 ? stopName.substring(0, 13) + '…' : stopName;
+
+        const labelBg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        labelBg.setAttribute("x", "-48");
+        labelBg.setAttribute("y", "-9");
+        labelBg.setAttribute("width", "96");
+        labelBg.setAttribute("height", "18");
+        labelBg.setAttribute("rx", "9");
+        labelBg.setAttribute("fill", "#0F172A");
+        labelBg.setAttribute("stroke", "#38BDF8");
+        labelBg.setAttribute("stroke-width", "1");
+        labelBg.setAttribute("opacity", "0.92");
+        labelG.appendChild(labelBg);
+
+        const labelTxt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        labelTxt.setAttribute("x", "0");
+        labelTxt.setAttribute("y", "3.5");
+        labelTxt.setAttribute("font-size", "8.5");
+        labelTxt.setAttribute("font-weight", "bold");
+        labelTxt.setAttribute("fill", "#FFFFFF");
+        labelTxt.setAttribute("text-anchor", "middle");
+        labelTxt.textContent = `${stop.icon} ${shortName}`;
+        labelG.appendChild(labelTxt);
+
+        pinG.appendChild(labelG);
+        pinsGroup.appendChild(pinG);
+      });
+    }
+
+    function showStopDetails(stopIndex) {
+      const data = estRoutesData[currentRouteDay];
+      if (!data || !data.stops[stopIndex]) return;
+      const stop = data.stops[stopIndex];
+      const isZh = (currentLang === 'zh');
+
+      const tooltip = document.getElementById("svg-pin-tooltip");
+      const mapWrapper = document.getElementById("estimated-map-wrapper");
+      if (!tooltip || !mapWrapper) return;
+
+      document.getElementById("tt-time").textContent = stop.time || "Scheduled";
+      document.getElementById("tt-title").textContent = `${stop.icon || '📍'} ${isZh ? stop.name_zh : stop.name_en}`;
+      document.getElementById("tt-desc").textContent = isZh ? stop.desc_zh : stop.desc_en;
+      document.getElementById("tt-tip").textContent = `👶 ${isZh ? (stop.tip_zh || '亲子出行推荐体验') : (stop.tip_en || 'Great kid-friendly experience')}`;
+      document.getElementById("tt-dist").textContent = `📍 ${isZh ? '自酒店出发: ' : 'From Hotel: '} ${stop.dist || 'Palermo'}`;
+      
+      const gmapsLink = document.getElementById("tt-gmaps");
+      if (stop.gmaps) {
+        gmapsLink.href = stop.gmaps;
+        gmapsLink.style.display = "inline-flex";
+      } else {
+        gmapsLink.style.display = "none";
+      }
+
+      // Position tooltip relative to container
+      const wrapperRect = mapWrapper.getBoundingClientRect();
+      const svgW = 950;
+      const svgH = 640;
+      const scaleX = wrapperRect.width / svgW;
+      const scaleY = wrapperRect.height / svgH;
+
+      let pixelX = stop.x * scaleX;
+      let pixelY = stop.y * scaleY;
+
+      // Keep within bounds
+      if (pixelX + 260 > wrapperRect.width) pixelX = wrapperRect.width - 270;
+      if (pixelX < 10) pixelX = 10;
+      if (pixelY + 180 > wrapperRect.height) pixelY = wrapperRect.height - 190;
+      if (pixelY < 10) pixelY = 10;
+
+      tooltip.style.left = `${pixelX}px`;
+      tooltip.style.top = `${pixelY}px`;
+      tooltip.classList.remove("hidden");
+    }
+
+    function closePinTooltip() {
+      const tooltip = document.getElementById("svg-pin-tooltip");
+      if (tooltip) tooltip.classList.add("hidden");
     }
 
     function renderRouteLegs(dayKey) {
-      const data = routesData[dayKey];
+      const data = estRoutesData[dayKey];
       if (!data) return;
       const isZh = (currentLang === 'zh');
       const container = document.getElementById("route-legs-list");
@@ -2808,7 +3073,7 @@
         const tipText = isZh ? leg.tip_zh : leg.tip_en;
 
         return `
-          <div onclick="focusRouteLeg(${idx})" class="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 hover:border-emerald-300 dark:hover:border-emerald-700 transition-all cursor-pointer space-y-1.5 shadow-sm group">
+          <div onclick="showStopDetails(${idx + 1})" class="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 hover:border-emerald-300 dark:hover:border-emerald-700 transition-all cursor-pointer space-y-1.5 shadow-sm group">
             <div class="flex items-center justify-between text-xs">
               <span class="px-2 py-0.5 rounded-md font-bold text-[10px] bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300">
                 ${isZh ? '路段' : 'Leg'} ${idx + 1} · ${leg.dist}
@@ -2836,21 +3101,9 @@
       }).join('');
     }
 
-    function focusRouteLeg(legIndex) {
-      if (!routeMap || !routesData[currentRouteDay]) return;
-      const stops = routesData[currentRouteDay].stops;
-      // Leg idx connects stop idx to stop idx+1
-      if (stops[legIndex + 1]) {
-        const targetCoord = stops[legIndex + 1].coord;
-        routeMap.setView(targetCoord, 16, { animate: true });
-      }
-    }
-
     function resetMapRouteView() {
-      if (!routeMap || !routesData[currentRouteDay]) return;
-      const coords = routesData[currentRouteDay].stops.map(s => s.coord);
-      const bounds = L.latLngBounds(coords);
-      routeMap.fitBounds(bounds, { padding: [40, 40], animate: true });
+      closePinTooltip();
+      selectRouteDay(currentRouteDay);
     }
 
     // FOOD FILTER
@@ -2942,7 +3195,7 @@
       initTheme();
       applyTranslations();
       lucide.createIcons();
-      initRouteMap();
+      initEstimatedMap();
     });
   </script>
 </body>
