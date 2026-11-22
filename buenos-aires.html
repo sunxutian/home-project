@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Buenos Aires Family Vacation Hub & Master Guide (Dec 4–12, 2026)</title>
-  <meta name="description" content="Interactive bilingual travel portal for a family of 6 (4 Adults, 2 Kids) visiting Buenos Aires. Dark mode, Chinese translation, ranked attractions, booking deadlines, and dining guide." />
+  <meta name="description" content="Interactive bilingual travel portal for a family of 6 (4 Adults, 2 Kids) visiting Buenos Aires. Dark mode, Chinese translation, proposed hourly day-to-day timeline, hidden gem kid-friendly restaurants, and Google Maps." />
   
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☀️</text></svg>">
@@ -124,11 +124,11 @@
 
       <!-- Quick Nav Links -->
       <nav class="hidden xl:flex items-center space-x-1 lg:space-x-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300">
+        <a href="#timeline-master" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 text-blue-600 dark:text-blue-400 font-bold transition-colors" data-i18n="nav_timeline">📅 Daily Timeline</a>
         <a href="#booking-calendar" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-rose-600 dark:hover:text-rose-400 text-rose-600 dark:text-rose-400 font-bold transition-colors" data-i18n="nav_deadlines">🚨 Deadlines</a>
         <a href="#hotel" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-arg-blue dark:hover:text-sky-400 transition-colors" data-i18n="nav_hotel">🏨 Hotel (2 Confirmed)</a>
+        <a href="#ranked-restaurants" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-arg-blue dark:hover:text-sky-400 transition-colors" data-i18n="nav_dining">🥩 Dining & Hidden Gems</a>
         <a href="#ranked-attractions" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-arg-blue dark:hover:text-sky-400 transition-colors" data-i18n="nav_attractions">🎡 Attractions</a>
-        <a href="#ranked-restaurants" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-arg-blue dark:hover:text-sky-400 transition-colors" data-i18n="nav_dining">🥩 Dining</a>
-        <a href="#itinerary-options" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-arg-blue dark:hover:text-sky-400 transition-colors" data-i18n="nav_itineraries">📅 Itineraries</a>
         <a href="#flights" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-arg-blue dark:hover:text-sky-400 transition-colors" data-i18n="nav_flights">Flights</a>
         <a href="#budget" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-arg-blue dark:hover:text-sky-400 transition-colors" data-i18n="nav_budget">Budget</a>
       </nav>
@@ -156,7 +156,7 @@
         <!-- Print Button -->
         <button onclick="window.print()" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-slate-900 dark:bg-slate-800 text-white hover:bg-slate-800 text-xs font-bold flex items-center space-x-1.5 transition-colors shadow-sm">
           <i data-lucide="printer" class="w-3.5 h-3.5"></i>
-          <span class="hidden md:inline" data-i18n="btn_print">Print / PDF</span>
+          <span class="hidden md:inline" data-i18n="btn_print">Print</span>
         </button>
 
         <!-- Home Hub Link -->
@@ -184,11 +184,11 @@
 
           <h1 class="text-3xl sm:text-5xl font-black font-serif tracking-tight leading-tight">
             <span data-i18n="hero_title">Buenos Aires Family Vacation</span>
-            <span class="block text-xl sm:text-3xl font-sans font-light text-slate-200 mt-1" data-i18n="hero_subtitle">Ranked Attractions, Must-Book Tickets & Dining Guide</span>
+            <span class="block text-xl sm:text-3xl font-sans font-light text-slate-200 mt-1" data-i18n="hero_subtitle">Proposed Daily Timeline, Hidden Gems & Kid-Friendly Food Guide</span>
           </h1>
 
           <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed" data-i18n="hero_desc">
-            Tailored specifically for our party of 6 (4 Adults + 2 Kids). Features 2 confirmed apartment suites at Palermo Suites, nonstop Delta flights, top-ranked attractions, booking deadlines (Don Julio, MIJU), and 3 modular itinerary flows.
+            Tailored specifically for our party of 6 (4 Adults + 2 Kids). Features 2 confirmed apartment suites at Palermo Suites, nonstop Delta flights, concrete hourly timelines with direct Google Maps routes, and secret neighborhood bodegones with playrooms and coloring tables.
           </p>
 
           <!-- Key Quick Meta Chips -->
@@ -290,6 +290,752 @@
       </div>
     </section>
 
+    <!-- SECTION: PROPOSED EVERY DAY TIMELINE & HIDDEN GEM FOOD -->
+    <section id="timeline-master" class="scroll-mt-20 space-y-6">
+      <div class="border-b border-slate-200 dark:border-slate-800 pb-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="w-7 h-7 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-sm">1</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white" data-i18n="tl_main_title">Proposed Master Daily Timeline (Days 1–7)</h2>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="tl_main_sub">
+            Concrete step-by-step route with Google Maps pins & curated neighborhood hidden gems + kid-friendly dining
+          </p>
+        </div>
+
+        <!-- Day Selector Buttons -->
+        <div class="flex flex-wrap gap-1 bg-slate-200/80 dark:bg-slate-800 p-1 rounded-xl text-xs font-bold no-print" id="tl-day-selector">
+          <button onclick="selectTimelineDay('all')" class="tl-day-pill active-pill px-3 py-1.5 rounded-lg text-slate-900 dark:text-slate-200 transition" data-tlday="all" data-i18n="tl_tab_all">All Days</button>
+          <button onclick="selectTimelineDay('d1')" class="tl-day-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-tlday="d1" data-i18n="tl_tab_d1">Day 1 (Sat)</button>
+          <button onclick="selectTimelineDay('d2')" class="tl-day-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-tlday="d2" data-i18n="tl_tab_d2">Day 2 (Sun)</button>
+          <button onclick="selectTimelineDay('d3')" class="tl-day-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-tlday="d3" data-i18n="tl_tab_d3">Day 3 (Mon)</button>
+          <button onclick="selectTimelineDay('d4')" class="tl-day-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-tlday="d4" data-i18n="tl_tab_d4">Day 4 (Tue)</button>
+          <button onclick="selectTimelineDay('d5')" class="tl-day-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-tlday="d5" data-i18n="tl_tab_d5">Day 5 (Wed)</button>
+          <button onclick="selectTimelineDay('d6')" class="tl-day-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-tlday="d6" data-i18n="tl_tab_d6">Day 6 (Thu)</button>
+          <button onclick="selectTimelineDay('d7')" class="tl-day-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-tlday="d7" data-i18n="tl_tab_d7">Day 7 (Fri)</button>
+        </div>
+      </div>
+
+      <!-- DAYS WRAPPER -->
+      <div class="space-y-8" id="tl-days-wrapper">
+
+        <!-- ================= DAY 1 ================= -->
+        <div class="tl-day-card bg-white dark:bg-slate-900/90 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition" id="tl-d1">
+          <div class="bg-gradient-to-r from-blue-900 to-indigo-900 text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span class="px-2.5 py-0.5 rounded bg-blue-500/40 text-blue-200 text-xs font-bold uppercase tracking-wide">Day 1 · Saturday, Dec 5, 2026</span>
+              <h3 class="text-xl sm:text-2xl font-bold font-serif mt-1" data-i18n="d1_header_title">Arrival, Settle into Palermo Suites & Rose Garden Paddleboats</h3>
+            </div>
+            <span class="text-xs text-blue-200 bg-white/10 px-3 py-1 rounded-full font-medium" data-i18n="d1_header_tag">Pace: Gentle Acclimatization</span>
+          </div>
+
+          <div class="p-5 sm:p-6 space-y-6">
+            <!-- Timeline Steps -->
+            <div class="space-y-5">
+              <!-- Step 1 -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 flex items-center justify-center font-bold text-xs shrink-0">10:55</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-1.5 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d1_s1_title">Touchdown at EZE & Private 7-Passenger Van to Palermo Suites</h4>
+                    <span class="text-[11px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded">Van: ~45 mins</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d1_s1_desc">
+                    Delta flight LA 8871 lands at 10:55 AM. Clear customs (use Family Lane if open). 11:45 AM: Private van driver meets party at arrivals. 12:45 PM: Arrive at Palermo Suites (Paraguay 4646). Store all 6 bags securely with 24-hr front desk while suites are finalized.
+                  </p>
+                  <div class="flex flex-wrap gap-2 pt-1">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Aeropuerto+Internacional+Ministro+Pistarini+EZE" target="_blank" class="map-link">
+                      <i data-lucide="map-pin" class="w-3.5 h-3.5 text-blue-500"></i>
+                      <span>EZE Airport</span>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Palermo+Suites+Buenos+Aires+Paraguay+4646" target="_blank" class="map-link">
+                      <i data-lucide="hotel" class="w-3.5 h-3.5 text-indigo-500"></i>
+                      <span>Palermo Suites (Paraguay 4646)</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2: Lunch -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 flex items-center justify-center font-bold text-xs shrink-0">1:15</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-2 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d1_s2_title">Welcome Lunch: Walk-in Bodegón Steaks & Empanadas</h4>
+                    <span class="text-[11px] font-semibold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded">3 blocks from hotel</span>
+                  </div>
+                  
+                  <!-- Hidden Gem Box -->
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div class="p-3 rounded-xl bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 space-y-1">
+                      <div class="flex justify-between items-center">
+                        <span class="font-bold text-amber-950 dark:text-amber-200">⭐ Top Pick: La Hormiga</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=La+Hormiga+Armenia+Palermo+Buenos+Aires" target="_blank" class="text-amber-700 dark:text-amber-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                      </div>
+                      <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d1_gem1">
+                        Armenia 1680. Unpretentious family favorite. Massive cuts of bife de chorizo, crispy french fries, provolone cheese, and zero reservation stress.
+                      </p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-purple-50/70 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 space-y-1">
+                      <div class="flex justify-between items-center">
+                        <span class="font-bold text-purple-950 dark:text-purple-200">💎 Hidden Gem: Club Eros</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Club+Eros+Palermo+Buenos+Aires" target="_blank" class="text-purple-700 dark:text-purple-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                      </div>
+                      <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d1_gem2">
+                        Honduras 4706. Authentic neighborhood community sports club where local families dine. Giant milanesa a caballo (fried eggs & steak) under $10 USD.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3: Afternoon -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 flex items-center justify-center font-bold text-xs shrink-0">3:00</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-1.5 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d1_s3_title">Check in 2 Confirmed Suites & Stroll El Rosedal Lake</h4>
+                    <span class="text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded">Palermo Woods</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d1_s3_desc">
+                    Check into the 2 separate 33m² apartments. Freshen up with showers. Walk 10 mins to Bosques de Palermo (Parque 3 de Febrero). Walk across white bridges in El Rosedal (18,000 blooming roses) and rent a pedal paddleboat on the calm lake to feed the ducks.
+                  </p>
+                  <div class="flex flex-wrap gap-2 pt-1">
+                    <a href="https://www.google.com/maps/search/?api=1&query=El+Rosedal+de+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                      <i data-lucide="flower" class="w-3.5 h-3.5 text-pink-500"></i>
+                      <span>El Rosedal Rose Garden</span>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Lago+de+Regatas+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                      <i data-lucide="anchor" class="w-3.5 h-3.5 text-sky-500"></i>
+                      <span>Paddleboat Lake Pier</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4: Gelato & Dinner -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-rose-100 dark:bg-rose-950 text-rose-800 dark:text-rose-300 flex items-center justify-center font-bold text-xs shrink-0">6:30</div>
+                </div>
+                <div class="flex-1 space-y-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d1_s4_title">Artisan Helado Treat & Kid-Friendly Dinner at Las Cholas</h4>
+                    <span class="text-[11px] font-semibold text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/60 px-2 py-0.5 rounded">Kids Favorite</span>
+                  </div>
+                  
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div class="p-3 rounded-xl bg-pink-50/70 dark:bg-pink-950/30 border border-pink-200 dark:border-pink-800 space-y-1">
+                      <div class="flex justify-between items-center">
+                        <span class="font-bold text-pink-950 dark:text-pink-200">🍦 Gelato: Lucciano's Palermo</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Lucciano%27s+Palermo+Buenos+Aires" target="_blank" class="text-pink-700 dark:text-pink-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                      </div>
+                      <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d1_gem3">
+                        Novelty minion and penguin shaped 3D popsicles for kids + artisan dulce de leche. Or try <a href="https://www.google.com/maps/search/?api=1&query=Antiche+Tentazioni+Palermo+Buenos+Aires" target="_blank" class="underline font-bold">Antiche Tentazioni</a> for flowing chocolate taps.
+                      </p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-red-50/70 dark:bg-red-950/30 border border-red-200 dark:border-red-800 space-y-1">
+                      <div class="flex justify-between items-center">
+                        <span class="font-bold text-red-950 dark:text-red-200">🥩 Dinner: Las Cholas</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Las+Cholas+Arce+Palermo+Buenos+Aires" target="_blank" class="text-red-700 dark:text-red-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                      </div>
+                      <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d1_gem4">
+                        Arce 306, Las Cañitas. Kids are handed crayons to color directly on the paper tablecloths! Giant grilled meat boards (*tablas*), clay-pot humita, and high chairs.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= DAY 2 ================= -->
+        <div class="tl-day-card bg-white dark:bg-slate-900/90 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition" id="tl-d2">
+          <div class="bg-gradient-to-r from-emerald-900 to-teal-900 text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span class="px-2.5 py-0.5 rounded bg-emerald-500/40 text-emerald-200 text-xs font-bold uppercase tracking-wide">Day 2 · Sunday, Dec 6, 2026</span>
+              <h3 class="text-xl sm:text-2xl font-bold font-serif mt-1" data-i18n="d2_header_title">Free-Roaming Wildlife Sanctuary, Space Dome & Steakhouse</h3>
+            </div>
+            <span class="text-xs text-emerald-200 bg-white/10 px-3 py-1 rounded-full font-medium" data-i18n="d2_header_tag">Pace: 100% Stroller Friendly</span>
+          </div>
+
+          <div class="p-5 sm:p-6 space-y-6">
+            <div class="space-y-5">
+              <!-- Step 1 -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 flex items-center justify-center font-bold text-xs shrink-0">9:30</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-1.5 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d2_s1_title">Morning at Ecoparque Buenos Aires (Free Wildlife Sanctuary)</h4>
+                    <span class="text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded">6 min walk</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d2_s1_desc">
+                    Walk 6 mins to Plaza Italia entrance. Patagonian maras (mini hares), peacocks, flamingos, coypus, and ducks wander freely alongside visitors. Wide paved paths, zero stairs, shady benches, and modern bathrooms.
+                  </p>
+                  <div class="flex flex-wrap gap-2 pt-1">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Ecoparque+Buenos+Aires+Plaza+Italia" target="_blank" class="map-link">
+                      <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-600"></i>
+                      <span>Ecoparque Map</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2: Lunch -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 flex items-center justify-center font-bold text-xs shrink-0">12:30</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-2 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d2_s2_title">Lunch Highlight: La Payuca (Supervised Kids' Playroom)</h4>
+                    <span class="text-[11px] font-semibold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded">Parent Lifesaver</span>
+                  </div>
+                  
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div class="p-3 rounded-xl bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 space-y-1">
+                      <div class="flex justify-between items-center">
+                        <span class="font-bold text-amber-950 dark:text-amber-200">🏆 Kid Gem: La Payuca (Arenales 3443)</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=La+Payuca+Arenales+Buenos+Aires" target="_blank" class="text-amber-700 dark:text-amber-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                      </div>
+                      <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d2_gem1">
+                        Features a dedicated multi-level playroom (*salón para niños*) with attendants, games, and monitors. Adults relax over premium steak while kids play safely!
+                      </p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 space-y-1">
+                      <div class="flex justify-between items-center">
+                        <span class="font-bold text-emerald-950 dark:text-emerald-200">🌿 Garden Gem: Croque Madame</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Croque+Madame+Palacio+Errazuriz+Buenos+Aires" target="_blank" class="text-emerald-700 dark:text-emerald-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                      </div>
+                      <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d2_gem2">
+                        Secluded museum courtyard tables under ancient sycamore trees. French croque monsieur, quiches, fresh fruit juices, and artisanal cakes.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3: Planetarium -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-800 dark:text-indigo-300 flex items-center justify-center font-bold text-xs shrink-0">2:45</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-1.5 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d2_s3_title">Planetario Galileo Galilei Dome Show + Jardín Japonés Koi Fish</h4>
+                    <span class="text-[11px] font-semibold text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded">360° Laser Dome</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d2_s3_desc">
+                    Air-conditioned 360° laser space projection show inside the futuristic dome. Afterwards, cross the avenue to Jardín Japonés: kids feed giant golden and orange koi fish from arched wooden bridges.
+                  </p>
+                  <div class="flex flex-wrap gap-2 pt-1">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Planetario+Galileo+Galilei+Buenos+Aires" target="_blank" class="map-link">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5 text-indigo-500"></i>
+                      <span>Planetario Map</span>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Jardin+Japones+Buenos+Aires" target="_blank" class="map-link">
+                      <i data-lucide="fish" class="w-3.5 h-3.5 text-pink-500"></i>
+                      <span>Jardín Japonés (Koi Feeding)</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4: Early Parrilla Dinner -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-red-100 dark:bg-red-950 text-red-800 dark:text-red-300 flex items-center justify-center font-bold text-xs shrink-0">7:30</div>
+                </div>
+                <div class="flex-1 space-y-1.5">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d2_s4_title">Early Family Feast at La Cabrera (Mini-Cazuelas Paradise)</h4>
+                    <span class="text-[11px] font-semibold text-red-700 dark:text-red-300 bg-red-50 dark:bg-red-950/60 px-2 py-0.5 rounded">7:30 PM Sweet Spot</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d2_s4_desc">
+                    José A. Cabrera 5099. Arriving at 7:30–8:00 PM opening means no long lines. Steaks arrive surrounded by dozens of complimentary tasting bowls (sweet corn pudding, mashed sweet potato, chimichurri). Free giant lollipops for the kids when leaving!
+                  </p>
+                  <div class="flex flex-wrap gap-2 pt-1">
+                    <a href="https://www.google.com/maps/search/?api=1&query=La+Cabrera+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                      <i data-lucide="utensils" class="w-3.5 h-3.5 text-red-600"></i>
+                      <span>La Cabrera Map</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= DAY 3 ================= -->
+        <div class="tl-day-card bg-white dark:bg-slate-900/90 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition" id="tl-d3">
+          <div class="bg-gradient-to-r from-purple-900 to-indigo-950 text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span class="px-2.5 py-0.5 rounded bg-purple-500/40 text-purple-200 text-xs font-bold uppercase tracking-wide">Day 3 · Monday, Dec 7, 2026</span>
+              <h3 class="text-xl sm:text-2xl font-bold font-serif mt-1" data-i18n="d3_header_title">Grand Theater Bookstore, Local Bodegón & Hands-On Science</h3>
+            </div>
+            <span class="text-xs text-purple-200 bg-white/10 px-3 py-1 rounded-full font-medium" data-i18n="d3_header_tag">Pace: Recoleta Culture & Discovery</span>
+          </div>
+
+          <div class="p-5 sm:p-6 space-y-6">
+            <div class="space-y-5">
+              <!-- Step 1 -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 flex items-center justify-center font-bold text-xs shrink-0">9:45</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-1.5 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d3_s1_title">El Ateneo Grand Splendid & Giant Rubber Tree in Recoleta</h4>
+                    <span class="text-[11px] font-semibold text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded">2 Ubers (~$6)</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d3_s1_desc">
+                    2 Ubers south to Av. Santa Fe 1860. Grab morning espresso on the crimson velvet theater stage while kids browse children's books in the lower tier. Afterwards, walk to Plaza Francia to see the monumental 200-year-old Gomero rubber tree.
+                  </p>
+                  <div class="flex flex-wrap gap-2 pt-1">
+                    <a href="https://www.google.com/maps/search/?api=1&query=El+Ateneo+Grand+Splendid+Buenos+Aires" target="_blank" class="map-link">
+                      <i data-lucide="book-open" class="w-3.5 h-3.5 text-purple-600"></i>
+                      <span>El Ateneo Bookstore</span>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Gomero+de+la+Recoleta+Buenos+Aires" target="_blank" class="map-link">
+                      <i data-lucide="trees" class="w-3.5 h-3.5 text-emerald-600"></i>
+                      <span>Giant 200-yr Gomero Tree</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2: Lunch -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 flex items-center justify-center font-bold text-xs shrink-0">12:30</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-2 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d3_s2_title">Lunch Hidden Gems: Authentic Parrilla Peña or La Cocina</h4>
+                    <span class="text-[11px] font-semibold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded">Local Legends</span>
+                  </div>
+                  
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div class="p-3 rounded-xl bg-red-50/70 dark:bg-red-950/30 border border-red-200 dark:border-red-800 space-y-1">
+                      <div class="flex justify-between items-center">
+                        <span class="font-bold text-red-950 dark:text-red-200">🏆 Top Gem: Parrilla Peña</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Parrilla+Pena+Rodriguez+Pena+Buenos+Aires" target="_blank" class="text-red-700 dark:text-red-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                      </div>
+                      <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d3_gem1">
+                        Rodríguez Peña 682. Frequented almost purely by locals. Complimentary hot fried beef empanadas on arrival, incredible bife de lomo, homemade fries, and flan mixto.
+                      </p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 space-y-1">
+                      <div class="flex justify-between items-center">
+                        <span class="font-bold text-amber-950 dark:text-amber-200">🥟 Empanada Gem: La Cocina</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=La+Cocina+Pueyrredon+Recoleta+Buenos+Aires" target="_blank" class="text-amber-700 dark:text-amber-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                      </div>
+                      <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d3_gem2">
+                        Pueyrredón 1508. Famous hole-in-the-wall for Catamarca baked empanadas. Must try the "Pikichu" (sweet-savory cheese & onion) and sweet beef.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3: Science Center -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 flex items-center justify-center font-bold text-xs shrink-0">2:30</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-1.5 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d3_s3_title">Museo Participativo "Prohibido No Tocar" (Forbidden Not to Touch)</h4>
+                    <span class="text-[11px] font-semibold text-cyan-700 dark:text-cyan-300 bg-cyan-50 dark:bg-cyan-950/60 px-2 py-0.5 rounded">Kids Paradise</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d3_s3_desc">
+                    Inside Centro Cultural Recoleta. 100% interactive experiments: laser mirrors, static electricity orbs, giant soap bubbles, and gravity momentum tracks where kids play and touch everything freely.
+                  </p>
+                  <div class="flex flex-wrap gap-2 pt-1">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Museo+Participativo+de+Ciencias+Prohibido+No+Tocar+Recoleta" target="_blank" class="map-link">
+                      <i data-lucide="flask-conical" class="w-3.5 h-3.5 text-cyan-600"></i>
+                      <span>Science Museum Map</span>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Rapanui+Recoleta+Buenos+Aires" target="_blank" class="map-link">
+                      <i data-lucide="gift" class="w-3.5 h-3.5 text-amber-600"></i>
+                      <span>Rapanui Recoleta (Franui Raspberries)</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4: Dinner -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 flex items-center justify-center font-bold text-xs shrink-0">7:45</div>
+                </div>
+                <div class="flex-1 space-y-1.5">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d3_s4_title">Handmade Italian Pasta Dinner at Cucina Paradiso</h4>
+                    <span class="text-[11px] font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded">Palermo Hollywood</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d3_s4_desc">
+                    Arévalo 1545. Chef Donato de Santis' cozy Italian trattoria. Ricotta ravioli, fluffy potato gnocchi with four-cheese cream sauce, and authentic cannoli.
+                  </p>
+                  <div class="flex flex-wrap gap-2 pt-1">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Cucina+Paradiso+Arevalo+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                      <i data-lucide="utensils" class="w-3.5 h-3.5 text-blue-600"></i>
+                      <span>Cucina Paradiso Map</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= DAY 4 ================= -->
+        <div class="tl-day-card bg-white dark:bg-slate-900/90 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition" id="tl-d4">
+          <div class="bg-gradient-to-r from-sky-900 to-cyan-900 text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span class="px-2.5 py-0.5 rounded bg-sky-500/40 text-sky-200 text-xs font-bold uppercase tracking-wide">Day 4 · Tuesday, Dec 8, 2026</span>
+              <h3 class="text-xl sm:text-2xl font-bold font-serif mt-1" data-i18n="d4_header_title">Tigre & Paraná River Delta Catamaran Boat Cruise</h3>
+            </div>
+            <span class="text-xs text-sky-200 bg-white/10 px-3 py-1 rounded-full font-medium" data-i18n="d4_header_tag">Pace: Scenic Water Excursion</span>
+          </div>
+
+          <div class="p-5 sm:p-6 space-y-6">
+            <div class="space-y-5">
+              <!-- Step 1 -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-sky-100 dark:bg-sky-950 text-sky-800 dark:text-sky-300 flex items-center justify-center font-bold text-xs shrink-0">9:00</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-1.5 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d4_s1_title">Private Van Transfer North to Tigre River Station</h4>
+                    <span class="text-[11px] font-semibold text-sky-700 dark:text-sky-300 bg-sky-50 dark:bg-sky-950/60 px-2 py-0.5 rounded">~50 min ride</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d4_s1_desc">
+                    Private 7-passenger van picks up family at Palermo Suites at 9:00 AM. Arrive at Estación Fluvial de Tigre. Board a classic wooden catamaran to cruise the labyrinth of waterways, seeing stilt houses, water schoolbuses, and lush willows.
+                  </p>
+                  <div class="flex flex-wrap gap-2 pt-1">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Estacion+Fluvial+de+Tigre+Buenos+Aires" target="_blank" class="map-link">
+                      <i data-lucide="ship" class="w-3.5 h-3.5 text-sky-600"></i>
+                      <span>Tigre River Station</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2: Island Lunch -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 flex items-center justify-center font-bold text-xs shrink-0">12:30</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-2 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d4_s2_title">Waterfront Island Dining: Gato Blanco or Vivanco</h4>
+                    <span class="text-[11px] font-semibold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded">Island Lawns</span>
+                  </div>
+                  
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div class="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 space-y-1">
+                      <div class="flex justify-between items-center">
+                        <span class="font-bold text-emerald-950 dark:text-emerald-200">🏝️ Island Pick: Gato Blanco</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+Gato+Blanco+Delta+Tigre" target="_blank" class="text-emerald-700 dark:text-emerald-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                      </div>
+                      <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d4_gem1">
+                        Accessible only by boat. Expansive grassy lawns under weeping willow trees for kids to stretch their legs. Fresh grilled pacú river fish, pastas, and steaks.
+                      </p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-sky-50/70 dark:bg-sky-950/30 border border-sky-200 dark:border-sky-800 space-y-1">
+                      <div class="flex justify-between items-center">
+                        <span class="font-bold text-sky-950 dark:text-sky-200">🛶 Mainland Pick: Vivanco</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+Vivanco+Tigre" target="_blank" class="text-sky-700 dark:text-sky-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                      </div>
+                      <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d4_gem2">
+                        Located inside the historic Tigre Rowing Club. Broad terrace right on the riverbank with homemade pastas and kid-friendly milanesas.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3: Market & Evening Pizza -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center font-bold text-xs shrink-0">4:30</div>
+                </div>
+                <div class="flex-1 space-y-1.5">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d4_s3_title">Puerto de Frutos Market & Casual Pizza Night: Güerrin or La Guitarrita</h4>
+                    <span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">Evening Rest</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d4_s3_desc">
+                    Shop handmade wicker and wooden toys at Puerto de Frutos. 4:30 PM: Private van brings party back to hotel for rest. 7:45 PM: Casual pizza dinner at historic <a href="https://www.google.com/maps/search/?api=1&query=Pizzeria+Guerrin+Avenida+Corrientes+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">Pizzería Güerrin</a> or soccer-themed neighborhood favorite <a href="https://www.google.com/maps/search/?api=1&query=La+Guitarrita+Palermo+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">La Guitarrita</a> in Palermo.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= DAY 5 ================= -->
+        <div class="tl-day-card bg-white dark:bg-slate-900/90 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition" id="tl-d5">
+          <div class="bg-gradient-to-r from-amber-900 via-rose-900 to-red-900 text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span class="px-2.5 py-0.5 rounded bg-amber-500/40 text-amber-200 text-xs font-bold uppercase tracking-wide">Day 5 · Wednesday, Dec 9, 2026</span>
+              <h3 class="text-xl sm:text-2xl font-bold font-serif mt-1" data-i18n="d5_header_title">Colorful La Boca, San Telmo Antiques & Spoon-Cut Steak</h3>
+            </div>
+            <span class="text-xs text-amber-200 bg-white/10 px-3 py-1 rounded-full font-medium" data-i18n="d5_header_tag">Pace: Vibrant Street Art & Heritage</span>
+          </div>
+
+          <div class="p-5 sm:p-6 space-y-6">
+            <div class="space-y-5">
+              <!-- Step 1 -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 flex items-center justify-center font-bold text-xs shrink-0">9:30</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-1.5 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d5_s1_title">Caminito (La Boca) Street Tango & Maradona Murals</h4>
+                    <span class="text-[11px] font-semibold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded">2 Ubers (~$8)</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d5_s1_desc">
+                    Call 2 Ubers south to Caminito in La Boca. Bright pastel zinc conventillos, outdoor street tango dancers, Maradona murals, and Boca Juniors stadium. Stay on the pedestrian tourist perimeter for hassle-free family photos.
+                  </p>
+                  <div class="flex flex-wrap gap-2 pt-1">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Caminito+La+Boca+Buenos+Aires" target="_blank" class="map-link">
+                      <i data-lucide="camera" class="w-3.5 h-3.5 text-amber-600"></i>
+                      <span>Caminito Map</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2: San Telmo Lunch -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-rose-100 dark:bg-rose-950 text-rose-800 dark:text-rose-300 flex items-center justify-center font-bold text-xs shrink-0">12:30</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-2 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d5_s2_title">San Telmo Market, Mafalda & Spoon-Cut Steak at La Brigada</h4>
+                    <span class="text-[11px] font-semibold text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/60 px-2 py-0.5 rounded">Historic Heart</span>
+                  </div>
+                  
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div class="p-3 rounded-xl bg-red-50/70 dark:bg-red-950/30 border border-red-200 dark:border-red-800 space-y-1">
+                      <div class="flex justify-between items-center">
+                        <span class="font-bold text-red-950 dark:text-red-200">🥩 Steak Pick: La Brigada</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Parrilla+La+Brigada+San+Telmo+Buenos+Aires" target="_blank" class="text-red-700 dark:text-red-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                      </div>
+                      <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d5_gem1">
+                        Estados Unidos 465. Soccer memorabilia everywhere. Waiters slice tender beef filets with an ordinary spoon right in front of the kids!
+                      </p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 space-y-1">
+                      <div class="flex justify-between items-center">
+                        <span class="font-bold text-amber-950 dark:text-amber-200">💎 Hidden Bodegón: El Obrero</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=El+Obrero+La+Boca+Buenos+Aires" target="_blank" class="text-amber-700 dark:text-amber-400 font-bold underline flex items-center gap-0.5">Map <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                      </div>
+                      <p class="text-slate-600 dark:text-slate-300 text-[11px]" data-i18n="d5_gem2">
+                        Agustín R. Caffarena 64. Working-class tavern dating to 1954. Giant milanesas, fried eggs, and fries loved by visiting celebrities and local families.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3: Afternoon -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 flex items-center justify-center font-bold text-xs shrink-0">4:00</div>
+                </div>
+                <div class="flex-1 space-y-1.5">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d5_s3_title">Plaza Armenia Playground & Old-School Gelato at Scannapieco</h4>
+                    <span class="text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded">Palermo Downtime</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d5_s3_desc">
+                    Head back to Palermo. Let kids play on the modern swings and turf at Plaza Armenia. Grab gelato from <a href="https://www.google.com/maps/search/?api=1&query=Heladeria+Scannapieco+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">Heladería Scannapieco</a> (crafting traditional Italian gelato since 1938). Dinner: crispy milanesas at <a href="https://www.google.com/maps/search/?api=1&query=El+Preferido+de+Palermo+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">El Preferido de Palermo</a>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= DAY 6 ================= -->
+        <div class="tl-day-card bg-white dark:bg-slate-900/90 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition" id="tl-d6">
+          <div class="bg-gradient-to-r from-amber-800 to-yellow-900 text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span class="px-2.5 py-0.5 rounded bg-yellow-500/40 text-yellow-200 text-xs font-bold uppercase tracking-wide">Day 6 · Thursday, Dec 10, 2026</span>
+              <h3 class="text-xl sm:text-2xl font-bold font-serif mt-1" data-i18n="d6_header_title">Gaucho Estancia Ranch Day Trip (Pampas Horseback & Asado BBQ)</h3>
+            </div>
+            <span class="text-xs text-yellow-200 bg-white/10 px-3 py-1 rounded-full font-medium" data-i18n="d6_header_tag">Pace: Countryside Excursion</span>
+          </div>
+
+          <div class="p-5 sm:p-6 space-y-6">
+            <div class="space-y-5">
+              <!-- Step 1 -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 flex items-center justify-center font-bold text-xs shrink-0">8:45</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-1.5 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d6_s1_title">Private Van to Estancia El Ombú de Areco / Santa Susana</h4>
+                    <span class="text-[11px] font-semibold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded">~90 min ride</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d6_s1_desc">
+                    Private 7-passenger van departs Palermo Suites. Drive through the Argentine pampas to historic San Antonio de Areco. Arrive ~10:30 AM: welcomed with hot fried beef empanadas and fresh juices.
+                  </p>
+                  <div class="flex flex-wrap gap-2 pt-1">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Estancia+El+Ombu+de+Areco+San+Antonio+de+Areco" target="_blank" class="map-link">
+                      <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-700"></i>
+                      <span>Estancia El Ombú Map</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 flex items-center justify-center font-bold text-xs shrink-0">11:15</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-1.5 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d6_s2_title">Horseback Riding, Carriage Rides & Grand Outdoor Asado BBQ</h4>
+                    <span class="text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded">All-Inclusive</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d6_s2_desc">
+                    Gentle horses for all riding levels; sulky carriages for grandparents and young kids across the wide lawns. 1:00 PM: Grand Asado feast featuring grilled chorizo sausages, beef ribs, roasted chicken, fresh salads, and unlimited wine & sodas.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 flex items-center justify-center font-bold text-xs shrink-0">2:30</div>
+                </div>
+                <div class="flex-1 space-y-1.5">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d6_s3_title">Folklore Malambo Show, Gaucho Ring Races & 6 PM Return</h4>
+                    <span class="text-[11px] font-semibold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded">Gaucho Skills</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d6_s3_desc">
+                    Live gaucho folklore music and spinning boleadoras dance show. Gaucho ring-race horsemanship demonstration (*carreras de sortijas*). 4:30 PM: Van brings party back to Palermo Suites by 6:00 PM for packing and bedtime.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= DAY 7 ================= -->
+        <div class="tl-day-card bg-white dark:bg-slate-900/90 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition" id="tl-d7">
+          <div class="bg-gradient-to-r from-slate-900 to-blue-950 text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span class="px-2.5 py-0.5 rounded bg-blue-500/40 text-blue-200 text-xs font-bold uppercase tracking-wide">Day 7 · Friday, Dec 11, 2026</span>
+              <h3 class="text-xl sm:text-2xl font-bold font-serif mt-1" data-i18n="d7_header_title">Distrito Arcos Shopping, 4:15 PM Van & Flight Home</h3>
+            </div>
+            <span class="text-xs text-emerald-300 bg-white/10 px-3 py-1 rounded-full font-medium" data-i18n="d7_header_tag">Flight LA 8872 Departs 8:05 PM</span>
+          </div>
+
+          <div class="p-5 sm:p-6 space-y-6">
+            <div class="space-y-5">
+              <!-- Step 1 -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 flex items-center justify-center font-bold text-xs shrink-0">10:00</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-1.5 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d7_s1_title">Leisurely Breakfast & 12:00 PM Check-Out (Bags Stored at Desk)</h4>
+                    <span class="text-[11px] font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded">Palermo Suites</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d7_s1_desc">
+                    Enjoy the included continental breakfast. Check out at 12:00 PM (foreign card + passport 21% VAT exemption!). Front desk holds all 6 pieces of luggage securely.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 flex items-center justify-center font-bold text-xs shrink-0">12:30</div>
+                  <div class="w-0.5 flex-1 bg-slate-200 dark:bg-slate-800 my-1"></div>
+                </div>
+                <div class="flex-1 space-y-1.5 pb-2">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d7_s2_title">Distrito Arcos Outlet Shopping & Farewell Lunch</h4>
+                    <span class="text-[11px] font-semibold text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded">3 min walk</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d7_s2_desc">
+                    Walk 3 blocks to open-air brick railway outlet mall. Buy Havanna dulce de leche alfajores. Lunch at <a href="https://www.google.com/maps/search/?api=1&query=Il+Quotidiano+Palermo+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">Il Quotidiano</a> (fresh pasta & salads) or <a href="https://www.google.com/maps/search/?api=1&query=Le+Pain+Quotidien+Distrito+Arcos+Buenos+Aires" target="_blank" class="font-bold underline text-blue-600 dark:text-blue-400">Le Pain Quotidien</a>.
+                  </p>
+                  <div class="flex flex-wrap gap-2 pt-1">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Distrito+Arcos+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                      <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-purple-600"></i>
+                      <span>Distrito Arcos Mall Map</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 flex items-center justify-center font-bold text-xs shrink-0">4:15</div>
+                </div>
+                <div class="flex-1 space-y-1.5">
+                  <div class="flex flex-wrap items-center justify-between gap-1">
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="d7_s3_title">Private Van to EZE & Flight LA 8872 Nonstop to JFK</h4>
+                    <span class="text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded">4:15 PM Van</span>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300" data-i18n="d7_s3_desc">
+                    4:15 PM sharp: 7-passenger private van picks up party and bags at Palermo Suites lobby. Arrive EZE at 5:00 PM (~3 hours before 8:05 PM departure). Flight LA 8872 lands Saturday, Dec 12 at 5:08 AM at JFK!
+                  </p>
+                  <div class="flex flex-wrap gap-2 pt-1">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Aeropuerto+Internacional+Ministro+Pistarini+EZE" target="_blank" class="map-link">
+                      <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-600"></i>
+                      <span>EZE Airport Map</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- SECTION: CRITICAL ADVANCE BOOKING TIMELINE & RADAR -->
     <section id="booking-calendar" class="scroll-mt-20 space-y-5">
       <div class="bg-gradient-to-r from-rose-900 via-red-900 to-rose-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">
@@ -318,7 +1064,7 @@
               </div>
               <h3 class="text-base font-bold text-white" data-i18n="dl_90_title">Don Julio Parrilla</h3>
               <p class="text-xs text-rose-100/80 mt-1 leading-relaxed" data-i18n="dl_90_desc">
-                Michelin 1-star & #1 steakhouse in LatAm. Reservations open on <strong>Meitre</strong> at midnight 90 days out and sell out in 10 minutes. (Tip: Lunch slots are much easier than dinner).
+                Michelin 1-star & #1 steakhouse in LatAm. Reservations open on Meitre at midnight 90 days out and sell out in 10 minutes. (Tip: Lunch slots are much easier than dinner).
               </p>
             </div>
             <a href="https://parrilladonjulio.com.ar/" target="_blank" class="mt-2 block text-center py-2 bg-white text-rose-950 hover:bg-rose-100 rounded-xl text-xs font-bold transition" data-i18n="btn_dj_book">
@@ -380,11 +1126,11 @@
       </div>
     </section>
 
-    <!-- SECTION: HOTEL (CONFIRMED 2 ROOMS) & TRANSFERS -->
+    <!-- SECTION: HOTEL & TRANSFERS -->
     <section id="hotel" class="scroll-mt-20 space-y-4">
       <div class="border-b border-slate-200 dark:border-slate-800 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div class="flex items-center space-x-2">
-          <span class="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center font-bold text-sm">1</span>
+          <span class="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center font-bold text-sm">2</span>
           <div>
             <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white" data-i18n="hotel_heading">Hotel & Airport Transfers Logistics</h2>
             <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="hotel_sub">Palermo Suites (Paraguay 4646) · 2 Confirmed Suites · Private 7-Passenger Van</p>
@@ -483,256 +1229,7 @@
       </div>
     </section>
 
-    <!-- SECTION: RANKED ATTRACTIONS & EXPERIENCES -->
-    <section id="ranked-attractions" class="scroll-mt-20 space-y-6">
-      <div class="border-b border-slate-200 dark:border-slate-800 pb-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
-        <div>
-          <div class="flex items-center space-x-2">
-            <span class="w-7 h-7 rounded-lg bg-arg-blue text-white flex items-center justify-center font-bold text-sm">2</span>
-            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white" data-i18n="attractions_heading">Ranked Family Attractions & Hidden Gems</h2>
-          </div>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="attractions_sub">Top-rated activities for 4 adults + 2 kids with advance ticket badges and live maps</p>
-        </div>
-
-        <!-- Category Filters -->
-        <div class="flex flex-wrap gap-1 bg-slate-200/80 dark:bg-slate-800 p-1 rounded-xl text-xs font-bold no-print" id="attraction-filters">
-          <button onclick="filterAttractions('all')" class="attr-pill active-pill px-3 py-1.5 rounded-lg text-slate-900 dark:text-slate-200 transition" data-filter="all" data-i18n="filter_all">All (12)</button>
-          <button onclick="filterAttractions('nature')" class="attr-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-filter="nature" data-i18n="filter_animals">🦁 Animals & Parks</button>
-          <button onclick="filterAttractions('play')" class="attr-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-filter="play" data-i18n="filter_kids_play">🚀 Kids Play & Science</button>
-          <button onclick="filterAttractions('culture')" class="attr-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-filter="culture" data-i18n="filter_culture">🎨 Culture & Icons</button>
-          <button onclick="filterAttractions('excursion')" class="attr-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-filter="excursion" data-i18n="filter_excursions">⛵ Day Excursions</button>
-        </div>
-      </div>
-
-      <!-- Attraction Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="attractions-grid">
-
-        <!-- Attraction 1: Ecoparque BA -->
-        <div class="attr-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="nature">
-          <div class="space-y-3">
-            <div class="flex items-start justify-between gap-2">
-              <div>
-                <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 text-[10px] font-extrabold uppercase" data-i18n="att_1_tag">Rank #1 · Animals & Parks</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="att_1_title">Ecoparque Buenos Aires</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="att_1_loc">Plaza Italia, Palermo (6 min walk from hotel)</p>
-              </div>
-              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.9</span>
-            </div>
-
-            <div class="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 flex items-center space-x-2 text-xs font-bold text-emerald-800 dark:text-emerald-300">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-              <span data-i18n="att_1_badge">FREE ADMISSION · WALK-IN (No Booking Needed)</span>
-            </div>
-
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="att_1_desc">
-              Former city zoo transformed into a lush ecological reserve. Patagonian maras, peacocks, flamingos, and capybaras roam freely along wide, flat, paved paths. 100% stroller-friendly with clean shaded cafes and modern restrooms.
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
-            <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium" data-i18n="att_1_target">Ideal for: Toddlers to Grandparents</span>
-            <div class="flex space-x-1.5">
-              <a href="https://www.google.com/maps/search/?api=1&query=Ecoparque+Buenos+Aires+Plaza+Italia" target="_blank" class="map-link">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-600"></i>
-                <span data-i18n="link_map">Map</span>
-              </a>
-              <a href="https://www.tripadvisor.com/Search?q=Ecoparque+Buenos+Aires" target="_blank" class="map-link">
-                <i data-lucide="star" class="w-3.5 h-3.5 text-amber-500"></i>
-                <span data-i18n="link_reviews">Reviews</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Attraction 2: MIJU -->
-        <div class="attr-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="play">
-          <div class="space-y-3">
-            <div class="flex items-start justify-between gap-2">
-              <div>
-                <span class="px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-950/80 text-purple-800 dark:text-purple-300 text-[10px] font-extrabold uppercase" data-i18n="att_2_tag">Rank #1 · Kids Play Museum</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="att_2_title">MIJU (Museo de la Imaginación y el Juego)</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="att_2_loc">Puerto Madero (Costanera Sur)</p>
-              </div>
-              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.9</span>
-            </div>
-
-            <div class="p-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 flex items-center space-x-2 text-xs font-bold text-rose-800 dark:text-rose-300">
-              <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-600 shrink-0"></i>
-              <span data-i18n="att_2_badge">🚨 MUST BOOK TIMED SLOT ONLINE 7–14 DAYS AHEAD</span>
-            </div>
-
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="att_2_desc">
-              The newest, most modern children’s museum in Argentina. Divided into 3 immersive floors tailored by age group (0–3, 4–8, 9–12). Sensory tunnels, digital climbing labyrinths, slide systems, and creative games. Strict capacity limits keep it uncrowded.
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
-            <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium" data-i18n="att_2_target">Ideal for: Kids 2–12</span>
-            <div class="flex space-x-1.5">
-              <a href="https://www.google.com/maps/search/?api=1&query=MIJU+Museo+de+la+Imaginacion+y+el+Juego+Buenos+Aires" target="_blank" class="map-link">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-purple-600"></i>
-                <span data-i18n="link_map">Map</span>
-              </a>
-              <a href="https://buenosaires.gob.ar/cultura/promocion-cultural/miju-museo-de-la-imaginacion-y-el-juego" target="_blank" class="map-link">
-                <i data-lucide="ticket" class="w-3.5 h-3.5 text-rose-600"></i>
-                <span data-i18n="link_tickets">Tickets</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Attraction 3: Gaucho Estancia Ranch -->
-        <div class="attr-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="excursion">
-          <div class="space-y-3">
-            <div class="flex items-start justify-between gap-2">
-              <div>
-                <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 text-[10px] font-extrabold uppercase" data-i18n="att_3_tag">Rank #1 · Day Excursion</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="att_3_title">Estancia El Ombú de Areco / Santa Susana</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="att_3_loc">San Antonio de Areco (~90 min private van)</p>
-              </div>
-              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.9</span>
-            </div>
-
-            <div class="p-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 flex items-center space-x-2 text-xs font-bold text-amber-900 dark:text-amber-200">
-              <i data-lucide="clock" class="w-4 h-4 text-amber-600 shrink-0"></i>
-              <span data-i18n="att_3_badge">⚠️ BOOK 2–4 WEEKS IN ADVANCE</span>
-            </div>
-
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="att_3_desc">
-              Full-day traditional pampas ranch fiesta. Gentle horseback riding and vintage sulky carriage rides for grandparents & kids. Massive open-flame asado BBQ feast, live folk guitars, dancing, and gaucho ring-race demonstrations across the open lawns.
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
-            <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium" data-i18n="att_3_target">Full Day (10 AM–5 PM) · All Ages</span>
-            <div class="flex space-x-1.5">
-              <a href="https://www.google.com/maps/search/?api=1&query=Estancia+El+Ombu+de+Areco+San+Antonio+de+Areco" target="_blank" class="map-link">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-700"></i>
-                <span data-i18n="link_map">Map</span>
-              </a>
-              <a href="https://www.tripadvisor.com/Search?q=Estancia+El+Ombu+de+Areco" target="_blank" class="map-link">
-                <i data-lucide="star" class="w-3.5 h-3.5 text-amber-500"></i>
-                <span data-i18n="link_reviews">Reviews</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Attraction 4: Tigre Delta Boat Tour -->
-        <div class="attr-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="excursion">
-          <div class="space-y-3">
-            <div class="flex items-start justify-between gap-2">
-              <div>
-                <span class="px-2 py-0.5 rounded bg-sky-100 dark:bg-sky-950/80 text-sky-800 dark:text-sky-300 text-[10px] font-extrabold uppercase" data-i18n="att_4_tag">Rank #2 · Day Excursion</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="att_4_title">Tigre & Paraná Delta River Cruise</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="att_4_loc">Tigre (50 min north via private van)</p>
-              </div>
-              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.8</span>
-            </div>
-
-            <div class="p-2 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 flex items-center space-x-2 text-xs font-bold text-sky-900 dark:text-sky-200">
-              <i data-lucide="calendar-check" class="w-4 h-4 text-sky-600 shrink-0"></i>
-              <span data-i18n="att_4_badge">⚠️ ADVANCE VAN + BOAT BOOKING RECOMMENDED</span>
-            </div>
-
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="att_4_desc">
-              Explore the labyrinth of green island canals on a wooden catamaran or private launch. Spot stilt houses, island grocery boats, and schools on water. Eat lunch on island lawns at Gato Blanco and shop handwoven crafts at Puerto de Frutos.
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
-            <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium" data-i18n="att_4_target">Half to Full Day · All Ages</span>
-            <div class="flex space-x-1.5">
-              <a href="https://www.google.com/maps/search/?api=1&query=Estacion+Fluvial+de+Tigre+Buenos+Aires" target="_blank" class="map-link">
-                <i data-lucide="ship" class="w-3.5 h-3.5 text-sky-600"></i>
-                <span data-i18n="link_station">Boat Station</span>
-              </a>
-              <a href="https://www.tripadvisor.com/Search?q=Tigre+Delta+Boat+Tour" target="_blank" class="map-link">
-                <i data-lucide="star" class="w-3.5 h-3.5 text-amber-500"></i>
-                <span data-i18n="link_reviews">Reviews</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Attraction 5: Planetario Galileo Galilei -->
-        <div class="attr-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="play">
-          <div class="space-y-3">
-            <div class="flex items-start justify-between gap-2">
-              <div>
-                <span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950/80 text-indigo-800 dark:text-indigo-300 text-[10px] font-extrabold uppercase" data-i18n="att_5_tag">Rank #2 · Space & Science</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="att_5_title">Planetario Galileo Galilei</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="att_5_loc">Parque Tres de Febrero, Palermo</p>
-              </div>
-              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.8</span>
-            </div>
-
-            <div class="p-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 flex items-center space-x-2 text-xs font-bold text-rose-800 dark:text-rose-300">
-              <i data-lucide="ticket" class="w-4 h-4 text-rose-600 shrink-0"></i>
-              <span data-i18n="att_5_badge">🚨 DOME SHOW TICKETS: BOOK ONLINE 7–10 DAYS OUT</span>
-            </div>
-
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="att_5_desc">
-              Iconic futuristic UFO dome. Air-conditioned theater features 360° laser projections of constellations and space missions tailored for kids. Outdoor park with real space meteorites is free and open walk-in.
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
-            <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium" data-i18n="att_5_target">Show: 50 mins · Kids & Space Fans</span>
-            <div class="flex space-x-1.5">
-              <a href="https://www.google.com/maps/search/?api=1&query=Planetario+Galileo+Galilei+Buenos+Aires" target="_blank" class="map-link">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-indigo-600"></i>
-                <span data-i18n="link_map">Map</span>
-              </a>
-              <a href="https://planetario.buenosaires.gob.ar/" target="_blank" class="map-link">
-                <i data-lucide="globe" class="w-3.5 h-3.5 text-blue-600"></i>
-                <span data-i18n="link_tickets">Tickets</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Attraction 6: El Ateneo Grand Splendid -->
-        <div class="attr-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="culture">
-          <div class="space-y-3">
-            <div class="flex items-start justify-between gap-2">
-              <div>
-                <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 text-[10px] font-extrabold uppercase" data-i18n="att_6_tag">Rank #1 · Cultural Landmark</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="att_6_title">El Ateneo Grand Splendid</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="att_6_loc">Av. Santa Fe 1860, Recoleta</p>
-              </div>
-              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.9</span>
-            </div>
-
-            <div class="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 flex items-center space-x-2 text-xs font-bold text-emerald-800 dark:text-emerald-300">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-              <span data-i18n="att_6_badge">FREE ADMISSION · WALK-IN (Open Daily)</span>
-            </div>
-
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="att_6_desc">
-              Named the world's most stunning bookstore. Former 1919 theater with gilded fresco ceilings and theater balconies. The crimson velvet stage is now an espresso bar, and the basement level has a wonderful children’s reading nook.
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
-            <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium" data-i18n="att_6_target">Time: 45–60 mins · All Ages</span>
-            <div class="flex space-x-1.5">
-              <a href="https://www.google.com/maps/search/?api=1&query=El+Ateneo+Grand+Splendid+Buenos+Aires" target="_blank" class="map-link">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-purple-600"></i>
-                <span data-i18n="link_map">Map</span>
-              </a>
-              <a href="https://www.yelp.com/search?find_desc=El+Ateneo+Grand+Splendid&find_loc=Buenos+Aires" target="_blank" class="map-link">
-                <i data-lucide="star" class="w-3.5 h-3.5 text-red-500"></i>
-                <span data-i18n="link_yelp">Yelp</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SECTION: RANKED RESTAURANTS & FOOD DIRECTORY -->
+    <!-- SECTION: RANKED RESTAURANTS & HIDDEN GEMS DIRECTORY -->
     <section id="ranked-restaurants" class="scroll-mt-20 space-y-6">
       <div class="border-b border-slate-200 dark:border-slate-800 pb-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
         <div>
@@ -747,23 +1244,113 @@
         <div class="flex flex-wrap gap-1 bg-slate-200/80 dark:bg-slate-800 p-1 rounded-xl text-xs font-bold no-print" id="food-filters">
           <button onclick="filterFood('all')" class="food-pill active-pill px-3 py-1.5 rounded-lg text-slate-900 dark:text-slate-200 transition" data-filter="all" data-i18n="filter_food_all">All Food</button>
           <button onclick="filterFood('parrilla')" class="food-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-filter="parrilla" data-i18n="filter_parrillas">🥩 Top Parrillas</button>
+          <button onclick="filterFood('kids')" class="food-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-filter="kids" data-i18n="filter_kids_food">👶 Kid-Friendly Gems</button>
           <button onclick="filterFood('pizza')" class="food-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-filter="pizza" data-i18n="filter_pizza">🍕 Pizza & Empanadas</button>
           <button onclick="filterFood('helado')" class="food-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-filter="helado" data-i18n="filter_helado">🍦 Ranked Heladerías</button>
-          <button onclick="filterFood('cafe')" class="food-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-filter="cafe" data-i18n="filter_cafes">☕ Historic Cafes</button>
         </div>
       </div>
 
       <!-- Food Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="food-grid">
 
-        <!-- Food 1: Don Julio -->
+        <!-- Food 1: La Payuca (Kid Gem) -->
+        <div class="food-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="kids">
+          <div class="space-y-3">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 text-[10px] font-black uppercase" data-i18n="fd_payuca_tag">Kid-Friendly #1 · Supervised Playroom</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1">La Payuca</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Arenales 3443, Palermo (near Alto Palermo)</p>
+              </div>
+              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.8</span>
+            </div>
+
+            <div class="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs font-bold text-emerald-900 dark:text-emerald-300">
+              <span data-i18n="fd_payuca_badge">SUPERVISED PLAYROOM (*SALÓN PARA NIÑOS*) WITH MONITORS</span>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="fd_payuca_desc">
+              The golden standard for families in Buenos Aires. While parents slowly enjoy ribeye steaks and Malbec wine, kids play in a dedicated multi-level playroom with toys, video games, and attentive staff.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+            <span class="text-xs font-bold text-slate-800 dark:text-slate-200">~$22–$35 USD / person</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=La+Payuca+Arenales+Buenos+Aires" target="_blank" class="map-link">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-600"></i>
+              <span data-i18n="link_map">Map</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Food 2: Las Cholas (Kid Gem) -->
+        <div class="food-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="kids">
+          <div class="space-y-3">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 text-[10px] font-black uppercase" data-i18n="fd_cholas_tag">Kid-Friendly #2 · Color on Tablecloths</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1">Las Cholas</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Arce 306, Las Cañitas (Palermo)</p>
+              </div>
+              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.7</span>
+            </div>
+
+            <div class="p-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-xs font-bold text-amber-900 dark:text-amber-300">
+              <span data-i18n="fd_cholas_badge">KIDS COLOR WITH CRAYONS ON PAPER TABLECLOTHS</span>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="fd_cholas_desc">
+              Vibrant rustic atmosphere. Waiters hand children crayons to draw on the tables. Enormous wooden meat platters (*tablas*), clay-pot humita, and baked empanadas designed for big family sharing.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+            <span class="text-xs font-bold text-slate-800 dark:text-slate-200">~$15–$25 USD / person</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Las+Cholas+Arce+Palermo+Buenos+Aires" target="_blank" class="map-link">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-600"></i>
+              <span data-i18n="link_map">Map</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Food 3: Parrilla Peña (Hidden Gem) -->
+        <div class="food-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="parrilla">
+          <div class="space-y-3">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <span class="px-2 py-0.5 rounded bg-red-100 dark:bg-red-950/80 text-red-800 dark:text-red-300 text-[10px] font-black uppercase" data-i18n="fd_pena_tag">Hidden Gem #1 · Free Welcome Empanadas</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1">Parrilla Peña</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Rodríguez Peña 682, Recoleta / Centro border</p>
+              </div>
+              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.8</span>
+            </div>
+
+            <div class="p-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-xs font-bold text-rose-900 dark:text-rose-300">
+              <span data-i18n="fd_pena_badge">ZERO TOURIST HYPE · COMPLIMENTARY HOT EMPANADA ON ARRIVAL</span>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="fd_pena_desc">
+              Beloved local institution with bow-tie waiters. Freshly fried complimentary beef empanada served immediately when seated. Incredible bife de lomo, homemade fries, and legendary flan mixto with dulce de leche.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+            <span class="text-xs font-bold text-slate-800 dark:text-slate-200">~$18–$28 USD / person</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Parrilla+Pena+Rodriguez+Pena+Buenos+Aires" target="_blank" class="map-link">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-red-600"></i>
+              <span data-i18n="link_map">Map</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Food 4: Don Julio -->
         <div class="food-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="parrilla">
           <div class="space-y-3">
             <div class="flex items-start justify-between gap-2">
               <div>
                 <span class="px-2 py-0.5 rounded bg-red-100 dark:bg-red-950/80 text-red-800 dark:text-red-300 text-[10px] font-black uppercase" data-i18n="fd_1_tag">Parrilla Rank #1 · Michelin 1-Star</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="fd_1_title">Don Julio</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="fd_1_loc">Guatemala 4699, Palermo Soho</p>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1">Don Julio</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Guatemala 4699, Palermo Soho</p>
               </div>
               <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.9</span>
             </div>
@@ -798,14 +1385,14 @@
           </div>
         </div>
 
-        <!-- Food 2: La Cabrera -->
-        <div class="food-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="parrilla">
+        <!-- Food 5: La Cabrera -->
+        <div class="food-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="kids">
           <div class="space-y-3">
             <div class="flex items-start justify-between gap-2">
               <div>
                 <span class="px-2 py-0.5 rounded bg-red-100 dark:bg-red-950/80 text-red-800 dark:text-red-300 text-[10px] font-black uppercase" data-i18n="fd_2_tag">Parrilla Rank #2 · Most Kid-Friendly</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="fd_2_title">La Cabrera</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="fd_2_loc">José A. Cabrera 5099, Palermo Soho</p>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1">La Cabrera</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">José A. Cabrera 5099, Palermo Soho</p>
               </div>
               <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.8</span>
             </div>
@@ -840,50 +1427,14 @@
           </div>
         </div>
 
-        <!-- Food 3: El Preferido -->
-        <div class="food-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="parrilla">
-          <div class="space-y-3">
-            <div class="flex items-start justify-between gap-2">
-              <div>
-                <span class="px-2 py-0.5 rounded bg-pink-100 dark:bg-pink-950/80 text-pink-800 dark:text-pink-300 text-[10px] font-black uppercase" data-i18n="fd_3_tag">Bodegón Rank #1 · Sister of Don Julio</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="fd_3_title">El Preferido de Palermo</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="fd_3_loc">Jorge Luis Borges 2108, Palermo</p>
-              </div>
-              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.8</span>
-            </div>
-
-            <div class="p-2 rounded-xl bg-pink-50 dark:bg-pink-950/40 border border-pink-200 dark:border-pink-800 text-xs font-bold text-pink-900 dark:text-pink-300">
-              <span data-i18n="fd_3_badge">BOOK 2–3 WEEKS AHEAD OR WALK IN AT 12 PM / 7:30 PM</span>
-            </div>
-
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="fd_3_desc">
-              Historic corner building painted vivid pink. Renowned for what locals consider the best milanesa in Buenos Aires (thin, crispy breaded beef cutlet that kids gobble up) and cured Iberian-style charcuterie.
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
-            <span class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="fd_3_price">~$25–$40 USD / person</span>
-            <div class="flex space-x-1.5">
-              <a href="https://www.google.com/maps/search/?api=1&query=El+Preferido+de+Palermo+Buenos+Aires" target="_blank" class="map-link">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-pink-600"></i>
-                <span data-i18n="link_map">Map</span>
-              </a>
-              <a href="https://www.tripadvisor.com/Search?q=El+Preferido+de+Palermo" target="_blank" class="map-link">
-                <i data-lucide="star" class="w-3.5 h-3.5 text-amber-500"></i>
-                <span data-i18n="link_reviews">Reviews</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Food 4: Cadore Gelato -->
+        <!-- Food 6: Cadore Gelato -->
         <div class="food-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="helado">
           <div class="space-y-3">
             <div class="flex items-start justify-between gap-2">
               <div>
                 <span class="px-2 py-0.5 rounded bg-sky-100 dark:bg-sky-950/80 text-sky-800 dark:text-sky-300 text-[10px] font-black uppercase" data-i18n="fd_4_tag">Gelato Rank #1 · NatGeo Top 10 World</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="fd_4_title">Heladería Cadore</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="fd_4_loc">Av. Corrientes 1695, Downtown</p>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1">Heladería Cadore</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Av. Corrientes 1695, Downtown</p>
               </div>
               <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.9</span>
             </div>
@@ -904,78 +1455,6 @@
                 <i data-lucide="ice-cream" class="w-3.5 h-3.5 text-sky-600"></i>
                 <span data-i18n="link_map">Map</span>
               </a>
-              <a href="https://www.tripadvisor.com/Search?q=Heladeria+Cadore" target="_blank" class="map-link">
-                <i data-lucide="star" class="w-3.5 h-3.5 text-amber-500"></i>
-                <span data-i18n="link_reviews">Reviews</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Food 5: Pizzería Güerrin -->
-        <div class="food-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="pizza">
-          <div class="space-y-3">
-            <div class="flex items-start justify-between gap-2">
-              <div>
-                <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 text-[10px] font-black uppercase" data-i18n="fd_5_tag">Pizza Rank #1 · Since 1932</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="fd_5_title">Pizzería Güerrin</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="fd_5_loc">Av. Corrientes 1368, Downtown Theater District</p>
-              </div>
-              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.8</span>
-            </div>
-
-            <div class="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs font-bold text-emerald-800 dark:text-emerald-300">
-              <span data-i18n="fd_5_badge">✅ WALK-IN ONLY (Massive multi-room seating)</span>
-            </div>
-
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="fd_5_desc">
-              Buenos Aires' most famous wood-fired pizzeria. Thick, fluffy crust drenched in overflowing bubbling mozzarella cheese (muzzarella al molde). Kids love the cheese pulls!
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
-            <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400" data-i18n="fd_5_price">~$8–$15 USD / person</span>
-            <div class="flex space-x-1.5">
-              <a href="https://www.google.com/maps/search/?api=1&query=Pizzeria+Guerrin+Avenida+Corrientes+Buenos+Aires" target="_blank" class="map-link">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-600"></i>
-                <span data-i18n="link_map">Map</span>
-              </a>
-              <a href="https://www.tripadvisor.com/Search?q=Pizzeria+Guerrin+Buenos+Aires" target="_blank" class="map-link">
-                <i data-lucide="star" class="w-3.5 h-3.5 text-amber-500"></i>
-                <span data-i18n="link_reviews">Reviews</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Food 6: Rapanui Chocolates -->
-        <div class="food-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="helado">
-          <div class="space-y-3">
-            <div class="flex items-start justify-between gap-2">
-              <div>
-                <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 text-[10px] font-black uppercase" data-i18n="fd_6_tag">Gelato Rank #2 · Bariloche Artisan</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="fd_6_title">Rapanui Chocolates & Helados</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="fd_6_loc">Malabia 2014, Palermo & Uruguay 1284, Recoleta</p>
-              </div>
-              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.9</span>
-            </div>
-
-            <div class="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs font-bold text-emerald-800 dark:text-emerald-300">
-              <span data-i18n="fd_6_badge">✅ WALK-IN (Beautiful cafe interior)</span>
-            </div>
-
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="fd_6_desc">
-              Patagonian artisan chocolate house. Don't leave Argentina without trying <strong>Franui</strong> (fresh wild raspberries coated in milk and white chocolate) and their rich double chocolate & pistachio gelato scoops.
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
-            <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400" data-i18n="fd_6_price">~$3–$6 USD</span>
-            <div class="flex space-x-1.5">
-              <a href="https://www.google.com/maps/search/?api=1&query=Rapanui+Palermo+Buenos+Aires" target="_blank" class="map-link">
-                <i data-lucide="gift" class="w-3.5 h-3.5 text-amber-700"></i>
-                <span data-i18n="link_map">Map</span>
-              </a>
             </div>
           </div>
         </div>
@@ -983,142 +1462,110 @@
       </div>
     </section>
 
-    <!-- SECTION: MODULAR ITINERARY OPTIONS -->
-    <section id="itinerary-options" class="scroll-mt-20 space-y-6">
-      <div class="border-b border-slate-200 dark:border-slate-800 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+    <!-- SECTION: RANKED ATTRACTIONS -->
+    <section id="ranked-attractions" class="scroll-mt-20 space-y-6">
+      <div class="border-b border-slate-200 dark:border-slate-800 pb-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
         <div>
           <div class="flex items-center space-x-2">
-            <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">4</span>
-            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white" data-i18n="itin_heading">3 Modular Family Itinerary Options</h2>
+            <span class="w-7 h-7 rounded-lg bg-arg-blue text-white flex items-center justify-center font-bold text-sm">4</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white" data-i18n="attractions_heading">Ranked Family Attractions & Hidden Gems</h2>
           </div>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="itin_sub">Choose the pace and focus that fits your family best, or mix and match days!</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="attractions_sub">Top-rated activities for 4 adults + 2 kids with advance ticket badges and live maps</p>
         </div>
 
-        <!-- Flow Selector Tabs -->
-        <div class="flex flex-wrap gap-1 bg-slate-200/80 dark:bg-slate-800 p-1 rounded-xl text-xs font-bold no-print" id="flow-selector">
-          <button onclick="switchFlow('track-a')" class="flow-pill active-pill px-3 py-1.5 rounded-lg text-slate-900 dark:text-slate-200 transition" data-flow="track-a" data-i18n="tab_track_a">Option A: Balanced Classic</button>
-          <button onclick="switchFlow('track-b')" class="flow-pill px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-flow="track-b" data-i18n="tab_track_b">Option B: Kids & Animals Focus</button>
-          <button onclick="switchFlow('track-c')" class="flow-pill px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-flow="track-c" data-i18n="tab_track_c">Option C: Food & Culture Focus</button>
+        <div class="flex flex-wrap gap-1 bg-slate-200/80 dark:bg-slate-800 p-1 rounded-xl text-xs font-bold no-print">
+          <button onclick="filterAttractions('all')" class="attr-pill active-pill px-3 py-1.5 rounded-lg text-slate-900 dark:text-slate-200 transition" data-filter="all" data-i18n="filter_all">All (12)</button>
+          <button onclick="filterAttractions('nature')" class="attr-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-filter="nature" data-i18n="filter_animals">🦁 Animals & Parks</button>
+          <button onclick="filterAttractions('play')" class="attr-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-filter="play" data-i18n="filter_kids_play">🚀 Kids Play & Science</button>
+          <button onclick="filterAttractions('culture')" class="attr-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-filter="culture" data-i18n="filter_culture">🎨 Culture & Icons</button>
+          <button onclick="filterAttractions('excursion')" class="attr-pill px-2.5 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" data-filter="excursion" data-i18n="filter_excursions">⛵ Day Excursions</button>
         </div>
       </div>
 
-      <!-- Flow Container -->
-      <div id="flow-container">
-
-        <!-- TRACK A: BALANCED CLASSIC -->
-        <div id="track-a" class="flow-content space-y-4">
-          <div class="bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 rounded-2xl p-4 flex items-start space-x-3 text-xs text-blue-900 dark:text-blue-200">
-            <i data-lucide="compass" class="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5"></i>
-            <div>
-              <strong class="font-bold text-sm block text-blue-950 dark:text-blue-200" data-i18n="track_a_title">Option A: The Balanced Family Classic (Recommended)</strong>
-              <span data-i18n="track_a_desc">Smooth, well-tested pace blending iconic Buenos Aires highlights (Caminito, Recoleta, Palermo) with kid favorites (Ecoparque, Planetarium, Tigre boat, Estancia Gaucho BBQ).</span>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="attractions-grid">
+        <!-- Ecoparque -->
+        <div class="attr-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="nature">
+          <div class="space-y-3">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 text-[10px] font-extrabold uppercase" data-i18n="att_1_tag">Rank #1 · Animals & Parks</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="att_1_title">Ecoparque Buenos Aires</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="att_1_loc">Plaza Italia, Palermo (6 min walk from hotel)</p>
+              </div>
+              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.9</span>
             </div>
+            <div class="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 flex items-center space-x-2 text-xs font-bold text-emerald-800 dark:text-emerald-300">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+              <span data-i18n="att_1_badge">FREE ADMISSION · WALK-IN (No Booking Needed)</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="att_1_desc">
+              Former city zoo transformed into a lush ecological reserve. Patagonian maras, peacocks, flamingos, and capybaras roam freely along wide, flat, paved paths. 100% stroller-friendly with clean shaded cafes and modern restrooms.
+            </p>
           </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-blue-600 dark:text-blue-400 block" data-i18n="day1_a_title">Day 1 (Sat Dec 5): Arrival & Rose Garden</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day1_a_desc">EZE arrival (10:55 AM) → Van to Palermo Suites (2 suites ready) → Empanadas lunch at La Hormiga → Walk Bosques de Palermo & paddleboats → Gelato at Lucciano's.</p>
-            </div>
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-emerald-600 dark:text-emerald-400 block" data-i18n="day2_a_title">Day 2 (Sun Dec 6): Animals & Space Dome</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day2_a_desc">Ecoparque BA (free-roaming maras) → Garden lunch at Croque Madame → Planetario Galileo Galilei dome show → Early dinner at La Cabrera.</p>
-            </div>
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-purple-600 dark:text-purple-400 block" data-i18n="day3_a_title">Day 3 (Mon Dec 7): Grandeur & Hands-On Science</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day3_a_desc">El Ateneo Grand Splendid theater bookstore → Recoleta Cemetery walk → Lunch at Café La Biela → Museo "Prohibido No Tocar" → Pasta dinner.</p>
-            </div>
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-sky-600 dark:text-sky-400 block" data-i18n="day4_a_title">Day 4 (Tue Dec 8): Tigre Paraná Delta Cruise</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day4_a_desc">Private van to Tigre → Wooden catamaran delta cruise → Island lunch at Gato Blanco → Puerto de Frutos market crafts → Palermo evening rest.</p>
-            </div>
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-amber-600 dark:text-amber-400 block" data-i18n="day5_a_title">Day 5 (Wed Dec 9): Tango & Street Colors</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day5_a_desc">Caminito in La Boca (street tango & colored houses) → San Telmo market & Mafalda statue → Spoon-cut steak at La Brigada → Plaza Armenia playground.</p>
-            </div>
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-yellow-600 dark:text-yellow-400 block" data-i18n="day6_a_title">Day 6 (Thu Dec 10): Gaucho Estancia Ranch Day</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day6_a_desc">Full-day excursion to Estancia El Ombú / Santa Susana → Gentle horseback & carriage rides → Grand Asado BBQ feast & folklore show → Gaucho ring races.</p>
-            </div>
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium" data-i18n="att_1_target">Ideal for: Toddlers to Grandparents</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Ecoparque+Buenos+Aires+Plaza+Italia" target="_blank" class="map-link">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-600"></i>
+              <span data-i18n="link_map">Map</span>
+            </a>
           </div>
         </div>
 
-        <!-- TRACK B: KIDS & ANIMALS FOCUS -->
-        <div id="track-b" class="flow-content hidden space-y-4">
-          <div class="bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-2xl p-4 flex items-start space-x-3 text-xs text-emerald-900 dark:text-emerald-200">
-            <i data-lucide="baby" class="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5"></i>
-            <div>
-              <strong class="font-bold text-sm block text-emerald-950 dark:text-emerald-200" data-i18n="track_b_title">Option B: Maximum Kids Fun & Animal Adventures</strong>
-              <span data-i18n="track_b_desc">Specifically tuned for high child engagement. Adds the high-tech MIJU sensory play museum in Puerto Madero, Museo de los Niños miniature city, and the option for Temaikèn Biopark.</span>
+        <!-- MIJU -->
+        <div class="attr-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="play">
+          <div class="space-y-3">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <span class="px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-950/80 text-purple-800 dark:text-purple-300 text-[10px] font-extrabold uppercase" data-i18n="att_2_tag">Rank #1 · Kids Play Museum</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="att_2_title">MIJU (Museo de la Imaginación y el Juego)</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="att_2_loc">Puerto Madero (Costanera Sur)</p>
+              </div>
+              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.9</span>
             </div>
+            <div class="p-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 flex items-center space-x-2 text-xs font-bold text-rose-800 dark:text-rose-300">
+              <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-600 shrink-0"></i>
+              <span data-i18n="att_2_badge">🚨 MUST BOOK TIMED SLOT ONLINE 7–14 DAYS AHEAD</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="att_2_desc">
+              The newest, most modern children’s museum in Argentina. Divided into 3 immersive floors tailored by age group (0–3, 4–8, 9–12). Sensory tunnels, digital climbing labyrinths, slide systems, and creative games.
+            </p>
           </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-emerald-600 dark:text-emerald-400 block" data-i18n="day1_b_title">Day 1: Arrival & Palermo Lake Playground</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day1_b_desc">Drop bags at Palermo Suites → Casual lunch → Bosques de Palermo lake paddleboats + carousel at Paseo de la Infanta → Rapanui gelato.</p>
-            </div>
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-emerald-600 dark:text-emerald-400 block" data-i18n="day2_b_title">Day 2: Ecoparque + Planetarium Dome</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day2_b_desc">Morning at Ecoparque (feeding ducks & maras) → Lunch at La Panera Rosa (crepes/pancakes) → Planetarium 360° space dome show → Family pizza.</p>
-            </div>
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-purple-600 dark:text-purple-400 block" data-i18n="day3_b_title">Day 3: MIJU Play Center + Puerto Madero</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day3_b_desc">Pre-booked timed tickets for MIJU in Puerto Madero (sensory tunnels & digital play) → Riverside lunch along docks → Costanera Sur stroll.</p>
-            </div>
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-sky-600 dark:text-sky-400 block" data-i18n="day4_b_title">Day 4: Temaikèn Biopark & 360° Aquarium</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day4_b_desc">Full-day trip to 34-hectare Temaikèn Biopark → 360° shark tunnel aquarium, walk-in aviary rope bridges, touch stingray pools → Return to Palermo.</p>
-            </div>
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-pink-600 dark:text-pink-400 block" data-i18n="day5_b_title">Day 5: Abasto Mini-City + Dinosaurs</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day5_b_desc">Morning at Museo de los Niños (cockpit planes, grocery store role-play) in Abasto Mall → Lunch at Güerrin pizza → Afternoon at MACN Dinosaur Museum.</p>
-            </div>
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-yellow-600 dark:text-yellow-400 block" data-i18n="day6_b_title">Day 6: Gaucho Estancia Ranch Day</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day6_b_desc">Estancia Santa Susana / El Ombú: pony rides, open grass lawn games, carriage rides, folklore singing, and wood-fired BBQ ribs.</p>
-            </div>
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium" data-i18n="att_2_target">Ideal for: Kids 2–12</span>
+            <a href="https://buenosaires.gob.ar/cultura/promocion-cultural/miju-museo-de-la-imaginacion-y-el-juego" target="_blank" class="map-link">
+              <i data-lucide="ticket" class="w-3.5 h-3.5 text-rose-600"></i>
+              <span data-i18n="link_tickets">Tickets</span>
+            </a>
           </div>
         </div>
 
-        <!-- TRACK C: FOOD & CULTURE FOCUS -->
-        <div id="track-c" class="flow-content hidden space-y-4">
-          <div class="bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 rounded-2xl p-4 flex items-start space-x-3 text-xs text-amber-900 dark:text-amber-200">
-            <i data-lucide="utensils" class="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5"></i>
-            <div>
-              <strong class="font-bold text-sm block text-amber-950 dark:text-amber-200" data-i18n="track_c_title">Option C: Foodie, Heritage & Tango Immersion</strong>
-              <span data-i18n="track_c_desc">Ideal for food lovers and culture seekers. Includes guided tour inside Teatro Colón, booking dinner at Don Julio / El Preferido, Gran Café Tortoni churros, and historic San Telmo.</span>
+        <!-- Estancia Ranch -->
+        <div class="attr-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="excursion">
+          <div class="space-y-3">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 text-[10px] font-extrabold uppercase" data-i18n="att_3_tag">Rank #1 · Day Excursion</span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="att_3_title">Estancia El Ombú de Areco / Santa Susana</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="att_3_loc">San Antonio de Areco (~90 min private van)</p>
+              </div>
+              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.9</span>
             </div>
+            <div class="p-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 flex items-center space-x-2 text-xs font-bold text-amber-900 dark:text-amber-200">
+              <i data-lucide="clock" class="w-4 h-4 text-amber-600 shrink-0"></i>
+              <span data-i18n="att_3_badge">⚠️ BOOK 2–4 WEEKS IN ADVANCE</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="att_3_desc">
+              Full-day traditional pampas ranch fiesta. Gentle horseback riding and vintage sulky carriage rides for grandparents & kids. Massive open-flame asado BBQ feast, live folk guitars, dancing, and gaucho ring-race demonstrations.
+            </p>
           </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-amber-600 dark:text-amber-400 block" data-i18n="day1_c_title">Day 1: Arrival & Historic Bodegón</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day1_c_desc">Arrival & hotel check-in → Giant milanesa lunch at El Preferido de Palermo → Stroll rose garden → Artisanal gelato at Cadore.</p>
-            </div>
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-blue-600 dark:text-blue-400 block" data-i18n="day2_c_title">Day 2: Teatro Colón & Cafe Tortoni</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day2_c_desc">Pre-booked English tour of Teatro Colón opera house → Churros con chocolate at Gran Café Tortoni → Plaza de Mayo → Evening Don Julio parrilla.</p>
-            </div>
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-purple-600 dark:text-purple-400 block" data-i18n="day3_c_title">Day 3: Recoleta Grandeur & Science</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day3_c_desc">El Ateneo Grand Splendid theater bookstore → Recoleta Cemetery Evita tomb → Courtyard lunch at Croque Madame → "Prohibido No Tocar" museum.</p>
-            </div>
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-sky-600 dark:text-sky-400 block" data-i18n="day4_c_title">Day 4: Tigre Delta Private Launch</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day4_c_desc">Private speedboat charter through Tigre canals → Waterfront lunch at Gato Blanco → Return for dinner at Siamo nel Forno pizza.</p>
-            </div>
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-red-600 dark:text-red-400 block" data-i18n="day5_c_title">Day 5: La Boca & San Telmo Market</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day5_c_desc">Caminito street tango → San Telmo covered food hall → Spoon-cut tenderloin steak at La Brigada → Afternoon artisan shopping in Palermo Soho.</p>
-            </div>
-            <div class="bg-white dark:bg-slate-900/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-              <span class="font-bold text-yellow-600 dark:text-yellow-400 block" data-i18n="day6_c_title">Day 6: Gaucho Estancia Ranch Feast</span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="day6_c_desc">Estancia El Ombú de Areco: authentic gaucho horse whispering, malambo boleadoras dance show, and multi-course outdoor asado BBQ.</p>
-            </div>
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium" data-i18n="att_3_target">Full Day (10 AM–5 PM) · All Ages</span>
+            <a href="https://www.estanciaelombu.com/" target="_blank" class="map-link">
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-amber-600"></i>
+              <span>Website</span>
+            </a>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -1132,12 +1579,9 @@
           </div>
           <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="flights_sub">Operated by Delta Air Lines · Red-eye flights overnight · Ideal for kids sleep cycles</p>
         </div>
-        <div class="flex items-center space-x-3 text-xs">
-          <span class="px-2.5 py-1 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-bold rounded-lg border border-emerald-200 dark:border-emerald-800 flex items-center space-x-1">
-            <i data-lucide="check" class="w-3.5 h-3.5"></i>
-            <span data-i18n="flights_cost">$5,110.14 USD Paid (Family of 6)</span>
-          </span>
-        </div>
+        <span class="px-2.5 py-1 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-bold rounded-lg border border-emerald-200 dark:border-emerald-800 text-xs" data-i18n="flights_cost">
+          $5,110.14 USD Paid (Family of 6)
+        </span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -1217,7 +1661,7 @@
       </div>
     </section>
 
-    <!-- SECTION: BUDGET & INTERACTIVE TRACKER -->
+    <!-- SECTION: BUDGET -->
     <section id="budget" class="scroll-mt-20 space-y-4">
       <div class="border-b border-slate-200 dark:border-slate-800 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div class="flex items-center space-x-2">
@@ -1305,30 +1749,30 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC (DARK MODE + CHINESE I18N + INTERACTIVITY) -->
+  <!-- SCRIPT -->
   <script>
-    // Initialize Lucide Icons
+    // Lucide
     lucide.createIcons();
 
-    // 1. CHINESE / ENGLISH BILINGUAL DICTIONARY
+    // BILINGUAL DICTIONARY
     const translations = {
       en: {
         nav_title: "Buenos Aires Family Vacation Hub",
         nav_subtitle: "Dec 4–12, 2026 · 6 Nights · Family of 6 (4 Adults, 2 Kids)",
+        nav_timeline: "📅 Daily Timeline",
         nav_deadlines: "🚨 Deadlines",
         nav_hotel: "🏨 Hotel (2 Confirmed)",
+        nav_dining: "🥩 Dining & Hidden Gems",
         nav_attractions: "🎡 Attractions",
-        nav_dining: "🥩 Dining",
-        nav_itineraries: "📅 Itineraries",
         nav_flights: "Flights",
         nav_budget: "Budget",
         btn_taxi: "Taxi Card",
-        btn_print: "Print / PDF",
+        btn_print: "Print",
         btn_home: "Home",
         hero_status: "2 Hotel Suites Confirmed · Nonstop Delta Flights Locked",
         hero_title: "Buenos Aires Family Vacation",
-        hero_subtitle: "Ranked Attractions, Must-Book Tickets & Dining Guide",
-        hero_desc: "Tailored specifically for our party of 6 (4 Adults + 2 Kids). Features 2 confirmed apartment suites at Palermo Suites, nonstop Delta flights, top-ranked attractions, booking deadlines (Don Julio, MIJU), and 3 modular itinerary flows.",
+        hero_subtitle: "Proposed Daily Timeline, Hidden Gems & Kid-Friendly Food Guide",
+        hero_desc: "Tailored specifically for our party of 6 (4 Adults + 2 Kids). Features 2 confirmed apartment suites at Palermo Suites, nonstop Delta flights, concrete hourly timelines with direct Google Maps routes, and secret neighborhood bodegones with playrooms and coloring tables.",
         chip_hotel_status: "Hotel Status",
         chip_hotel_val: "2 Suites Confirmed ✓",
         chip_booking_alert: "Advance Booking",
@@ -1345,6 +1789,84 @@
         pnr_label: "Delta Confirmation:",
         byo_label: "BYOjet Reference:",
         btn_manage_delta: "Manage Seats on Delta.com →",
+        tl_main_title: "Proposed Master Daily Timeline (Days 1–7)",
+        tl_main_sub: "Concrete step-by-step route with Google Maps pins & curated neighborhood hidden gems + kid-friendly dining",
+        tl_tab_all: "All Days",
+        tl_tab_d1: "Day 1 (Sat)",
+        tl_tab_d2: "Day 2 (Sun)",
+        tl_tab_d3: "Day 3 (Mon)",
+        tl_tab_d4: "Day 4 (Tue)",
+        tl_tab_d5: "Day 5 (Wed)",
+        tl_tab_d6: "Day 6 (Thu)",
+        tl_tab_d7: "Day 7 (Fri)",
+        d1_header_title: "Arrival, Settle into Palermo Suites & Rose Garden Paddleboats",
+        d1_header_tag: "Pace: Gentle Acclimatization",
+        d1_s1_title: "Touchdown at EZE & Private 7-Passenger Van to Palermo Suites",
+        d1_s1_desc: "Delta flight LA 8871 lands at 10:55 AM. Clear customs (use Family Lane if open). 11:45 AM: Private van driver meets party at arrivals. 12:45 PM: Arrive at Palermo Suites (Paraguay 4646). Store all 6 bags securely with 24-hr front desk while suites are finalized.",
+        d1_s2_title: "Welcome Lunch: Walk-in Bodegón Steaks & Empanadas",
+        d1_gem1: "Armenia 1680. Unpretentious family favorite. Massive cuts of bife de chorizo, crispy french fries, provolone cheese, and zero reservation stress.",
+        d1_gem2: "Honduras 4706. Authentic neighborhood sports club where local families dine. Giant milanesa a caballo (fried eggs & steak) under $10 USD.",
+        d1_s3_title: "Check in 2 Confirmed Suites & Stroll El Rosedal Lake",
+        d1_s3_desc: "Check into the 2 separate 33m² apartments. Freshen up with showers. Walk 10 mins to Bosques de Palermo (Parque 3 de Febrero). Walk across white bridges in El Rosedal (18,000 blooming roses) and rent a pedal paddleboat on the calm lake to feed the ducks.",
+        d1_s4_title: "Artisan Helado Treat & Kid-Friendly Dinner at Las Cholas",
+        d1_gem3: "Novelty minion and penguin shaped 3D popsicles for kids + artisan dulce de leche. Or try Antiche Tentazioni for flowing chocolate taps.",
+        d1_gem4: "Arce 306, Las Cañitas. Kids are handed crayons to color directly on the paper tablecloths! Giant grilled meat boards (*tablas*), clay-pot humita, and high chairs.",
+        d2_header_title: "Free-Roaming Wildlife Sanctuary, Space Dome & Steakhouse",
+        d2_header_tag: "Pace: 100% Stroller Friendly",
+        d2_s1_title: "Morning at Ecoparque Buenos Aires (Free Wildlife Sanctuary)",
+        d2_s1_desc: "Walk 6 mins to Plaza Italia entrance. Patagonian maras (mini hares), peacocks, flamingos, coypus, and ducks wander freely alongside visitors. Wide paved paths, zero stairs, shady benches, and modern bathrooms.",
+        d2_s2_title: "Lunch Highlight: La Payuca (Supervised Kids' Playroom)",
+        d2_gem1: "Features a dedicated multi-level playroom (*salón para niños*) with attendants, games, and monitors. Adults relax over premium steak while kids play safely!",
+        d2_gem2: "Secluded museum courtyard tables under ancient sycamore trees. French croque monsieur, quiches, fresh fruit juices, and artisanal cakes.",
+        d2_s3_title: "Planetario Galileo Galilei Dome Show + Jardín Japonés Koi Fish",
+        d2_s3_desc: "Air-conditioned 360° laser space projection show inside the futuristic dome. Afterwards, cross the avenue to Jardín Japonés: kids feed giant golden and orange koi fish from arched wooden bridges.",
+        d2_s4_title: "Early Family Feast at La Cabrera (Mini-Cazuelas Paradise)",
+        d2_s4_desc: "José A. Cabrera 5099. Arriving at 7:30–8:00 PM opening means no long lines. Steaks arrive surrounded by dozens of complimentary tasting bowls (sweet corn pudding, mashed sweet potato, chimichurri). Free giant lollipops for the kids when leaving!",
+        d3_header_title: "Grand Theater Bookstore, Local Bodegón & Hands-On Science",
+        d3_header_tag: "Pace: Recoleta Culture & Discovery",
+        d3_s1_title: "El Ateneo Grand Splendid & Giant Rubber Tree in Recoleta",
+        d3_s1_desc: "2 Ubers south to Av. Santa Fe 1860. Grab morning espresso on the crimson velvet theater stage while kids browse children's books in the lower tier. Afterwards, walk to Plaza Francia to see the monumental 200-year-old Gomero rubber tree.",
+        d3_s2_title: "Lunch Hidden Gems: Authentic Parrilla Peña or La Cocina",
+        d3_gem1: "Rodríguez Peña 682. Frequented almost purely by locals. Complimentary hot fried beef empanadas on arrival, incredible bife de lomo, homemade fries, and flan mixto.",
+        d3_gem2: "Pueyrredón 1508. Famous hole-in-the-wall for Catamarca baked empanadas. Must try the 'Pikichu' (sweet-savory cheese & onion) and sweet beef.",
+        d3_s3_title: "Museo Participativo 'Prohibido No Tocar' (Forbidden Not to Touch)",
+        d3_s3_desc: "Inside Centro Cultural Recoleta. 100% interactive experiments: laser mirrors, static electricity orbs, giant soap bubbles, and gravity momentum tracks where kids play and touch everything freely.",
+        d3_s4_title: "Handmade Italian Pasta Dinner at Cucina Paradiso",
+        d3_s4_desc: "Arévalo 1545. Chef Donato de Santis' cozy Italian trattoria. Ricotta ravioli, fluffy potato gnocchi with four-cheese cream sauce, and authentic cannoli.",
+        d4_header_title: "Tigre & Paraná River Delta Catamaran Boat Cruise",
+        d4_header_tag: "Pace: Scenic Water Excursion",
+        d4_s1_title: "Private Van Transfer North to Tigre River Station",
+        d4_s1_desc: "Private 7-passenger van picks up family at Palermo Suites at 9:00 AM. Arrive at Estación Fluvial de Tigre. Board a classic wooden catamaran to cruise the labyrinth of waterways, seeing stilt houses, water schoolbuses, and lush willows.",
+        d4_s2_title: "Waterfront Island Dining: Gato Blanco or Vivanco",
+        d4_gem1: "Accessible only by boat. Expansive grassy lawns under weeping willow trees for kids to stretch their legs. Fresh grilled pacú river fish, pastas, and steaks.",
+        d4_gem2: "Located inside the historic Tigre Rowing Club. Broad terrace right on the riverbank with homemade pastas and kid-friendly milanesas.",
+        d4_s3_title: "Puerto de Frutos Market & Casual Pizza Night: Güerrin or La Guitarrita",
+        d4_s3_desc: "Shop handmade wicker and wooden toys at Puerto de Frutos. 4:30 PM: Private van brings party back to hotel for rest. 7:45 PM: Casual pizza dinner at historic Pizzería Güerrin or soccer-themed neighborhood favorite La Guitarrita in Palermo.",
+        d5_header_title: "Colorful La Boca, San Telmo Antiques & Spoon-Cut Steak",
+        d5_header_tag: "Pace: Vibrant Street Art & Heritage",
+        d5_s1_title: "Caminito (La Boca) Street Tango & Maradona Murals",
+        d5_s1_desc: "Call 2 Ubers south to Caminito in La Boca. Bright pastel zinc conventillos, outdoor street tango dancers, Maradona murals, and Boca Juniors stadium. Stay on the pedestrian tourist perimeter for hassle-free family photos.",
+        d5_s2_title: "San Telmo Market, Mafalda & Spoon-Cut Steak at La Brigada",
+        d5_gem1: "Estados Unidos 465. Soccer memorabilia everywhere. Waiters slice tender beef filets with an ordinary spoon right in front of the kids!",
+        d5_gem2: "Agustín R. Caffarena 64. Working-class tavern dating to 1954. Giant milanesas, fried eggs, and fries loved by visiting celebrities and local families.",
+        d5_s3_title: "Plaza Armenia Playground & Old-School Gelato at Scannapieco",
+        d5_s3_desc: "Head back to Palermo. Let kids play on the modern swings and turf at Plaza Armenia. Grab gelato from Heladería Scannapieco (crafting traditional Italian gelato since 1938). Dinner: crispy milanesas at El Preferido de Palermo.",
+        d6_header_title: "Gaucho Estancia Ranch Day Trip (Pampas Horseback & Asado BBQ)",
+        d6_header_tag: "Pace: Countryside Excursion",
+        d6_s1_title: "Private Van to Estancia El Ombú de Areco / Santa Susana",
+        d6_s1_desc: "Private 7-passenger van departs Palermo Suites. Drive through the Argentine pampas to historic San Antonio de Areco. Arrive ~10:30 AM: welcomed with hot fried beef empanadas and fresh juices.",
+        d6_s2_title: "Horseback Riding, Carriage Rides & Grand Outdoor Asado BBQ",
+        d6_s2_desc: "Gentle horses for all riding levels; sulky carriages for grandparents and young kids across the wide lawns. 1:00 PM: Grand Asado feast featuring grilled chorizo sausages, beef ribs, roasted chicken, fresh salads, and unlimited wine & sodas.",
+        d6_s3_title: "Folklore Malambo Show, Gaucho Ring Races & 6 PM Return",
+        d6_s3_desc: "Live gaucho folklore music and spinning boleadoras dance show. Gaucho ring-race horsemanship demonstration (*carreras de sortijas*). 4:30 PM: Van brings party back to Palermo Suites by 6:00 PM for packing and bedtime.",
+        d7_header_title: "Distrito Arcos Shopping, 4:15 PM Van & Flight Home",
+        d7_header_tag: "Flight LA 8872 Departs 8:05 PM",
+        d7_s1_title: "Leisurely Breakfast & 12:00 PM Check-Out (Bags Stored at Desk)",
+        d7_s1_desc: "Enjoy the included continental breakfast. Check out at 12:00 PM (foreign card + passport 21% VAT exemption!). Front desk holds all 6 pieces of luggage securely.",
+        d7_s2_title: "Distrito Arcos Outlet Shopping & Farewell Lunch",
+        d7_s2_desc: "Walk 3 blocks to open-air brick railway outlet mall. Buy Havanna dulce de leche alfajores. Lunch at Il Quotidiano (fresh pasta & salads) or Le Pain Quotidien.",
+        d7_s3_title: "Private Van to EZE & Flight LA 8872 Nonstop to JFK",
+        d7_s3_desc: "4:15 PM sharp: 7-passenger private van picks up party and bags at Palermo Suites lobby. Arrive EZE at 5:00 PM (~3 hours before 8:05 PM departure). Flight LA 8872 lands Saturday, Dec 12 at 5:08 AM at JFK!",
         deadlines_pill: "Critical Checklist",
         deadlines_sub: "Avoid Sold-Out Experiences",
         deadlines_heading: "What You MUST Book in Advance",
@@ -1386,6 +1908,38 @@
         van_dep_sub: "Flight LA 8872 departs EZE at 8:05 PM (3 hrs check-in)",
         uber_title: "City Travel: Uber/Cabify Dual-Car",
         uber_desc: "Standard sedans take 4 pax. Order 2 cars side-by-side ($5–$8/car across Palermo & Recoleta).",
+        food_heading: "Ranked Restaurants & Dining Guide",
+        food_sub: "Legendary Parrillas, kid-friendly spots, artisanal gelato & historic cafes with reservation rules",
+        filter_food_all: "All Food",
+        filter_parrillas: "🥩 Top Parrillas",
+        filter_kids_food: "👶 Kid-Friendly Gems",
+        filter_pizza: "🍕 Pizza & Empanadas",
+        filter_helado: "🍦 Ranked Heladerías",
+        fd_payuca_tag: "Kid-Friendly #1 · Supervised Playroom",
+        fd_payuca_badge: "SUPERVISED PLAYROOM (*SALÓN PARA NIÑOS*) WITH MONITORS",
+        fd_payuca_desc: "The golden standard for families in Buenos Aires. While parents slowly enjoy ribeye steaks and Malbec wine, kids play in a dedicated multi-level playroom with toys, video games, and attentive staff.",
+        fd_cholas_tag: "Kid-Friendly #2 · Color on Tablecloths",
+        fd_cholas_badge: "KIDS COLOR WITH CRAYONS ON PAPER TABLECLOTHS",
+        fd_cholas_desc: "Vibrant rustic atmosphere. Waiters hand children crayons to draw on the tables. Enormous wooden meat platters (*tablas*), clay-pot humita, and baked empanadas designed for big family sharing.",
+        fd_pena_tag: "Hidden Gem #1 · Free Welcome Empanadas",
+        fd_pena_badge: "ZERO TOURIST HYPE · COMPLIMENTARY HOT EMPANADA ON ARRIVAL",
+        fd_pena_desc: "Beloved local institution with bow-tie waiters. Freshly fried complimentary beef empanada served immediately when seated. Incredible bife de lomo, homemade fries, and legendary flan mixto with dulce de leche.",
+        fd_1_tag: "Parrilla Rank #1 · Michelin 1-Star",
+        fd_1_badge: "BOOK EXACTLY 90 DAYS AHEAD ON MEITRE",
+        fd_1_tip: "Walk-in line starts at 5:30 PM (dinner) or 11:30 AM (lunch). Free champagne & empanadas in line!",
+        fd_1_desc: "Voted #1 restaurant in Latin America. Grass-fed Hereford & Angus beef dry-aged in-house. House-made sausages (salchicha parrillera), Bife de Cuadril, and heirloom tomato salad.",
+        fd_1_price: "~$45–$70 USD / person",
+        link_meitre: "Meitre",
+        fd_2_tag: "Parrilla Rank #2 · Most Kid-Friendly",
+        fd_2_badge: "BOOK 2–4 WEEKS IN ADVANCE VIA WEB/WHATSAPP",
+        fd_2_tip: "Happy hour 6:30–8:00 PM gives up to 30% discount (ideal timing for hungry kids!).",
+        fd_2_desc: "Famous for presenting every steak surrounded by a dozen complimentary mini cazuelas (truffled mash, caramelized onions, sweet corn pudding, chimichurri) that kids love tasting. Huge portions!",
+        fd_2_price: "~$30–$45 USD / person",
+        link_book: "Book",
+        fd_4_tag: "Gelato Rank #1 · NatGeo Top 10 World",
+        fd_4_badge: "✅ WALK-IN COUNTER SERVICE (No Booking Needed)",
+        fd_4_desc: "Founded in 1957 by an Italian immigrant family. Ranked by National Geographic as one of the 10 best ice creams on earth. Their signature Dulce de Leche is slowly simmered for 14 hours for an unforgettable rich texture.",
+        fd_4_price: "~$3–$5 USD / cup",
         attractions_heading: "Ranked Family Attractions & Hidden Gems",
         attractions_sub: "Top-rated activities for 4 adults + 2 kids with advance ticket badges and live maps",
         filter_all: "All (12)",
@@ -1403,130 +1957,16 @@
         att_2_title: "MIJU (Museo de la Imaginación y el Juego)",
         att_2_loc: "Puerto Madero (Costanera Sur)",
         att_2_badge: "🚨 MUST BOOK TIMED SLOT ONLINE 7–14 DAYS AHEAD",
-        att_2_desc: "The newest, most modern children’s museum in Argentina. Divided into 3 immersive floors tailored by age group (0–3, 4–8, 9–12). Sensory tunnels, digital climbing labyrinths, slide systems, and creative games. Strict capacity limits keep it uncrowded.",
+        att_2_desc: "The newest, most modern children’s museum in Argentina. Divided into 3 immersive floors tailored by age group (0–3, 4–8, 9–12). Sensory tunnels, digital climbing labyrinths, slide systems, and creative games.",
         att_2_target: "Ideal for: Kids 2–12",
         att_3_tag: "Rank #1 · Day Excursion",
         att_3_title: "Estancia El Ombú de Areco / Santa Susana",
         att_3_loc: "San Antonio de Areco (~90 min private van)",
         att_3_badge: "⚠️ BOOK 2–4 WEEKS IN ADVANCE",
-        att_3_desc: "Full-day traditional pampas ranch fiesta. Gentle horseback riding and vintage sulky carriage rides for grandparents & kids. Massive open-flame asado BBQ feast, live folk guitars, dancing, and gaucho ring-race demonstrations across the open lawns.",
+        att_3_desc: "Full-day traditional pampas ranch fiesta. Gentle horseback riding and vintage sulky carriage rides for grandparents & kids. Massive open-flame asado BBQ feast, live folk guitars, dancing, and gaucho ring-race demonstrations.",
         att_3_target: "Full Day (10 AM–5 PM) · All Ages",
-        att_4_tag: "Rank #2 · Day Excursion",
-        att_4_title: "Tigre & Paraná Delta River Cruise",
-        att_4_loc: "Tigre (50 min north via private van)",
-        att_4_badge: "⚠️ ADVANCE VAN + BOAT BOOKING RECOMMENDED",
-        att_4_desc: "Explore the labyrinth of green island canals on a wooden catamaran or private launch. Spot stilt houses, island grocery boats, and schools on water. Eat lunch on island lawns at Gato Blanco and shop handwoven crafts at Puerto de Frutos.",
-        att_4_target: "Half to Full Day · All Ages",
-        att_5_tag: "Rank #2 · Space & Science",
-        att_5_title: "Planetario Galileo Galilei",
-        att_5_loc: "Parque Tres de Febrero, Palermo",
-        att_5_badge: "🚨 DOME SHOW TICKETS: BOOK ONLINE 7–10 DAYS OUT",
-        att_5_desc: "Iconic futuristic UFO dome. Air-conditioned theater features 360° laser projections of constellations and space missions tailored for kids. Outdoor park with real space meteorites is free and open walk-in.",
-        att_5_target: "Show: 50 mins · Kids & Space Fans",
-        att_6_tag: "Rank #1 · Cultural Landmark",
-        att_6_title: "El Ateneo Grand Splendid",
-        att_6_loc: "Av. Santa Fe 1860, Recoleta",
-        att_6_badge: "FREE ADMISSION · WALK-IN (Open Daily)",
-        att_6_desc: "Named the world's most stunning bookstore. Former 1919 theater with gilded fresco ceilings and theater balconies. The crimson velvet stage is now an espresso bar, and the basement level has a wonderful children’s reading nook.",
-        att_6_target: "Time: 45–60 mins · All Ages",
         link_map: "Map",
         link_tickets: "Tickets",
-        link_station: "Boat Station",
-        link_yelp: "Yelp",
-        food_heading: "Ranked Restaurants & Dining Guide",
-        food_sub: "Legendary Parrillas, kid-friendly spots, artisanal gelato & historic cafes with reservation rules",
-        filter_food_all: "All Food",
-        filter_parrillas: "🥩 Top Parrillas",
-        filter_pizza: "🍕 Pizza & Empanadas",
-        filter_helado: "🍦 Ranked Heladerías",
-        filter_cafes: "☕ Historic Cafes",
-        fd_1_tag: "Parrilla Rank #1 · Michelin 1-Star",
-        fd_1_title: "Don Julio",
-        fd_1_loc: "Guatemala 4699, Palermo Soho",
-        fd_1_badge: "BOOK EXACTLY 90 DAYS AHEAD ON MEITRE",
-        fd_1_tip: "Walk-in line starts at 5:30 PM (dinner) or 11:30 AM (lunch). Free champagne & empanadas in line!",
-        fd_1_desc: "Voted #1 restaurant in Latin America. Grass-fed Hereford & Angus beef dry-aged in-house. House-made sausages (salchicha parrillera), Bife de Cuadril, and heirloom tomato salad.",
-        fd_1_price: "~$45–$70 USD / person",
-        link_meitre: "Meitre",
-        fd_2_tag: "Parrilla Rank #2 · Most Kid-Friendly",
-        fd_2_title: "La Cabrera",
-        fd_2_loc: "José A. Cabrera 5099, Palermo Soho",
-        fd_2_badge: "BOOK 2–4 WEEKS IN ADVANCE VIA WEB/WHATSAPP",
-        fd_2_tip: "Happy hour 6:30–8:00 PM gives up to 30% discount (ideal timing for hungry kids!).",
-        fd_2_desc: "Famous for presenting every steak surrounded by a dozen complimentary mini cazuelas (truffled mash, caramelized onions, sweet corn pudding, chimichurri) that kids love tasting. Huge portions!",
-        fd_2_price: "~$30–$45 USD / person",
-        link_book: "Book",
-        fd_3_tag: "Bodegón Rank #1 · Sister of Don Julio",
-        fd_3_title: "El Preferido de Palermo",
-        fd_3_loc: "Jorge Luis Borges 2108, Palermo",
-        fd_3_badge: "BOOK 2–3 WEEKS AHEAD OR WALK IN AT 12 PM / 7:30 PM",
-        fd_3_desc: "Historic corner building painted vivid pink. Renowned for what locals consider the best milanesa in Buenos Aires (thin, crispy breaded beef cutlet that kids gobble up) and cured Iberian-style charcuterie.",
-        fd_3_price: "~$25–$40 USD / person",
-        fd_4_tag: "Gelato Rank #1 · NatGeo Top 10 World",
-        fd_4_title: "Heladería Cadore",
-        fd_4_loc: "Av. Corrientes 1695, Downtown",
-        fd_4_badge: "✅ WALK-IN COUNTER SERVICE (No Booking Needed)",
-        fd_4_desc: "Founded in 1957 by an Italian immigrant family. Ranked by National Geographic as one of the 10 best ice creams on earth. Their signature Dulce de Leche is slowly simmered for 14 hours for an unforgettable rich texture.",
-        fd_4_price: "~$3–$5 USD / cup",
-        fd_5_tag: "Pizza Rank #1 · Since 1932",
-        fd_5_title: "Pizzería Güerrin",
-        fd_5_loc: "Av. Corrientes 1368, Downtown Theater District",
-        fd_5_badge: "✅ WALK-IN ONLY (Massive multi-room seating)",
-        fd_5_desc: "Buenos Aires' most famous wood-fired pizzeria. Thick, fluffy crust drenched in overflowing bubbling mozzarella cheese (muzzarella al molde). Kids love the cheese pulls!",
-        fd_5_price: "~$8–$15 USD / person",
-        fd_6_tag: "Gelato Rank #2 · Bariloche Artisan",
-        fd_6_title: "Rapanui Chocolates & Helados",
-        fd_6_loc: "Malabia 2014, Palermo & Uruguay 1284, Recoleta",
-        fd_6_badge: "✅ WALK-IN (Beautiful cafe interior)",
-        fd_6_desc: "Patagonian artisan chocolate house. Don't leave Argentina without trying Franui (fresh wild raspberries coated in milk and white chocolate) and their rich double chocolate & pistachio gelato scoops.",
-        fd_6_price: "~$3–$6 USD",
-        itin_heading: "3 Modular Family Itinerary Options",
-        itin_sub: "Choose the pace and focus that fits your family best, or mix and match days!",
-        tab_track_a: "Option A: Balanced Classic",
-        tab_track_b: "Option B: Kids & Animals Focus",
-        tab_track_c: "Option C: Food & Culture Focus",
-        track_a_title: "Option A: The Balanced Family Classic (Recommended)",
-        track_a_desc: "Smooth, well-tested pace blending iconic Buenos Aires highlights (Caminito, Recoleta, Palermo) with kid favorites (Ecoparque, Planetarium, Tigre boat, Estancia Gaucho BBQ).",
-        day1_a_title: "Day 1 (Sat Dec 5): Arrival & Rose Garden",
-        day1_a_desc: "EZE arrival (10:55 AM) → Van to Palermo Suites (2 suites ready) → Empanadas lunch at La Hormiga → Walk Bosques de Palermo & paddleboats → Gelato at Lucciano's.",
-        day2_a_title: "Day 2 (Sun Dec 6): Animals & Space Dome",
-        day2_a_desc: "Ecoparque BA (free-roaming maras) → Garden lunch at Croque Madame → Planetario Galileo Galilei dome show → Early dinner at La Cabrera.",
-        day3_a_title: "Day 3 (Mon Dec 7): Grandeur & Hands-On Science",
-        day3_a_desc: "El Ateneo Grand Splendid theater bookstore → Recoleta Cemetery walk → Lunch at Café La Biela → Museo 'Prohibido No Tocar' → Pasta dinner.",
-        day4_a_title: "Day 4 (Tue Dec 8): Tigre Paraná Delta Cruise",
-        day4_a_desc: "Private van to Tigre → Wooden catamaran delta cruise → Island lunch at Gato Blanco → Puerto de Frutos market crafts → Palermo evening rest.",
-        day5_a_title: "Day 5 (Wed Dec 9): Tango & Street Colors",
-        day5_a_desc: "Caminito in La Boca (street tango & colored houses) → San Telmo market & Mafalda statue → Spoon-cut steak at La Brigada → Plaza Armenia playground.",
-        day6_a_title: "Day 6 (Thu Dec 10): Gaucho Estancia Ranch Day",
-        day6_a_desc: "Full-day excursion to Estancia El Ombú / Santa Susana → Gentle horseback & carriage rides → Grand Asado BBQ feast & folklore show → Gaucho ring races.",
-        track_b_title: "Option B: Maximum Kids Fun & Animal Adventures",
-        track_b_desc: "Specifically tuned for high child engagement. Adds the high-tech MIJU sensory play museum in Puerto Madero, Museo de los Niños miniature city, and the option for Temaikèn Biopark.",
-        day1_b_title: "Day 1: Arrival & Palermo Lake Playground",
-        day1_b_desc: "Drop bags at Palermo Suites → Casual lunch → Bosques de Palermo lake paddleboats + carousel at Paseo de la Infanta → Rapanui gelato.",
-        day2_b_title: "Day 2: Ecoparque + Planetarium Dome",
-        day2_b_desc: "Morning at Ecoparque (feeding ducks & maras) → Lunch at La Panera Rosa (crepes/pancakes) → Planetarium 360° space dome show → Family pizza.",
-        day3_b_title: "Day 3: MIJU Play Center + Puerto Madero",
-        day3_b_desc: "Pre-booked timed tickets for MIJU in Puerto Madero (sensory tunnels & digital play) → Riverside lunch along docks → Costanera Sur stroll.",
-        day4_b_title: "Day 4: Temaikèn Biopark & 360° Aquarium",
-        day4_b_desc: "Full-day trip to 34-hectare Temaikèn Biopark → 360° shark tunnel aquarium, walk-in aviary rope bridges, touch stingray pools → Return to Palermo.",
-        day5_b_title: "Day 5: Abasto Mini-City + Dinosaurs",
-        day5_b_desc: "Morning at Museo de los Niños (cockpit planes, grocery store role-play) in Abasto Mall → Lunch at Güerrin pizza → Afternoon at MACN Dinosaur Museum.",
-        day6_b_title: "Day 6: Gaucho Estancia Ranch Day",
-        day6_b_desc: "Estancia Santa Susana / El Ombú: pony rides, open grass lawn games, carriage rides, folklore singing, and wood-fired BBQ ribs.",
-        track_c_title: "Option C: Foodie, Heritage & Tango Immersion",
-        track_c_desc: "Ideal for food lovers and culture seekers. Includes guided tour inside Teatro Colón, booking dinner at Don Julio / El Preferido, Gran Café Tortoni churros, and historic San Telmo.",
-        day1_c_title: "Day 1: Arrival & Historic Bodegón",
-        day1_c_desc: "Arrival & hotel check-in → Giant milanesa lunch at El Preferido de Palermo → Stroll rose garden → Artisanal gelato at Cadore.",
-        day2_c_title: "Day 2: Teatro Colón & Cafe Tortoni",
-        day2_c_desc: "Pre-booked English tour of Teatro Colón opera house → Churros con chocolate at Gran Café Tortoni → Plaza de Mayo → Evening Don Julio parrilla.",
-        day3_c_title: "Day 3: Recoleta Grandeur & Science",
-        day3_c_desc: "El Ateneo Grand Splendid theater bookstore → Recoleta Cemetery Evita tomb → Courtyard lunch at Croque Madame → 'Prohibido No Tocar' museum.",
-        day4_c_title: "Day 4: Tigre Delta Private Launch",
-        day4_c_desc: "Private speedboat charter through Tigre canals → Waterfront lunch at Gato Blanco → Return for dinner at Siamo nel Forno pizza.",
-        day5_c_title: "Day 5: La Boca & San Telmo Market",
-        day5_c_desc: "Caminito street tango → San Telmo covered food hall → Spoon-cut tenderloin steak at La Brigada → Afternoon artisan shopping in Palermo Soho.",
-        day6_c_title: "Day 6: Gaucho Estancia Ranch Feast",
-        day6_c_desc: "Estancia El Ombú de Areco: authentic gaucho horse whispering, malambo boleadoras dance show, and multi-course outdoor asado BBQ.",
         flights_heading: "Flight Confirmations (Nonstop Both Ways)",
         flights_sub: "Operated by Delta Air Lines · Red-eye flights overnight · Ideal for kids sleep cycles",
         flights_cost: "$5,110.14 USD Paid (Family of 6)",
@@ -1556,20 +1996,20 @@
       zh: {
         nav_title: "布宜诺斯艾利斯家庭之旅导航站",
         nav_subtitle: "2026年12月4–12日 · 6晚 · 6人家庭（4大2小）",
+        nav_timeline: "📅 每日详细时间线",
         nav_deadlines: "🚨 抢票警戒线",
         nav_hotel: "🏨 酒店（已锁2间）",
+        nav_dining: "🥩 美食与宝藏餐厅",
         nav_attractions: "🎡 热门景点榜",
-        nav_dining: "🥩 美食红黑榜",
-        nav_itineraries: "📅 3套行程方案",
         nav_flights: "航班信息",
         nav_budget: "预算追踪",
         btn_taxi: "打车卡",
-        btn_print: "打印 / 存PDF",
+        btn_print: "打印",
         btn_home: "首页",
         hero_status: "已锁定2间公寓套房 · 达美往返直飞确认",
         hero_title: "布宜诺斯艾利斯家庭之旅",
-        hero_subtitle: "景点排行榜、提前抢票预警与美食推荐总览",
-        hero_desc: "为我们6人家庭（4位大人 + 2位小朋友）量身定制。已确认入住巴勒莫区 Palermo Suites 两间独立套房，达美纽约直飞往返，涵盖必抢门票（Don Julio牛排、MIJU儿童馆）与3套模块化自选行程方案。",
+        hero_subtitle: "每日建议时间线、沿途宝藏餐厅与超亲子美食指南",
+        hero_desc: "为我们6人家庭（4位大人 + 2位小朋友）量身打造。已确认入住巴勒莫区 Palermo Suites 两间套房公寓，达美纽约直飞往返。提供详实到每小时的每日建议行程、沿途直达谷歌地图定位，以及带独立儿童游乐房、涂鸦画画桌的沿途宝藏餐馆！",
         chip_hotel_status: "酒店预订状态",
         chip_hotel_val: "已确认2间套房 ✓",
         chip_booking_alert: "提前抢票预警",
@@ -1586,6 +2026,84 @@
         pnr_label: "达美航空预订码 (PNR):",
         byo_label: "BYOjet 预订编号:",
         btn_manage_delta: "前往达美官网选座选餐 →",
+        tl_main_title: "每日建议行程时间线（第1至第7天）",
+        tl_main_sub: "每一步均配有精准谷歌地图导航与沿途严选宝藏美食（自带儿童游乐区与画画桌）",
+        tl_tab_all: "全部7天",
+        tl_tab_d1: "第1天 (周六)",
+        tl_tab_d2: "第2天 (周日)",
+        tl_tab_d3: "第3天 (周一)",
+        tl_tab_d4: "第4天 (周二)",
+        tl_tab_d5: "第5天 (周三)",
+        tl_tab_d6: "第6天 (周四)",
+        tl_tab_d7: "第7天 (周五)",
+        d1_header_title: "初抵布市、入住巴勒莫套房与玫瑰园湖畔脚踏船",
+        d1_header_tag: "节奏：舒缓倒时差",
+        d1_s1_title: "EZE机场落地出关 & 7人座独立专车直达酒店",
+        d1_s1_desc: "达美直飞 LA 8871 于上午 10:55 落地。出关走家庭通道。11:45 专车司机会面，12:45 抵达 Palermo Suites (Paraguay 4646)。前台寄存全家6件大行李，轻松出发。",
+        d1_s2_title: "初抵午餐：步行3分钟享用街坊地道烤肉与牛肉馅饼",
+        d1_gem1: "Armenia 1680。街坊邻里最爱，厚切西冷牛排外焦里嫩、大份金黄薯条，绝无游客大排长龙的疲惫。",
+        d1_gem2: "Honduras 4706。真正的社区体育俱乐部平民小馆！当地家庭聚餐首选，招牌巨无霸炸牛排配双煎蛋 (Milanesa a caballo) 不到10美元。",
+        d1_s3_title: "入住2间已确认套房 & 漫步玫瑰园踩脚踏船",
+        d1_s3_desc: "下午3点正式办理入住（2间套房已锁定）。冲凉整理后步行10分钟至巴勒莫公园玫瑰园。穿过白色木桥欣赏1.8万株盛开玫瑰，租脚踏船带小朋友喂湖中野鸭与天鹅。",
+        d1_s4_title: "手工冰淇淋甜品 & Las Cholas 纸桌布涂鸦大餐",
+        d1_gem3: "小朋友最爱的小黄人、企鹅造型3D手工雪糕。或者步行至 Antiche Tentazioni 体验流心巧克力龙头与榛子酱软冰淇淋。",
+        d1_gem4: "Arce 306, Las Cañitas。服务员会给小朋友发蜡笔，可以直接在整张白纸桌布上肆意画画涂鸦！大木盘烤肉拼盘、瓦罐玉米糊，有儿童增高椅。",
+        d2_header_title: "自由漫步野生动物园、360度太空穹顶与牛排盛宴",
+        d2_header_tag: "节奏：100%推车无障碍友好",
+        d2_s1_title: "上午打卡 Ecoparque 生态野生动物园（免费免预约）",
+        d2_s1_desc: "步行6分钟由意大利广场入园。巴塔哥尼亚野兔(Mara)、孔雀、火烈鸟、水豚在宽阔平坦的步道旁自由漫步。推婴儿车毫无颠簸，绿树成荫，设施极新极干净。",
+        d2_s2_title: "午餐重头戏：La Payuca（自带专人看护儿童游乐房）",
+        d2_gem1: "Arenales 3443。布市带娃家庭的天花板牛排馆！自带多层儿童专属游乐房，有滑梯、电玩与专职阿姨看护，餐桌配有监控屏，大人可踏实吃肉喝红酒！",
+        d2_gem2: "装饰艺术博物馆后院露天草坪。在百年法国宫殿庭院大树下品尝可颂、法式火腿咸派、鲜榨果汁与精致手工蛋糕。",
+        d2_s3_title: "伽利略天文馆球幕秀 + 日本花园锦鲤喂食",
+        d2_s3_desc: "飞碟建筑内享受冷气十足的360度激光星空投影秀。随后穿过马路进入日本花园，在红色木拱桥上给巨型黄金锦鲤投喂饲料。",
+        d2_s4_title: "La Cabrera 晚间牛排盛宴（附赠十几种小菜配菜）",
+        d2_s4_desc: "José A. Cabrera 5099。晚上7:30早场入座，绝无需排大队。牛排上桌时附带十几个精致小陶碗配菜（松露土豆泥、焦糖洋葱、玉米糊），结账还送小朋友巨型棒棒糖！",
+        d3_header_title: "世界最美剧院书店、本地私藏小馆与动手科技馆",
+        d3_header_tag: "节奏：雷科莱塔欧风漫游与探索",
+        d3_s1_title: "雅典人剧院书店喝咖啡 & 雷科莱塔200年巨型橡皮树",
+        d3_s1_desc: "两部手机叫2台Uber南下至 Av. Santa Fe 1860。大人们在天鹅绒红色舞台包厢喝浓缩咖啡，孩子们在地下一层挑选儿童绘本。随后步行至公墓前广场看200年巨树。",
+        d3_s2_title: "沿途私房宝藏午餐：本地人扎堆的 Parrilla Peña",
+        d3_gem1: "Rodríguez Peña 682。零游客炒作，领结老服务生。一落座就免费赠送刚出锅的极品热炸牛肉馅饼！里脊牛排极嫩，手工自制薯条与焦糖布丁一绝。",
+        d3_gem2: "Pueyrredón 1508。雷科莱塔区深藏不露的卡塔马卡风味馅饼小铺，必尝甜咸交织的 Pikichu（芝士洋葱微辣）。",
+        d3_s3_title: "“禁止不摸”儿童科技馆（Prohibido No Tocar）",
+        d3_s3_desc: "雷科莱塔文化中心内。100%全互动探索：巨型肥皂泡制作仪、激光镜面折射、静电球与重力滚珠轨道，全由孩子们亲自动手体验玩耍。",
+        d3_s4_title: "意式家庭手工意面晚餐：Cucina Paradiso",
+        d3_s4_desc: "Arévalo 1545。明星主厨 Donato de Santis 开设的温馨意式餐馆。鲜制里科塔奶酪意饺、四种芝士土豆团子与传统意式奶油甜馅煎饼卷。",
+        d4_header_title: "蒂格雷三角洲双体木船水道避暑游",
+        d4_header_tag: "节奏：清凉水上自然探秘",
+        d4_s1_title: "专属7座商务专车北上直达蒂格雷码头",
+        d4_s1_desc: "上午9点专车接驾。抵达蒂格雷水运码头后登上经典双体木制游船，穿行于郁郁葱葱的亚热带水网，看水上人家高脚屋、水上校车与小艇生活。",
+        d4_s2_title: "水岸岛屿绿茵午餐：Gato Blanco 岛上漫游",
+        d4_gem1: "仅能乘船抵达。垂柳掩映下的大片青翠草坪供小朋友尽情奔跑，品尝新鲜炭烤白鲳河鱼、现做意面与牛排。",
+        d4_gem2: "蒂格雷百年赛艇俱乐部内。宽阔的河畔木质露台，微风徐徐，供应地道手工肉酱面与酥脆炸牛排。",
+        d4_s3_title: "水果手工艺集市淘宝 & 轻松披萨之夜",
+        d4_s3_desc: "在 Puerto de Frutos 集市选购木制玩具与手工编织篮。下午4:30专车接回酒店小憩。晚间享用 Güerrin 瀑布芝士披萨或巴勒莫足球主题披萨店 La Guitarrita。",
+        d5_header_title: "博卡彩色铁皮屋、圣特尔莫古董与勺切牛排",
+        d5_header_tag: "节奏：探戈街头艺术与历史风情",
+        d5_s1_title: "博卡区 Caminito 彩色街街头探戈与马拉多纳壁画",
+        d5_s1_desc: "网约双车前往博卡区。色彩斑斓的波纹铁皮屋、街头手风琴探戈舞者表演与博卡青年足球场外景。在步行警察巡逻区内拍照安全轻松。",
+        d5_s2_title: "圣特尔莫集市打卡 & La Brigada 勺切嫩牛排",
+        d5_gem1: "Estados Unidos 465。四周挂满足球球衣与纪念品。侍应生会当着孩子们的面用一把普通的金属汤勺直接切开牛排以展示其极致软嫩！",
+        d5_gem2: "Agustín R. Caffarena 64。1954年创立的传奇劳工酒馆，满墙复古球星照，特大份酥脆炸牛排配双煎蛋与薯条。",
+        d5_s3_title: "亚美尼亚广场秋千滑梯 & 1938年老字号手工冰淇淋",
+        d5_s3_desc: "回到巴勒莫。孩子们在广场软胶草皮上荡秋千滑滑梯。品尝 Scannapieco 自1938年传承至今的老式意大利手工冰淇淋。晚间在粉红小馆 El Preferido 享用美食。",
+        d6_header_title: "高乔牛仔庄园狂欢一日游（潘帕斯草原策马与烤肉盛宴）",
+        d6_header_tag: "节奏：乡村庄园大自然",
+        d6_s1_title: "7座专车直达百年高乔牧场（El Ombú 或 Santa Susana）",
+        d6_s1_desc: "专车接驾穿过潘帕斯平原直奔高乔文化发源地。上午10:30抵达：热气腾腾的刚出炉牛肉馅饼、新鲜果汁与马黛茶热情迎宾。",
+        d6_s2_title: "草原策马、马车漫游与豪华露天木炭烤肉盛宴",
+        d6_s2_desc: "温顺的马匹供各年龄段骑行，老人家和小朋友乘坐复古双轮马车漫游大草坪。中午享用原木明火烤肉大宴：烤香肠、多汁牛肋排、烤全鸡、沙拉及无限畅饮红酒与饮料。",
+        d6_s3_title: "马兰博踢踏舞、飞石索表演、套指环赛与返程",
+        d6_s3_desc: "震撼的木靴踢踏舞与呼啸旋转的狩猎飞石索(Boleadoras)特技表演。观看牛仔策马疾驰穿刺指环的精湛马术。下午4:30启程，傍晚6点回酒店打包整装。",
+        d7_header_title: "Distrito Arcos 露天购物、下午4:15送机专车与返程",
+        d7_header_tag: "达美直飞 LA 8872 于 20:05 起飞",
+        d7_s1_title: "享用酒店早餐 & 中午 12:00 退房（行李安全寄存前台）",
+        d7_s1_desc: "享用套房包含的自助早餐。中午12点办理退房（出示外国护照+刷外卡免21%增值税！）。6件大行李由24小时前台妥善保管。",
+        d7_s2_title: "步行3分钟至 Distrito Arcos 露天街区采买伴手礼与午餐",
+        d7_s2_desc: "红砖铁路高架桥改造的露天商场，林荫喷泉环境惬意，附设儿童游乐场。采购 Havanna 焦糖夹心饼。在 Il Quotidiano 或 Le Pain Quotidien 享用悠闲午餐。",
+        d7_s3_title: "4:15 专属大车接驳直达 EZE 机场搭乘直飞航班",
+        d7_s3_desc: "下午 16:15 准时出发。17:00 抵达 EZE 航站楼（提前3小时办理登机、退税与托运）。搭乘达美 LA 8872 于周六清晨 5:08 抵达纽约 JFK，满载回忆平安返家！",
         deadlines_pill: "抢票生死线",
         deadlines_sub: "避免热门项目售罄抱憾",
         deadlines_heading: "哪些项目必须提前预约抢票？",
@@ -1600,7 +2118,7 @@
         btn_estancia_info: "高乔牧场预订详情 →",
         dl_2w_tag: "提前 2 周",
         dl_2w_title: "La Cabrera 牛排 & 机场专车",
-        dl_2w_desc: "预订 La Cabrera 晚餐（附赠十几种精致小菜，小朋友最爱）。预订7人座机场接送专车（配备儿童安全增高垫），告别分批叫车的折腾。",
+        dl_2w_desc: "预订 La Cabrera 晚餐（附赠十几种小菜，小朋友最爱）。预订7人座机场接送专车（配备儿童安全增高垫），告别分批叫车的折腾。",
         btn_lacabrera_book: "La Cabrera 官网预约 →",
         dl_7d_tag: "提前 7–10 天",
         dl_7d_title: "MIJU 儿童馆 & 天文馆穹顶秀",
@@ -1627,6 +2145,38 @@
         van_dep_sub: "航班 LA 8872 于 20:05 起飞（预留近4小时退税与安检）",
         uber_title: "市内交通：Uber / Cabify 双车策略",
         uber_desc: "普通网约车限乘4人。两部手机同时叫2台车（巴勒莫/雷科莱塔单程仅 $5–$8 美元/车）。",
+        food_heading: "布宜诺斯艾利斯美食红黑榜",
+        food_sub: "精选排名前列的经典牛排馆、治愈系手工冰淇淋与百年传奇咖啡馆",
+        filter_food_all: "全部美食",
+        filter_parrillas: "🥩 必吃牛排馆",
+        filter_kids_food: "👶 亲子宝藏餐厅",
+        filter_pizza: "🍕 披萨与牛肉馅饼",
+        filter_helado: "🍦 世界级手工冰淇淋",
+        fd_payuca_tag: "亲子餐厅 #1 · 专职看护儿童游乐房",
+        fd_payuca_badge: "自带大型儿童游乐房 (*SALÓN PARA NIÑOS*) 与监控系统",
+        fd_payuca_desc: "布宜诺斯艾利斯带娃家庭的首选！大人们可以一边慢悠悠品尝西冷牛排喝马尔贝克红酒，孩子们一边在专属儿童房玩滑梯与游戏机，有专人看护和餐桌监控屏幕！",
+        fd_cholas_tag: "亲子餐厅 #2 · 纸桌布蜡笔涂鸦",
+        fd_cholas_badge: "桌上直接铺白纸 · 侍应生发蜡笔供小朋友随心涂鸦",
+        fd_cholas_desc: "热闹欢快的乡村农庄风格。孩子们可以直接在纸桌布上涂鸦画画！大木盘烤肉拼盘、瓦罐浓汤与金黄馅饼，分量极大，备有儿童高脚椅。",
+        fd_pena_tag: "本地私房 #1 · 入座免费送馅饼",
+        fd_pena_badge: "零游客炒作 · 本地熟客扎堆 · 一落座免费送现炸热馅饼",
+        fd_pena_desc: "领结老侍应生服务的正宗街坊老牌烤肉馆。赠送的现炸酥皮牛肉馅饼香气扑鼻！里脊牛排极致鲜嫩，手工现炸薯条与焦糖布丁百吃不厌。",
+        fd_1_tag: "牛排榜 #1 · 米其林一星 & 拉美第一",
+        fd_1_badge: "必须提前90天在 Meitre 午夜放号时秒杀",
+        fd_1_tip: "没抢到可在下午5:30（晚餐）或上午11:30（午餐）现场排队，排队免费派发冰镇起泡酒和现烤牛肉馅饼！",
+        fd_1_desc: "阿根廷牛肉的最高水准。自备冷库干式熟成草饲安格斯牛肉。推荐自制香肠、臀腰肉排 (Bife de Cuadril) 与招牌有机番茄沙拉。",
+        fd_1_price: "人均约 ~$45–$70 美元",
+        link_meitre: "Meitre预订",
+        fd_2_tag: "牛排榜 #2 · 最适合带娃家庭",
+        fd_2_badge: "提前 2–4 周在官网或 WhatsApp 预约",
+        fd_2_tip: "傍晚 6:30–8:00 提供快乐时光折扣（最高7折，非常适合早睡早起的小朋友家庭！）。",
+        fd_2_desc: "每份厚切牛排（肉眼/西冷）上桌时都会附赠十几个精致小陶碗配菜（松露土豆泥、焦糖洋葱、玉米糊、阿根廷青酱），孩子们吃得津津有味。分量极足！",
+        fd_2_price: "人均约 ~$30–$45 美元",
+        link_book: "预约席位",
+        fd_4_tag: "冰淇淋榜 #1 · 国家地理评选世界前十",
+        fd_4_badge: "✅ 柜台直接购买（无需预约，稍作排队）",
+        fd_4_desc: "1957年由意大利移民创立。招牌经典焦糖牛奶味 (Dulce de Leche) 慢火熬煮14小时，口感浓醇细腻丝滑，是全阿根廷冰淇淋的最高标杆！",
+        fd_4_price: "小杯/蛋筒约 ~$3–$5 美元",
         attractions_heading: "热门家庭景点与小众体验排行榜",
         attractions_sub: "综合评分、适宜年龄、抢票规则与实时导航链接",
         filter_all: "全部景点 (12)",
@@ -1652,122 +2202,8 @@
         att_3_badge: "⚠️ 建议提前 2–4 周预订锁定名额",
         att_3_desc: "潘帕斯草原百年庄园一日游。温顺的马匹骑乘、马车观光（极适合长辈与幼童）、地道木炭烤肉盛宴(Asado)、现场探戈民乐与套绳索(Boleadoras)马术表演。",
         att_3_target: "全程：上午10点至下午5点 · 全家皆宜",
-        att_4_tag: "郊区榜 #2 · 水上水道游览",
-        att_4_title: "Tigre 蒂格雷三角洲双体木船游",
-        att_4_loc: "蒂格雷水运码头 (~50分钟专车向北)",
-        att_4_badge: "⚠️ 建议提前预订专车+双体船套餐",
-        att_4_desc: "全球第五大河口三角洲。乘船穿行于郁郁葱葱的水道网络，看水上超市船、水上校车与水上高脚木屋。在 Gato Blanco 岛上午餐，逛热闹的水果手工艺品集市。",
-        att_4_target: "半日至全日游 · 悠闲避暑",
-        att_5_tag: "科技馆榜 #2 · 太空探索",
-        att_5_title: "伽利略·伽利莱天文馆 (Planetario)",
-        att_5_loc: "巴勒莫公园内 (Parque Tres de Febrero)",
-        att_5_badge: "🚨 穹顶天象激光秀：提前7-10天官网抢票",
-        att_5_desc: "标志性的飞碟形建筑。球幕剧场冷气充足，360度激光投影太阳系演变与探秘深空，视听震撼。馆外免费陈列真实巨大的南美陨石实物。",
-        att_5_target: "观影：50分钟 · 天文与太空爱好者",
-        att_6_tag: "人文榜 #1 · 世界最美书店",
-        att_6_title: "雅典人书店 (El Ateneo Grand Splendid)",
-        att_6_loc: "雷科莱塔区 Av. Santa Fe 1860",
-        att_6_badge: "免费入内 · 直接前往（每日开放）",
-        att_6_desc: "国家地理评选全球最美书店。建于1919年的豪华大剧院改造，保留了金碧辉煌的穹顶壁画与剧院包厢。天鹅绒红色舞台改为现磨咖啡馆，地下一层设有丰富的儿童绘本专区。",
-        att_6_target: "建议游览：45–60 分钟 · 极度出片",
         link_map: "地图",
         link_tickets: "购票",
-        link_station: "游船码头",
-        link_yelp: "Yelp点评",
-        food_heading: "布宜诺斯艾利斯美食红黑榜",
-        food_sub: "精选排名前列的经典牛排馆、治愈系手工冰淇淋与百年传奇咖啡馆",
-        filter_food_all: "全部美食",
-        filter_parrillas: "🥩 必吃牛排馆",
-        filter_pizza: "🍕 披萨与牛肉馅饼",
-        filter_helado: "🍦 世界级手工冰淇淋",
-        filter_cafes: "☕ 百年特色咖啡馆",
-        fd_1_tag: "牛排榜 #1 · 米其林一星 & 拉美第一",
-        fd_1_title: "Don Julio 牛排馆",
-        fd_1_loc: "巴勒莫苏豪区 Guatemala 4699",
-        fd_1_badge: "必须提前90天在 Meitre 午夜放号时秒杀",
-        fd_1_tip: "没抢到可在下午5:30（晚餐）或上午11:30（午餐）现场排队，排队免费派发冰镇起泡酒和现烤牛肉馅饼！",
-        fd_1_desc: "阿根廷牛肉的最高水准。自备冷库干式熟成草饲安格斯牛肉。推荐自制香肠、臀腰肉排 (Bife de Cuadril) 与招牌有机番茄沙拉。",
-        fd_1_price: "人均约 ~$45–$70 美元",
-        link_meitre: "Meitre预订",
-        fd_2_tag: "牛排榜 #2 · 最适合带娃家庭",
-        fd_2_title: "La Cabrera 牛排馆",
-        fd_2_loc: "巴勒莫区 José A. Cabrera 5099",
-        fd_2_badge: "提前 2–4 周在官网或 WhatsApp 预约",
-        fd_2_tip: "傍晚 6:30–8:00 提供快乐时光折扣（最高7折，非常适合早睡早起的小朋友家庭！）。",
-        fd_2_desc: "每份厚切牛排（肉眼/西冷）上桌时都会附赠十几个精致小陶碗配菜（松露土豆泥、焦糖洋葱、玉米糊、阿根廷青酱），孩子们吃得津津有味。分量极足！",
-        fd_2_price: "人均约 ~$30–$45 美元",
-        link_book: "预约席位",
-        fd_3_tag: "小馆榜 #1 · Don Julio 传奇姐妹店",
-        fd_3_title: "El Preferido de Palermo",
-        fd_3_loc: "巴勒莫区 Jorge Luis Borges 2108",
-        fd_3_badge: "提前 2–3 周预约，或在 12:00/19:30 开门时直接去",
-        fd_3_desc: "醒目的粉红色复古拐角建筑。拥有全城公认最顶级的 Milanesa（黄金酥脆薄炸牛排，小朋友最爱）、自制手工风干火腿与传统腌菜。",
-        fd_3_price: "人均约 ~$25–$40 美元",
-        fd_4_tag: "冰淇淋榜 #1 · 国家地理评选世界前十",
-        fd_4_title: "Cadore 手工冰淇淋",
-        fd_4_loc: "市中心歌剧院大街 Av. Corrientes 1695",
-        fd_4_badge: "✅ 柜台直接购买（无需预约，稍作排队）",
-        fd_4_desc: "1957年由意大利移民创立。招牌经典焦糖牛奶味 (Dulce de Leche) 慢火熬煮14小时，口感浓醇细腻丝滑，是全阿根廷冰淇淋的最高标杆！",
-        fd_4_price: "小杯/蛋筒约 ~$3–$5 美元",
-        fd_5_tag: "披萨榜 #1 · 1932 百年拉丝神店",
-        fd_5_title: "Pizzería Güerrin",
-        fd_5_loc: "市中心剧院街 Av. Corrientes 1368",
-        fd_5_badge: "✅ 随到随吃（内部有多层大堂与快速立食区）",
-        fd_5_desc: "布市最具代表性的传统柴火窑烤披萨。厚实松软的饼底铺满近乎瀑布般涌出的马苏里拉奶酪（Muzzarella al molde），芝士控狂喜！",
-        fd_5_price: "人均约 ~$8–$15 美元",
-        fd_6_tag: "巧克力与冰淇淋 #2 · 巴里洛切名店",
-        fd_6_title: "Rapanui 巧克力工坊与冰淇淋",
-        fd_6_loc: "巴勒莫 Malabia 2014 & 雷科莱塔 Uruguay 1284",
-        fd_6_badge: "✅ 直接到店（环境优雅如童话小店）",
-        fd_6_desc: "源自巴塔哥尼亚的顶级巧克力名店。来阿根廷绝不可错过的国宝零食 <strong>Franui</strong>（急冻野树莓双层白巧与牛奶巧外裹），以及开心果与黑巧冰淇淋！",
-        fd_6_price: "单品约 ~$3–$6 美元",
-        itin_heading: "3 套模块化自选家庭行程方案",
-        itin_sub: "根据全家人的体力与偏好随心切换，可任意混搭单日活动！",
-        tab_track_a: "方案 A：经典均衡版",
-        tab_track_b: "方案 B：亲子探索版",
-        tab_track_c: "方案 C：美食人文版",
-        track_a_title: "方案 A：经典家庭均衡版（官方推荐）",
-        track_a_desc: "节奏平缓科学，完美结合布市经典地标（彩色街、雷科莱塔、玫瑰园）与孩子们最爱的生态公园、天文馆、三角洲游船与高乔牧场烤肉。",
-        day1_a_title: "第1天 (12月5日 周六)：初抵布市与巴勒莫玫瑰园",
-        day1_a_desc: "EZE机场落地 (10:55) → 专车直达 Palermo Suites（2间套房已备妥行李寄存）→ La Hormiga 轻松烤肉午餐 → 漫步玫瑰园踩脚踏船 → Lucciano's 冰淇淋。",
-        day2_a_title: "第2天 (12月6日 周日)：自由漫步动物园与太空穹顶",
-        day2_a_desc: "上午 Ecoparque 生态公园（近距离喂水豚野兔）→ Croque Madame 花园午餐 → 伽利略天文馆360度激光星空秀 → La Cabrera 早场大餐。",
-        day3_a_title: "第3天 (12月7日 周一)：世界最美书店与动手科学",
-        day3_a_desc: "雅典人剧院书店喝咖啡打卡 → 雷科莱塔公墓历史漫步 → Café La Biela 遮阳伞午餐 → “禁止不摸”儿童科技馆动手动脑 → 意式手工面晚餐。",
-        day4_a_title: "第4天 (12月8日 周二)：蒂格雷三角洲游船避暑",
-        day4_a_desc: "7座专车北上蒂格雷码头 → 经典双体木船穿行水上人家 → Gato Blanco 绿茵草地岛上午餐 → 水果手工艺集市淘宝 → 回酒店露台休憩。",
-        day5_a_title: "第5天 (12月9日 周三)：彩色铁皮屋、探戈与勺切牛排",
-        day5_a_desc: "上午网约双车前往博卡区 Caminito（街头探戈与马拉多纳壁画）→ 圣特尔莫古董室内市场与玛法达雕像打卡 → La Brigada 勺切嫩牛排午餐 → 亚美尼亚广场秋千滑梯。",
-        day6_a_title: "第6天 (12月10日 周四)：高乔牛仔庄园狂欢一日游",
-        day6_a_desc: "专车前往百年高乔牧场 → 骑马与马车巡游潘帕斯草原 → 露天柴火烤肉盛宴(Asado)配马兰博(Malambo)踢踏舞马术秀 → 傍晚回酒店打包整装。",
-        track_b_title: "方案 B：儿童欢乐与动物探索版（亲子高频互动）",
-        track_b_desc: "专为4-12岁儿童打造。增加马德罗港高科技 MIJU 感官游戏馆、阿巴斯托微缩儿童职业体验城、以及可替代蒂格雷的 34 公顷 Temaikèn 巨型水族生态园。",
-        day1_b_title: "第1天：初抵入园与湖畔双层旋转木马",
-        day1_b_desc: "酒店寄存行李 → 轻松午餐 → 巴勒莫湖畔脚踏船 + Paseo de la Infanta 复古双层旋转木马 → Rapanui 巧克力树莓甜点。",
-        day2_b_title: "第2天：生态公园动物互动 + 天文馆",
-        day2_b_desc: "Ecoparque 喂小野兔与鸭子 → La Panera Rosa 粉红童趣餐厅松饼甜品 → 天文馆趣味儿童场次 → 美味芝士披萨晚餐。",
-        day3_b_title: "第3天：MIJU 现代儿童游戏馆 + 马德罗港",
-        day3_b_desc: "提前预约 MIJU 儿童馆（数字光影攀爬隧道与滑梯互动）→ 水岸栈道推车散步看帆船 → 运河特色餐厅午餐。",
-        day4_b_title: "第4天：Temaikèn 34公顷巨型生态水族公园",
-        day4_b_desc: "全天包车探访南美顶级 Temaikèn 生态园 → 漫步360度水下鲨鱼隧道、高空绳桥巨型鸟舍、亲手触摸刺鳐池 → 傍晚返程。",
-        day5_b_title: "第5天：阿巴斯托微缩儿童城 + 恐龙骨骼",
-        day5_b_desc: "上午阿巴斯托购物中心 Museo de los Niños（儿童驾驶真飞机舱、当电视台主播）→ Güerrin 瀑布芝士午餐 → 下午 MACN 巨型恐龙骨架标本馆。",
-        day6_b_title: "第6天：高乔牧场骑小矮马与乡村BBQ",
-        day6_b_desc: "高乔庄园：儿童专属温顺矮马骑行、草坪拔河游戏、木制马车慢行，尽情享受开阔草原与多汁烤排骨。",
-        track_c_title: "方案 C：美食老饕与文化探戈版（长辈与吃货最爱）",
-        track_c_desc: "侧重布市世界级艺术与舌尖享受。囊括科隆大剧院后台探秘、Don Julio 与 El Preferido 顶级打卡、Tortoni 百年吉事果及圣特尔莫古董淘宝。",
-        day1_c_title: "第1天：入住并打卡传奇粉红小馆",
-        day1_c_desc: "入住酒店套房 → 前往 Don Julio 姐妹店 El Preferido 吃全城第一薄脆炸牛排与熟成火腿 → 玫瑰园散步消食 → Cadore 焦糖冰淇淋。",
-        day2_c_title: "第2天：科隆大剧院探秘 + 百年 Tortoni",
-        day2_c_desc: "预约科隆大剧院英文殿堂级导览 → 漫步至 Gran Café Tortoni 享用传统浓热巧配香酥吉事果 → 傍晚享用 Don Julio 牛排大餐。",
-        day3_c_title: "第3天：雷科莱塔欧风漫游与科技馆",
-        day3_c_desc: "雅典人剧院书店舞台包厢打卡 → 雷科莱塔贵族公墓 → 装饰艺术博物馆 Croque Madame 露天庭院优雅午餐 → 儿童科学馆体验。",
-        day4_c_title: "第4天：蒂格雷三角洲私人快艇巡游",
-        day4_c_desc: "包下私人快艇包船畅游深处原生态水道 → Gato Blanco 岛屿私人草坪午餐 → 晚间返回巴勒莫品尝手工窑烤披萨。",
-        day5_c_title: "第5天：博卡探戈、圣特尔莫古董与勺切牛排",
-        day5_c_desc: "Caminito 彩色街看街头探戈 → 圣特尔莫室内古董美食大厅 → La Brigada 享用勺子切肉的顶级西冷牛排 → 巴勒莫精品店伴手礼采购。",
-        day6_c_title: "第6天：潘帕斯草原百年私家庄园大宴",
-        day6_c_desc: "探访真正的阿根廷高乔私家庄园：听驯马师与马耳语的独特技巧，品尝多道式传统阿根廷烤肉宴与马尔贝克红酒。",
         flights_heading: "航班确认详情（达美执飞 · 往返直飞）",
         flights_sub: "达美航空执飞 · 红眼过夜航班 · 完美贴合小朋友睡眠作息",
         flights_cost: "已付 $5,110.14 美元（6人往返总价）",
@@ -1816,7 +2252,7 @@
       showToast(currentLang === "zh" ? "已切换为简体中文" : "Switched to English");
     }
 
-    // 2. DARK MODE LOGIC
+    // THEME LOGIC
     function initTheme() {
       const savedTheme = localStorage.getItem("ba_theme");
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -1852,7 +2288,7 @@
       }
     }
 
-    // 3. COUNTDOWN TIMER (Dec 4, 2026 @ 10:00 PM EST)
+    // COUNTDOWN
     function updateCountdown() {
       const targetDate = new Date("2026-12-04T22:00:00-05:00").getTime();
       const now = new Date().getTime();
@@ -1873,13 +2309,13 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // 4. ATTRACTIONS FILTER
-    function filterAttractions(category) {
-      const cards = document.querySelectorAll(".attr-card");
-      const pills = document.querySelectorAll(".attr-pill");
+    // TIMELINE DAY FILTER
+    function selectTimelineDay(dayKey) {
+      const cards = document.querySelectorAll(".tl-day-card");
+      const pills = document.querySelectorAll(".tl-day-pill");
 
       pills.forEach(p => {
-        if (p.getAttribute("data-filter") === category) {
+        if (p.getAttribute("data-tlday") === dayKey) {
           p.classList.add("active-pill");
           p.classList.remove("text-slate-600", "dark:text-slate-400");
         } else {
@@ -1888,16 +2324,21 @@
         }
       });
 
-      cards.forEach(card => {
-        if (category === "all" || card.getAttribute("data-category") === category) {
-          card.style.display = "flex";
-        } else {
-          card.style.display = "none";
-        }
-      });
+      if (dayKey === "all") {
+        cards.forEach(c => c.style.display = "block");
+      } else {
+        cards.forEach(c => {
+          if (c.id === `tl-${dayKey}`) {
+            c.style.display = "block";
+            c.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            c.style.display = "none";
+          }
+        });
+      }
     }
 
-    // 5. FOOD FILTER
+    // FOOD FILTER
     function filterFood(category) {
       const cards = document.querySelectorAll(".food-card");
       const pills = document.querySelectorAll(".food-pill");
@@ -1921,13 +2362,13 @@
       });
     }
 
-    // 6. MODULAR FLOW SWITCHER
-    function switchFlow(flowId) {
-      const contents = document.querySelectorAll(".flow-content");
-      const pills = document.querySelectorAll(".flow-pill");
+    // ATTRACTIONS FILTER
+    function filterAttractions(category) {
+      const cards = document.querySelectorAll(".attr-card");
+      const pills = document.querySelectorAll(".attr-pill");
 
       pills.forEach(p => {
-        if (p.getAttribute("data-flow") === flowId) {
+        if (p.getAttribute("data-filter") === category) {
           p.classList.add("active-pill");
           p.classList.remove("text-slate-600", "dark:text-slate-400");
         } else {
@@ -1936,16 +2377,16 @@
         }
       });
 
-      contents.forEach(c => {
-        if (c.id === flowId) {
-          c.classList.remove("hidden");
+      cards.forEach(card => {
+        if (category === "all" || card.getAttribute("data-category") === category) {
+          card.style.display = "flex";
         } else {
-          c.classList.add("hidden");
+          card.style.display = "none";
         }
       });
     }
 
-    // 7. TOAST & CLIPBOARD
+    // TOAST & CLIPBOARD
     function copyToClipboard(text, message = "Copied to clipboard!") {
       navigator.clipboard.writeText(text).then(() => {
         showToast(message);
@@ -1970,7 +2411,7 @@
       }, 2500);
     }
 
-    // 8. TAXI MODAL
+    // TAXI MODAL
     function openTaxiModal() {
       document.getElementById("taxi-modal").classList.remove("hidden");
     }
