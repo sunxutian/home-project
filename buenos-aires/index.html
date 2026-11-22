@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buenos Aires Family Trip — One-Page Master Plan (Dec 4–12, 2026)</title>
+  <meta name="description" content="Interactive master travel guide and itinerary for a family of 6 (4 Adults, 2 Kids) visiting Buenos Aires, Argentina. Includes flight confirmations, hotel logistics, budget tracker, and day-by-day maps." />
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☀️</text></svg>">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            arg: {
+              sky: '#74ACDF',
+              gold: '#F6B40E',
+              navy: '#0B2545',
+              blue: '#134074',
+              sand: '#FAF8F5',
+              cream: '#F4EFEA',
+              card: '#FFFFFF'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; color: black !important; font-size: 11pt; }
+      .print-break { page-break-before: always; }
+      .shadow-xl, .shadow-lg, .shadow-md { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    .map-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 0.5rem;
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      font-size: 0.75rem;
+      font-weight: 600;
+      transition: all 0.15s ease-in-out;
+    }
+    .map-link:hover {
+      background-color: #f1f5f9;
+      color: #0f172a;
+      border-color: #cbd5e1;
+      transform: translateY(-1px);
+    }
+    .active-tab {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+    }
+  </style>
+</head>
+<body class="bg-arg-sand text-slate-800 font-sans antialiased selection:bg-arg-sky selection:text-white min-h-screen">
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 text-sm font-medium border border-slate-700">
+    <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>
+    <span id="toast-message">Copied to clipboard!</span>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <a href="#hero" class="flex items-center space-x-2.5 group">
+          <span class="w-9 h-9 rounded-xl bg-gradient-to-tr from-arg-blue to-arg-sky text-white flex items-center justify-center font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
+            🇦🇷
+          </span>
+          <div>
+            <h1 class="text-sm font-extrabold text-slate-900 leading-tight">Buenos Aires Master Plan</h1>
+            <p class="text-[11px] text-slate-500 font-medium">Dec 4–12, 2026 · 6 Nights · Family of 6</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Nav Links -->
+      <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-xs font-semibold text-slate-600">
+        <a href="#flights" class="px-3 py-1.5 rounded-lg hover:bg-slate-100 hover:text-arg-blue transition-colors">Flights</a>
+        <a href="#hotel" class="px-3 py-1.5 rounded-lg hover:bg-slate-100 hover:text-arg-blue transition-colors">Hotel & Transfers</a>
+        <a href="#budget" class="px-3 py-1.5 rounded-lg hover:bg-slate-100 hover:text-arg-blue transition-colors">Budget Tracker</a>
+        <a href="#itinerary" class="px-3 py-1.5 rounded-lg hover:bg-slate-100 hover:text-arg-blue transition-colors">Day-by-Day</a>
+        <a href="#checklist" class="px-3 py-1.5 rounded-lg hover:bg-slate-100 hover:text-arg-blue transition-colors">Checklist</a>
+        <a href="#survival" class="px-3 py-1.5 rounded-lg hover:bg-slate-100 hover:text-arg-blue transition-colors">Survival Guide</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center space-x-2 no-print">
+        <button onclick="openTaxiModal()" class="px-3 py-1.5 rounded-lg bg-amber-50 text-amber-900 hover:bg-amber-100 border border-amber-200 text-xs font-bold flex items-center space-x-1.5 transition-colors shadow-sm" title="Show Hotel Address in Spanish to Driver">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-600"></i>
+          <span class="hidden sm:inline">Taxi Card</span>
+        </button>
+        <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-slate-900 text-white hover:bg-slate-800 text-xs font-bold flex items-center space-x-1.5 transition-colors shadow-sm">
+          <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+          <span>Print / PDF</span>
+        </button>
+        <a href="../" class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold flex items-center space-x-1 transition-colors" title="Back to Home Hub">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span class="hidden lg:inline">Home</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-arg-navy via-arg-blue to-slate-900 text-white shadow-2xl p-6 sm:p-10 lg:p-12">
+      <!-- Decorative background glow -->
+      <div class="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-arg-sky/15 blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-arg-gold/15 blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8 space-y-4">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-arg-gold">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Confirmed Flights & Hotel Reservations Active</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl font-black font-serif tracking-tight leading-tight">
+            Buenos Aires Family Trip
+            <span class="block text-xl sm:text-3xl font-sans font-light text-slate-200 mt-1">One-Page Master Plan & Day-by-Day Guide</span>
+          </h1>
+
+          <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+            Curated specifically for our <strong class="text-white">party of 6 (4 Adults + 2 Kids)</strong>. Featuring nonstop Delta flights, two connected serviced apartment suites in trendy Palermo, stress-free private transfers, hands-on science, scenic delta cruises, tango culture, and legendary Argentine asado.
+          </p>
+
+          <!-- Key Quick Meta Chips -->
+          <div class="flex flex-wrap gap-2.5 pt-2">
+            <div class="bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/15 px-3 py-2 rounded-xl flex items-center space-x-2">
+              <i data-lucide="calendar" class="w-4 h-4 text-arg-sky"></i>
+              <div class="text-xs">
+                <span class="text-slate-400 block text-[10px]">Dates</span>
+                <span class="font-bold text-white">Dec 4 – Dec 12, 2026</span>
+              </div>
+            </div>
+
+            <div class="bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/15 px-3 py-2 rounded-xl flex items-center space-x-2">
+              <i data-lucide="users" class="w-4 h-4 text-emerald-400"></i>
+              <div class="text-xs">
+                <span class="text-slate-400 block text-[10px]">Travelers</span>
+                <span class="font-bold text-white">6 (4 Adults + 2 Kids)</span>
+              </div>
+            </div>
+
+            <div class="bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/15 px-3 py-2 rounded-xl flex items-center space-x-2">
+              <i data-lucide="hotel" class="w-4 h-4 text-amber-300"></i>
+              <div class="text-xs">
+                <span class="text-slate-400 block text-[10px]">Stay</span>
+                <span class="font-bold text-white">Palermo Suites (2 Units)</span>
+              </div>
+            </div>
+
+            <div class="bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/15 px-3 py-2 rounded-xl flex items-center space-x-2">
+              <i data-lucide="dollar-sign" class="w-4 h-4 text-arg-gold"></i>
+              <div class="text-xs">
+                <span class="text-slate-400 block text-[10px]">Target Budget</span>
+                <span class="font-bold text-white">$8,000 USD Total</span>
+              </div>
+            </div>
+
+            <div class="bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/15 px-3 py-2 rounded-xl flex items-center space-x-2">
+              <i data-lucide="sun" class="w-4 h-4 text-orange-400"></i>
+              <div class="text-xs">
+                <span class="text-slate-400 block text-[10px]">Weather</span>
+                <span class="font-bold text-white">Summer · 72°F – 84°F</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Countdown & Status Card -->
+        <div class="lg:col-span-4">
+          <div class="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-5 space-y-4 shadow-xl">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+              <div class="flex items-center space-x-2 text-xs font-semibold text-slate-300">
+                <i data-lucide="clock" class="w-4 h-4 text-arg-gold"></i>
+                <span>Countdown to JFK Takeoff</span>
+              </div>
+              <span class="text-[11px] bg-arg-blue/70 text-arg-sky px-2 py-0.5 rounded font-mono font-bold">Fri Dec 4 10:00 PM</span>
+            </div>
+
+            <!-- Countdown Timer Displays -->
+            <div class="grid grid-cols-4 gap-2 text-center" id="countdown-grid">
+              <div class="bg-black/30 rounded-xl p-2.5 border border-white/10">
+                <div id="count-days" class="text-xl sm:text-2xl font-black font-mono text-arg-gold">---</div>
+                <div class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Days</div>
+              </div>
+              <div class="bg-black/30 rounded-xl p-2.5 border border-white/10">
+                <div id="count-hours" class="text-xl sm:text-2xl font-black font-mono text-white">--</div>
+                <div class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Hours</div>
+              </div>
+              <div class="bg-black/30 rounded-xl p-2.5 border border-white/10">
+                <div id="count-mins" class="text-xl sm:text-2xl font-black font-mono text-white">--</div>
+                <div class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Mins</div>
+              </div>
+              <div class="bg-black/30 rounded-xl p-2.5 border border-white/10">
+                <div id="count-secs" class="text-xl sm:text-2xl font-black font-mono text-white">--</div>
+                <div class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Secs</div>
+              </div>
+            </div>
+
+            <div class="pt-1 text-xs text-slate-300 space-y-2">
+              <div class="flex items-center justify-between text-[11px] bg-white/5 rounded-lg p-2">
+                <span class="text-slate-400">Delta Confirmation:</span>
+                <button onclick="copyToClipboard('HXS3M5', 'Delta PNR copied!')" class="font-mono font-bold text-amber-300 hover:text-white flex items-center space-x-1 underline decoration-dotted">
+                  <span>HXS3M5</span>
+                  <i data-lucide="copy" class="w-3 h-3"></i>
+                </button>
+              </div>
+              <div class="flex items-center justify-between text-[11px] bg-white/5 rounded-lg p-2">
+                <span class="text-slate-400">BYOjet Reference:</span>
+                <button onclick="copyToClipboard('BYO39494204', 'BYOjet Ref copied!')" class="font-mono font-bold text-sky-300 hover:text-white flex items-center space-x-1 underline decoration-dotted">
+                  <span>BYO39494204</span>
+                  <i data-lucide="copy" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
+
+            <a href="https://www.delta.com/myflights/search" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 rounded-xl bg-arg-gold hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-md">
+              Manage Seats on Delta.com &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: FLIGHT CONFIRMATIONS -->
+    <section id="flights" class="scroll-mt-20 space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="w-7 h-7 rounded-lg bg-blue-100 text-arg-blue flex items-center justify-center font-bold text-sm">1</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Flight Confirmations (Nonstop Both Ways)</h2>
+          </div>
+          <p class="text-xs text-slate-500 mt-0.5">Operated by Delta Air Lines · Red-eye flights overnight · Ideal for kids sleep cycles</p>
+        </div>
+        <div class="flex items-center space-x-3 text-xs">
+          <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200 flex items-center space-x-1">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            <span>Cost: $5,110.14 USD Paid</span>
+          </span>
+          <span class="px-2.5 py-1 bg-slate-100 text-slate-700 font-semibold rounded-lg">
+            Carry-on + Personal item included
+          </span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- Outbound Flight Card -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-2 h-full bg-blue-500"></div>
+          <div class="pl-2 space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-md">OUTBOUND</span>
+                <span class="text-xs font-bold text-slate-800">Fri, Dec 4, 2026</span>
+              </div>
+              <span class="text-xs font-mono font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Duration: 10h 55m</span>
+            </div>
+
+            <!-- Route Visualization -->
+            <div class="flex items-center justify-between pt-2">
+              <div class="text-left">
+                <div class="text-2xl font-black text-slate-900">10:00 PM</div>
+                <div class="text-xs font-bold text-blue-600">JFK · New York</div>
+                <div class="text-[11px] text-slate-400">Terminal 4 (Delta)</div>
+              </div>
+
+              <div class="flex-1 px-4 flex flex-col items-center">
+                <span class="text-[11px] font-semibold text-slate-500 mb-1">LA 8871 (Op. by Delta)</span>
+                <div class="w-full flex items-center relative">
+                  <div class="h-0.5 w-full bg-slate-200"></div>
+                  <i data-lucide="plane-takeoff" class="w-4 h-4 text-blue-500 absolute left-1/2 -translate-x-1/2 bg-white px-0.5"></i>
+                </div>
+                <span class="text-[10px] text-emerald-600 font-bold mt-1">Nonstop Overnight</span>
+              </div>
+
+              <div class="text-right">
+                <div class="text-2xl font-black text-slate-900">10:55 AM <span class="text-xs text-rose-500 font-bold">+1 day</span></div>
+                <div class="text-xs font-bold text-blue-600">EZE · Buenos Aires</div>
+                <div class="text-[11px] text-slate-400">Sat, Dec 5, 2026</div>
+              </div>
+            </div>
+
+            <!-- Kids & Boarding Tips -->
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-100 text-xs space-y-1.5 text-slate-600">
+              <div class="flex items-center text-slate-900 font-bold text-[11px] space-x-1">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-500"></i>
+                <span>Family Outbound Tips:</span>
+              </div>
+              <ul class="list-disc list-inside text-[11px] space-y-0.5 text-slate-600">
+                <li>Arrive JFK Terminal 4 by <strong>7:00 PM</strong> (allows 3 hrs for international check-in, stroller gate check, and security).</li>
+                <li>Feed kids dinner at JFK before boarding; flight departs at 10 PM so kids fall asleep shortly after takeoff.</li>
+                <li>Delta seat power outlets work for tablets; download Netflix/Disney+ offline movies ahead of time.</li>
+              </ul>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <a href="https://www.google.com/maps/search/?api=1&query=John+F+Kennedy+International+Airport+JFK" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1 text-xs text-slate-600 hover:text-blue-600 font-medium">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                <span>JFK Airport Map</span>
+              </a>
+              <button onclick="copyToClipboard('HXS3M5', 'Delta PNR copied!')" class="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center space-x-1">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span>Copy PNR: HXS3M5</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Return Flight Card -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-2 h-full bg-emerald-500"></div>
+          <div class="pl-2 space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-md">RETURN</span>
+                <span class="text-xs font-bold text-slate-800">Fri, Dec 11, 2026</span>
+              </div>
+              <span class="text-xs font-mono font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Duration: 11h 03m</span>
+            </div>
+
+            <!-- Route Visualization -->
+            <div class="flex items-center justify-between pt-2">
+              <div class="text-left">
+                <div class="text-2xl font-black text-slate-900">8:05 PM</div>
+                <div class="text-xs font-bold text-emerald-600">EZE · Buenos Aires</div>
+                <div class="text-[11px] text-slate-400">Terminal A/C</div>
+              </div>
+
+              <div class="flex-1 px-4 flex flex-col items-center">
+                <span class="text-[11px] font-semibold text-slate-500 mb-1">LA 8872 (Op. by Delta)</span>
+                <div class="w-full flex items-center relative">
+                  <div class="h-0.5 w-full bg-slate-200"></div>
+                  <i data-lucide="plane-landing" class="w-4 h-4 text-emerald-500 absolute left-1/2 -translate-x-1/2 bg-white px-0.5"></i>
+                </div>
+                <span class="text-[10px] text-emerald-600 font-bold mt-1">Nonstop Overnight</span>
+              </div>
+
+              <div class="text-right">
+                <div class="text-2xl font-black text-slate-900">5:08 AM <span class="text-xs text-rose-500 font-bold">+1 day</span></div>
+                <div class="text-xs font-bold text-emerald-600">JFK · New York</div>
+                <div class="text-[11px] text-slate-400">Sat, Dec 12, 2026</div>
+              </div>
+            </div>
+
+            <!-- Kids & Return Tips -->
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-100 text-xs space-y-1.5 text-slate-600">
+              <div class="flex items-center text-slate-900 font-bold text-[11px] space-x-1">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-500"></i>
+                <span>Family Return Tips:</span>
+              </div>
+              <ul class="list-disc list-inside text-[11px] space-y-0.5 text-slate-600">
+                <li>Van leaves hotel at <strong>4:15 PM sharp</strong> (allows 45 min drive + 3 hrs for baggage drop & passport control).</li>
+                <li>Duty-Free at EZE is excellent for bringing back Argentine alfajores (Havanna) & Malbec wine.</li>
+                <li>Arrive in JFK at 5:08 AM on Saturday morning — clear customs, recover weekend at home!</li>
+              </ul>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <a href="https://www.google.com/maps/search/?api=1&query=Aeropuerto+Internacional+Ministro+Pistarini+EZE" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1 text-xs text-slate-600 hover:text-emerald-600 font-medium">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                <span>EZE Airport Map</span>
+              </a>
+              <a href="https://www.delta.com/myflights/search" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 flex items-center space-x-1">
+                <span>Manage on Delta.com</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: ENTRY REQUIREMENTS & 21% VAT EXEMPTION -->
+    <section id="entry" class="scroll-mt-20">
+      <div class="bg-gradient-to-r from-amber-50 via-orange-50 to-amber-50 border border-amber-200 rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div class="space-y-2">
+            <div class="flex items-center space-x-2">
+              <span class="p-1.5 bg-amber-500 text-white rounded-lg">
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
+              </span>
+              <h3 class="text-base sm:text-lg font-bold text-amber-950">Entry Requirements & 21% Hotel Tax Savings</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-amber-900 leading-relaxed">
+              <strong>Visa-Free Status Confirmed:</strong>
+              U.S. Passports enter visa-free for up to 90 days. Chinese Passports holding a valid U.S. Green Card or valid U.S. B1/B2/H-1B visa enter visa-free for up to 30 days (Decree 892/2016).
+              <span class="block text-xs text-amber-800 mt-1 font-medium">
+                ⚠️ <strong>Crucial:</strong> All travelers must carry physical original passports (valid 6+ months) and physical U.S. Green Cards / valid U.S. visas.
+              </span>
+            </p>
+          </div>
+
+          <!-- 21% VAT Highlight Pill -->
+          <div class="bg-white rounded-xl p-4 border border-amber-200 shadow-sm shrink-0 lg:max-w-xs space-y-1.5">
+            <div class="flex items-center space-x-1.5 text-xs font-bold text-emerald-700">
+              <i data-lucide="badge-percent" class="w-4 h-4"></i>
+              <span>21% Hotel VAT Exemption</span>
+            </div>
+            <p class="text-[11px] text-slate-600 leading-normal">
+              At check-in at Palermo Suites, present foreign passports + entry stamps and pay with a <strong>foreign credit card</strong> to waive Argentina's 21% IVA hotel tax automatically (saves ~$420+ USD).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: HOTEL & AIRPORT TRANSFERS -->
+    <section id="hotel" class="scroll-mt-20 space-y-5">
+      <div class="border-b border-slate-200 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div class="flex items-center space-x-2">
+          <span class="w-7 h-7 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm">2</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Hotel & Airport Transfers Logistics</h2>
+            <p class="text-xs text-slate-500">Palermo Suites Hotel & Apartments · Private 7-Passenger Van · In-City Uber & Cabify</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="openTaxiModal()" class="px-3 py-1.5 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 text-xs font-bold flex items-center space-x-1.5 shadow-sm">
+            <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
+            <span>Show Spanish Address Card</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Hotel Information Card (7 cols) -->
+        <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 text-[10px] font-bold uppercase">6 Nights Stay</span>
+                <span class="text-xs text-slate-500 font-medium">Palermo Soho / Pacifico District</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mt-1">Palermo Suites Buenos Aires Hotel & Apartments</h3>
+              <p class="text-xs text-slate-600 flex items-center space-x-1 mt-0.5">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-rose-500 shrink-0"></i>
+                <span>Paraguay 4646, C1425BSB Buenos Aires, Argentina</span>
+              </p>
+            </div>
+            <div class="flex sm:flex-col items-end gap-1.5">
+              <span class="text-sm font-black text-slate-900">~$2,002 USD</span>
+              <span class="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded">VAT-Exempt</span>
+            </div>
+          </div>
+
+          <!-- Times & Check-in / Out Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <span class="text-[10px] uppercase font-bold text-slate-400 block">Check-In</span>
+              <span class="text-xs font-black text-slate-800">Sat Dec 5 @ 3 PM</span>
+              <span class="text-[10px] text-blue-600 block">Free bag drop AM</span>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <span class="text-[10px] uppercase font-bold text-slate-400 block">Check-Out</span>
+              <span class="text-xs font-black text-slate-800">Fri Dec 11 @ 12 PM</span>
+              <span class="text-[10px] text-blue-600 block">Store bags till 4 PM</span>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <span class="text-[10px] uppercase font-bold text-slate-400 block">Apartments</span>
+              <span class="text-xs font-black text-slate-800">2 Separate Suites</span>
+              <span class="text-[10px] text-slate-500 block">33 m² each unit</span>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <span class="text-[10px] uppercase font-bold text-slate-400 block">Breakfast</span>
+              <span class="text-xs font-black text-emerald-700">Included Daily</span>
+              <span class="text-[10px] text-slate-500 block">Buffet 7:00-10:30 AM</span>
+            </div>
+          </div>
+
+          <!-- Critical Action Item Checklist -->
+          <div class="bg-rose-50 border border-rose-200 rounded-xl p-4 space-y-2">
+            <div class="flex items-center space-x-2 text-rose-900 font-bold text-xs">
+              <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-600"></i>
+              <span>CRITICAL ACTION ITEM: 2 Separate Suites Verification</span>
+            </div>
+            <p class="text-xs text-rose-800 leading-relaxed">
+              Verify your booking confirmation covers <strong>two (2) separate 33 m² apartments</strong>. Each individual unit has <strong>1 King + 1 Single bed</strong> and sleeps a maximum of 3 guests. Having two units guarantees all 6 family members (4 adults + 2 kids) sleep comfortably with privacy and 2 private bathrooms!
+            </p>
+          </div>
+
+          <!-- Suite Features -->
+          <div class="space-y-2">
+            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider block">Family-Friendly Room Amenities:</span>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs text-slate-600">
+              <div class="flex items-center space-x-1.5 bg-slate-50 px-2.5 py-1.5 rounded-lg">
+                <i data-lucide="utensils" class="w-3.5 h-3.5 text-blue-500"></i>
+                <span>Kitchenette (Milk/Snacks)</span>
+              </div>
+              <div class="flex items-center space-x-1.5 bg-slate-50 px-2.5 py-1.5 rounded-lg">
+                <i data-lucide="wifi" class="w-3.5 h-3.5 text-blue-500"></i>
+                <span>High-Speed Wi-Fi</span>
+              </div>
+              <div class="flex items-center space-x-1.5 bg-slate-50 px-2.5 py-1.5 rounded-lg">
+                <i data-lucide="shield" class="w-3.5 h-3.5 text-blue-500"></i>
+                <span>24-Hour Front Desk</span>
+              </div>
+              <div class="flex items-center space-x-1.5 bg-slate-50 px-2.5 py-1.5 rounded-lg">
+                <i data-lucide="train" class="w-3.5 h-3.5 text-blue-500"></i>
+                <span>Near Subte Line D</span>
+              </div>
+              <div class="flex items-center space-x-1.5 bg-slate-50 px-2.5 py-1.5 rounded-lg">
+                <i data-lucide="sun" class="w-3.5 h-3.5 text-blue-500"></i>
+                <span>Rooftop Solarium</span>
+              </div>
+              <div class="flex items-center space-x-1.5 bg-slate-50 px-2.5 py-1.5 rounded-lg">
+                <i data-lucide="coffee" class="w-3.5 h-3.5 text-blue-500"></i>
+                <span>Free Continental Breakfast</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- External Links -->
+          <div class="flex flex-wrap gap-2 pt-1 border-t border-slate-100">
+            <a href="https://www.google.com/maps/search/?api=1&query=Palermo+Suites+Buenos+Aires+Paraguay+4646" target="_blank" rel="noopener noreferrer" class="map-link">
+              <i data-lucide="map" class="w-3.5 h-3.5 text-rose-500"></i>
+              <span>Google Maps Pin</span>
+            </a>
+            <a href="https://www.tripadvisor.com/Search?q=Palermo+Suites+Buenos+Aires" target="_blank" rel="noopener noreferrer" class="map-link">
+              <i data-lucide="star" class="w-3.5 h-3.5 text-emerald-600"></i>
+              <span>TripAdvisor Reviews</span>
+            </a>
+            <a href="https://www.yelp.com/search?find_desc=Hotels&find_loc=Palermo%2C+Buenos+Aires" target="_blank" rel="noopener noreferrer" class="map-link">
+              <i data-lucide="compass" class="w-3.5 h-3.5 text-red-500"></i>
+              <span>Yelp Palermo</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Transfer & Transit Strategy Card (5 cols) -->
+        <div class="lg:col-span-5 space-y-4">
+          <!-- Airport Transfer Van Card -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
+            <div class="flex items-center space-x-2 text-slate-900 font-bold text-sm">
+              <i data-lucide="bus" class="w-4 h-4 text-indigo-600"></i>
+              <span>Airport Private 7-Passenger Van</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              <strong>Do not rent a car.</strong> Traffic and parking are hectic. Pre-book an authorized private Mercedes Sprinter or 7-passenger van (e.g., Taxi Ezeiza, Manuel Tienda León, or hotel concierge transfer):
+            </p>
+
+            <div class="space-y-2 text-xs">
+              <div class="p-2.5 rounded-xl bg-indigo-50/70 border border-indigo-100 flex items-start justify-between">
+                <div>
+                  <div class="font-bold text-indigo-950">Arrival Van Pickup (Sat, Dec 5)</div>
+                  <div class="text-[11px] text-indigo-700">Schedule for ~11:45 AM at EZE</div>
+                  <div class="text-[10px] text-slate-500">Flight lands 10:55 AM · ~50m customs & bags</div>
+                </div>
+                <span class="text-xs font-bold text-indigo-900 bg-white px-2 py-0.5 rounded shadow-sm">~$55–$75</span>
+              </div>
+
+              <div class="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-100 flex items-start justify-between">
+                <div>
+                  <div class="font-bold text-emerald-950">Departure Van Pickup (Fri, Dec 11)</div>
+                  <div class="text-[11px] text-emerald-700">Hotel departure by 4:15 PM sharp</div>
+                  <div class="text-[10px] text-slate-500">Flight LA 8872 departs EZE at 8:05 PM</div>
+                </div>
+                <span class="text-xs font-bold text-emerald-900 bg-white px-2 py-0.5 rounded shadow-sm">~$55–$75</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- In-City Transit Strategy -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
+            <div class="flex items-center space-x-2 text-slate-900 font-bold text-sm">
+              <i data-lucide="navigation" class="w-4 h-4 text-emerald-600"></i>
+              <span>City Travel: Uber / Cabify Dual-Car Strategy</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Standard sedans hold 4 passengers. For our family of 6, order <strong>two (2) Ubers or Cabifys side-by-side</strong> on two phones:
+            </p>
+            <div class="grid grid-cols-2 gap-2 text-[11px]">
+              <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                <span class="font-bold text-slate-800 block">Car 1 (Party of 3)</span>
+                <span class="text-slate-500">2 Adults + 1 Kid</span>
+              </div>
+              <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                <span class="font-bold text-slate-800 block">Car 2 (Party of 3)</span>
+                <span class="text-slate-500">2 Adults + 1 Kid</span>
+              </div>
+            </div>
+            <div class="text-[11px] text-slate-500 flex items-center justify-between pt-1">
+              <span>Avg Ride Cost across Palermo/Recoleta:</span>
+              <strong class="text-slate-900">$5 – $8 USD per car</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: BUDGET SNAPSHOT & INTERACTIVE CALCULATOR -->
+    <section id="budget" class="scroll-mt-20 space-y-5">
+      <div class="border-b border-slate-200 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div class="flex items-center space-x-2">
+          <span class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm">3</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Budget Snapshot & Interactive Daily Tracker</h2>
+            <p class="text-xs text-slate-500">Target Budget: $8,000 USD · Real-time remaining balance for food, transfers & tours</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="resetBudgetToDefaults()" class="text-xs text-slate-500 hover:text-slate-800 font-medium underline">
+            Reset to Defaults
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Summary Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
+          <span class="text-xs font-semibold text-slate-500 block">Total Target Budget</span>
+          <div class="text-2xl font-black text-slate-900 mt-1">$8,000</div>
+          <span class="text-[10px] text-slate-400 font-medium">All-inclusive 6-night cap</span>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
+          <span class="text-xs font-semibold text-blue-600 block">Flights (Family of 6)</span>
+          <div class="text-2xl font-black text-blue-600 mt-1">$5,110</div>
+          <span class="text-[10px] text-emerald-600 font-bold">✓ Paid (BYOjet / Delta)</span>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
+          <span class="text-xs font-semibold text-indigo-600 block">Hotel (6 Nights, 2 Suites)</span>
+          <div class="text-2xl font-black text-indigo-600 mt-1">~$2,002</div>
+          <span class="text-[10px] text-emerald-600 font-bold">✓ 21% VAT-Exempt</span>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-emerald-200 p-4 shadow-sm bg-gradient-to-br from-white to-emerald-50">
+          <span class="text-xs font-semibold text-emerald-700 block">Remaining for Dining & Day Trips</span>
+          <div id="remaining-display" class="text-2xl font-black text-emerald-600 mt-1">~$888</div>
+          <span id="daily-run-rate" class="text-[10px] text-emerald-700 font-bold">~$148/day for party</span>
+        </div>
+      </div>
+
+      <!-- Visual Progress Bar -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
+        <div class="flex items-center justify-between text-xs font-bold">
+          <span class="text-slate-700">Budget Allocation Breakdown</span>
+          <span class="text-slate-500 font-mono" id="budget-progress-text">$7,112 committed / $8,000 total (88.9%)</span>
+        </div>
+        <div class="h-4 w-full bg-slate-100 rounded-full overflow-hidden flex shadow-inner">
+          <div class="bg-blue-500 h-full transition-all duration-500" style="width: 63.88%" title="Flights: $5,110 (63.9%)"></div>
+          <div class="bg-indigo-500 h-full transition-all duration-500" style="width: 25.02%" title="Hotel: $2,002 (25.0%)"></div>
+          <div id="bar-remaining" class="bg-emerald-400 h-full transition-all duration-500" style="width: 11.10%" title="Remaining: $888 (11.1%)"></div>
+        </div>
+        <div class="flex flex-wrap gap-4 text-xs pt-1">
+          <div class="flex items-center space-x-1.5">
+            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+            <span class="text-slate-600">Flights (63.9% · $5,110)</span>
+          </div>
+          <div class="flex items-center space-x-1.5">
+            <span class="w-3 h-3 rounded-full bg-indigo-500"></span>
+            <span class="text-slate-600">Hotel Suites (25.0% · $2,002)</span>
+          </div>
+          <div class="flex items-center space-x-1.5">
+            <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+            <span class="text-slate-600">Dining, Transfers & Fun (11.1% · $888)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Daily Expense Planner & Tracker -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 class="text-sm font-bold text-slate-900 flex items-center space-x-2">
+              <i data-lucide="calculator" class="w-4 h-4 text-emerald-600"></i>
+              <span>Interactive Daily Expense Log & Forecast ($888 Pool)</span>
+            </h3>
+            <p class="text-xs text-slate-500">Modify numbers below to track your planned vs actual spending during the trip:</p>
+          </div>
+          <div class="text-xs font-bold text-slate-700 bg-slate-100 px-3 py-1.5 rounded-lg flex items-center space-x-2">
+            <span>Pool Spent:</span>
+            <span id="tracker-total-spent" class="font-mono text-blue-600 font-bold">$785</span>
+            <span class="text-slate-400">|</span>
+            <span>Unallocated:</span>
+            <span id="tracker-unallocated" class="font-mono text-emerald-600 font-bold">+$103</span>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b border-slate-200 text-slate-500 font-semibold bg-slate-50/75">
+                <th class="py-2.5 px-3">Day</th>
+                <th class="py-2.5 px-3">Primary Activities & Meals</th>
+                <th class="py-2.5 px-3">Transfers</th>
+                <th class="py-2.5 px-3 text-right">Target ($)</th>
+                <th class="py-2.5 px-3 text-right">Actual / Plan ($)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700" id="budget-table-body">
+              <tr>
+                <td class="py-2 px-3 font-bold text-blue-600">Day 1 (Sat)</td>
+                <td class="py-2 px-3">EZE Arrival, Empanadas lunch, Rosedal paddleboats, Helado</td>
+                <td class="py-2 px-3">Van $65 + Walk</td>
+                <td class="py-2 px-3 text-right font-mono">$135</td>
+                <td class="py-2 px-3 text-right">
+                  <input type="number" class="budget-input w-20 text-right px-2 py-1 bg-slate-50 border border-slate-200 rounded font-mono text-xs font-bold" value="135" onchange="recalcBudgetTracker()" />
+                </td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 font-bold text-emerald-600">Day 2 (Sun)</td>
+                <td class="py-2 px-3">Ecoparque (Free), Croque Madame lunch, Planetario, La Cabrera</td>
+                <td class="py-2 px-3">Walk / Uber $12</td>
+                <td class="py-2 px-3 text-right font-mono">$145</td>
+                <td class="py-2 px-3 text-right">
+                  <input type="number" class="budget-input w-20 text-right px-2 py-1 bg-slate-50 border border-slate-200 rounded font-mono text-xs font-bold" value="145" onchange="recalcBudgetTracker()" />
+                </td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 font-bold text-purple-600">Day 3 (Mon)</td>
+                <td class="py-2 px-3">El Ateneo, Recoleta, La Biela lunch, Prohibido No Tocar, Pasta</td>
+                <td class="py-2 px-3">2 Ubers $16</td>
+                <td class="py-2 px-3 text-right font-mono">$125</td>
+                <td class="py-2 px-3 text-right">
+                  <input type="number" class="budget-input w-20 text-right px-2 py-1 bg-slate-50 border border-slate-200 rounded font-mono text-xs font-bold" value="125" onchange="recalcBudgetTracker()" />
+                </td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 font-bold text-sky-600">Day 4 (Tue)</td>
+                <td class="py-2 px-3">Tigre Paraná Delta Catamaran, Gato Blanco island lunch, Market</td>
+                <td class="py-2 px-3">Van / Train $40</td>
+                <td class="py-2 px-3 text-right font-mono">$140</td>
+                <td class="py-2 px-3 text-right">
+                  <input type="number" class="budget-input w-20 text-right px-2 py-1 bg-slate-50 border border-slate-200 rounded font-mono text-xs font-bold" value="140" onchange="recalcBudgetTracker()" />
+                </td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 font-bold text-amber-600">Day 5 (Wed)</td>
+                <td class="py-2 px-3">Caminito La Boca, San Telmo market, La Brigada steak, Playground</td>
+                <td class="py-2 px-3">2 Ubers $22</td>
+                <td class="py-2 px-3 text-right font-mono">$130</td>
+                <td class="py-2 px-3 text-right">
+                  <input type="number" class="budget-input w-20 text-right px-2 py-1 bg-slate-50 border border-slate-200 rounded font-mono text-xs font-bold" value="130" onchange="recalcBudgetTracker()" />
+                </td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 font-bold text-yellow-700">Day 6 (Thu)</td>
+                <td class="py-2 px-3">Gaucho Ranch Day (Estancia package includes horseback, BBQ, show)</td>
+                <td class="py-2 px-3">Private Van</td>
+                <td class="py-2 px-3 text-right font-mono">$160</td>
+                <td class="py-2 px-3 text-right">
+                  <input type="number" class="budget-input w-20 text-right px-2 py-1 bg-slate-50 border border-slate-200 rounded font-mono text-xs font-bold" value="160" onchange="recalcBudgetTracker()" />
+                </td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 font-bold text-slate-800">Day 7 (Fri)</td>
+                <td class="py-2 px-3">Distrito Arcos lunch, souvenir alfajores, EZE Departure Van</td>
+                <td class="py-2 px-3">Van $65</td>
+                <td class="py-2 px-3 text-right font-mono">$110</td>
+                <td class="py-2 px-3 text-right">
+                  <input type="number" class="budget-input w-20 text-right px-2 py-1 bg-slate-50 border border-slate-200 rounded font-mono text-xs font-bold" value="110" onchange="recalcBudgetTracker()" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Currency & Payment Quick Calculator -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Argentine Card & Currency Tips -->
+        <div class="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2">
+          <div class="flex items-center space-x-2 text-xs font-bold text-slate-800">
+            <i data-lucide="credit-card" class="w-4 h-4 text-blue-600"></i>
+            <span>How to Pay in Buenos Aires (MEP Rate Explained)</span>
+          </div>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Foreign Visa & Mastercard credit cards automatically receive the favorable <strong>MEP tourist exchange rate</strong>. You do <em>not</em> need to carry stacks of cash or exchange on Florida Street. Use a no-foreign-transaction-fee US credit card for almost all dining, Uber, supermarkets, and shopping. Carry ~$100–$150 USD in crisp $20s for cash tips (propina ~10%).
+          </p>
+        </div>
+
+        <!-- Quick USD to ARS Converter Widget -->
+        <div class="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-3">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-800">
+            <div class="flex items-center space-x-2">
+              <i data-lucide="refresh-cw" class="w-4 h-4 text-emerald-600"></i>
+              <span>Live Quick Currency Helper</span>
+            </div>
+            <span class="text-[10px] text-slate-500 font-mono">1 USD ≈ <span id="rate-display">1,250</span> ARS (MEP est.)</span>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <div class="relative flex-1">
+              <span class="absolute left-3 top-2 text-xs font-bold text-slate-400">$</span>
+              <input type="number" id="calc-usd" value="50" oninput="calculateArs()" class="w-full pl-7 pr-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="USD" />
+            </div>
+            <span class="text-xs font-bold text-slate-400">=</span>
+            <div class="relative flex-1">
+              <span class="absolute left-3 top-2 text-xs font-bold text-slate-400">ARS $</span>
+              <input type="text" id="calc-ars" readonly class="w-full pl-14 pr-3 py-1.5 bg-slate-100 border border-slate-200 rounded-lg text-xs font-bold text-slate-800 focus:outline-none" value="62,500" />
+            </div>
+          </div>
+          <p class="text-[10px] text-slate-500">
+            Example: A delicious artisanal gelato cup is ~$3,500 ARS (~$2.80 USD). An empanada is ~$1,800 ARS (~$1.45 USD).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: 6-DAY / 7-DAY MASTER ITINERARY -->
+    <section id="itinerary" class="scroll-mt-20 space-y-6">
+      <div class="border-b border-slate-200 pb-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div class="flex items-center space-x-2">
+          <span class="w-7 h-7 rounded-lg bg-arg-blue text-white flex items-center justify-center font-bold text-sm">4</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Day-by-Day Master Family Itinerary</h2>
+            <p class="text-xs text-slate-500">Dec 5 – Dec 11, 2026 · Interactive stops with direct Google Maps & Yelp / TripAdvisor links</p>
+          </div>
+        </div>
+
+        <!-- Filter / Day Selector Tabs -->
+        <div class="flex flex-wrap gap-1 bg-slate-200/80 p-1 rounded-xl text-xs font-bold no-print" id="day-tabs">
+          <button onclick="filterDay('all')" class="day-tab-btn active-tab px-3 py-1.5 rounded-lg text-slate-900 transition-all" data-target="all">All Days</button>
+          <button onclick="filterDay('day1')" class="day-tab-btn px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all" data-target="day1">Day 1 (Sat)</button>
+          <button onclick="filterDay('day2')" class="day-tab-btn px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all" data-target="day2">Day 2 (Sun)</button>
+          <button onclick="filterDay('day3')" class="day-tab-btn px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all" data-target="day3">Day 3 (Mon)</button>
+          <button onclick="filterDay('day4')" class="day-tab-btn px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all" data-target="day4">Day 4 (Tue)</button>
+          <button onclick="filterDay('day5')" class="day-tab-btn px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all" data-target="day5">Day 5 (Wed)</button>
+          <button onclick="filterDay('day6')" class="day-tab-btn px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all" data-target="day6">Day 6 (Thu)</button>
+          <button onclick="filterDay('day7')" class="day-tab-btn px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all" data-target="day7">Day 7 (Fri)</button>
+        </div>
+      </div>
+
+      <!-- DAYS CONTAINER -->
+      <div class="space-y-8" id="days-wrapper">
+
+        <!-- ================= DAY 1 ================= -->
+        <div class="day-card bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all" id="day1">
+          <!-- Day Header -->
+          <div class="bg-gradient-to-r from-blue-900 to-indigo-900 text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-0.5 rounded bg-blue-500/40 text-blue-200 text-xs font-bold tracking-wide uppercase">Day 1</span>
+                <span class="text-xs text-blue-200 font-medium">Saturday, Dec 5, 2026</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold font-serif mt-1">Arrival, Palermo Check-in & Lake Paddleboats</h3>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold text-blue-200">
+                Pace: Gentle / Acclimatization
+              </span>
+            </div>
+          </div>
+
+          <!-- Day Content Timeline -->
+          <div class="p-5 sm:p-6 space-y-6">
+            <!-- Step 1: Airport to Hotel -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs">
+                  10:55
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Touchdown at EZE & Private Van Transfer to Palermo</h4>
+                  <span class="text-[11px] font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Van: ~45 mins</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Delta flight LA 8871 lands at 10:55 AM. Clear customs & immigration (remember to use Family lane if open). Pre-booked 7-passenger van meets party at arrivals ~11:45 AM. Arrive at Palermo Suites around 12:45 PM. Drop all 6 bags with front desk for secure storage.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Aeropuerto+Internacional+Ministro+Pistarini+EZE" target="_blank" class="map-link">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                    <span>EZE Airport Map</span>
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Palermo+Suites+Buenos+Aires+Paraguay+4646" target="_blank" class="map-link">
+                    <i data-lucide="hotel" class="w-3.5 h-3.5"></i>
+                    <span>Palermo Suites Map</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Casual Lunch -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-xs">
+                  1:15
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Welcome Lunch: Traditional Empanadas & Argentine Steaks</h4>
+                  <span class="text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">Palermo Soho</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Head 2 blocks from the hotel for a relaxed family meal. Top recommended spots for kids and adults: <strong>La Hormiga</strong> (beloved family-style parrilla with juicy steaks and big salads) or <strong>Las Cuartetas / La Piquería</strong> for warm hand-crafted baked beef (carne cortada a cuchillo) and ham-and-cheese empanadas.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=La+Hormiga+Armenia+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="utensils" class="w-3.5 h-3.5 text-amber-600"></i>
+                    <span>La Hormiga Parrilla Map</span>
+                  </a>
+                  <a href="https://www.yelp.com/search?find_desc=Empanadas&find_loc=Palermo%2C+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="star" class="w-3.5 h-3.5 text-red-500"></i>
+                    <span>Yelp: Best Empanadas Palermo</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Bosques de Palermo & Rose Garden -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs">
+                  3:00
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Check-in Rooms & Stroll in Bosques de Palermo (El Rosedal & Paddleboats)</h4>
+                  <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Parks & Lakes</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Check into the 2 apartments at 3:00 PM. Freshen up with showers. Then take an easy 10-minute stroll to <strong>Parque 3 de Febrero (Bosques de Palermo)</strong>. Visit <strong>El Rosedal</strong> (over 18,000 rose bushes in full summer bloom, picturesque white bridges) and rent a pedal paddleboat on the calm lake for the kids to feed geese and ducks!
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=El+Rosedal+de+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>El Rosedal Rose Garden Map</span>
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Bosques+de+Palermo+Lago+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="anchor" class="w-3.5 h-3.5 text-sky-600"></i>
+                    <span>Palermo Lake Paddleboats</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Artisanal Gelato & Early Bedtime -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-800 flex items-center justify-center font-bold text-xs">
+                  6:00
+                </div>
+              </div>
+              <div class="flex-1 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Artisanal Helado & Restful First Evening</h4>
+                  <span class="text-[11px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded">Gelato Treat</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Head to <strong>Lucciano's Palermo</strong> (famous for novelty penguin and minion ice-cream popsicles for kids + artisan dulce de leche) or <strong>Rapanui</strong> (mouthwatering chocolates and Frambini chocolate-covered raspberries). Pick up fresh fruit and bottled water at Carrefour Express on Paraguay, then early lights out to conquer travel jet lag.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Lucciano%27s+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="ice-cream" class="w-3.5 h-3.5 text-rose-500"></i>
+                    <span>Lucciano's Helados Map</span>
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Rapanui+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="gift" class="w-3.5 h-3.5 text-amber-700"></i>
+                    <span>Rapanui Chocolates & Gelato</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= DAY 2 ================= -->
+        <div class="day-card bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all" id="day2">
+          <!-- Day Header -->
+          <div class="bg-gradient-to-r from-emerald-900 to-teal-900 text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-0.5 rounded bg-emerald-500/40 text-emerald-200 text-xs font-bold tracking-wide uppercase">Day 2</span>
+                <span class="text-xs text-emerald-200 font-medium">Sunday, Dec 6, 2026</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold font-serif mt-1">Wildlife Sanctuary, Space Planetarium & Steak Dinner</h3>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold text-emerald-200">
+                Pace: Kids Highlight & 100% Stroller Friendly
+              </span>
+            </div>
+          </div>
+
+          <div class="p-5 sm:p-6 space-y-6">
+            <!-- Step 1: Ecoparque BA -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs">
+                  9:30
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Morning at Ecoparque BA (Free Wildlife Sanctuary)</h4>
+                  <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Free Admission · Flat Paths</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Walk 6 minutes from hotel to Plaza Italia entrance of <strong>Ecoparque Buenos Aires</strong>. Formerly the historic city zoo, this is now an open ecological park where Patagonian maras (friendly mini hares), peacocks, flamingos, ducks, and coypus roam freely along the walkways. Fully stroller-accessible with shaded benches and clean restrooms.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Ecoparque+Buenos+Aires+Plaza+Italia" target="_blank" class="map-link">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Ecoparque Buenos Aires Map</span>
+                  </a>
+                  <a href="https://www.tripadvisor.com/Search?q=Ecoparque+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="star" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>TripAdvisor Ecoparque</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Casual Garden Café Lunch -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-xs">
+                  12:30
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Lunch at Croque Madame or La Panera Rosa</h4>
+                  <span class="text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">Garden Cafes</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Relax at <strong>Croque Madame</strong> (tucked in the lush courtyard of the Museum of Decorative Art or Botanic Gardens) or <strong>La Panera Rosa</strong> near Plaza Italia (fabulous French crepes, fresh squeezed orange juice, avocado toast, and kid-approved pasta).
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Croque+Madame+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="utensils" class="w-3.5 h-3.5 text-amber-600"></i>
+                    <span>Croque Madame Map</span>
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=La+Panera+Rosa+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="coffee" class="w-3.5 h-3.5 text-rose-500"></i>
+                    <span>La Panera Rosa Map</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Planetario Galileo Galilei -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-800 flex items-center justify-center font-bold text-xs">
+                  2:30
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Afternoon Dome Show at Planetario Galileo Galilei</h4>
+                  <span class="text-[11px] font-semibold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">360° Dome Theater</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Explore Buenos Aires' famous futuristic UFO-shaped planetarium. Sit in the air-conditioned theater under the giant 20-meter dome for an immersive family astronomy show with stunning visual projections of stars, planets, and constellations. Walk through the interactive space museum and real meteorite exhibition.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Planetario+Galileo+Galilei+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-indigo-600"></i>
+                    <span>Planetario Galileo Galilei Map</span>
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Jardin+Japones+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="flower" class="w-3.5 h-3.5 text-pink-600"></i>
+                    <span>Jardín Japonés (Next Door)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Early Parrilla Dinner -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-red-100 text-red-800 flex items-center justify-center font-bold text-xs">
+                  7:30
+                </div>
+              </div>
+              <div class="flex-1 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Legendary Palermo Steak Dinner: La Cabrera or Don Julio</h4>
+                  <span class="text-[11px] font-semibold text-red-700 bg-red-50 px-2 py-0.5 rounded">Argentine Parrilla</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Argentine restaurants open around 7:30–8:00 PM. Arriving right at opening is the golden strategy for families with kids (no long waits!). At <strong>La Cabrera</strong>, steaks (Ojo de Bife, Bife de Chorizo) come with a dozen complimentary mini cazuelas (truffled mashed potatoes, caramelized garlic, corn pudding) that kids adore.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=La+Cabrera+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="utensils-crossed" class="w-3.5 h-3.5 text-red-600"></i>
+                    <span>La Cabrera Parrilla Map</span>
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Don+Julio+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="star" class="w-3.5 h-3.5 text-amber-500"></i>
+                    <span>Don Julio Parrilla Map</span>
+                  </a>
+                  <a href="https://www.yelp.com/search?find_desc=La+Cabrera&find_loc=Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="compass" class="w-3.5 h-3.5 text-slate-600"></i>
+                    <span>Yelp Review: La Cabrera</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= DAY 3 ================= -->
+        <div class="day-card bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all" id="day3">
+          <!-- Day Header -->
+          <div class="bg-gradient-to-r from-purple-900 to-indigo-950 text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-0.5 rounded bg-purple-500/40 text-purple-200 text-xs font-bold tracking-wide uppercase">Day 3</span>
+                <span class="text-xs text-purple-200 font-medium">Monday, Dec 7, 2026</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold font-serif mt-1">Recoleta Grandeur, Theater Bookstore & Hands-On Science</h3>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold text-purple-200">
+                Pace: Culture + Science Discovery
+              </span>
+            </div>
+          </div>
+
+          <div class="p-5 sm:p-6 space-y-6">
+            <!-- Step 1: Recoleta & El Ateneo -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-800 flex items-center justify-center font-bold text-xs">
+                  9:45
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">El Ateneo Grand Splendid & Recoleta Historic Walk</h4>
+                  <span class="text-[11px] font-semibold text-purple-700 bg-purple-50 px-2 py-0.5 rounded">10 min Uber</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Hail 2 Ubers to <strong>El Ateneo Grand Splendid</strong>, voted the most beautiful bookstore in the world. Built in 1919 as a lavish theater, the crimson velvet stage is now a coffee shop, and the lower level has a dedicated children's book nook. Afterwards, take an Uber to Recoleta Cemetery and see the giant 200-year-old Gomero rubber tree.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=El+Ateneo+Grand+Splendid+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="book-open" class="w-3.5 h-3.5 text-purple-600"></i>
+                    <span>El Ateneo Bookstore Map</span>
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Cementerio+de+la+Recoleta+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="landmark" class="w-3.5 h-3.5 text-slate-600"></i>
+                    <span>Recoleta Cemetery Map</span>
+                  </a>
+                  <a href="https://www.yelp.com/search?find_desc=El+Ateneo+Grand+Splendid&find_loc=Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="star" class="w-3.5 h-3.5 text-red-500"></i>
+                    <span>Yelp El Ateneo</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Historic Café Lunch -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-xs">
+                  12:30
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Terrace Lunch at Café La Biela or El San Juanino</h4>
+                  <span class="text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">Outdoor Dining</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Dine outdoors under the awnings at <strong>La Biela</strong> (classic Buenos Aires heritage café overlooking Plaza Francia with milanesas and toasted sandwiches) or walk 4 blocks to <strong>El San Juanino</strong> for legendary Northern-style clay-oven empanadas and tamales.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Cafe+La+Biela+Recoleta+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="coffee" class="w-3.5 h-3.5 text-amber-700"></i>
+                    <span>Café La Biela Map</span>
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=El+San+Juanino+Recoleta+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="utensils" class="w-3.5 h-3.5 text-orange-600"></i>
+                    <span>El San Juanino Map</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Museo Participativo de Ciencias -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-cyan-100 text-cyan-800 flex items-center justify-center font-bold text-xs">
+                  2:30
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Museo Participativo de Ciencias ("Prohibido No Tocar")</h4>
+                  <span class="text-[11px] font-semibold text-cyan-800 bg-cyan-50 px-2 py-0.5 rounded">Hands-On Kids Center</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Located right in the Recoleta Cultural Center, this is a highlight for the 2 kids: <strong>"Forbidden Not to Touch" Science Museum</strong>. Packed with interactive experiments on mechanics, light optics, static electricity, sound waves, giant bubble makers, and gravity levers where children learn by playing and touching everything!
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Museo+Participativo+de+Ciencias+Prohibido+No+Tocar+Recoleta" target="_blank" class="map-link">
+                    <i data-lucide="flask-conical" class="w-3.5 h-3.5 text-cyan-600"></i>
+                    <span>Prohibido No Tocar Map</span>
+                  </a>
+                  <a href="https://www.tripadvisor.com/Search?q=Museo+Participativo+de+Ciencias+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="star" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>TripAdvisor Science Museum</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Relax & Pasta Dinner -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-xs">
+                  7:30
+                </div>
+              </div>
+              <div class="flex-1 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Italian Family Feast: Fresh Handmade Pasta</h4>
+                  <span class="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Palermo</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Buenos Aires has deep Italian heritage and world-class fresh pasta. Head back to Palermo for dinner at <strong>Cucina Paradiso</strong> (chef Donato de Santis' cozy Italian trattoria with gnocchi, ravioli, and gelato) or <strong>Siamo nel Forno</strong> for authentic Neapolitan wood-fired pizza.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Cucina+Paradiso+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="utensils" class="w-3.5 h-3.5 text-blue-600"></i>
+                    <span>Cucina Paradiso Map</span>
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Siamo+nel+Forno+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="pizza" class="w-3.5 h-3.5 text-amber-600"></i>
+                    <span>Siamo nel Forno Pizza Map</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= DAY 4 ================= -->
+        <div class="day-card bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all" id="day4">
+          <!-- Day Header -->
+          <div class="bg-gradient-to-r from-sky-900 to-cyan-900 text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-0.5 rounded bg-sky-500/40 text-sky-200 text-xs font-bold tracking-wide uppercase">Day 4</span>
+                <span class="text-xs text-sky-200 font-medium">Tuesday, Dec 8, 2026</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold font-serif mt-1">Tigre & Paraná Delta Catamaran Boat Cruise</h3>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold text-sky-200">
+                Pace: Scenic Day Excursion
+              </span>
+            </div>
+          </div>
+
+          <div class="p-5 sm:p-6 space-y-6">
+            <!-- Step 1: Drive to Tigre -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-sky-100 text-sky-800 flex items-center justify-center font-bold text-xs">
+                  9:00
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Van Transfer North to Tigre & Paraná Delta</h4>
+                  <span class="text-[11px] font-semibold text-sky-700 bg-sky-50 px-2 py-0.5 rounded">~50 min drive</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Private 7-passenger van picks up the family at Palermo Suites at 9:00 AM for the smooth ride north to the town of Tigre (the gateway to the vast fifth-largest river delta in the world). Alternatively, the scenic coastal train (Tren de la Costa) offers lovely views of the Rio de la Plata coastline.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Estacion+Fluvial+de+Tigre+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-sky-600"></i>
+                    <span>Tigre River Station (Estación Fluvial) Map</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Wooden Catamaran Cruise -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-xs">
+                  10:30
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Scenic Catamaran River Cruise through Delta Islands</h4>
+                  <span class="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">1–2 hr Boat Tour</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Board a traditional wooden catamaran or private launch. Cruise along the calm labyrinth of channels lined with lush subtropical willow trees, stilt island houses, wooden boat docks, schoolhouse boats, and grocery store boats. The breeze on the water is refreshing in December and enchanting for both children and adults.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Paseos+en+Catamaran+Tigre+Delta" target="_blank" class="map-link">
+                    <i data-lucide="ship" class="w-3.5 h-3.5 text-blue-600"></i>
+                    <span>Delta Catamaran Boat Tours Map</span>
+                  </a>
+                  <a href="https://www.tripadvisor.com/Search?q=Tigre+Delta+Boat+Tour" target="_blank" class="map-link">
+                    <i data-lucide="star" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>TripAdvisor Delta Tours</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Waterfront Lunch & Puerto de Frutos -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-xs">
+                  1:00
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Riverside Lunch at Gato Blanco & Puerto de Frutos Market</h4>
+                  <span class="text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">Island Waterfront Dining</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Dine at <strong>Gato Blanco</strong> (fabulous island restaurant with grassy lawns, shade trees, grilled pacú river fish, steaks, and pasta) or back on the mainland at <strong>Vivanco</strong>. Afterwards, explore <strong>Puerto de Frutos</strong>: a vibrant open-air market filled with handmade wicker baskets, wooden toys, dried fruits, honey, and souvenirs.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+Gato+Blanco+Delta+Tigre" target="_blank" class="map-link">
+                    <i data-lucide="utensils" class="w-3.5 h-3.5 text-amber-600"></i>
+                    <span>Gato Blanco Restaurant Map</span>
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Puerto+de+Frutos+Tigre+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-purple-600"></i>
+                    <span>Puerto de Frutos Market Map</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Return & Relax -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-800 flex items-center justify-center font-bold text-xs">
+                  4:30
+                </div>
+              </div>
+              <div class="flex-1 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Return to Palermo Suites & Casual Family Dinner</h4>
+                  <span class="text-[11px] font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded">Evening Downtime</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Van drops the family back at Palermo Suites by 4:30 PM. Enjoy downtime on the rooftop terrace. Dinner can be relaxed takeout empanadas from <strong>El Horno Oriental</strong> or dining at nearby <strong>Club Eros</strong> (authentic Argentine neighborhood social club with friendly prices and homecooked dishes).
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Club+Eros+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="utensils" class="w-3.5 h-3.5 text-slate-600"></i>
+                    <span>Club Eros Palermo Map</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= DAY 5 ================= -->
+        <div class="day-card bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all" id="day5">
+          <!-- Day Header -->
+          <div class="bg-gradient-to-r from-amber-900 via-rose-900 to-red-900 text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-0.5 rounded bg-amber-500/40 text-amber-200 text-xs font-bold tracking-wide uppercase">Day 5</span>
+                <span class="text-xs text-amber-200 font-medium">Wednesday, Dec 9, 2026</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold font-serif mt-1">Colorful Caminito (La Boca), Tango & San Telmo Market</h3>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold text-amber-200">
+                Pace: Vibrant Street Art & Antiques
+              </span>
+            </div>
+          </div>
+
+          <div class="p-5 sm:p-6 space-y-6">
+            <!-- Step 1: La Boca -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-xs">
+                  9:30
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Morning in La Boca: Caminito Street & Colorful Houses</h4>
+                  <span class="text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">20 min Uber</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Hail 2 Ubers to <strong>Caminito</strong> in La Boca. Famous for bright pastel-painted corrugated zinc conventillo houses built by early Italian immigrants. Watch street tango dancers performing to live accordion music, admire Maradona wall murals, and take cheerful family portraits. <em>Safety Tip: Stay inside the tourist police perimeter along Caminito pedestrian walkways.</em>
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Caminito+La+Boca+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="camera" class="w-3.5 h-3.5 text-amber-600"></i>
+                    <span>Caminito La Boca Map</span>
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=La+Bombonera+Estadio+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="shield" class="w-3.5 h-3.5 text-blue-600"></i>
+                    <span>La Bombonera Stadium Map</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: San Telmo Market & Mafalda -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-800 flex items-center justify-center font-bold text-xs">
+                  11:45
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">San Telmo Market, Mafalda Cartoon Statue & Gourmet Lunch</h4>
+                  <span class="text-[11px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded">Historic Market</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Head 10 minutes to historic San Telmo. Snap a cute photo with the famous <strong>Mafalda statue</strong> on the corner of Chile & Defensa. Step into the iron-roofed <strong>Mercado de San Telmo</strong> (dating back to 1897), filled with antique clocks, tango records, artisan coffee, choripán (grilled sausage sandwiches), and dulce de leche crepes.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Mercado+de+San+Telmo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="shopping-cart" class="w-3.5 h-3.5 text-rose-600"></i>
+                    <span>Mercado de San Telmo Map</span>
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Estatua+de+Mafalda+San+Telmo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="smile" class="w-3.5 h-3.5 text-amber-500"></i>
+                    <span>Mafalda Statue Map</span>
+                  </a>
+                  <a href="https://www.yelp.com/search?find_desc=Mercado+de+San+Telmo&find_loc=Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="star" class="w-3.5 h-3.5 text-red-500"></i>
+                    <span>Yelp San Telmo Market</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: San Telmo Lunch: Spoon-Cut Steak -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-red-100 text-red-800 flex items-center justify-center font-bold text-xs">
+                  1:15
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Steak Lunch at Parrilla La Brigada</h4>
+                  <span class="text-[11px] font-semibold text-red-700 bg-red-50 px-2 py-0.5 rounded">Famous Tradition</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Dine at legendary <strong>Parrilla La Brigada</strong> (covered in vintage soccer pennants and memorabilia). The waiter will famously cut the tender beef filet with a spoon to prove how melt-in-your-mouth soft it is — guaranteed to amaze the kids and grandparents alike!
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Parrilla+La+Brigada+San+Telmo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="utensils" class="w-3.5 h-3.5 text-red-600"></i>
+                    <span>Parrilla La Brigada Map</span>
+                  </a>
+                  <a href="https://www.tripadvisor.com/Search?q=La+Brigada+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="star" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>TripAdvisor La Brigada</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Afternoon Playground & Plaza Serrano -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs">
+                  3:30
+                </div>
+              </div>
+              <div class="flex-1 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Palermo Playground Downtime & Heladería Cadore</h4>
+                  <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Playground Fun</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Head back to Palermo for relaxing playground time. Let kids run loose at <strong>Plaza Armenia</strong> (modern swings, climbing structures, soft turf) or Plaza Serrano with its vintage carousel. Grab scoops of gelato from <strong>Cadore</strong> (National Geographic ranked top 10 ice cream in the world).
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Plaza+Armenia+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="trees" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Plaza Armenia Playground Map</span>
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Heladeria+Cadore+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="ice-cream" class="w-3.5 h-3.5 text-amber-600"></i>
+                    <span>Cadore Helados Map</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= DAY 6 ================= -->
+        <div class="day-card bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all" id="day6">
+          <!-- Day Header -->
+          <div class="bg-gradient-to-r from-amber-800 to-yellow-900 text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-0.5 rounded bg-yellow-500/40 text-yellow-200 text-xs font-bold tracking-wide uppercase">Day 6</span>
+                <span class="text-xs text-yellow-200 font-medium">Thursday, Dec 10, 2026</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold font-serif mt-1">Gaucho Estancia Ranch Day Trip (Pampas & Asado BBQ)</h3>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold text-yellow-200">
+                Pace: Full-Day Countryside Adventure
+              </span>
+            </div>
+          </div>
+
+          <div class="p-5 sm:p-6 space-y-6">
+            <!-- Step 1: Morning Van Departure -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-xs">
+                  8:45
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Private Van to San Antonio de Areco / Estancia El Ombú</h4>
+                  <span class="text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">~90 min ride</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Board your private 7-passenger van at Palermo Suites for a scenic drive through the Argentine pampas (prairies) to <strong>San Antonio de Areco</strong> (Argentina's historic gaucho capital) or <strong>Estancia Santa Susana / Estancia El Ombú</strong>. Upon arrival, enjoy warm greetings with hot beef empanadas and fresh juice/mate.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Estancia+El+Ombu+de+Areco+San+Antonio+de+Areco" target="_blank" class="map-link">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-700"></i>
+                    <span>Estancia El Ombú de Areco Map</span>
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Estancia+Santa+Susana+Campana+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="compass" class="w-3.5 h-3.5 text-amber-600"></i>
+                    <span>Estancia Santa Susana Map</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Horseback & Wagon Rides -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs">
+                  11:00
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Gentle Horseback Rides & Horse-Drawn Carriage Tour</h4>
+                  <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Kid-Friendly Horses</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Gentle, well-trained pampa horses suitable for all ages and riding abilities. Grandparents and younger kids can ride together in vintage horse-drawn sulky carriages across the manicured ranch grounds, surrounded by ancient ombú trees, grazing cattle, and wide blue skies.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 3: Traditional Asado Feast & Folklore Show -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-red-100 text-red-800 flex items-center justify-center font-bold text-xs">
+                  1:00
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Grand Argentine Asado BBQ Feast & Live Malambo Show</h4>
+                  <span class="text-[11px] font-semibold text-red-700 bg-red-50 px-2 py-0.5 rounded">Outdoor Feast</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Huge open-fire wood-grilled asado feast: savory chorizo sausages, morcilla, juicy ribs (asado de tira), vacuum-cut beef (vacío), roasted chicken, crispy french fries, fresh mixed salads, and free-flowing Argentine Malbec and soft drinks. Followed by live gaucho folklore guitar, singing, and mesmerizing spinning boleadoras dancing!
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 4: Gaucho Horse Demonstrations & Return -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-xs">
+                  3:30
+                </div>
+              </div>
+              <div class="flex-1 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Gaucho Ring Races (Carrera de Sortijas) & Return to Palermo</h4>
+                  <span class="text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">Ranch Return ~6 PM</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Watch gauchos demonstrate incredible horsemanship: spear at full gallop to snatch a suspended wedding ring, followed by the "doma india" horse-whispering demo. Afternoon coffee and pastelitos (quince pastries). Private van brings the family back to Palermo Suites around 6:00 PM for packing and a restful sleep.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= DAY 7 ================= -->
+        <div class="day-card bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all" id="day7">
+          <!-- Day Header -->
+          <div class="bg-gradient-to-r from-slate-900 to-blue-950 text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-0.5 rounded bg-blue-500/40 text-blue-200 text-xs font-bold tracking-wide uppercase">Day 7</span>
+                <span class="text-xs text-blue-200 font-medium">Friday, Dec 11, 2026</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold font-serif mt-1">Final Stroll, Distrito Arcos Shopping & Evening Departure</h3>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold text-emerald-300">
+                Flight LA 8872 Departs 8:05 PM
+              </span>
+            </div>
+          </div>
+
+          <div class="p-5 sm:p-6 space-y-6">
+            <!-- Step 1: Breakfast & Checkout -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-xs">
+                  10:00
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Leisurely Breakfast & Check-Out (Store Bags at Desk)</h4>
+                  <span class="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">12:00 PM Check-Out</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Enjoy the complimentary breakfast at Palermo Suites. Pack luggage. Check out at 12:00 PM (remember to pay with foreign credit card + show passports for 21% VAT exemption!). Leave all 6 bags securely with the 24-hr front desk staff until pickup time.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 2: Distrito Arcos -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-800 flex items-center justify-center font-bold text-xs">
+                  12:30
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Distrito Arcos Open-Air Mall & Farewell Lunch</h4>
+                  <span class="text-[11px] font-semibold text-purple-700 bg-purple-50 px-2 py-0.5 rounded">3 min walk from hotel</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Walk 3 blocks to <strong>Distrito Arcos Premium Outlet</strong> (built inside historic brick railway arches with fountains, greenery, shaded pergolas, and a children's play area). Great spot for last-minute gifts: Havanna alfajores, leather goods, and Argentine treats. Have lunch at <strong>Il Quotidiano</strong> or <strong>Le Pain Quotidien</strong>.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Distrito+Arcos+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-purple-600"></i>
+                    <span>Distrito Arcos Mall Map</span>
+                  </a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Il+Quotidiano+Palermo+Buenos+Aires" target="_blank" class="map-link">
+                    <i data-lucide="utensils" class="w-3.5 h-3.5 text-amber-600"></i>
+                    <span>Il Quotidiano Cafe Map</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Departure Van to Airport -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs">
+                  4:15
+                </div>
+                <div class="w-0.5 flex-1 bg-slate-200 my-1"></div>
+              </div>
+              <div class="flex-1 pb-4 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Private Van Pickup at Hotel & Transfer to EZE Airport</h4>
+                  <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Schedule: 4:15 PM</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Return to Palermo Suites lobby. Load 6 bags into the private 7-passenger van. Depart hotel at <strong>4:15 PM sharp</strong>. Arrive at EZE Terminal A by 5:00 PM (~3 hours prior to 8:05 PM departure) for relaxed check-in, tax refund verification (if claiming goods VAT), security, and boarding gate.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Aeropuerto+Internacional+Ministro+Pistarini+EZE" target="_blank" class="map-link">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>EZE Airport Location</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Nonstop Flight Home -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs">
+                  8:05
+                </div>
+              </div>
+              <div class="flex-1 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <h4 class="text-sm font-bold text-slate-900">Flight LA 8872 Nonstop to JFK (Arrives Sat Dec 12 @ 5:08 AM)</h4>
+                  <span class="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">11h 03m Flight</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Board Delta-operated Boeing aircraft. Overnight flight back to New York JFK. Kids sleep through the flight, landing early Saturday morning at 5:08 AM with unforgettable memories of Argentina!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 6: PACKING & PRE-TRIP CHECKLIST (PERSISTED) -->
+    <section id="checklist" class="scroll-mt-20 space-y-4">
+      <div class="border-b border-slate-200 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div class="flex items-center space-x-2">
+          <span class="w-7 h-7 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-sm">5</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Interactive Family Packing & Prep Checklist</h2>
+            <p class="text-xs text-slate-500">Auto-saved to your browser · Check items off as you pack!</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-3 text-xs">
+          <span class="font-bold text-slate-600" id="checklist-progress">0 of 16 completed (0%)</span>
+          <button onclick="resetChecklist()" class="text-slate-500 hover:text-slate-800 underline">Reset</button>
+        </div>
+      </div>
+
+      <!-- Checklist Progress Bar -->
+      <div class="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
+        <div id="checklist-bar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 0%"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- Category 1: Travel Docs -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-3 shadow-sm">
+          <div class="flex items-center space-x-2 font-bold text-xs text-slate-900 uppercase tracking-wider">
+            <i data-lucide="file-check" class="w-4 h-4 text-blue-600"></i>
+            <span>1. Essential Documents</span>
+          </div>
+          <div class="space-y-2 text-xs">
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-1" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>Passports for all 6 travelers (valid > 6 months)</span>
+            </label>
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-2" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>Physical U.S. Green Cards / Valid U.S. Visas</span>
+            </label>
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-3" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>Delta FlyDelta app downloaded on phones with PNR HXS3M5</span>
+            </label>
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-4" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>Foreign credit cards (0% foreign transaction fee)</span>
+            </label>
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-5" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>Printed hotel confirmation (2 separate suites)</span>
+            </label>
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-6" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>Travel health insurance cards / policy numbers</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Category 2: Kids Gear -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-3 shadow-sm">
+          <div class="flex items-center space-x-2 font-bold text-xs text-slate-900 uppercase tracking-wider">
+            <i data-lucide="baby" class="w-4 h-4 text-emerald-600"></i>
+            <span>2. Kids & Comfort Gear</span>
+          </div>
+          <div class="space-y-2 text-xs">
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-7" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>Lightweight compact folding stroller (gate check at JFK)</span>
+            </label>
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-8" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>Kids wired headphones & tablet chargers for flight</span>
+            </label>
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-9" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>Motion sickness bands / chewables (Tigre boat & van rides)</span>
+            </label>
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-10" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>Kids water bottles & favorite bedtime plushies</span>
+            </label>
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-11" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>Children's ibuprofen/Tylenol & basic mini first-aid</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Category 3: Argentina Summer Essentials -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-3 shadow-sm">
+          <div class="flex items-center space-x-2 font-bold text-xs text-slate-900 uppercase tracking-wider">
+            <i data-lucide="sun" class="w-4 h-4 text-amber-500"></i>
+            <span>3. Summer & Tech Essentials</span>
+          </div>
+          <div class="space-y-2 text-xs">
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-12" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>Argentina Power Plug Adapters (Type C / Type I 220V)</span>
+            </label>
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-13" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>Insect repellent spray (for Tigre Delta & Estancia Ranch)</span>
+            </label>
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-14" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>SPF 50 Sunscreen, UV sunglasses & wide-brim sun hats</span>
+            </label>
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-15" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>Light breathable cotton summer clothes + 1 light evening jacket</span>
+            </label>
+            <label class="check-item flex items-start space-x-2.5 cursor-pointer p-1.5 rounded hover:bg-slate-50">
+              <input type="checkbox" id="chk-16" onchange="updateChecklist()" class="rounded text-blue-600 focus:ring-blue-500 mt-0.5" />
+              <span>Comfortable walking sneakers for paved cobbles</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: FAMILY SURVIVAL GUIDE & TAXI CARDS -->
+    <section id="survival" class="scroll-mt-20 space-y-4">
+      <div class="border-b border-slate-200 pb-3 flex items-center space-x-2">
+        <span class="w-7 h-7 rounded-lg bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm">6</span>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Family Survival Guide & Quick Spanish Helper</h2>
+          <p class="text-xs text-slate-500">Crucial local knowledge for stress-free dining and getting around with kids</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Dining Timing Tip -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-2.5 shadow-sm">
+          <div class="flex items-center space-x-2 text-slate-900 font-bold text-xs uppercase tracking-wider">
+            <i data-lucide="clock" class="w-4 h-4 text-amber-500"></i>
+            <span>1. Argentine Dining Hours</span>
+          </div>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Locals dine late (9:30 PM to 11:30 PM). Parrillas and restaurants typically open for dinner between <strong>7:30 PM and 8:00 PM</strong>. As a traveling family with kids, arriving at 7:45 PM is your superpower: no waitlists, quiet dining rooms, and rapid food service!
+          </p>
+        </div>
+
+        <!-- Kid Food Favorites -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-2.5 shadow-sm">
+          <div class="flex items-center space-x-2 text-slate-900 font-bold text-xs uppercase tracking-wider">
+            <i data-lucide="utensils" class="w-4 h-4 text-emerald-600"></i>
+            <span>2. What Kids Love to Eat</span>
+          </div>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Every Argentine restaurant has kid favorites:
+            <strong>Milanesa con papas fritas</strong> (tender breaded beef or chicken cutlet with french fries), <strong>Empanadas de jamón y queso</strong> (ham & cheese), <strong>Ñoquis</strong> (potato gnocchi), and <strong>Helado de Dulce de Leche</strong>.
+          </p>
+        </div>
+
+        <!-- Emergency Numbers -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-2.5 shadow-sm">
+          <div class="flex items-center space-x-2 text-slate-900 font-bold text-xs uppercase tracking-wider">
+            <i data-lucide="phone-call" class="w-4 h-4 text-rose-600"></i>
+            <span>3. Emergency Contacts</span>
+          </div>
+          <div class="text-xs space-y-1.5 text-slate-700">
+            <div class="flex justify-between items-center py-1 border-b border-slate-100">
+              <span class="text-slate-500">Police / General Emergency:</span>
+              <strong class="font-mono text-rose-600">911</strong>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-slate-100">
+              <span class="text-slate-500">Medical Ambulance (SAME):</span>
+              <strong class="font-mono text-rose-600">107</strong>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span class="text-slate-500">US Embassy Buenos Aires:</span>
+              <strong class="font-mono text-slate-900">+54 11 5777-4533</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Helpful Spanish Phrases for Parents -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
+        <div class="flex items-center space-x-2 text-xs font-bold text-slate-900 uppercase tracking-wider">
+          <i data-lucide="languages" class="w-4 h-4 text-blue-600"></i>
+          <span>Helpful Spanish Phrases for Restaurants & Drivers</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+          <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+            <div class="font-bold text-slate-800">"Somos seis personas: cuatro adultos y dos niños."</div>
+            <div class="text-[11px] text-slate-500">We are 6 people: 4 adults and 2 kids.</div>
+          </div>
+          <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+            <div class="font-bold text-slate-800">"¿Tienen sillita de comer para niño?"</div>
+            <div class="text-[11px] text-slate-500">Do you have a baby/kid high chair?</div>
+          </div>
+          <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+            <div class="font-bold text-slate-800">"¿Aceptan tarjeta de crédito extranjera?"</div>
+            <div class="text-[11px] text-slate-500">Do you accept foreign credit cards?</div>
+          </div>
+          <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+            <div class="font-bold text-slate-800">"Agua mineral sin gas, por favor."</div>
+            <div class="text-[11px] text-slate-500">Still bottled water, please.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="pt-8 pb-12 border-t border-slate-200 text-center text-xs text-slate-400 space-y-2">
+      <p class="font-medium text-slate-600">
+        Buenos Aires Family Trip 2026 · Master Itinerary for 4 Adults + 2 Kids
+      </p>
+      <p class="text-[11px]">
+        Designed for seamless navigation · Fully responsive for mobile devices · Offline printable
+      </p>
+    </footer>
+
+  </main>
+
+  <!-- MODAL: SPANISH TAXI & DRIVER ASSISTANCE CARD -->
+  <div id="taxi-modal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl relative">
+      <button onclick="closeTaxiModal()" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 rounded-full hover:bg-slate-100">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="space-y-1 text-center">
+        <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-[11px] font-bold uppercase">Show this to your Taxi / Uber Driver</span>
+        <h3 class="text-xl font-bold text-slate-900 pt-2">Destino: Palermo Suites Hotel</h3>
+      </div>
+
+      <!-- Large Print Spanish Card -->
+      <div class="bg-amber-50 border-2 border-amber-300 rounded-2xl p-5 text-center space-y-3 shadow-inner">
+        <div class="text-xs uppercase font-extrabold text-amber-700 tracking-wider">Por favor, llévenos a:</div>
+        <div class="text-2xl sm:text-3xl font-black text-slate-950 font-serif leading-tight">
+          Palermo Suites
+        </div>
+        <div class="text-base sm:text-lg font-bold text-slate-800">
+          Paraguay 4646
+        </div>
+        <div class="text-xs font-semibold text-slate-600">
+          Entre Av. Santa Fe y Charcas · Palermo (cerca de Plaza Italia)
+        </div>
+        <div class="text-[11px] text-amber-900 font-mono pt-1">
+          Ciudad Autónoma de Buenos Aires
+        </div>
+      </div>
+
+      <div class="space-y-2 text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
+        <div class="font-bold text-slate-900">Hotel Contact:</div>
+        <div class="flex justify-between items-center">
+          <span>Phone:</span>
+          <a href="tel:+541147779200" class="font-mono font-bold text-blue-600">+54 11 4777-9200</a>
+        </div>
+      </div>
+
+      <div class="flex space-x-3">
+        <button onclick="copyToClipboard('Palermo Suites Hotel, Paraguay 4646, Palermo, Buenos Aires', 'Address copied!')" class="flex-1 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center justify-center space-x-2 shadow-md">
+          <i data-lucide="copy" class="w-4 h-4"></i>
+          <span>Copy Full Address</span>
+        </button>
+        <button onclick="closeTaxiModal()" class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // 1. COUNTDOWN TIMER
+    function updateCountdown() {
+      // Departure: Fri Dec 4, 2026 at 10:00 PM EST (JFK)
+      const targetDate = new Date("2026-12-04T22:00:00-05:00").getTime();
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById("count-days").textContent = days;
+        document.getElementById("count-hours").textContent = String(hours).padStart(2, '0');
+        document.getElementById("count-mins").textContent = String(minutes).padStart(2, '0');
+        document.getElementById("count-secs").textContent = String(seconds).padStart(2, '0');
+      } else {
+        document.getElementById("countdown-grid").innerHTML = `
+          <div class="col-span-4 bg-emerald-500/20 text-emerald-300 font-bold p-3 rounded-xl border border-emerald-500/30">
+            Trip in progress or arrived! Have an amazing time in Argentina! 🇦🇷
+          </div>
+        `;
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // 2. DAY FILTER TABS
+    function filterDay(dayId) {
+      const allCards = document.querySelectorAll(".day-card");
+      const buttons = document.querySelectorAll(".day-tab-btn");
+
+      buttons.forEach(btn => {
+        if (btn.getAttribute("data-target") === dayId) {
+          btn.classList.add("active-tab");
+          btn.classList.remove("text-slate-600");
+        } else {
+          btn.classList.remove("active-tab");
+          btn.classList.add("text-slate-600");
+        }
+      });
+
+      if (dayId === "all") {
+        allCards.forEach(card => card.style.display = "block");
+      } else {
+        allCards.forEach(card => {
+          if (card.id === dayId) {
+            card.style.display = "block";
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+    }
+
+    // 3. COPY TO CLIPBOARD WITH TOAST
+    function copyToClipboard(text, message = "Copied to clipboard!") {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(message);
+      }).catch(() => {
+        const temp = document.createElement("input");
+        document.body.appendChild(temp);
+        temp.value = text;
+        temp.select();
+        document.execCommand("copy");
+        document.body.removeChild(temp);
+        showToast(message);
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      const toastMsg = document.getElementById("toast-message");
+      toastMsg.textContent = message;
+      toast.classList.remove("translate-y-24", "opacity-0");
+      setTimeout(() => {
+        toast.classList.add("translate-y-24", "opacity-0");
+      }, 2500);
+    }
+
+    // 4. TAXI MODAL
+    function openTaxiModal() {
+      document.getElementById("taxi-modal").classList.remove("hidden");
+    }
+    function closeTaxiModal() {
+      document.getElementById("taxi-modal").classList.add("hidden");
+    }
+    document.getElementById("taxi-modal").addEventListener("click", function(e) {
+      if (e.target === this) closeTaxiModal();
+    });
+
+    // 5. CURRENCY CONVERTER
+    const MEP_RATE = 1250;
+    function calculateArs() {
+      const usdInput = document.getElementById("calc-usd");
+      const arsOutput = document.getElementById("calc-ars");
+      const usd = parseFloat(usdInput.value) || 0;
+      const ars = Math.round(usd * MEP_RATE);
+      arsOutput.value = ars.toLocaleString();
+    }
+
+    // 6. INTERACTIVE CHECKLIST PERSISTENCE
+    const TOTAL_CHECKS = 16;
+    function updateChecklist() {
+      let completed = 0;
+      const state = {};
+      for (let i = 1; i <= TOTAL_CHECKS; i++) {
+        const chk = document.getElementById(`chk-${i}`);
+        if (chk && chk.checked) {
+          completed++;
+          state[`chk-${i}`] = true;
+        } else {
+          state[`chk-${i}`] = false;
+        }
+      }
+      localStorage.setItem("ba_trip_checklist", JSON.stringify(state));
+
+      const pct = Math.round((completed / TOTAL_CHECKS) * 100);
+      document.getElementById("checklist-progress").textContent = `${completed} of ${TOTAL_CHECKS} completed (${pct}%)`;
+      document.getElementById("checklist-bar").style.width = `${pct}%`;
+    }
+
+    function loadChecklist() {
+      const saved = localStorage.getItem("ba_trip_checklist");
+      if (saved) {
+        try {
+          const state = JSON.parse(saved);
+          for (let i = 1; i <= TOTAL_CHECKS; i++) {
+            const chk = document.getElementById(`chk-${i}`);
+            if (chk && state[`chk-${i}`]) {
+              chk.checked = true;
+            }
+          }
+        } catch (e) {}
+      }
+      updateChecklist();
+    }
+    function resetChecklist() {
+      if (confirm("Reset all checklist checkboxes?")) {
+        for (let i = 1; i <= TOTAL_CHECKS; i++) {
+          const chk = document.getElementById(`chk-${i}`);
+          if (chk) chk.checked = false;
+        }
+        updateChecklist();
+      }
+    }
+    window.addEventListener("DOMContentLoaded", loadChecklist);
+
+    // 7. BUDGET LOG & TRACKER
+    const TOTAL_POOL = 888;
+    function recalcBudgetTracker() {
+      const inputs = document.querySelectorAll(".budget-input");
+      let totalSpent = 0;
+      const values = [];
+      inputs.forEach(input => {
+        const val = parseFloat(input.value) || 0;
+        totalSpent += val;
+        values.push(val);
+      });
+      localStorage.setItem("ba_budget_inputs", JSON.stringify(values));
+
+      const unallocated = TOTAL_POOL - totalSpent;
+      document.getElementById("tracker-total-spent").textContent = `$${Math.round(totalSpent)}`;
+      const unallocElem = document.getElementById("tracker-unallocated");
+      if (unallocated >= 0) {
+        unallocElem.textContent = `+$${Math.round(unallocated)}`;
+        unallocElem.className = "font-mono text-emerald-600 font-bold";
+      } else {
+        unallocElem.textContent = `-$${Math.abs(Math.round(unallocated))}`;
+        unallocElem.className = "font-mono text-rose-600 font-bold";
+      }
+
+      document.getElementById("remaining-display").textContent = `$${Math.round(unallocated)}`;
+      document.getElementById("daily-run-rate").textContent = `~$${Math.round(unallocated / 6)}/day remaining`;
+    }
+
+    function loadBudgetTracker() {
+      const saved = localStorage.getItem("ba_budget_inputs");
+      if (saved) {
+        try {
+          const values = JSON.parse(saved);
+          const inputs = document.querySelectorAll(".budget-input");
+          inputs.forEach((input, index) => {
+            if (values[index] !== undefined) {
+              input.value = values[index];
+            }
+          });
+        } catch (e) {}
+      }
+      recalcBudgetTracker();
+    }
+    window.addEventListener("DOMContentLoaded", loadBudgetTracker);
+
+    function resetBudgetToDefaults() {
+      const defaultVals = [135, 145, 125, 140, 130, 160, 110];
+      const inputs = document.querySelectorAll(".budget-input");
+      inputs.forEach((input, index) => {
+        input.value = defaultVals[index] || 100;
+      });
+      recalcBudgetTracker();
+      showToast("Budget reset to plan defaults!");
+    }
+  </script>
+</body>
+</html>

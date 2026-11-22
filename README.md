@@ -71,4 +71,21 @@ python3 -m http.server 3333
 ```
 
 Open your browser to:
-👉 `http://localhost:3333`
+👉 `http://localhost:3333` (Car Calculator Hub)
+👉 `http://localhost:3333/buenos-aires/` (🇦🇷 Buenos Aires Family Trip Master Plan)
+
+---
+
+## 🇦🇷 Buenos Aires Family Trip — One-Page Master Plan (Dec 4–12, 2026)
+
+An interactive, responsive master travel dashboard designed for a family of 6 (4 Adults, 2 Kids):
+
+- **Live GitHub Pages URL**: `https://sunxutian.github.io/home-project/buenos-aires/` (also accessible at `/buenos-aires.html`)
+- **Key Modules**:
+  1. **✈️ Flight Operations**: Nonstop Delta flights (JFK ⇄ EZE, LA 8871 / LA 8872), 1-click PNR (`HXS3M5`) & BYOjet (`BYO39494204`) copy, and direct seat management links.
+  2. **🏨 Accommodation & Logistics**: Palermo Suites serviced apartments (2 units verification, VAT 21% exemption protocol), private 7-passenger van schedule, and Uber/Cabify dual-car strategy.
+  3. **💵 Interactive Budget Tracker**: $8,000 budget model with live expense table, dynamic daily run-rate, and MEP exchange rate converter.
+  4. **🗺️ Day-by-Day Master Itinerary**: Filterable timeline (Days 1–7) with kid-friendly paces, direct Google Maps pins, and Yelp / TripAdvisor links.
+  5. **🎒 Auto-Saving Packing Checklist**: Persisted to `localStorage` covering passports, Green Cards, tech adapters, and kid travel gear.
+  6. **🚕 Taxi & Driver Assistance Card**: Large-print Spanish address card and emergency numbers (911 / SAME 107 / US Embassy).
+
