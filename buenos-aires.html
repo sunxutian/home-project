@@ -343,37 +343,37 @@
           <button onclick="selectRouteDay('d1')" class="route-pill px-3.5 py-2 rounded-xl border border-emerald-400 bg-emerald-500 text-white shadow-sm flex items-center space-x-1.5 transition-all shrink-0" data-routeday="d1">
             <span>D1</span>
             <span class="hidden sm:inline">Sat 12/5</span>
-            <span class="text-[10px] opacity-80">(Arrival & Parks)</span>
+            <span class="text-[10px] opacity-80" data-i18n="rp_d1">(Arrival & Parks)</span>
           </button>
           <button onclick="selectRouteDay('d2')" class="route-pill px-3.5 py-2 rounded-xl border border-emerald-800 bg-emerald-950/50 text-emerald-200 hover:bg-emerald-800/50 transition-all shrink-0" data-routeday="d2">
             <span>D2</span>
             <span class="hidden sm:inline">Sun 12/6</span>
-            <span class="text-[10px] opacity-80">(Wildlife & Dome)</span>
+            <span class="text-[10px] opacity-80" data-i18n="rp_d2">(Wildlife & Dome)</span>
           </button>
           <button onclick="selectRouteDay('d3')" class="route-pill px-3.5 py-2 rounded-xl border border-emerald-800 bg-emerald-950/50 text-emerald-200 hover:bg-emerald-800/50 transition-all shrink-0" data-routeday="d3">
             <span>D3</span>
             <span class="hidden sm:inline">Mon 12/7</span>
-            <span class="text-[10px] opacity-80">(Recoleta & La Boca)</span>
+            <span class="text-[10px] opacity-80" data-i18n="rp_d3">(Recoleta & La Boca)</span>
           </button>
           <button onclick="selectRouteDay('d4')" class="route-pill px-3.5 py-2 rounded-xl border border-emerald-800 bg-emerald-950/50 text-emerald-200 hover:bg-emerald-800/50 transition-all shrink-0" data-routeday="d4">
             <span>D4</span>
             <span class="hidden sm:inline">Tue 12/8</span>
-            <span class="text-[10px] opacity-80">(Iguazú Flight)</span>
+            <span class="text-[10px] opacity-80" data-i18n="rp_d4">(Iguazú Flight)</span>
           </button>
           <button onclick="selectRouteDay('d5')" class="route-pill px-3.5 py-2 rounded-xl border border-emerald-800 bg-emerald-950/50 text-emerald-200 hover:bg-emerald-800/50 transition-all shrink-0" data-routeday="d5">
             <span>D5</span>
             <span class="hidden sm:inline">Wed 12/9</span>
-            <span class="text-[10px] opacity-80">(Iguazú Return)</span>
+            <span class="text-[10px] opacity-80" data-i18n="rp_d5">(Iguazú Return)</span>
           </button>
           <button onclick="selectRouteDay('d6')" class="route-pill px-3.5 py-2 rounded-xl border border-emerald-800 bg-emerald-950/50 text-emerald-200 hover:bg-emerald-800/50 transition-all shrink-0" data-routeday="d6">
             <span>D6</span>
             <span class="hidden sm:inline">Thu 12/10</span>
-            <span class="text-[10px] opacity-80">(Science & La Brigada)</span>
+            <span class="text-[10px] opacity-80" data-i18n="rp_d6">(Science & La Brigada)</span>
           </button>
           <button onclick="selectRouteDay('d7')" class="route-pill px-3.5 py-2 rounded-xl border border-emerald-800 bg-emerald-950/50 text-emerald-200 hover:bg-emerald-800/50 transition-all shrink-0" data-routeday="d7">
             <span>D7</span>
             <span class="hidden sm:inline">Fri 12/11</span>
-            <span class="text-[10px] opacity-80">(Outlets & EZE)</span>
+            <span class="text-[10px] opacity-80" data-i18n="rp_d7">(Outlets & EZE)</span>
           </button>
         </div>
       </div>
@@ -2347,6 +2347,13 @@
         nav_attractions: "🎡 Attractions",
         nav_flights: "Flights",
         nav_mustdos: "📋 Must-Dos",
+        rp_d1: "(Arrival & Parks)",
+        rp_d2: "(Wildlife & Dome)",
+        rp_d3: "(Recoleta & La Boca)",
+        rp_d4: "(Iguazú Flight)",
+        rp_d5: "(Iguazú Return)",
+        rp_d6: "(Science & La Brigada)",
+        rp_d7: "(Outlets & EZE)",
         btn_taxi: "Taxi Card",
         btn_print: "Print",
         btn_home: "Home",
@@ -2631,6 +2638,13 @@
         nav_attractions: "🎡 热门景点榜",
         nav_flights: "航班信息",
         nav_mustdos: "📋 行前必看",
+        rp_d1: "(抵达与公园)",
+        rp_d2: "(动物园与天文馆)",
+        rp_d3: "(雷科莱塔与博卡)",
+        rp_d4: "(飞往伊瓜苏)",
+        rp_d5: "(伊瓜苏返程)",
+        rp_d6: "(科技馆与勺切牛排)",
+        rp_d7: "(奥莱与EZE机场)",
         btn_taxi: "打车卡",
         btn_print: "打印",
         btn_home: "首页",
@@ -2952,6 +2966,7 @@
     function toggleLanguage() {
       currentLang = currentLang === "zh" ? "en" : "zh";
       applyTranslations();
+      if (typeof selectRouteDay === "function") selectRouteDay(currentRouteDay);
       showToast(currentLang === "zh" ? "已切换为简体中文" : "Switched to English");
     }
 
@@ -3076,8 +3091,8 @@
         title_zh: "第 2 天（12/6 周日）— 生态动物园与星空探索环线",
         stats_en: "Loop: ~6.0 km · 🚶 80% Walkable Park Greenery + 🚗 2x Uber",
         stats_zh: "环线全程：约 6.0 km · 🚶 80%为林荫步道 + 🚗 2台Uber",
-        family_tip_en: "👶 Family Tip: Ecoparque is literally 800m from your hotel! Free entry, zero cars, totally flat paved paths. Lunch at La Payuca features a dedicated supervised indoor playground (Pelotero) with camera screens!",
-        family_tip_zh: "👶 亲子贴士：Ecoparque 离酒店仅 800 米！免费入园，园区内无机动车，水豚在脚边散步。La Payuca 烤肉餐厅更有专属儿童看护游乐区（Pelotero），大人吃肉喝酒超放松！",
+        family_tip_en: "👶 Family Tip: Ecoparque is 800m from your hotel! Lunch at La Payuca has a supervised indoor playground. 🎄 Holiday Bonus: After Planetario & Jardín Japonés, walk to nearby Plaza Seeber (Parque de la Navidad) under purple jacarandas!",
+        family_tip_zh: "👶 亲子贴士：Ecoparque 离酒店仅 800 米！La Payuca 餐厅自带儿童看护游乐区。🎄 圣诞节庆彩蛋：天文馆与日本花园后，步行去旁边的 Plaza Seeber 圣诞公园打卡！",
         gmaps_url: "https://www.google.com/maps/dir/Palermo+Suites+Buenos+Aires,+Paraguay+4646/Ecoparque+Buenos+Aires/La+Payuca,+Arenales+3443/Planetario+Galileo+Galilei/Palermo+Suites+Buenos+Aires,+Paraguay+4646",
         path_d: "M 410 220 L 455 185 Q 460 230 480 265 Q 520 220 535 165 L 510 130 Q 450 170 410 220",
         corridor_d: "",
@@ -3086,7 +3101,7 @@
           { lat: -34.5786, lng: -58.4198, num: "1", icon: "🦫", name_en: "Ecoparque Buenos Aires", name_zh: "Ecoparque 生态野生动物园", x: 455, y: 185, time: "9:30 AM", desc_en: "Free-roaming capybaras, maras, flamingos, peacocks.", desc_zh: "自由穿梭的水豚（Capybara）、巴塔哥尼亚豚鼠、火烈鸟与孔雀。", dist: "800 m", tip_en: "Free entry, stroller friendly, friendly capybaras!", tip_zh: "免费入园，婴儿车无障碍，水豚超温顺！", gmaps: "https://maps.google.com/?q=Ecoparque+Buenos+Aires" },
           { lat: -34.5745, lng: -58.4315, num: "2", icon: "🥩", name_en: "La Payuca (Arenales 3443)", name_zh: "La Payuca 亲子烤肉餐厅", x: 480, y: 265, time: "12:30 PM", desc_en: "Supervised multi-level kids playroom (Pelotero) with TV monitors & prime steak.", desc_zh: "专属儿童看护游乐园（带监控屏幕）、儿童套餐与上等阿根廷牛排。", dist: "1.2 km", tip_en: "Staff supervises kids while parents enjoy steak & Malbec.", tip_zh: "专业看护阿姨带娃玩，大人静心享牛排美酒。", gmaps: "https://maps.google.com/?q=La+Payuca+Arenales+3443+Buenos+Aires" },
           { lat: -34.5697, lng: -58.4116, num: "3", icon: "🪐", name_en: "Planetario Galileo Galilei", name_zh: "伽利略天文馆球幕影院", x: 535, y: 165, time: "2:30 PM", desc_en: "UFO-shaped landmark, astronomical dome show & outdoor meteorite touch zone.", desc_zh: "标志性飞碟造型建筑，沉浸式天象球幕秀与真实的史前陨石触摸区。", dist: "2.1 km", tip_en: "Touch real 4,000-year-old Campo del Cielo meteorites!", tip_zh: "触摸四千年前坠落的真实天外陨石！", gmaps: "https://maps.google.com/?q=Planetario+Galileo+Galilei+Buenos+Aires" },
-          { lat: -34.5728, lng: -58.4125, num: "4", icon: "🎡", name_en: "Parque 3 de Febrero Playground", name_zh: "湖畔儿童游乐场", x: 510, y: 130, time: "4:30 PM", desc_en: "Large lakeside play structures, swings, ducks and open lawns.", desc_zh: "湖畔大型儿童游乐场，滑梯秋千俱全，看天鹅野鸭游水。", dist: "400 m", tip_en: "Shaded lakeside swings and slides.", tip_zh: "树荫湖畔秋千与滑梯放松。", gmaps: "https://maps.google.com/?q=Parque+3+de+Febrero+Buenos+Aires" },
+          { lat: -34.5738, lng: -58.4148, num: "4", icon: "🎄", name_en: "Parque de la Navidad (Plaza Seeber)", name_zh: "Plaza Seeber 圣诞公园与游乐场", time: "4:30 PM", desc_en: "Festive Christmas Village, kids activities & purple jacarandas near Jardín Japonés.", desc_zh: "日本花园旁的圣诞主题公园、亲子节日灯饰与盛开蓝花楹。", dist: "400 m", tip_en: "Great Dec holiday bonus for kids!", tip_zh: "12月节庆限定亲子打卡点！", gmaps: "https://maps.google.com/?q=Plaza+Seeber+Palermo+Buenos+Aires" },
           { lat: -34.5806, lng: -58.4264, num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", x: 410, y: 220, time: "6:30 PM", desc_en: "6-minute Uber back to hotel to recharge.", desc_zh: "打车6分钟返回酒店休息放松。", dist: "1.8 km", tip_en: "Quick 6-minute Uber hop.", tip_zh: "6分钟车程即刻回到酒店。", isHotel: true }
         ],
         legs: [
@@ -3110,9 +3125,10 @@
           { num: "🏨", icon: "🏨", lat: -34.5806, lng: -58.4264, name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店出发", time: "9:30 AM", desc_en: "2 Ubers south to El Ateneo Grand Splendid.", desc_zh: "酒店门口呼叫2台Uber南下雅典人书店。", dist: "Base", tip_en: "Meet drivers right at Paraguay 4646.", tip_zh: "正门口叫车超方便。", isHotel: true },
           { num: "1", icon: "📚", lat: -34.5959, lng: -58.3941, name_en: "El Ateneo Grand Splendid", name_zh: "雅典人剧院书店", time: "9:45 AM", desc_en: "Opera theater bookstore with stage cafe & kids section.", desc_zh: "百年歌剧院改建的梦幻书店与儿童绘本区。", dist: "3.5 km", tip_en: "Grab espresso on the theater stage!", tip_zh: "在红色天鹅绒舞台包厢喝咖啡！", gmaps: "https://maps.google.com/?q=El+Ateneo+Grand+Splendid+Buenos+Aires" },
           { num: "2", icon: "🌳", lat: -34.5877, lng: -58.3924, name_en: "Giant Gomero Tree (Recoleta)", name_zh: "雷科莱塔200年巨型橡皮树", time: "11:15 AM", desc_en: "Monumental 200-year-old rubber tree at Plaza Francia.", desc_zh: "法兰西广场旁盘根错节的200年古树。", dist: "1.1 km", tip_en: "Kids love the giant spreading branches!", tip_zh: "孩子们超爱巨型树冠！", gmaps: "https://maps.google.com/?q=Gomero+de+la+Recoleta+Buenos+Aires" },
-          { num: "3", icon: "🥩", lat: -34.6001, lng: -58.3917, name_en: "Parrilla Peña (Rodríguez Peña 682)", name_zh: "Parrilla Peña 宝藏烤肉", time: "12:30 PM", desc_en: "Complimentary hot fried beef empanadas on arrival!", desc_zh: "入座即赠送酥脆热牛肉馅饼，西冷牛排极嫩。", dist: "1.5 km", tip_en: "Authentic local bodegón open Mondays.", tip_zh: "周一营业的正宗本地小馆。", gmaps: "https://maps.google.com/?q=Parrilla+Pena+Rodriguez+Pena+Buenos+Aires" },
-          { num: "4", icon: "🎨", lat: -34.6393, lng: -58.3627, name_en: "Caminito (La Boca)", name_zh: "博卡彩色步行街 (Caminito)", time: "2:45 PM", desc_en: "Vibrant tin houses, street tango dancers & Maradona murals.", desc_zh: "五彩铁皮木屋、街头探戈舞者与球王壁画。", dist: "5.8 km", tip_en: "Stay on main Caminito pedestrian strip.", tip_zh: "在主步行街内拍照游玩安全轻松。", gmaps: "https://maps.google.com/?q=Caminito+La+Boca+Buenos+Aires" },
-          { num: "5", icon: "📸", lat: -34.6191, lng: -58.3728, name_en: "Mercado de San Telmo & Mafalda", name_zh: "圣特尔莫集市与玛法达雕像", time: "4:15 PM", desc_en: "1897 indoor market & Mafalda statue photo stop.", desc_zh: "百年室内集市与街角玛法达漫画长椅合影。", dist: "2.8 km", tip_en: "Quick stop before returning to Palermo for 7 PM dinner.", tip_zh: "拍照后回巴勒莫享用19:00意面晚餐。", gmaps: "https://maps.google.com/?q=Mercado+de+San+Telmo+Buenos+Aires" },
+          { num: "3", icon: "🎄", lat: -34.5993, lng: -58.3748, name_en: "Galerías Pacífico (Giant Christmas Tree)", name_zh: "太平洋拱廊商场（巨型圣诞树）", time: "12:00 PM", desc_en: "Quick A/C photo stop under the painted dome & giant indoor Christmas tree.", desc_zh: "绝美穹顶壁画下的巨型室内圣诞树打卡与吹冷气小憩。", dist: "1.9 km", tip_en: "Iconic BA Dec 8 holiday tree!", tip_zh: "布市最具代表性的室内圣诞树！", gmaps: "https://maps.google.com/?q=Galerias+Pacifico+Buenos+Aires" },
+          { num: "4", icon: "🥩", lat: -34.6001, lng: -58.3917, name_en: "Parrilla Peña (Rodríguez Peña 682)", name_zh: "Parrilla Peña 宝藏烤肉", time: "12:30 PM", desc_en: "Complimentary hot fried beef empanadas on arrival!", desc_zh: "入座即赠送酥脆热牛肉馅饼，西冷牛排极嫩。", dist: "1.5 km", tip_en: "Authentic local bodegón open Mondays.", tip_zh: "周一营业的正宗本地小馆。", gmaps: "https://maps.google.com/?q=Parrilla+Pena+Rodriguez+Pena+Buenos+Aires" },
+          { num: "5", icon: "🎨", lat: -34.6393, lng: -58.3627, name_en: "Caminito (La Boca)", name_zh: "博卡彩色步行街 (Caminito)", time: "2:45 PM", desc_en: "Vibrant tin houses, street tango dancers & Maradona murals.", desc_zh: "五彩铁皮木屋、街头探戈舞者与球王壁画。", dist: "5.8 km", tip_en: "Stay on main Caminito pedestrian strip.", tip_zh: "在主步行街内拍照游玩安全轻松。", gmaps: "https://maps.google.com/?q=Caminito+La+Boca+Buenos+Aires" },
+          { num: "6", icon: "📸", lat: -34.6191, lng: -58.3728, name_en: "Mercado de San Telmo & Mafalda", name_zh: "圣特尔莫集市与玛法达雕像", time: "4:15 PM", desc_en: "1897 indoor market & Mafalda statue photo stop.", desc_zh: "百年室内集市与街角玛法达漫画长椅合影。", dist: "2.8 km", tip_en: "Quick stop before returning to Palermo for 7 PM dinner.", tip_zh: "拍照后回巴勒莫享用19:00意面晚餐。", gmaps: "https://maps.google.com/?q=Mercado+de+San+Telmo+Buenos+Aires" },
           { num: "🏨", icon: "🏨", lat: -34.5806, lng: -58.4264, name_en: "Palermo Suites (Early Bedtime)", name_zh: "返回酒店早休息 (明早4:30出发)", time: "6:00 PM", desc_en: "Dinner at Cucina Paradiso nearby & sleep by 9 PM for Iguazú!", desc_zh: "附近 Cucina Paradiso 晚餐后21:00前早睡，准备飞伊瓜苏！", dist: "7.5 km", tip_en: "4:30 AM Uber to AEP tomorrow!", tip_zh: "明早04:30打车去AEP机场！", isHotel: true }
         ],
         legs: [
@@ -3175,12 +3191,14 @@
           { lat: -34.5806, lng: -58.4264, num: "🏨", icon: "🏨", name_en: "Palermo Suites (10:30 AM)", name_zh: "Palermo Suites 出发 (10:30)", x: 410, y: 220, time: "10:30 AM", desc_en: "Relaxed late morning start after Iguazú.", desc_zh: "伊瓜苏归来睡到自然醒后轻松出发。", dist: "Base", tip_en: "No rush!", tip_zh: "不赶时间！", isHotel: true },
           { lat: -34.5865, lng: -58.3921, num: "1", icon: "🔬", name_en: "Prohibido No Tocar (Recoleta)", name_zh: "“禁止不摸”互动科技馆", x: 560, y: 280, time: "11:00 AM", desc_en: "Hands-on science museum (open Thu!), giant bubbles & Rapanui chocolate.", desc_zh: "周四开放的互动科技馆，巨型肥皂泡与Rapanui巧克力。", dist: "3.5 km", tip_en: "Inside Centro Cultural Recoleta.", tip_zh: "位于雷科莱塔文化中心内。", gmaps: "https://maps.google.com/?q=Museo+Participativo+de+Ciencias+Prohibido+No+Tocar+Recoleta" },
           { lat: -34.5897, lng: -58.4242, num: "2", icon: "🛝", name_en: "Plaza Armenia (or Optional Tigre)", name_zh: "亚美尼亚广场（或可选蒂格雷）", x: 395, y: 255, time: "1:30 PM", desc_en: "Lunch at El Preferido + playground & helado (or Mitre train to San Isidro / Tigre).", desc_zh: "El Preferido午餐+滑梯冰淇淋（或乘火车去 San Isidro / Tigre）。", dist: "3.8 km", tip_en: "Board Mitre train at Lisandro de la Torre if doing Tigre.", tip_zh: "若去蒂格雷可在 Lisandro de la Torre 站上车。", gmaps: "https://maps.google.com/?q=Plaza+Armenia+Palermo+Buenos+Aires" },
-          { lat: -34.6181, lng: -58.3726, num: "3", icon: "🥩", name_en: "La Brigada (San Telmo)", name_zh: "La Brigada 勺切牛排", x: 645, y: 480, time: "7:30 PM", desc_en: "Famous tenderloin sliced with a metal spoon right at the table!", desc_zh: "侍应生当面用普通汤勺切开极嫩牛排！", dist: "6.8 km", tip_en: "Open Thursdays; reserve ahead.", tip_zh: "周四营业，建议提前订位。", gmaps: "https://maps.google.com/?q=La+Brigada+San+Telmo+Buenos+Aires" }
+          { lat: -34.6181, lng: -58.3726, num: "3", icon: "🥩", name_en: "La Brigada (San Telmo)", name_zh: "La Brigada 勺切牛排", x: 645, y: 480, time: "7:30 PM", desc_en: "Famous tenderloin sliced with a metal spoon right at the table!", desc_zh: "侍应生当面用普通汤勺切开极嫩牛排！", dist: "6.8 km", tip_en: "Open Thursdays; reserve ahead.", tip_zh: "周四营业，建议提前订位。", gmaps: "https://maps.google.com/?q=La+Brigada+San+Telmo+Buenos+Aires" },
+          { lat: -34.5806, lng: -58.4264, num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 打包休息", time: "9:30 PM", desc_en: "2x Uber back to Palermo Suites to pack for Friday flight home.", desc_zh: "打2台Uber回酒店打包整理行装。", dist: "7.2 km", tip_en: "Easy 20-min ride back to Palermo.", tip_zh: "约20分钟车程返回酒店。", isHotel: true }
         ],
         legs: [
           { from_en: "Palermo Suites", to_en: "Prohibido No Tocar", from_zh: "酒店", to_zh: "科技馆", dist: "3.5 km", time_en: "12 min Uber", time_zh: "Uber 12分钟", mode_en: "🚗 2x Uber", mode_zh: "🚗 2台Uber", tip_en: "Open Thu!", tip_zh: "周四开放！" },
           { from_en: "Recoleta", to_en: "Plaza Armenia / Palermo", from_zh: "雷科莱塔", to_zh: "亚美尼亚广场", dist: "3.8 km", time_en: "12 min Uber", time_zh: "Uber 12分钟", mode_en: "🚗 2x Uber (or 🚆 Mitre Train)", mode_zh: "🚗 2台Uber（或🚆 Mitre火车）", tip_en: "Optional San Isidro/Tigre train from Lisandro de la Torre.", tip_zh: "可选从 Lisandro de la Torre 乘火车去 San Isidro/Tigre。" },
-          { from_en: "Palermo", to_en: "La Brigada (San Telmo)", from_zh: "巴勒莫", to_zh: "La Brigada 餐厅", dist: "6.8 km", time_en: "18 min Uber", time_zh: "Uber 18分钟", mode_en: "🚗 2x Uber", mode_zh: "🚗 2台Uber", tip_en: "Farewell steak dinner!", tip_zh: "告别勺切牛排大餐！" }
+          { from_en: "Palermo", to_en: "La Brigada (San Telmo)", from_zh: "巴勒莫", to_zh: "La Brigada 餐厅", dist: "6.8 km", time_en: "18 min Uber", time_zh: "Uber 18分钟", mode_en: "🚗 2x Uber", mode_zh: "🚗 2台Uber", tip_en: "Farewell steak dinner!", tip_zh: "告别勺切牛排大餐！" },
+          { from_en: "La Brigada", to_en: "Palermo Suites", from_zh: "La Brigada 餐厅", to_zh: "返回酒店", dist: "7.2 km", time_en: "20 min Uber", time_zh: "Uber 20分钟", mode_en: "🚗 2x Uber", mode_zh: "🚗 2台Uber", tip_en: "Back to pack for Friday!", tip_zh: "回酒店打包准备周五返程！" }
         ]
       },
 
