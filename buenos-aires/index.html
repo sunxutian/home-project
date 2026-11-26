@@ -101,6 +101,8 @@
       color: #ffffff !important;
     }
   </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body class="bg-[#faf8f5] dark:bg-[#090d16] text-slate-800 dark:text-slate-100 font-sans antialiased selection:bg-arg-sky selection:text-white min-h-screen transition-colors duration-200">
 
@@ -401,144 +403,7 @@
           <!-- Interactive Estimated Master Map Container (No API Key Required) -->
           <div class="relative w-full h-[420px] sm:h-[500px] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-[#080E1E] shadow-inner select-none" id="estimated-map-wrapper">
             <!-- SVG Estimated Map -->
-            <svg id="ba-estimated-svg" viewBox="0 0 950 640" class="w-full h-full object-cover">
-              <defs>
-                <!-- Glowing Filter -->
-                <filter id="glow-gold" x="-30%" y="-30%" width="160%" height="160%">
-                  <feGaussianBlur stdDeviation="3" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-                <filter id="glow-emerald" x="-30%" y="-30%" width="160%" height="160%">
-                  <feGaussianBlur stdDeviation="3.5" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-              </defs>
-
-              <!-- Landmass BG -->
-              <rect width="950" height="640" class="fill-slate-50 dark:fill-[#091124]" />
-
-              <!-- Subtle Map Grid -->
-              <g class="stroke-slate-300/40 dark:stroke-slate-700/30" stroke-width="0.75" stroke-dasharray="4,6">
-                <line x1="80" y1="0" x2="80" y2="640" />
-                <line x1="240" y1="0" x2="240" y2="640" />
-                <line x1="400" y1="0" x2="400" y2="640" />
-                <line x1="560" y1="0" x2="560" y2="640" />
-                <line x1="720" y1="0" x2="720" y2="640" />
-                <line x1="880" y1="0" x2="880" y2="640" />
-                <line x1="0" y1="120" x2="950" y2="120" />
-                <line x1="0" y1="240" x2="950" y2="240" />
-                <line x1="0" y1="360" x2="950" y2="360" />
-                <line x1="0" y1="480" x2="950" y2="480" />
-                <line x1="0" y1="600" x2="950" y2="600" />
-              </g>
-
-              <!-- Water: Río de la Plata Estuary -->
-              <path d="M 640 0 C 690 120, 720 220, 750 340 C 780 440, 810 520, 860 640 L 950 640 L 950 0 Z" class="fill-sky-100/80 dark:fill-[#081B33]" />
-              <path d="M 640 0 C 690 120, 720 220, 750 340 C 780 440, 810 520, 860 640" fill="none" class="stroke-sky-300 dark:stroke-sky-700/60" stroke-width="2" />
-              <text x="835" y="220" transform="rotate(68 835 220)" class="fill-sky-700/30 dark:fill-sky-400/25 font-black text-[12px] tracking-[0.25em]">RÍO DE LA PLATA (ESTUARY)</text>
-
-              <!-- Puerto Madero Docks -->
-              <g class="opacity-50">
-                <rect x="715" y="380" width="10" height="100" rx="3" class="fill-sky-400 dark:fill-sky-600" />
-                <rect x="730" y="380" width="10" height="100" rx="3" class="fill-sky-400 dark:fill-sky-600" />
-                <text x="725" y="370" font-size="8.5" font-weight="bold" class="fill-slate-500 dark:fill-slate-400" text-anchor="middle">PUERTO MADERO</text>
-              </g>
-
-              <!-- Major Avenue Arteries (Schematic Guidelines) -->
-              <g class="stroke-slate-300/80 dark:stroke-slate-700/60" stroke-width="1.5">
-                <!-- Av. Santa Fe / Cabildo -->
-                <path d="M 340 100 L 590 380" stroke-dasharray="6,4" />
-                <!-- Av. del Libertador -->
-                <path d="M 400 90 L 680 390" stroke-dasharray="6,4" />
-                <!-- Av. 9 de Julio -->
-                <path d="M 570 330 L 730 490" stroke-dasharray="6,4" />
-              </g>
-
-              <!-- Neighborhood Zones -->
-              <!-- 1. Palermo (Green Heart & Base) -->
-              <rect x="295" y="90" width="320" height="200" rx="22" class="fill-emerald-500/10 stroke-emerald-500/40" stroke-width="1.5" stroke-dasharray="4,4" />
-              <text x="310" y="112" class="fill-emerald-700 dark:fill-emerald-400 font-extrabold text-[11px] tracking-wider">🌿 PALERMO (PARKS & FOOD BASE)</text>
-              <!-- Lake -->
-              <path d="M 470 128 C 495 120, 525 125, 545 140 C 535 155, 495 158, 470 145 Z" class="fill-sky-400/40 stroke-sky-400" stroke-width="1" />
-              <text x="505" y="142" font-size="8.5" class="fill-sky-700 dark:fill-sky-300 font-bold" text-anchor="middle">Bosques & Lake ⛵</text>
-
-              <!-- 2. Recoleta -->
-              <rect x="525" y="270" width="200" height="130" rx="18" class="fill-indigo-500/10 stroke-indigo-500/40" stroke-width="1.5" stroke-dasharray="4,4" />
-              <text x="540" y="290" class="fill-indigo-700 dark:fill-indigo-400 font-extrabold text-[11px] tracking-wider">🏛️ RECOLETA (CULTURE)</text>
-
-              <!-- 3. San Telmo & Centro -->
-              <rect x="545" y="390" width="210" height="130" rx="18" class="fill-amber-500/10 stroke-amber-500/40" stroke-width="1.5" stroke-dasharray="4,4" />
-              <text x="560" y="410" class="fill-amber-700 dark:fill-amber-400 font-extrabold text-[11px] tracking-wider">🎭 SAN TELMO & CENTRO</text>
-              <!-- Obelisco -->
-              <g transform="translate(635, 408)">
-                <polygon points="0,-12 3,0 -3,0" class="fill-slate-400 dark:fill-slate-300" />
-                <text x="6" y="-3" font-size="8" font-weight="bold" class="fill-slate-500 dark:fill-slate-400">Obelisco</text>
-              </g>
-
-              <!-- 4. La Boca -->
-              <rect x="585" y="525" width="210" height="100" rx="18" class="fill-rose-500/10 stroke-rose-500/40" stroke-width="1.5" stroke-dasharray="4,4" />
-              <text x="600" y="545" class="fill-rose-700 dark:fill-rose-400 font-extrabold text-[11px] tracking-wider">🎨 LA BOCA (CAMINITO TANGO)</text>
-
-              <!-- Inset Excursion Cards (Left Column) -->
-              <!-- Tigre Card Inset -->
-              <g id="hub-tigre" transform="translate(25, 25)" class="cursor-pointer">
-                <rect width="225" height="105" rx="16" class="fill-white/95 dark:fill-slate-800/90 stroke-teal-500/50" stroke-width="1.5" />
-                <rect x="8" y="8" width="34" height="34" rx="8" class="fill-teal-100 dark:fill-teal-950 text-teal-600" />
-                <text x="25" y="31" font-size="16" text-anchor="middle">🚤</text>
-                <text x="48" y="24" font-size="11.5" font-weight="bold" class="fill-slate-900 dark:fill-white">Tigre Delta Islands</text>
-                <text x="48" y="38" font-size="9.5" font-weight="semibold" class="fill-teal-600 dark:fill-teal-400">32 km North · 🚆 Mitre Train (Optional)</text>
-                <line x1="10" y1="48" x2="215" y2="48" class="stroke-slate-200 dark:stroke-slate-700" stroke-width="0.8" />
-                <text x="12" y="65" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Wooden boat canal cruise</text>
-                <text x="12" y="80" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Vivanco riverfront dining</text>
-                <text x="12" y="95" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Puerto de Frutos market</text>
-              </g>
-
-              <!-- EZE Airport Card Inset -->
-              <g id="hub-eze" transform="translate(25, 490)" class="cursor-pointer">
-                <rect width="225" height="105" rx="16" class="fill-white/95 dark:fill-slate-800/90 stroke-blue-500/50" stroke-width="1.5" />
-                <rect x="8" y="8" width="34" height="34" rx="8" class="fill-blue-100 dark:fill-blue-950 text-blue-600" />
-                <text x="25" y="31" font-size="16" text-anchor="middle">✈️</text>
-                <text x="48" y="24" font-size="11.5" font-weight="bold" class="fill-slate-900 dark:fill-white">EZE Ezeiza Airport</text>
-                <text x="48" y="38" font-size="9.5" font-weight="semibold" class="fill-blue-600 dark:fill-blue-400">34 km SW · 🚗 45m (2x Uber/Cabify)</text>
-                <line x1="10" y1="48" x2="215" y2="48" class="stroke-slate-200 dark:stroke-slate-700" stroke-width="0.8" />
-                <text x="12" y="65" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Nonstop Delta LA 8871 (Inbound)</text>
-                <text x="12" y="80" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Nonstop Delta LA 8872 (8:05 PM)</text>
-                <text x="12" y="95" font-size="9" class="fill-slate-600 dark:fill-slate-300">• 4:15 PM 2x Uber/Cabify (~$18-22/car)</text>
-              </g>
-
-                            <!-- San Isidro Landmark Station (Halfway to Tigre on Mitre Line) -->
-              <g id="hub-sanisidro" transform="translate(230, 85)" class="cursor-pointer" onclick="document.getElementById('day-trips').scrollIntoView({behavior:'smooth'})">
-                <circle cx="0" cy="0" r="11" class="fill-blue-500 stroke-white" stroke-width="2" />
-                <text x="0" y="4" font-size="9" font-weight="black" fill="#FFFFFF" text-anchor="middle">2</text>
-                <rect x="-45" y="14" width="90" height="17" rx="8" class="fill-slate-900/90 stroke-blue-400" stroke-width="1" />
-                <text x="0" y="26" font-size="8" font-weight="bold" fill="#38BDF8" text-anchor="middle">⛪ San Isidro</text>
-              </g>
-
-              <!-- Dynamic Route Paths Layer -->
-              <g id="svg-route-corridors"></g>
-              <g id="svg-route-loop"></g>
-
-              <!-- Dynamic Waypoint Pins Layer -->
-              <g id="svg-route-pins"></g>
-
-              <!-- Fixed Hotel Base Marker (Center Anchor: Paraguay 4646) -->
-              <g id="svg-hotel-base" transform="translate(410, 220)" class="cursor-pointer" onclick="showStopDetails(0)">
-                <!-- Pulsing Radar Circle -->
-                <circle cx="0" cy="0" r="26" fill="none" stroke="#F6B40E" stroke-width="2.5" opacity="0.6">
-                  <animate attributeName="r" values="16;34" dur="2s" repeatCount="indefinite" />
-                  <animate attributeName="opacity" values="0.8;0" dur="2s" repeatCount="indefinite" />
-                </circle>
-                <!-- Base Circle -->
-                <circle cx="0" cy="0" r="17" fill="#F6B40E" stroke="#0B2545" stroke-width="2.5" />
-                <text x="0" y="6" font-size="16" text-anchor="middle">🏨</text>
-
-                <!-- Base Label Badge -->
-                <g transform="translate(0, 30)">
-                  <rect x="-80" y="-11" width="160" height="22" rx="11" class="fill-slate-900 stroke-amber-400" stroke-width="1.5" />
-                  <text x="0" y="4" font-size="10" font-weight="bold" fill="#F6B40E" text-anchor="middle">★ Palermo Suites (Base)</text>
-                </g>
-              </g>
-            </svg>
+            <div id="ba-leaflet-map" class="w-full h-full z-10"></div>
 
             <!-- Interactive Pin Tooltip Popup Card -->
             <div id="svg-pin-tooltip" class="absolute z-20 hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-200 dark:border-slate-700 rounded-2xl p-4 shadow-2xl max-w-xs transition-all pointer-events-auto text-xs space-y-2">
@@ -568,7 +433,7 @@
             <div class="absolute top-3 left-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-1.5 shadow-sm pointer-events-none flex items-center space-x-2">
               <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span class="text-[11px] font-bold text-slate-800 dark:text-slate-200" id="est-map-badge-text">
-                Estimated Transit Map · No API Key Required
+                Interactive OpenStreetMap · No API Key Required
               </span>
             </div>
           </div>
@@ -3170,11 +3035,11 @@
         path_d: "M 410 220 Q 370 190 360 145 Q 430 130 495 140 Q 450 220 380 265 Q 400 240 410 220",
         corridor_d: "",
         stops: [
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店大堂", x: 410, y: 220, time: "12:45 PM", desc_en: "Drop bags at 24h desk; freshen up before lunch.", desc_zh: "寄存行李，洗漱稍作休整后出门午餐。", dist: "Base", tip_en: "Free luggage storage & 24h desk.", tip_zh: "24小时前台免费存包。", isHotel: true },
-          { num: "1", icon: "🥩", name_en: "Las Cholas (Arce 306)", name_zh: "Las Cholas 亲子烤肉餐厅", x: 360, y: 145, time: "1:15 PM", desc_en: "Crayon-drawing paper tablecloths for kids & clay-pot cazuelas.", desc_zh: "桌上铺画纸供孩子蜡笔画画，招牌瓦罐炖牛肉与烤牛排。", dist: "1.8 km", tip_en: "Paper tablecloths & crayons for kids!", tip_zh: "桌上铺画纸让小朋友边画边等餐！", gmaps: "https://maps.google.com/?q=Las+Cholas+Arce+306+Buenos+Aires" },
-          { num: "2", icon: "🌹", name_en: "El Rosedal & Bosques de Palermo", name_zh: "玫瑰花园与巴勒莫湖区", x: 495, y: 140, time: "3:00 PM", desc_en: "18,000 blooming roses, arched bridges, and calm lake paddleboats.", desc_zh: "万朵盛开玫瑰花园，白色拱桥与家庭脚踏船。", dist: "1.4 km", tip_en: "Rent pedal paddleboat to feed lake ducks.", tip_zh: "湖面租脚踏船喂天鹅野鸭。", gmaps: "https://maps.google.com/?q=El+Rosedal+de+Palermo" },
-          { num: "3", icon: "🍦", name_en: "Rapanui Palermo (Malabia 1584)", name_zh: "Rapanui 巧克力甜品城堡", x: 380, y: 265, time: "5:30 PM", desc_en: "Artisanal gelato & chocolate-dipped raspberries (FraNui).", desc_zh: "顶级手工冰淇淋与 Franui 巧克力覆盆子。", dist: "2.2 km", tip_en: "Try FraNui frozen chocolate raspberries!", tip_zh: "必尝招牌冻巧克力覆盆子！", gmaps: "https://maps.google.com/?q=Rapanui+Malabia+1584+Buenos+Aires" },
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 酒店", x: 410, y: 220, time: "7:00 PM", desc_en: "Return to your 2 confirmed suites to unpack & rest.", desc_zh: "回酒店整理已确认的2间独立套房，洗漱安歇倒时差。", dist: "1.2 km", tip_en: "Unpack across 2 confirmed suites.", tip_zh: "入住两间套房，舒适休息。", isHotel: true }
+          { lat: -34.5806, lng: -58.4264, num: "🏨", icon: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店大堂", x: 410, y: 220, time: "12:45 PM", desc_en: "Drop bags at 24h desk; freshen up before lunch.", desc_zh: "寄存行李，洗漱稍作休整后出门午餐。", dist: "Base", tip_en: "Free luggage storage & 24h desk.", tip_zh: "24小时前台免费存包。", isHotel: true },
+          { lat: -34.5701, lng: -58.4316, num: "1", icon: "🥩", name_en: "Las Cholas (Arce 306)", name_zh: "Las Cholas 亲子烤肉餐厅", x: 360, y: 145, time: "1:15 PM", desc_en: "Crayon-drawing paper tablecloths for kids & clay-pot cazuelas.", desc_zh: "桌上铺画纸供孩子蜡笔画画，招牌瓦罐炖牛肉与烤牛排。", dist: "1.8 km", tip_en: "Paper tablecloths & crayons for kids!", tip_zh: "桌上铺画纸让小朋友边画边等餐！", gmaps: "https://maps.google.com/?q=Las+Cholas+Arce+306+Buenos+Aires" },
+          { lat: -34.5714, lng: -58.4173, num: "2", icon: "🌹", name_en: "El Rosedal & Bosques de Palermo", name_zh: "玫瑰花园与巴勒莫湖区", x: 495, y: 140, time: "3:00 PM", desc_en: "18,000 blooming roses, arched bridges, and calm lake paddleboats.", desc_zh: "万朵盛开玫瑰花园，白色拱桥与家庭脚踏船。", dist: "1.4 km", tip_en: "Rent pedal paddleboat to feed lake ducks.", tip_zh: "湖面租脚踏船喂天鹅野鸭。", gmaps: "https://maps.google.com/?q=El+Rosedal+de+Palermo" },
+          { lat: -34.5898, lng: -58.4258, num: "3", icon: "🍦", name_en: "Rapanui Palermo (Malabia 1584)", name_zh: "Rapanui 巧克力甜品城堡", x: 380, y: 265, time: "5:30 PM", desc_en: "Artisanal gelato & chocolate-dipped raspberries (FraNui).", desc_zh: "顶级手工冰淇淋与 Franui 巧克力覆盆子。", dist: "2.2 km", tip_en: "Try FraNui frozen chocolate raspberries!", tip_zh: "必尝招牌冻巧克力覆盆子！", gmaps: "https://maps.google.com/?q=Rapanui+Malabia+1584+Buenos+Aires" },
+          { lat: -34.5806, lng: -58.4264, num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 酒店", x: 410, y: 220, time: "7:00 PM", desc_en: "Return to your 2 confirmed suites to unpack & rest.", desc_zh: "回酒店整理已确认的2间独立套房，洗漱安歇倒时差。", dist: "1.2 km", tip_en: "Unpack across 2 confirmed suites.", tip_zh: "入住两间套房，舒适休息。", isHotel: true }
         ],
         legs: [
           { from_en: "Palermo Suites", to_en: "Las Cholas", from_zh: "酒店", to_zh: "Las Cholas 餐厅", dist: "1.8 km", time_en: "7 min Uber / 22 min walk", time_zh: "Uber 7分钟 / 步行22分钟", mode_en: "🚗 2x Uber or shaded walk", mode_zh: "🚗 2台Uber（约$3.5美元）或散步", tip_en: "Take 2 Ubers side-by-side or walk along quiet Las Cañitas streets.", tip_zh: "建议打两台Uber直达，或顺着林荫街道漫步。" },
@@ -3195,12 +3060,12 @@
         path_d: "M 410 220 L 455 185 Q 460 230 480 265 Q 520 220 535 165 L 510 130 Q 450 170 410 220",
         corridor_d: "",
         stops: [
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店出发", x: 410, y: 220, time: "9:15 AM", desc_en: "Breakfast in suite before an easy 10-min morning stroll.", desc_zh: "在套房内享用免费早餐后轻松出发。", dist: "Base", tip_en: "Complimentary breakfast included.", tip_zh: "房费已包含免费早餐。", isHotel: true },
-          { num: "1", icon: "🦫", name_en: "Ecoparque Buenos Aires", name_zh: "Ecoparque 生态野生动物园", x: 455, y: 185, time: "9:30 AM", desc_en: "Free-roaming capybaras, maras, flamingos, peacocks.", desc_zh: "自由穿梭的水豚（Capybara）、巴塔哥尼亚豚鼠、火烈鸟与孔雀。", dist: "800 m", tip_en: "Free entry, stroller friendly, friendly capybaras!", tip_zh: "免费入园，婴儿车无障碍，水豚超温顺！", gmaps: "https://maps.google.com/?q=Ecoparque+Buenos+Aires" },
-          { num: "2", icon: "🥩", name_en: "La Payuca (Arenales 3443)", name_zh: "La Payuca 亲子烤肉餐厅", x: 480, y: 265, time: "12:30 PM", desc_en: "Supervised multi-level kids playroom (Pelotero) with TV monitors & prime steak.", desc_zh: "专属儿童看护游乐园（带监控屏幕）、儿童套餐与上等阿根廷牛排。", dist: "1.2 km", tip_en: "Staff supervises kids while parents enjoy steak & Malbec.", tip_zh: "专业看护阿姨带娃玩，大人静心享牛排美酒。", gmaps: "https://maps.google.com/?q=La+Payuca+Arenales+3443+Buenos+Aires" },
-          { num: "3", icon: "🪐", name_en: "Planetario Galileo Galilei", name_zh: "伽利略天文馆球幕影院", x: 535, y: 165, time: "2:30 PM", desc_en: "UFO-shaped landmark, astronomical dome show & outdoor meteorite touch zone.", desc_zh: "标志性飞碟造型建筑，沉浸式天象球幕秀与真实的史前陨石触摸区。", dist: "2.1 km", tip_en: "Touch real 4,000-year-old Campo del Cielo meteorites!", tip_zh: "触摸四千年前坠落的真实天外陨石！", gmaps: "https://maps.google.com/?q=Planetario+Galileo+Galilei+Buenos+Aires" },
-          { num: "4", icon: "🎡", name_en: "Parque 3 de Febrero Playground", name_zh: "湖畔儿童游乐场", x: 510, y: 130, time: "4:30 PM", desc_en: "Large lakeside play structures, swings, ducks and open lawns.", desc_zh: "湖畔大型儿童游乐场，滑梯秋千俱全，看天鹅野鸭游水。", dist: "400 m", tip_en: "Shaded lakeside swings and slides.", tip_zh: "树荫湖畔秋千与滑梯放松。", gmaps: "https://maps.google.com/?q=Parque+3+de+Febrero+Buenos+Aires" },
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", x: 410, y: 220, time: "6:30 PM", desc_en: "6-minute Uber back to hotel to recharge.", desc_zh: "打车6分钟返回酒店休息放松。", dist: "1.8 km", tip_en: "Quick 6-minute Uber hop.", tip_zh: "6分钟车程即刻回到酒店。", isHotel: true }
+          { lat: -34.5806, lng: -58.4264, num: "🏨", icon: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店出发", x: 410, y: 220, time: "9:15 AM", desc_en: "Breakfast in suite before an easy 10-min morning stroll.", desc_zh: "在套房内享用免费早餐后轻松出发。", dist: "Base", tip_en: "Complimentary breakfast included.", tip_zh: "房费已包含免费早餐。", isHotel: true },
+          { lat: -34.5786, lng: -58.4198, num: "1", icon: "🦫", name_en: "Ecoparque Buenos Aires", name_zh: "Ecoparque 生态野生动物园", x: 455, y: 185, time: "9:30 AM", desc_en: "Free-roaming capybaras, maras, flamingos, peacocks.", desc_zh: "自由穿梭的水豚（Capybara）、巴塔哥尼亚豚鼠、火烈鸟与孔雀。", dist: "800 m", tip_en: "Free entry, stroller friendly, friendly capybaras!", tip_zh: "免费入园，婴儿车无障碍，水豚超温顺！", gmaps: "https://maps.google.com/?q=Ecoparque+Buenos+Aires" },
+          { lat: -34.5745, lng: -58.4315, num: "2", icon: "🥩", name_en: "La Payuca (Arenales 3443)", name_zh: "La Payuca 亲子烤肉餐厅", x: 480, y: 265, time: "12:30 PM", desc_en: "Supervised multi-level kids playroom (Pelotero) with TV monitors & prime steak.", desc_zh: "专属儿童看护游乐园（带监控屏幕）、儿童套餐与上等阿根廷牛排。", dist: "1.2 km", tip_en: "Staff supervises kids while parents enjoy steak & Malbec.", tip_zh: "专业看护阿姨带娃玩，大人静心享牛排美酒。", gmaps: "https://maps.google.com/?q=La+Payuca+Arenales+3443+Buenos+Aires" },
+          { lat: -34.5697, lng: -58.4116, num: "3", icon: "🪐", name_en: "Planetario Galileo Galilei", name_zh: "伽利略天文馆球幕影院", x: 535, y: 165, time: "2:30 PM", desc_en: "UFO-shaped landmark, astronomical dome show & outdoor meteorite touch zone.", desc_zh: "标志性飞碟造型建筑，沉浸式天象球幕秀与真实的史前陨石触摸区。", dist: "2.1 km", tip_en: "Touch real 4,000-year-old Campo del Cielo meteorites!", tip_zh: "触摸四千年前坠落的真实天外陨石！", gmaps: "https://maps.google.com/?q=Planetario+Galileo+Galilei+Buenos+Aires" },
+          { lat: -34.5728, lng: -58.4125, num: "4", icon: "🎡", name_en: "Parque 3 de Febrero Playground", name_zh: "湖畔儿童游乐场", x: 510, y: 130, time: "4:30 PM", desc_en: "Large lakeside play structures, swings, ducks and open lawns.", desc_zh: "湖畔大型儿童游乐场，滑梯秋千俱全，看天鹅野鸭游水。", dist: "400 m", tip_en: "Shaded lakeside swings and slides.", tip_zh: "树荫湖畔秋千与滑梯放松。", gmaps: "https://maps.google.com/?q=Parque+3+de+Febrero+Buenos+Aires" },
+          { lat: -34.5806, lng: -58.4264, num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", x: 410, y: 220, time: "6:30 PM", desc_en: "6-minute Uber back to hotel to recharge.", desc_zh: "打车6分钟返回酒店休息放松。", dist: "1.8 km", tip_en: "Quick 6-minute Uber hop.", tip_zh: "6分钟车程即刻回到酒店。", isHotel: true }
         ],
         legs: [
           { from_en: "Palermo Suites", to_en: "Ecoparque BA", from_zh: "酒店", to_zh: "Ecoparque 生态园", dist: "800 m", time_en: "10 min walk", time_zh: "步行10分钟", mode_en: "🚶 Flat Sidewalk (Stroller Paradise)", mode_zh: "🚶 平坦人行道（推车极佳）", tip_en: "Walk straight down Paraguay to Plaza Italia gate.", tip_zh: "顺着 Paraguay 街直行至 Plaza Italia 大门，十分钟即达。" },
@@ -3212,29 +3077,27 @@
       },
 
       d3: {
-        title_en: "Day 3 (Mon 12/7) — Recoleta Culture, Grand Bookstore & Hands-On Science",
-        title_zh: "第 3 天（12/7 周一）— 雷科莱塔文化、世界最美书店与儿童科技馆",
-        stats_en: "Loop: ~9.5 km · 🚗 2x Uber + 🚶 Pedestrian Recoleta Corridor",
-        stats_zh: "环线全程：约 9.5 km · 🚗 2台Uber + 🚶 雷科莱塔优雅步行街",
-        family_tip_en: "👶 Family Tip: Recoleta streets are wide and European. The science museum ('Prohibido No Tocar') is 100% interactive for kids! Parrilla Peña gives kids warm empanadas the second you sit down.",
-        family_tip_zh: "👶 亲子贴士：雷科莱塔人行道宽敞极具欧洲风情。儿童科技馆“禁止不摸”全部项目均可亲自动手互动！Parrilla Peña 牛排馆入座即送热乎牛肉馅饼，孩子不挨饿。",
-        gmaps_url: "https://www.google.com/maps/dir/Palermo+Suites+Buenos+Aires,+Paraguay+4646/Cementerio+de+la+Recoleta/El+Ateneo+Grand+Splendid/Parrilla+Pe%C3%B1a,+Rodr%C3%ADguez+Pe%C3%B1a+682/Museo+Participativo+de+Ciencias/Palermo+Suites+Buenos+Aires,+Paraguay+4646",
-        path_d: "M 410 220 Q 520 250 610 300 L 575 355 L 605 385 Q 630 350 630 310 Q 520 260 410 220",
-        corridor_d: "",
+        title_en: "Day 3 (Mon 12/7) — Grand Theater Bookstore, Parrilla Peña & La Boca / San Telmo",
+        title_zh: "第 3 天（12/7 周一）— 雅典人书店、宝藏烤肉与博卡彩色街",
+        stats_en: "Loop: ~24 km · 🚗 2x Uber + 🚶 Recoleta & Caminito Stroll",
+        stats_zh: "环线全程：约 24 km · 🚗 2台Uber + 🚶 雷科莱塔与博卡步行街",
+        family_tip_en: "👶 Family Tip: Prohibido No Tocar is closed Mondays, so after Recoleta & lunch at Parrilla Peña, take 2 Ubers to colorful Caminito (La Boca) & San Telmo Market before an early 7 PM dinner at Cucina Paradiso!",
+        family_tip_zh: "👶 亲子贴士：“禁止不摸”科技馆周一闭馆，因此午餐后打车南下博卡彩色街 Caminito 与圣特尔莫集市，傍晚19:00在 Cucina Paradiso 早吃早休息，准备次日04:30飞伊瓜苏！",
+        gmaps_url: "https://www.google.com/maps/dir/Palermo+Suites+Buenos+Aires,+Paraguay+4646/El+Ateneo+Grand+Splendid/Gomero+de+la+Recoleta/Parrilla+Pe%C3%B1a,+Rodr%C3%ADguez+Pe%C3%B1a+682/Caminito,+La+Boca/Mercado+de+San+Telmo/Palermo+Suites+Buenos+Aires,+Paraguay+4646",
         stops: [
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店出发", x: 410, y: 220, time: "9:15 AM", desc_en: "Call 2 Ubers directly to Cementerio de la Recoleta.", desc_zh: "酒店门口呼叫2台Uber直达雷科莱塔公墓大门。", dist: "Base", tip_en: "Meet drivers right at Paraguay 4646.", tip_zh: "正门口叫车超方便。", isHotel: true },
-          { num: "1", icon: "🏛️", name_en: "Cementerio de la Recoleta", name_zh: "雷科莱塔公墓与法兰西广场", x: 610, y: 300, time: "9:45 AM", desc_en: "Marble mausoleums, Evita Perón's tomb, shade under giant rubber trees.", desc_zh: "世界著名大理石雕塑群像与贝隆夫人墓地，广场外百年榕树绿荫如盖。", dist: "3.5 km", tip_en: "Gigantic Gomero tree outside has climbing roots!", tip_zh: "广场外巨大的百岁榕树根系宛如巨伞！", gmaps: "https://maps.google.com/?q=Cementerio+de+la+Recoleta" },
-          { num: "2", icon: "📚", name_en: "El Ateneo Grand Splendid", name_zh: "雅典人书店（大剧院改建）", x: 575, y: 355, time: "11:30 AM", desc_en: "Opera theater converted into bookstore with stage cafe & kids mezzanine.", desc_zh: "百年歌剧院改建的梦幻书店，舞台变为咖啡座，设有儿童专属绘本区。", dist: "1.3 km", tip_en: "Basement has dedicated children's reading section.", tip_zh: "地下层有小朋友专属绘本天地与软垫座椅。", gmaps: "https://maps.google.com/?q=El+Ateneo+Grand+Splendid+Buenos+Aires" },
-          { num: "3", icon: "🥩", name_en: "Parrilla Peña (Rodríguez Peña 682)", name_zh: "Parrilla Peña 宝藏烤肉店", x: 605, y: 385, time: "1:00 PM", desc_en: "Complimentary fried beef empanadas upon arrival; unmatched Bife de Chorizo.", desc_zh: "入座即赠送酥脆热牛肉馅饼，西冷牛排鲜嫩多汁，绝无游客溢价。", dist: "900 m", tip_en: "Kids get warm fried empanadas immediately!", tip_zh: "一入座就送热气腾腾酥脆牛肉馅饼！", gmaps: "https://maps.google.com/?q=Parrilla+Pena+Rodriguez+Pena+Buenos+Aires" },
-          { num: "4", icon: "🔬", name_en: "Museo 'Prohibido No Tocar'", name_zh: "“禁止不摸”儿童互动科技馆", x: 630, y: 310, time: "3:00 PM", desc_en: "100% hands-on physics, giant soap bubbles, optical illusions for kids.", desc_zh: "纯动手体验馆，巨型肥皂泡泡、光学错觉迷宫与物理实验。", dist: "1.8 km", tip_en: "Entire museum encourages kids to touch everything!", tip_zh: "全馆宗旨就是“随便摸随便碰”，孩子超嗨！", gmaps: "https://maps.google.com/?q=Museo+Participativo+de+Ciencias+Prohibido+No+Tocar" },
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", x: 410, y: 220, time: "6:00 PM", desc_en: "12-minute Uber ride back to your hotel in Palermo.", desc_zh: "打车约12分钟轻松返回巴勒莫酒店大堂。", dist: "3.6 km", tip_en: "Fast 12-min ride back to Palermo.", tip_zh: "打车经 Libertador 快速主干道回酒店。", isHotel: true }
+          { num: "🏨", icon: "🏨", lat: -34.5806, lng: -58.4264, name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店出发", time: "9:30 AM", desc_en: "2 Ubers south to El Ateneo Grand Splendid.", desc_zh: "酒店门口呼叫2台Uber南下雅典人书店。", dist: "Base", tip_en: "Meet drivers right at Paraguay 4646.", tip_zh: "正门口叫车超方便。", isHotel: true },
+          { num: "1", icon: "📚", lat: -34.5959, lng: -58.3941, name_en: "El Ateneo Grand Splendid", name_zh: "雅典人剧院书店", time: "9:45 AM", desc_en: "Opera theater bookstore with stage cafe & kids section.", desc_zh: "百年歌剧院改建的梦幻书店与儿童绘本区。", dist: "3.5 km", tip_en: "Grab espresso on the theater stage!", tip_zh: "在红色天鹅绒舞台包厢喝咖啡！", gmaps: "https://maps.google.com/?q=El+Ateneo+Grand+Splendid+Buenos+Aires" },
+          { num: "2", icon: "🌳", lat: -34.5877, lng: -58.3924, name_en: "Giant Gomero Tree (Recoleta)", name_zh: "雷科莱塔200年巨型橡皮树", time: "11:15 AM", desc_en: "Monumental 200-year-old rubber tree at Plaza Francia.", desc_zh: "法兰西广场旁盘根错节的200年古树。", dist: "1.1 km", tip_en: "Kids love the giant spreading branches!", tip_zh: "孩子们超爱巨型树冠！", gmaps: "https://maps.google.com/?q=Gomero+de+la+Recoleta+Buenos+Aires" },
+          { num: "3", icon: "🥩", lat: -34.6001, lng: -58.3917, name_en: "Parrilla Peña (Rodríguez Peña 682)", name_zh: "Parrilla Peña 宝藏烤肉", time: "12:30 PM", desc_en: "Complimentary hot fried beef empanadas on arrival!", desc_zh: "入座即赠送酥脆热牛肉馅饼，西冷牛排极嫩。", dist: "1.5 km", tip_en: "Authentic local bodegón open Mondays.", tip_zh: "周一营业的正宗本地小馆。", gmaps: "https://maps.google.com/?q=Parrilla+Pena+Rodriguez+Pena+Buenos+Aires" },
+          { num: "4", icon: "🎨", lat: -34.6393, lng: -58.3627, name_en: "Caminito (La Boca)", name_zh: "博卡彩色步行街 (Caminito)", time: "2:45 PM", desc_en: "Vibrant tin houses, street tango dancers & Maradona murals.", desc_zh: "五彩铁皮木屋、街头探戈舞者与球王壁画。", dist: "5.8 km", tip_en: "Stay on main Caminito pedestrian strip.", tip_zh: "在主步行街内拍照游玩安全轻松。", gmaps: "https://maps.google.com/?q=Caminito+La+Boca+Buenos+Aires" },
+          { num: "5", icon: "📸", lat: -34.6191, lng: -58.3728, name_en: "Mercado de San Telmo & Mafalda", name_zh: "圣特尔莫集市与玛法达雕像", time: "4:15 PM", desc_en: "1897 indoor market & Mafalda statue photo stop.", desc_zh: "百年室内集市与街角玛法达漫画长椅合影。", dist: "2.8 km", tip_en: "Quick stop before returning to Palermo for 7 PM dinner.", tip_zh: "拍照后回巴勒莫享用19:00意面晚餐。", gmaps: "https://maps.google.com/?q=Mercado+de+San+Telmo+Buenos+Aires" },
+          { num: "🏨", icon: "🏨", lat: -34.5806, lng: -58.4264, name_en: "Palermo Suites (Early Bedtime)", name_zh: "返回酒店早休息 (明早4:30出发)", time: "6:00 PM", desc_en: "Dinner at Cucina Paradiso nearby & sleep by 9 PM for Iguazú!", desc_zh: "附近 Cucina Paradiso 晚餐后21:00前早睡，准备飞伊瓜苏！", dist: "7.5 km", tip_en: "4:30 AM Uber to AEP tomorrow!", tip_zh: "明早04:30打车去AEP机场！", isHotel: true }
         ],
         legs: [
-          { from_en: "Palermo Suites", to_en: "Cementerio Recoleta", from_zh: "酒店", to_zh: "雷科莱塔公墓", dist: "3.5 km", time_en: "12 min Uber", time_zh: "Uber 12分钟", mode_en: "🚗 2x Uber (~$5 total)", mode_zh: "🚗 2台Uber（共约$5美元）", tip_en: "Direct ride to Junín entrance in front of Plaza Francia.", tip_zh: "直接导航到 Junín 街公墓正门广场。" },
-          { from_en: "Cementerio Recoleta", to_en: "El Ateneo", from_zh: "公墓", to_zh: "雅典人书店", dist: "1.3 km", time_en: "16 min walk / 5 min Uber", time_zh: "步行16分钟 / Uber 5分钟", mode_en: "🚶 Elegant Shaded Walk down Av. Santa Fe", mode_zh: "🚶 漫步优雅的 Santa Fe 大道", tip_en: "Tree-lined Parisian architecture along the entire walk.", tip_zh: "沿街尽是巴黎风情建筑与精品小铺，推车好走。" },
-          { from_en: "El Ateneo", to_en: "Parrilla Peña", from_zh: "雅典人书店", to_zh: "Parrilla Peña", dist: "900 m", time_en: "11 min walk", time_zh: "步行11分钟", mode_en: "🚶 Quick 6-Block Stroll", mode_zh: "🚶 轻松步行6个街区", tip_en: "Straight shot south down Av. Santa Fe to Rodríguez Peña.", tip_zh: "顺着 Santa Fe 大道向南漫步直达餐厅。" },
-          { from_en: "Parrilla Peña", to_en: "Museo de Ciencias", from_zh: "Parrilla Peña", to_zh: "儿童科技馆", dist: "1.8 km", time_en: "7 min Uber / 20 min walk", time_zh: "Uber 7分钟 / 步行20分钟", mode_en: "🚗 2x Uber to Recoleta Cultural Center", mode_zh: "🚗 推荐打2台Uber直达科技馆", tip_en: "Museum is inside Centro Cultural Recoleta, 1st floor.", tip_zh: "科技馆位于雷科莱塔文化中心一楼，非常方便找寻。" },
-          { from_en: "Museo de Ciencias", to_en: "Palermo Suites", from_zh: "儿童科技馆", to_zh: "返回酒店", dist: "3.6 km", time_en: "12 min Uber", time_zh: "Uber 12分钟", mode_en: "🚗 2x Uber back home", mode_zh: "🚗 2台Uber直奔酒店", tip_en: "Fast hop along Av. del Libertador back to Palermo.", tip_zh: "经 Libertador 快速主干道十几分钟即可回到酒店。" }
+          { from_en: "Palermo Suites", to_en: "El Ateneo", from_zh: "酒店", to_zh: "雅典人书店", dist: "3.5 km", time_en: "12 min Uber", time_zh: "Uber 12分钟", mode_en: "🚗 2x Uber (~$5 total)", mode_zh: "🚗 2台Uber（共约$5美元）", tip_en: "Opens 9 AM Mondays.", tip_zh: "周一上午9点开门。" },
+          { from_en: "El Ateneo", to_en: "Giant Gomero & Parrilla Peña", from_zh: "书店", to_zh: "巨树与烤肉店", dist: "2.6 km", time_en: "Walk / 8 min Uber", time_zh: "步行 / Uber 8分钟", mode_en: "🚶 Walk + 🚗 Quick hop", mode_zh: "🚶 漫步 + 🚗 短途车程", tip_en: "Both open Mondays.", tip_zh: "周一均正常营业。" },
+          { from_en: "Parrilla Peña", to_en: "Caminito (La Boca)", from_zh: "烤肉店", to_zh: "博卡彩色街", dist: "5.8 km", time_en: "16 min Uber", time_zh: "Uber 16分钟", mode_en: "🚗 2x Uber direct to Caminito", mode_zh: "🚗 2台Uber直达主街入口", tip_en: "Stay on main tourist strip.", tip_zh: "仅在旅游步行街内游览。" },
+          { from_en: "Caminito", to_en: "San Telmo & Back to Palermo", from_zh: "博卡", to_zh: "圣特尔莫回酒店", dist: "10.3 km", time_en: "25 min total Uber", time_zh: "Uber 共约25分钟", mode_en: "🚗 2x Uber", mode_zh: "🚗 2台Uber", tip_en: "Early dinner at Cucina Paradiso, bed by 9 PM!", tip_zh: "早吃晚饭早休息！" }
         ]
       },
 
@@ -3249,8 +3112,8 @@
         path_d: "M 410 220 L 455 180",
         corridor_d: "",
         stops: [
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (04:30 AM)", name_zh: "Palermo Suites 出发 (04:30)", x: 410, y: 220, time: "4:30 AM", desc_en: "2x Uber to AEP (10 mins, 4.5 km). Big bags stay locked in suites.", desc_zh: "两台Uber 10分钟直达AEP机场，大行李留在酒店。", dist: "Base", tip_en: "Only 4.5 km to AEP!", tip_zh: "距AEP机场仅4.5公里！", isHotel: true },
-          { num: "✈️", icon: "✈️", name_en: "AEP Aeroparque ➔ Iguazú (JA 3140)", name_zh: "AEP 机场飞往伊瓜苏 (JA 3140)", x: 455, y: 180, time: "6:20 AM", desc_en: "Lands IGR 08:13 AM. Drop bags at La Aldea (#12324200), then Devil's Throat & Upper Circuit.", desc_zh: "08:13降落IGR。寄存背包后游览魔鬼咽喉与上层栈道。", dist: "4.5 km", tip_en: "PNR: TBG56D · Hotel: #12324200", tip_zh: "机票PNR: TBG56D · 酒店: #12324200", gmaps: "https://maps.google.com/?q=Aeroparque+Jorge+Newbery+Buenos+Aires" }
+          { lat: -34.5806, lng: -58.4264, num: "🏨", icon: "🏨", name_en: "Palermo Suites (04:30 AM)", name_zh: "Palermo Suites 出发 (04:30)", x: 410, y: 220, time: "4:30 AM", desc_en: "2x Uber to AEP (10 mins, 4.5 km). Big bags stay locked in suites.", desc_zh: "两台Uber 10分钟直达AEP机场，大行李留在酒店。", dist: "Base", tip_en: "Only 4.5 km to AEP!", tip_zh: "距AEP机场仅4.5公里！", isHotel: true },
+          { lat: -34.5592, lng: -58.4156, num: "✈️", icon: "✈️", name_en: "AEP Aeroparque ➔ Iguazú (JA 3140)", name_zh: "AEP 机场飞往伊瓜苏 (JA 3140)", x: 455, y: 180, time: "6:20 AM", desc_en: "Lands IGR 08:13 AM. Drop bags at La Aldea (#12324200), then Devil's Throat & Upper Circuit.", desc_zh: "08:13降落IGR。寄存背包后游览魔鬼咽喉与上层栈道。", dist: "4.5 km", tip_en: "PNR: TBG56D · Hotel: #12324200", tip_zh: "机票PNR: TBG56D · 酒店: #12324200", gmaps: "https://maps.google.com/?q=Aeroparque+Jorge+Newbery+Buenos+Aires" }
         ],
         legs: [
           { from_en: "Palermo Suites", to_en: "AEP Aeroparque", from_zh: "酒店", to_zh: "AEP 机场", dist: "4.5 km", time_en: "10 min Uber", time_zh: "Uber 10分钟", mode_en: "🚗 2x Uber (~$3–$5/car)", mode_zh: "🚗 2台Uber（约$3–$5/车）", tip_en: "Quick early morning hop along Av. Sarmiento.", tip_zh: "清晨一路畅通直达机场。" }
@@ -3268,8 +3131,8 @@
         path_d: "M 455 180 L 410 220",
         corridor_d: "",
         stops: [
-          { num: "✈️", icon: "✈️", name_en: "AEP Aeroparque Arrival (10:58 PM)", name_zh: "AEP 机场降落 (22:58)", x: 455, y: 180, time: "10:58 PM", desc_en: "Flight JA 3153 (PNR: X7BI5C) lands from IGR.", desc_zh: "航班 JA 3153（预订码: X7BI5C）降落布市。", dist: "4.5 km", tip_en: "No checked bags to wait for!", tip_zh: "无托运行李，下机直接打车走！", gmaps: "https://maps.google.com/?q=Aeroparque+Jorge+Newbery+Buenos+Aires" },
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (11:25 PM)", name_zh: "返回 Palermo Suites (23:25)", x: 410, y: 220, time: "11:25 PM", desc_en: "Quick 10-min Uber back to Palermo Suites for a well-earned sleep-in.", desc_zh: "10分钟迅速回到酒店安睡。", dist: "Base", tip_en: "Sleep in on Thursday morning!", tip_zh: "周四上午睡到自然醒！", isHotel: true }
+          { lat: -34.5592, lng: -58.4156, num: "✈️", icon: "✈️", name_en: "AEP Aeroparque Arrival (10:58 PM)", name_zh: "AEP 机场降落 (22:58)", x: 455, y: 180, time: "10:58 PM", desc_en: "Flight JA 3153 (PNR: X7BI5C) lands from IGR.", desc_zh: "航班 JA 3153（预订码: X7BI5C）降落布市。", dist: "4.5 km", tip_en: "No checked bags to wait for!", tip_zh: "无托运行李，下机直接打车走！", gmaps: "https://maps.google.com/?q=Aeroparque+Jorge+Newbery+Buenos+Aires" },
+          { lat: -34.5806, lng: -58.4264, num: "🏨", icon: "🏨", name_en: "Palermo Suites (11:25 PM)", name_zh: "返回 Palermo Suites (23:25)", x: 410, y: 220, time: "11:25 PM", desc_en: "Quick 10-min Uber back to Palermo Suites for a well-earned sleep-in.", desc_zh: "10分钟迅速回到酒店安睡。", dist: "Base", tip_en: "Sleep in on Thursday morning!", tip_zh: "周四上午睡到自然醒！", isHotel: true }
         ],
         legs: [
           { from_en: "AEP Aeroparque", to_en: "Palermo Suites", from_zh: "AEP 机场", to_zh: "返回酒店", dist: "4.5 km", time_en: "10 min Uber", time_zh: "Uber 10分钟", mode_en: "🚗 2x Uber (~$3–$5/car)", mode_zh: "🚗 2台Uber（约$3–$5/车）", tip_en: "Fastest airport-to-bed transfer in South America.", tip_zh: "10分钟直达酒店床上休息。" }
@@ -3287,10 +3150,10 @@
         path_d: "M 410 220 L 560 280 L 395 255 L 645 480 L 410 220",
         corridor_d: "",
         stops: [
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (10:30 AM)", name_zh: "Palermo Suites 出发 (10:30)", x: 410, y: 220, time: "10:30 AM", desc_en: "Relaxed late morning start after Iguazú.", desc_zh: "伊瓜苏归来睡到自然醒后轻松出发。", dist: "Base", tip_en: "No rush!", tip_zh: "不赶时间！", isHotel: true },
-          { num: "1", icon: "🔬", name_en: "Prohibido No Tocar (Recoleta)", name_zh: "“禁止不摸”互动科技馆", x: 560, y: 280, time: "11:00 AM", desc_en: "Hands-on science museum (open Thu!), giant bubbles & Rapanui chocolate.", desc_zh: "周四开放的互动科技馆，巨型肥皂泡与Rapanui巧克力。", dist: "3.5 km", tip_en: "Inside Centro Cultural Recoleta.", tip_zh: "位于雷科莱塔文化中心内。", gmaps: "https://maps.google.com/?q=Museo+Participativo+de+Ciencias+Prohibido+No+Tocar+Recoleta" },
-          { num: "2", icon: "🛝", name_en: "Plaza Armenia (or Optional Tigre)", name_zh: "亚美尼亚广场（或可选蒂格雷）", x: 395, y: 255, time: "1:30 PM", desc_en: "Lunch at El Preferido + playground & helado (or Mitre train to San Isidro / Tigre).", desc_zh: "El Preferido午餐+滑梯冰淇淋（或乘火车去 San Isidro / Tigre）。", dist: "3.8 km", tip_en: "Board Mitre train at Lisandro de la Torre if doing Tigre.", tip_zh: "若去蒂格雷可在 Lisandro de la Torre 站上车。", gmaps: "https://maps.google.com/?q=Plaza+Armenia+Palermo+Buenos+Aires" },
-          { num: "3", icon: "🥩", name_en: "La Brigada (San Telmo)", name_zh: "La Brigada 勺切牛排", x: 645, y: 480, time: "7:30 PM", desc_en: "Famous tenderloin sliced with a metal spoon right at the table!", desc_zh: "侍应生当面用普通汤勺切开极嫩牛排！", dist: "6.8 km", tip_en: "Open Thursdays; reserve ahead.", tip_zh: "周四营业，建议提前订位。", gmaps: "https://maps.google.com/?q=La+Brigada+San+Telmo+Buenos+Aires" }
+          { lat: -34.5806, lng: -58.4264, num: "🏨", icon: "🏨", name_en: "Palermo Suites (10:30 AM)", name_zh: "Palermo Suites 出发 (10:30)", x: 410, y: 220, time: "10:30 AM", desc_en: "Relaxed late morning start after Iguazú.", desc_zh: "伊瓜苏归来睡到自然醒后轻松出发。", dist: "Base", tip_en: "No rush!", tip_zh: "不赶时间！", isHotel: true },
+          { lat: -34.5865, lng: -58.3921, num: "1", icon: "🔬", name_en: "Prohibido No Tocar (Recoleta)", name_zh: "“禁止不摸”互动科技馆", x: 560, y: 280, time: "11:00 AM", desc_en: "Hands-on science museum (open Thu!), giant bubbles & Rapanui chocolate.", desc_zh: "周四开放的互动科技馆，巨型肥皂泡与Rapanui巧克力。", dist: "3.5 km", tip_en: "Inside Centro Cultural Recoleta.", tip_zh: "位于雷科莱塔文化中心内。", gmaps: "https://maps.google.com/?q=Museo+Participativo+de+Ciencias+Prohibido+No+Tocar+Recoleta" },
+          { lat: -34.5897, lng: -58.4242, num: "2", icon: "🛝", name_en: "Plaza Armenia (or Optional Tigre)", name_zh: "亚美尼亚广场（或可选蒂格雷）", x: 395, y: 255, time: "1:30 PM", desc_en: "Lunch at El Preferido + playground & helado (or Mitre train to San Isidro / Tigre).", desc_zh: "El Preferido午餐+滑梯冰淇淋（或乘火车去 San Isidro / Tigre）。", dist: "3.8 km", tip_en: "Board Mitre train at Lisandro de la Torre if doing Tigre.", tip_zh: "若去蒂格雷可在 Lisandro de la Torre 站上车。", gmaps: "https://maps.google.com/?q=Plaza+Armenia+Palermo+Buenos+Aires" },
+          { lat: -34.6181, lng: -58.3726, num: "3", icon: "🥩", name_en: "La Brigada (San Telmo)", name_zh: "La Brigada 勺切牛排", x: 645, y: 480, time: "7:30 PM", desc_en: "Famous tenderloin sliced with a metal spoon right at the table!", desc_zh: "侍应生当面用普通汤勺切开极嫩牛排！", dist: "6.8 km", tip_en: "Open Thursdays; reserve ahead.", tip_zh: "周四营业，建议提前订位。", gmaps: "https://maps.google.com/?q=La+Brigada+San+Telmo+Buenos+Aires" }
         ],
         legs: [
           { from_en: "Palermo Suites", to_en: "Prohibido No Tocar", from_zh: "酒店", to_zh: "科技馆", dist: "3.5 km", time_en: "12 min Uber", time_zh: "Uber 12分钟", mode_en: "🚗 2x Uber", mode_zh: "🚗 2台Uber", tip_en: "Open Thu!", tip_zh: "周四开放！" },
@@ -3310,11 +3173,11 @@
         path_d: "M 410 220 L 410 175 L 360 215 L 410 220",
         corridor_d: "M 410 220 Q 310 420 240 545",
         stops: [
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Check-Out)", name_zh: "Palermo Suites 退房存包", x: 410, y: 220, time: "11:45 AM", desc_en: "Check out of 2 suites (12 PM). Free luggage storage at 24h front desk.", desc_zh: "退房两间套房，前台免费妥善保管全部行李。", dist: "Base", tip_en: "Free luggage storage after checkout.", tip_zh: "退房后前台免费妥善寄存行李。", isHotel: true },
-          { num: "1", icon: "🛍️", name_en: "Distrito Arcos Premium Outlet", name_zh: "Distrito Arcos 露天红砖商街", x: 410, y: 175, time: "12:15 PM", desc_en: "Open-air viaduct mall: outdoor cafes, kids playground, Havanna alfajores, leather.", desc_zh: "复古红砖高架拱门改建的露天商街：绿树喷泉、儿童游乐角、露天午餐与伴手礼。", dist: "450 m", tip_en: "Outdoor playground & Havanna alfajores for gifts!", tip_zh: "露天儿童游乐角与 Havanna 伴手礼盒！", gmaps: "https://maps.google.com/?q=Distrito+Arcos+Palermo+Buenos+Aires" },
-          { num: "2", icon: "🍨", name_en: "Heladería Scannapieco (Niceto Vega 4983)", name_zh: "Scannapieco 意式百年老字号冰淇淋", x: 360, y: 215, time: "2:30 PM", desc_en: "Founded in 1938: legendary Zabaglione, Pistachio, and chocolate farewell.", desc_zh: "1938年老字号：传奇沙巴翁酒香蛋黄味、浓郁开心果与黑巧克力最后一顿告别。", dist: "1.1 km", tip_en: "Traditional 1938 Italian artisanal gelato.", tip_zh: "传承自1938年的意大利传统经典手艺。", gmaps: "https://maps.google.com/?q=Heladeria+Scannapieco+Niceto+Vega+4983+Buenos+Aires" },
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Call 2x Uber/Cabify)", name_zh: "返回 Palermo Suites 呼叫 2 台 Uber", x: 410, y: 220, time: "4:00 PM", desc_en: "Retrieve stored bags; call 2x Uber or Cabify at 4:15 PM sharp for airport transfer.", desc_zh: "取回行李，下午4:15准时呼叫 2 台 Uber 或 Cabify 直奔机场。", dist: "1.3 km", tip_en: "2x Uber/Cabify costs ~$36–$44 total (3 pax + bags each).", tip_zh: "两台车总计仅约 $36–$44 美元，每车坐3人并放行李。", isHotel: true },
-          { num: "✈️", icon: "✈️", name_en: "Aeropuerto Ezeiza (EZE)", name_zh: "EZE 埃塞萨国际机场", x: 140, y: 545, time: "5:05 PM", desc_en: "Check-in for nonstop Delta flight LA 8872 to JFK (Departs 8:05 PM).", desc_zh: "提前近3小时抵达航站楼办理登机，乘坐直飞纽约航班（LA 8872，晚 8:05 起飞）。", dist: "34 km", tip_en: "Arrive 3 hours before 8:05 PM flight.", tip_zh: "提前近3小时充裕办理值机安检。", gmaps: "https://maps.google.com/?q=Ministro+Pistarini+International+Airport+Ezeiza" }
+          { lat: -34.5806, lng: -58.4264, num: "🏨", icon: "🏨", name_en: "Palermo Suites (Check-Out)", name_zh: "Palermo Suites 退房存包", x: 410, y: 220, time: "11:45 AM", desc_en: "Check out of 2 suites (12 PM). Free luggage storage at 24h front desk.", desc_zh: "退房两间套房，前台免费妥善保管全部行李。", dist: "Base", tip_en: "Free luggage storage after checkout.", tip_zh: "退房后前台免费妥善寄存行李。", isHotel: true },
+          { lat: -34.5784, lng: -58.4281, num: "1", icon: "🛍️", name_en: "Distrito Arcos Premium Outlet", name_zh: "Distrito Arcos 露天红砖商街", x: 410, y: 175, time: "12:15 PM", desc_en: "Open-air viaduct mall: outdoor cafes, kids playground, Havanna alfajores, leather.", desc_zh: "复古红砖高架拱门改建的露天商街：绿树喷泉、儿童游乐角、露天午餐与伴手礼。", dist: "450 m", tip_en: "Outdoor playground & Havanna alfajores for gifts!", tip_zh: "露天儿童游乐角与 Havanna 伴手礼盒！", gmaps: "https://maps.google.com/?q=Distrito+Arcos+Palermo+Buenos+Aires" },
+          { lat: -34.5889, lng: -58.4342, num: "2", icon: "🍨", name_en: "Heladería Scannapieco (Niceto Vega 4983)", name_zh: "Scannapieco 意式百年老字号冰淇淋", x: 360, y: 215, time: "2:30 PM", desc_en: "Founded in 1938: legendary Zabaglione, Pistachio, and chocolate farewell.", desc_zh: "1938年老字号：传奇沙巴翁酒香蛋黄味、浓郁开心果与黑巧克力最后一顿告别。", dist: "1.1 km", tip_en: "Traditional 1938 Italian artisanal gelato.", tip_zh: "传承自1938年的意大利传统经典手艺。", gmaps: "https://maps.google.com/?q=Heladeria+Scannapieco+Niceto+Vega+4983+Buenos+Aires" },
+          { lat: -34.5806, lng: -58.4264, num: "🏨", icon: "🏨", name_en: "Palermo Suites (Call 2x Uber/Cabify)", name_zh: "返回 Palermo Suites 呼叫 2 台 Uber", x: 410, y: 220, time: "4:00 PM", desc_en: "Retrieve stored bags; call 2x Uber or Cabify at 4:15 PM sharp for airport transfer.", desc_zh: "取回行李，下午4:15准时呼叫 2 台 Uber 或 Cabify 直奔机场。", dist: "1.3 km", tip_en: "2x Uber/Cabify costs ~$36–$44 total (3 pax + bags each).", tip_zh: "两台车总计仅约 $36–$44 美元，每车坐3人并放行李。", isHotel: true },
+          { lat: -34.8222, lng: -58.5358, num: "✈️", icon: "✈️", name_en: "Aeropuerto Ezeiza (EZE)", name_zh: "EZE 埃塞萨国际机场", x: 140, y: 545, time: "5:05 PM", desc_en: "Check-in for nonstop Delta flight LA 8872 to JFK (Departs 8:05 PM).", desc_zh: "提前近3小时抵达航站楼办理登机，乘坐直飞纽约航班（LA 8872，晚 8:05 起飞）。", dist: "34 km", tip_en: "Arrive 3 hours before 8:05 PM flight.", tip_zh: "提前近3小时充裕办理值机安检。", gmaps: "https://maps.google.com/?q=Ministro+Pistarini+International+Airport+Ezeiza" }
         ],
         legs: [
           { from_en: "Palermo Suites", to_en: "Distrito Arcos", from_zh: "酒店", to_zh: "Distrito Arcos 商街", dist: "450 m", time_en: "6 min walk", time_zh: "步行6分钟", mode_en: "🚶 Short 4-Block Walk (Super Easy!)", mode_zh: "🚶 轻松步行4个街区（仅450米）", tip_en: "Walk straight north on Paraguay past Godoy Cruz.", tip_zh: "顺着 Paraguay 街向北直走4个路口即达露天商街入口。" },
@@ -3363,169 +3226,102 @@
       closePinTooltip();
     }
 
+    let baLeafletMap = null;
+    let baRouteLayerGroup = null;
+    let baMarkersList = [];
+    let baRouteBounds = null;
+
+    function ensureBaMap() {
+      if (baLeafletMap) return;
+      const el = document.getElementById('ba-leaflet-map');
+      if (!el || typeof L === 'undefined') return;
+      baLeafletMap = L.map('ba-leaflet-map').setView([-34.5806, -58.4264], 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
+        maxZoom: 19
+      }).addTo(baLeafletMap);
+      baRouteLayerGroup = L.layerGroup().addTo(baLeafletMap);
+    }
+
     function renderSvgMapRoutes(dayKey) {
+      ensureBaMap();
       const data = estRoutesData[dayKey];
-      if (!data) return;
+      if (!data || !baLeafletMap || !baRouteLayerGroup) return;
 
-      const loopGroup = document.getElementById("svg-route-loop");
-      const corridorGroup = document.getElementById("svg-route-corridors");
-      const pinsGroup = document.getElementById("svg-route-pins");
-      if (!loopGroup || !pinsGroup) return;
+      baRouteLayerGroup.clearLayers();
+      baMarkersList = [];
+      const latlngs = [];
+      const isZh = (currentLang === 'zh');
 
-      loopGroup.innerHTML = "";
-      pinsGroup.innerHTML = "";
-      if (corridorGroup) corridorGroup.innerHTML = "";
-
-      // 1. Draw highway corridor (for Tigre, Estancia, EZE)
-      if (data.corridor_d && corridorGroup) {
-        const corridor = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        corridor.setAttribute("d", data.corridor_d);
-        corridor.setAttribute("fill", "none");
-        corridor.setAttribute("stroke", "#F59E0B");
-        corridor.setAttribute("stroke-width", "4");
-        corridor.setAttribute("stroke-linecap", "round");
-        corridor.setAttribute("stroke-dasharray", "8,8");
-        corridor.setAttribute("opacity", "0.85");
-        corridorGroup.appendChild(corridor);
-      }
-
-      // 2. Draw Main Route Loop Path
-      if (data.path_d) {
-        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        path.setAttribute("d", data.path_d);
-        path.setAttribute("fill", "none");
-        path.setAttribute("stroke", "#10B981");
-        path.setAttribute("stroke-width", "4.5");
-        path.setAttribute("stroke-linecap", "round");
-        path.setAttribute("stroke-linejoin", "round");
-        path.setAttribute("stroke-dasharray", "8,6");
-        path.setAttribute("opacity", "0.9");
-        loopGroup.appendChild(path);
-      }
-
-      // 3. Draw Numbered Waypoint Pins
       data.stops.forEach((stop, idx) => {
-        // Skip rendering duplicate stop 0 hotel pin since central hotel base is permanently rendered
-        if (stop.isHotel && idx === 0) return;
+        if (typeof stop.lat !== 'number' || typeof stop.lng !== 'number') return;
+        const pt = [stop.lat, stop.lng];
+        latlngs.push(pt);
 
-        const pinG = document.createElementNS("http://www.w3.org/2000/svg", "g");
-        pinG.setAttribute("transform", `translate(${stop.x}, ${stop.y})`);
-        pinG.setAttribute("class", "cursor-pointer group");
-        pinG.setAttribute("onclick", `showStopDetails(${idx})`);
+        // Skip duplicate return hotel pin at the end if same as start
+        if (stop.isHotel && idx > 0 && idx === data.stops.length - 1) {
+          baMarkersList[idx] = baMarkersList[0];
+          return;
+        }
 
-        // Glowing circle under pin
-        const glow = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        glow.setAttribute("cx", "0");
-        glow.setAttribute("cy", "0");
-        glow.setAttribute("r", "16");
-        glow.setAttribute("fill", stop.isHotel ? "#F6B40E" : "#2563EB");
-        glow.setAttribute("opacity", "0.3");
-        pinG.appendChild(glow);
+        const bg = stop.isHotel ? '#F6B40E' : '#2563EB';
+        const fg = stop.isHotel ? '#0B2545' : '#FFFFFF';
+        const border = stop.isHotel ? '#0B2545' : '#FFFFFF';
+        const iconHtml = `<div style="width:28px;height:28px;border-radius:9999px;background:${bg};color:${fg};border:2px solid ${border};display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;box-shadow:0 2px 6px rgba(0,0,0,0.35);">${stop.num}</div>`;
 
-        // Pin Body
-        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        circle.setAttribute("cx", "0");
-        circle.setAttribute("cy", "0");
-        circle.setAttribute("r", "13");
-        circle.setAttribute("fill", stop.isHotel ? "#F6B40E" : "#2563EB");
-        circle.setAttribute("stroke", "#FFFFFF");
-        circle.setAttribute("stroke-width", "2");
-        pinG.appendChild(circle);
+        const marker = L.marker(pt, {
+          icon: L.divIcon({
+            html: iconHtml,
+            className: '',
+            iconSize: [28, 28],
+            iconAnchor: [14, 14],
+            popupAnchor: [0, -14]
+          })
+        });
 
-        // Pin Text (Number or Emoji)
-        const txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        txt.setAttribute("x", "0");
-        txt.setAttribute("y", "4.5");
-        txt.setAttribute("font-size", stop.isHotel ? "13" : "11");
-        txt.setAttribute("font-weight", "900");
-        txt.setAttribute("fill", stop.isHotel ? "#0B2545" : "#FFFFFF");
-        txt.setAttribute("text-anchor", "middle");
-        txt.textContent = stop.num;
-        pinG.appendChild(txt);
-
-        // Mini Label Badge under Pin
-        const labelG = document.createElementNS("http://www.w3.org/2000/svg", "g");
-        labelG.setAttribute("transform", "translate(0, 22)");
-
-        const isZh = (currentLang === 'zh');
-        const stopName = isZh ? stop.name_zh : stop.name_en;
-        const shortName = stopName.length > 14 ? stopName.substring(0, 13) + '…' : stopName;
-
-        const labelBg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        labelBg.setAttribute("x", "-48");
-        labelBg.setAttribute("y", "-9");
-        labelBg.setAttribute("width", "96");
-        labelBg.setAttribute("height", "18");
-        labelBg.setAttribute("rx", "9");
-        labelBg.setAttribute("fill", "#0F172A");
-        labelBg.setAttribute("stroke", "#38BDF8");
-        labelBg.setAttribute("stroke-width", "1");
-        labelBg.setAttribute("opacity", "0.92");
-        labelG.appendChild(labelBg);
-
-        const labelTxt = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        labelTxt.setAttribute("x", "0");
-        labelTxt.setAttribute("y", "3.5");
-        labelTxt.setAttribute("font-size", "8.5");
-        labelTxt.setAttribute("font-weight", "bold");
-        labelTxt.setAttribute("fill", "#FFFFFF");
-        labelTxt.setAttribute("text-anchor", "middle");
-        labelTxt.textContent = `${stop.icon} ${shortName}`;
-        labelG.appendChild(labelTxt);
-
-        pinG.appendChild(labelG);
-        pinsGroup.appendChild(pinG);
+        const title = `${stop.icon || '📍'} ${isZh ? stop.name_zh : stop.name_en}`;
+        const desc = isZh ? stop.desc_zh : stop.desc_en;
+        const tip = isZh ? (stop.tip_zh || '') : (stop.tip_en || '');
+        const gmapsBtn = stop.gmaps ? `<div style="margin-top:6px;"><a href="${stop.gmaps}" target="_blank" rel="noopener noreferrer" style="color:#2563EB;font-weight:700;text-decoration:underline;">📍 Open in Google Maps &rarr;</a></div>` : '';
+        marker.bindPopup(`
+          <div style="min-width:190px;font-family:sans-serif;font-size:12px;line-height:1.4;">
+            <div style="font-size:10px;font-weight:700;color:#059669;margin-bottom:2px;">${stop.time || ''}</div>
+            <div style="font-weight:800;font-size:13px;color:#0f172a;margin-bottom:4px;">${title}</div>
+            <div style="color:#475569;margin-bottom:4px;">${desc}</div>
+            ${tip ? `<div style="background:#fffbeb;border:1px solid #fde68a;padding:4px 6px;border-radius:6px;color:#92400e;font-size:11px;">👶 ${tip}</div>` : ''}
+            ${gmapsBtn}
+          </div>
+        `);
+        marker.addTo(baRouteLayerGroup);
+        baMarkersList[idx] = marker;
       });
+
+      if (latlngs.length > 1) {
+        L.polyline(latlngs, {
+          color: '#10B981',
+          weight: 4,
+          opacity: 0.85,
+          dashArray: '8, 6'
+        }).addTo(baRouteLayerGroup);
+      }
+
+      if (latlngs.length > 0) {
+        baRouteBounds = L.latLngBounds(latlngs);
+        baLeafletMap.fitBounds(baRouteBounds, { padding: [45, 45], maxZoom: 15 });
+      }
+      setTimeout(() => baLeafletMap.invalidateSize(), 150);
     }
 
     function showStopDetails(stopIndex) {
-      const data = estRoutesData[currentRouteDay];
-      if (!data || !data.stops[stopIndex]) return;
-      const stop = data.stops[stopIndex];
-      const isZh = (currentLang === 'zh');
-
-      const tooltip = document.getElementById("svg-pin-tooltip");
-      const mapWrapper = document.getElementById("estimated-map-wrapper");
-      if (!tooltip || !mapWrapper) return;
-
-      document.getElementById("tt-time").textContent = stop.time || "Scheduled";
-      document.getElementById("tt-title").textContent = `${stop.icon || '📍'} ${isZh ? stop.name_zh : stop.name_en}`;
-      document.getElementById("tt-desc").textContent = isZh ? stop.desc_zh : stop.desc_en;
-      document.getElementById("tt-tip").textContent = `👶 ${isZh ? (stop.tip_zh || '亲子出行推荐体验') : (stop.tip_en || 'Great kid-friendly experience')}`;
-      document.getElementById("tt-dist").textContent = `📍 ${isZh ? '自酒店出发: ' : 'From Hotel: '} ${stop.dist || 'Palermo'}`;
-      
-      const gmapsLink = document.getElementById("tt-gmaps");
-      if (stop.gmaps) {
-        gmapsLink.href = stop.gmaps;
-        gmapsLink.style.display = "inline-flex";
-      } else {
-        gmapsLink.style.display = "none";
+      const marker = baMarkersList[stopIndex];
+      if (marker && baLeafletMap) {
+        baLeafletMap.panTo(marker.getLatLng(), { animate: true });
+        marker.openPopup();
       }
-
-      // Position tooltip relative to container
-      const wrapperRect = mapWrapper.getBoundingClientRect();
-      const svgW = 950;
-      const svgH = 640;
-      const scaleX = wrapperRect.width / svgW;
-      const scaleY = wrapperRect.height / svgH;
-
-      let pixelX = stop.x * scaleX;
-      let pixelY = stop.y * scaleY;
-
-      // Keep within bounds
-      if (pixelX + 260 > wrapperRect.width) pixelX = wrapperRect.width - 270;
-      if (pixelX < 10) pixelX = 10;
-      if (pixelY + 180 > wrapperRect.height) pixelY = wrapperRect.height - 190;
-      if (pixelY < 10) pixelY = 10;
-
-      tooltip.style.left = `${pixelX}px`;
-      tooltip.style.top = `${pixelY}px`;
-      tooltip.classList.remove("hidden");
     }
 
     function closePinTooltip() {
-      const tooltip = document.getElementById("svg-pin-tooltip");
-      if (tooltip) tooltip.classList.add("hidden");
+      if (baLeafletMap) baLeafletMap.closePopup();
     }
 
     function renderRouteLegs(dayKey) {
@@ -3573,7 +3369,9 @@
 
     function resetMapRouteView() {
       closePinTooltip();
-      selectRouteDay(currentRouteDay);
+      if (baLeafletMap && baRouteBounds) {
+        baLeafletMap.fitBounds(baRouteBounds, { padding: [45, 45], maxZoom: 15 });
+      }
     }
 
     // FOOD FILTER
