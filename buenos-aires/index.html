@@ -136,6 +136,7 @@
         <a href="#day-trips" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-teal-600 dark:hover:text-teal-400 text-teal-600 dark:text-teal-400 font-bold transition-colors" data-i18n="nav_daytrips">🚆 Day Trips</a>
         <a href="iguazu.html" class="px-2.5 py-1.5 rounded-lg bg-teal-100/70 dark:bg-teal-900/50 hover:bg-teal-200 dark:hover:bg-teal-800 text-teal-800 dark:text-teal-300 font-bold transition-colors flex items-center gap-1" data-i18n="nav_iguazu_link">🌊 Iguazú Trip</a>
         <a href="#flights" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-arg-blue dark:hover:text-sky-400 transition-colors" data-i18n="nav_flights">Flights</a>
+        <a href="#must-dos" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-amber-600 dark:hover:text-amber-400 text-amber-700 dark:text-amber-400 font-bold transition-colors" data-i18n="nav_mustdos">📋 Must-Dos</a>
       </nav>
 
       <!-- Action Controls -->
@@ -2285,7 +2286,98 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="pt-8 pb-12 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-400 space-y-2">
+      <!-- SECTION: MUST-DOS, VAT, CASH, SUBE & SOUVENIRS -->
+    <section id="must-dos" class="scroll-mt-20 space-y-5">
+      <div class="border-b border-slate-200 dark:border-slate-800 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div class="flex items-center space-x-2">
+          <span class="w-7 h-7 rounded-lg bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-300 flex items-center justify-center font-bold text-sm">6</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white" data-i18n="md_heading">Essential Argentina Must-Dos & Souvenir Guide</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="md_sub">SUBE transit card, USD cash vs. credit cards, 21% VAT hotel exemption, power adapters & top gifts</p>
+          </div>
+        </div>
+        <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800 self-start sm:self-auto" data-i18n="md_badge">
+          Pre-Trip Checklist
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Card 1: SUBE Card -->
+        <div class="bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm space-y-2.5">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 flex items-center justify-center text-base">🚇</span>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="md_c1_title">SUBE Metro & Train Card</h3>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="md_c1_desc">
+            Buy 1–2 physical SUBE cards at a Palermo Kiosco or Subte station on Day 1 and load ~ARS 15,000–20,000 (~$15 USD). While newer Subte gates accept tap credit cards, Mitre trains (San Isidro/Tigre) and city buses still require SUBE. You can tap multiple family members on one card; under age 3 rides free, ages 4 & 6 pay standard ~$0.50–$1 taps.
+          </p>
+        </div>
+
+        <!-- Card 2: Cash & Cards -->
+        <div class="bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm space-y-2.5">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-base">💵</span>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="md_c2_title">Cash, Credit Cards & Tipping</h3>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="md_c2_desc">
+            Foreign Visa/Mastercard cards work almost everywhere at the favorable tourist/MEP rate (always pay in ARS, never USD!). Still bring ~$200–$300 USD in crisp, unfolded, untorn $100 bills—exchange ~$100–$150 at a Cambio for ARS cash used for 10% restaurant tips, kioscos, street markets (San Telmo/Puerto de Frutos), and SUBE top-ups.
+          </p>
+        </div>
+
+        <!-- Card 3: 21% VAT Reminder -->
+        <div class="bg-white dark:bg-slate-900/90 rounded-2xl border-2 border-amber-400/50 dark:border-amber-500/40 p-5 shadow-sm space-y-2.5">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 flex items-center justify-center text-base">🧾</span>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="md_c3_title">21% VAT (IVA) Hotel Exemption</h3>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="md_c3_desc">
+            Foreign tourists paying with a non-Argentine card and showing foreign passports at check-in are exempt from Argentina's 21% lodging VAT! Present all 6 passports at both Palermo Suites (Dec 5) and La Aldea de la Selva (#12324200, Dec 8) so you aren't charged extra IVA. For big Argentine-made leather/wool purchases, ask for Tax-Free (Global Blue) forms.
+          </p>
+        </div>
+
+        <!-- Card 4: Souvenirs -->
+        <div class="bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm space-y-2.5">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300 flex items-center justify-center text-base">🛍️</span>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="md_c4_title">Best Argentine Souvenirs to Buy</h3>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="md_c4_desc">
+            • Alfajores & Chocolates: Havanna (70% Cacao & classic boxes at Distrito Arcos/EZE), Cachafaz, Rapanui.<br>
+            • Wine: Mendoza Malbec (Catena, Luigi Bosca, Zuccardi) at local vinotecas (~1/3 US price).<br>
+            • Traditional: Carved Mate gourd + metal bombilla straw + Playadito yerba; Argentine leather belts/bags.<br>
+            • For Kids: Messi #10 jersey, Mafalda figurines (San Telmo), & Guaraní wood animal carvings (Iguazú).
+          </p>
+        </div>
+
+        <!-- Card 5: Apps & Power -->
+        <div class="bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm space-y-2.5">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 flex items-center justify-center text-base">🔌</span>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="md_c5_title">Apps, Passports & Power Plugs</h3>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="md_c5_desc">
+            • Rideshare: Install & verify Uber and Cabify before flying from JFK (always keep both handy for 2 cars).<br>
+            • Passports: Carry physical passports on domestic Iguazú flights (AEP ⇄ IGR) and hotel check-ins.<br>
+            • Power: Argentina uses 220V with Type I (3 flat angled prongs) and some Type C (2 round pins) — pack universal adapters!
+          </p>
+        </div>
+
+        <!-- Card 6: Dining & Safety -->
+        <div class="bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm space-y-2.5">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-teal-100 dark:bg-teal-950 text-teal-700 dark:text-teal-300 flex items-center justify-center text-base">🧉</span>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="md_c6_title">Local Rhythm & Kid Tips</h3>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="md_c6_desc">
+            • Dinner Timing: Locals eat at 9:00 PM+, so arriving at 7:00–7:30 PM gets you instant tables with kids!<br>
+            • Water: Tap water in Buenos Aires is safe, though bottled water (sin gas) is best for sensitive stomachs.<br>
+            • Safety: Palermo & Recoleta are very walkable; in La Boca stay on Caminito & keep backpacks worn in front in crowds.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  <footer class="pt-8 pb-12 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-400 space-y-2">
       <p class="font-medium text-slate-600 dark:text-slate-300" data-i18n="footer_title">
         Buenos Aires Family Vacation Hub (Dec 4–12, 2026) · Curated for 4 Adults + 2 Kids
       </p>
@@ -2373,6 +2465,7 @@
         nav_dining: "🥩 Dining & Hidden Gems",
         nav_attractions: "🎡 Attractions",
         nav_flights: "Flights",
+        nav_mustdos: "📋 Must-Dos",
         btn_taxi: "Taxi Card",
         btn_print: "Print",
         btn_home: "Home",
@@ -2628,6 +2721,21 @@
         dt_t2_transit: "Take the Mitre Line (Ramal Tigre) from Retiro (or connect via Belgrano C) to San Isidro station (~35 minutes on train), or take local Bus 60 from Palermo along Av. Cabildo.",
         dt_t2_kids: "Walk up cobblestone streets to the soaring Neo-Gothic San Isidro Cathedral, let the kids run on the shaded lawns of Plaza Mitre, and browse the weekend artisan fair before stopping at a family-friendly café or riverside park.",
         dt_t2_tip: "Since San Isidro is halfway along the exact same Mitre train line to Tigre, you can stop off for 1.5 hours in the morning, tour the cathedral and park, and then hop back on the train for the final 20 minutes to Tigre!",
+        md_heading: "Essential Argentina Must-Dos & Souvenir Guide",
+        md_sub: "SUBE transit card, USD cash vs. credit cards, 21% VAT hotel exemption, power adapters & top gifts",
+        md_badge: "Pre-Trip Checklist",
+        md_c1_title: "SUBE Metro & Train Card",
+        md_c1_desc: "Buy 1–2 physical SUBE cards at a Palermo Kiosco or Subte station on Day 1 and load ~ARS 15,000–20,000 (~$15 USD). While newer Subte gates accept tap credit cards, Mitre trains (San Isidro/Tigre) and city buses still require SUBE. You can tap multiple family members on one card; under age 3 rides free, ages 4 & 6 pay standard ~$0.50–$1 taps.",
+        md_c2_title: "Cash, Credit Cards & Tipping",
+        md_c2_desc: "Foreign Visa/Mastercard cards work almost everywhere at the favorable tourist/MEP rate (always pay in ARS, never USD!). Still bring ~$200–$300 USD in crisp, unfolded, untorn $100 bills—exchange ~$100–$150 at a Cambio for ARS cash used for 10% restaurant tips, kioscos, street markets (San Telmo/Puerto de Frutos), and SUBE top-ups.",
+        md_c3_title: "21% VAT (IVA) Hotel Exemption",
+        md_c3_desc: "Foreign tourists paying with a non-Argentine card and showing foreign passports at check-in are exempt from Argentina's 21% lodging VAT! Present all 6 passports at both Palermo Suites (Dec 5) and La Aldea de la Selva (#12324200, Dec 8) so you aren't charged extra IVA. For big Argentine-made leather/wool purchases, ask for Tax-Free (Global Blue) forms.",
+        md_c4_title: "Best Argentine Souvenirs to Buy",
+        md_c4_desc: "• Alfajores & Chocolates: Havanna (70% Cacao & classic boxes at Distrito Arcos/EZE), Cachafaz, Rapanui. • Wine: Mendoza Malbec (Catena, Luigi Bosca, Zuccardi) at local vinotecas (~1/3 US price). • Traditional: Carved Mate gourd + metal bombilla straw + Playadito yerba; Argentine leather belts/bags. • For Kids: Messi #10 jersey, Mafalda figurines (San Telmo), & Guaraní wood animal carvings (Iguazú).",
+        md_c5_title: "Apps, Passports & Power Plugs",
+        md_c5_desc: "• Rideshare: Install & verify Uber and Cabify before flying from JFK (always keep both handy for 2 cars). • Passports: Carry physical passports on domestic Iguazú flights (AEP ⇄ IGR) and hotel check-ins. • Power: Argentina uses 220V with Type I (3 flat angled prongs) and some Type C (2 round pins) — pack universal adapters!",
+        md_c6_title: "Local Rhythm & Kid Tips",
+        md_c6_desc: "• Dinner Timing: Locals eat at 9:00 PM+, so arriving at 7:00–7:30 PM gets you instant tables with kids! • Water: Tap water in Buenos Aires is safe, though bottled water (sin gas) is best for sensitive stomachs. • Safety: Palermo & Recoleta are very walkable; in La Boca stay on Caminito & keep backpacks worn in front in crowds.",
       },
       zh: {
         nav_title: "布宜诺斯艾利斯家庭之旅导航站",
@@ -2638,6 +2746,7 @@
         nav_dining: "🥩 美食与宝藏餐厅",
         nav_attractions: "🎡 热门景点榜",
         nav_flights: "航班信息",
+        nav_mustdos: "📋 行前必看",
         btn_taxi: "打车卡",
         btn_print: "打印",
         btn_home: "首页",
@@ -2912,6 +3021,21 @@
         dt_t2_transit: "在 Belgrano C 或 Retiro 搭乘 Mitre 线火车到 San Isidro 站（车程约35分钟），或在巴勒莫沿 Av. Cabildo 乘 60 路公交车直达。",
         dt_t2_kids: "漫步漫长古朴的鹅卵石街巷，仰望高耸的新哥特式大教堂，让孩子们在 Plaza Mitre 广场茂密的树荫草坪上尽情撒欢跑动，逛手工艺集市，在家庭咖啡馆小憩。",
         dt_t2_tip: "圣伊西德罗位于老虎洲火车线正中间，上午可在此停留1.5小时逛教堂与公园，随后直接登上后续列车只需20分钟即可直达老虎洲！",
+        md_heading: "阿根廷行前必看清单 & 伴手礼推荐",
+        md_sub: "SUBE 交通卡、现金与刷卡汇率、酒店21%增值税免除、转换插头及必买纪念品",
+        md_badge: "行前实用清单",
+        md_c1_title: "SUBE 地铁/火车交通卡",
+        md_c1_desc: "第1天在巴勒莫街头小卖部（Kiosco）或地铁站购买1–2张实体 SUBE 卡并充值约 ARS 15,000–20,000（约$15美元）。虽然新地铁闸机支持 Visa/Mastercard 拍卡，但去 San Isidro/Tigre 的 Mitre 火车和公交车仍必须使用 SUBE。全家可合刷一张卡；3岁以下免费，4岁和6岁需正常刷卡（单程约$0.5–$1美元）。",
+        md_c2_title: "美金现金、信用卡与小费",
+        md_c2_desc: "境外 Visa/Mastercard 信用卡在餐厅、酒店、Uber/Cabify 和超市均可按优惠旅游汇率刷卡（结账务必选比索 ARS，别选 USD！）。建议仍带 $200–$300 美元全新无折痕、无破损的百元大钞——在正规换汇店换约 $100–$150 美元等值比索现金，用于餐厅10%小费、小卖部、集市小吃及 SUBE 充值。",
+        md_c3_title: "酒店 21% 增值税 (IVA) 免税提醒",
+        md_c3_desc: "外国游客使用境外信用卡付款并在入住时出示外国护照，依法免除阿根廷 21% 住宿增值税！入住 Palermo Suites（12月5日）与伊瓜苏 La Aldea de la Selva（#12324200，12月8日）时请出示全家6本护照核对免税。购买阿根廷本土皮具或羊毛制品满额时，记得索要 Global Blue 退税单。",
+        md_c4_title: "最值得买的阿根廷伴手礼",
+        md_c4_desc: "• 夹心饼干与巧克力：Havanna（经典焦糖 & 70%黑巧礼盒，Distrito Arcos 和 EZE 机场均有售）、Cachafaz、Rapanui。• 红酒：门多萨马尔贝克 Malbec（Catena、Luigi Bosca、Zuccardi，本地酒庄价约美国1/3）。• 传统好物：手工雕花马黛茶杯 (Mate) + 金属吸管 (Bombilla) + Playadito 茶叶；阿根廷手工皮带/皮包。• 儿童礼物：梅西10号球衣、玛法达公仔（圣特尔莫）与伊瓜苏瓜拉尼木雕动物。",
+        md_c5_title: "打车软件、护照与转换插头",
+        md_c5_desc: "• 网约车：从纽约起飞前务必下载并绑卡验证好 Uber 和 Cabify（6人需同时叫2台车）。• 护照：飞伊瓜苏国内航线（AEP ⇄ IGR）与所有酒店入住均需携带实体护照原件！• 插头：阿根廷电压220V，使用澳标八字三扁脚（Type I，国内三孔通用）及少量欧标双圆脚（Type C），请备好万能转换头。",
+        md_c6_title: "当地作息与亲子贴士",
+        md_c6_desc: "• 用餐时间：阿根廷人晚上9点后才吃晚饭，带娃晚上 19:00–19:30 到餐厅基本不用排队！• 饮水：布市自来水可饮用，但带小孩建议全程买无气泡矿泉水（Agua sin gas）。• 安全：巴勒莫和雷科莱塔治安极佳；在博卡区请只逛 Caminito 主街，人多集市处背包背在胸前。",
       }
     };
 
