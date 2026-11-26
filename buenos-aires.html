@@ -350,22 +350,22 @@
           <button onclick="selectRouteDay('d3')" class="route-pill px-3.5 py-2 rounded-xl border border-emerald-800 bg-emerald-950/50 text-emerald-200 hover:bg-emerald-800/50 transition-all shrink-0" data-routeday="d3">
             <span>D3</span>
             <span class="hidden sm:inline">Mon 12/7</span>
-            <span class="text-[10px] opacity-80">(Recoleta & Science)</span>
+            <span class="text-[10px] opacity-80">(Recoleta & La Boca)</span>
           </button>
           <button onclick="selectRouteDay('d4')" class="route-pill px-3.5 py-2 rounded-xl border border-emerald-800 bg-emerald-950/50 text-emerald-200 hover:bg-emerald-800/50 transition-all shrink-0" data-routeday="d4">
             <span>D4</span>
             <span class="hidden sm:inline">Tue 12/8</span>
-            <span class="text-[10px] opacity-80">(Tigre Delta Van)</span>
+            <span class="text-[10px] opacity-80">(Iguazú Flight)</span>
           </button>
           <button onclick="selectRouteDay('d5')" class="route-pill px-3.5 py-2 rounded-xl border border-emerald-800 bg-emerald-950/50 text-emerald-200 hover:bg-emerald-800/50 transition-all shrink-0" data-routeday="d5">
             <span>D5</span>
             <span class="hidden sm:inline">Wed 12/9</span>
-            <span class="text-[10px] opacity-80">(La Boca & San Telmo)</span>
+            <span class="text-[10px] opacity-80">(Iguazú Return)</span>
           </button>
           <button onclick="selectRouteDay('d6')" class="route-pill px-3.5 py-2 rounded-xl border border-emerald-800 bg-emerald-950/50 text-emerald-200 hover:bg-emerald-800/50 transition-all shrink-0" data-routeday="d6">
             <span>D6</span>
             <span class="hidden sm:inline">Thu 12/10</span>
-            <span class="text-[10px] opacity-80">(Gaucho Ranch Van)</span>
+            <span class="text-[10px] opacity-80">(Science & La Brigada)</span>
           </button>
           <button onclick="selectRouteDay('d7')" class="route-pill px-3.5 py-2 rounded-xl border border-emerald-800 bg-emerald-950/50 text-emerald-200 hover:bg-emerald-800/50 transition-all shrink-0" data-routeday="d7">
             <span>D7</span>
@@ -485,24 +485,11 @@
                 <rect x="8" y="8" width="34" height="34" rx="8" class="fill-teal-100 dark:fill-teal-950 text-teal-600" />
                 <text x="25" y="31" font-size="16" text-anchor="middle">🚤</text>
                 <text x="48" y="24" font-size="11.5" font-weight="bold" class="fill-slate-900 dark:fill-white">Tigre Delta Islands</text>
-                <text x="48" y="38" font-size="9.5" font-weight="semibold" class="fill-teal-600 dark:fill-teal-400">32 km North · 🚐 45m Van</text>
+                <text x="48" y="38" font-size="9.5" font-weight="semibold" class="fill-teal-600 dark:fill-teal-400">32 km North · 🚆 Mitre Train (Optional)</text>
                 <line x1="10" y1="48" x2="215" y2="48" class="stroke-slate-200 dark:stroke-slate-700" stroke-width="0.8" />
                 <text x="12" y="65" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Wooden boat canal cruise</text>
                 <text x="12" y="80" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Vivanco riverfront dining</text>
                 <text x="12" y="95" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Puerto de Frutos market</text>
-              </g>
-
-              <!-- Estancia Card Inset -->
-              <g id="hub-estancia" transform="translate(25, 240)" class="cursor-pointer">
-                <rect width="225" height="105" rx="16" class="fill-white/95 dark:fill-slate-800/90 stroke-amber-500/50" stroke-width="1.5" />
-                <rect x="8" y="8" width="34" height="34" rx="8" class="fill-amber-100 dark:fill-amber-950 text-amber-600" />
-                <text x="25" y="31" font-size="16" text-anchor="middle">🐎</text>
-                <text x="48" y="24" font-size="11.5" font-weight="bold" class="fill-slate-900 dark:fill-white">Estancia El Ombú</text>
-                <text x="48" y="38" font-size="9.5" font-weight="semibold" class="fill-amber-600 dark:fill-amber-400">115 km NW · 🚐 90m Van</text>
-                <line x1="10" y1="48" x2="215" y2="48" class="stroke-slate-200 dark:stroke-slate-700" stroke-width="0.8" />
-                <text x="12" y="65" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Horseback & sulky rides</text>
-                <text x="12" y="80" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Giant wood-fire Asado BBQ</text>
-                <text x="12" y="95" font-size="9" class="fill-slate-600 dark:fill-slate-300">• Gaucho music & horse show</text>
               </g>
 
               <!-- EZE Airport Card Inset -->
@@ -526,19 +513,6 @@
                 <text x="0" y="26" font-size="8" font-weight="bold" fill="#38BDF8" text-anchor="middle">⛪ San Isidro</text>
               </g>
 
-              <!-- Temaikèn Biopark Hub (Escobar - 50 km NW) -->
-              <g id="hub-temaiken" transform="translate(140, 150)" class="cursor-pointer" onclick="document.getElementById('day-trips').scrollIntoView({behavior:'smooth'})">
-                <rect x="-65" y="-14" width="130" height="28" rx="14" class="fill-amber-500/90 stroke-white" stroke-width="1.5" />
-                <text x="0" y="4" font-size="9.5" font-weight="black" fill="#0B2545" text-anchor="middle">🦒 3. Temaikèn (Escobar)</text>
-              </g>
-
-              <!-- La Plata Hub (Southeast 58 km) -->
-              <g id="hub-laplata" transform="translate(820, 560)" class="cursor-pointer" onclick="document.getElementById('day-trips').scrollIntoView({behavior:'smooth'})">
-                <circle cx="0" cy="0" r="11" class="fill-purple-600 stroke-white" stroke-width="2" />
-                <text x="0" y="4" font-size="9" font-weight="black" fill="#FFFFFF" text-anchor="middle">4</text>
-                <rect x="-55" y="14" width="110" height="18" rx="9" class="fill-slate-900/90 stroke-purple-400" stroke-width="1" />
-                <text x="0" y="26.5" font-size="8" font-weight="bold" fill="#E879F9" text-anchor="middle">🦕 La Plata (Dinos)</text>
-              </g>
               <!-- Dynamic Route Paths Layer -->
               <g id="svg-route-corridors"></g>
               <g id="svg-route-loop"></g>
@@ -1452,23 +1426,6 @@
             </a>
           </div>
 
-          <!-- 3-4 Weeks -->
-          <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-rose-400/30 space-y-3 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between text-xs font-bold text-amber-300 mb-1">
-                <span data-i18n="dl_3w_tag">3–4 WEEKS AHEAD</span>
-                <span class="bg-amber-500 text-slate-950 text-[10px] px-2 py-0.5 rounded font-black">Nov 10–15, 2026</span>
-              </div>
-              <h3 class="text-base font-bold text-white" data-i18n="dl_3w_title">Gaucho Estancia Ranch Day</h3>
-              <p class="text-xs text-rose-100/80 mt-1 leading-relaxed" data-i18n="dl_3w_desc">
-                Estancia El Ombú de Areco or Santa Susana. Daily guest capacity is strictly limited for horseback riding, horse-drawn carriage tours, folklore show, and outdoor asado BBQ.
-              </p>
-            </div>
-            <a href="https://www.estanciaelombu.com/" target="_blank" class="mt-2 block text-center py-2 bg-white text-rose-950 hover:bg-rose-100 rounded-xl text-xs font-bold transition" data-i18n="btn_estancia_info">
-              Estancia El Ombú Info &rarr;
-            </a>
-          </div>
-
           <!-- 2 Weeks -->
           <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-rose-400/30 space-y-3 flex flex-col justify-between">
             <div>
@@ -1919,33 +1876,6 @@
           </div>
         </div>
 
-        <!-- Estancia Ranch -->
-        <div class="attr-card bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="excursion">
-          <div class="space-y-3">
-            <div class="flex items-start justify-between gap-2">
-              <div>
-                <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 text-[10px] font-extrabold uppercase" data-i18n="att_3_tag">Rank #1 · Day Excursion</span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" data-i18n="att_3_title">Estancia El Ombú de Areco / Santa Susana</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="att_3_loc">San Antonio de Areco (~90 min private van)</p>
-              </div>
-              <span class="text-xs font-black text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800 shrink-0">⭐ 4.9</span>
-            </div>
-            <div class="p-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 flex items-center space-x-2 text-xs font-bold text-amber-900 dark:text-amber-200">
-              <i data-lucide="clock" class="w-4 h-4 text-amber-600 shrink-0"></i>
-              <span data-i18n="att_3_badge">⚠️ BOOK 2–4 WEEKS IN ADVANCE</span>
-            </div>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="att_3_desc">
-              Full-day traditional pampas ranch fiesta. Gentle horseback riding and vintage sulky carriage rides for grandparents & kids. Massive open-flame asado BBQ feast, live folk guitars, dancing, and gaucho ring-race demonstrations.
-            </p>
-          </div>
-          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
-            <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium" data-i18n="att_3_target">Full Day (10 AM–5 PM) · All Ages</span>
-            <a href="https://www.estanciaelombu.com/" target="_blank" class="map-link">
-              <i data-lucide="external-link" class="w-3.5 h-3.5 text-amber-600"></i>
-              <span>Website</span>
-            </a>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -1957,16 +1887,16 @@
           <div class="flex items-center space-x-2">
             <span class="w-7 h-7 rounded-lg bg-teal-600 text-white flex items-center justify-center font-bold text-sm">5</span>
             <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white" data-i18n="dt_main_title">
-              Top Day Trip Options & Family Comparison
+              Optional Train Options: Tigre & San Isidro (Mitre Line)
             </h2>
           </div>
           <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-3xl" data-i18n="dt_main_sub">
-            4 vetted regional excursions from Palermo Suites for 4 Adults + 2 Kids (Ages 6 & 4). Compare transit ease, kid excitement, travel costs, and authentic Google traveler reviews.
+            Dropped all far out-of-town & ranch trips. Only Tigre and its middle train stop San Isidro remain as easy optional half-day trips on Day 6 (board at Lisandro de la Torre or Belgrano C, 10 min from Palermo Suites).
           </p>
         </div>
         <div class="flex items-center space-x-2 shrink-0">
           <span class="px-3 py-1 rounded-full text-xs font-bold bg-teal-100 dark:bg-teal-950/80 text-teal-800 dark:text-teal-300 border border-teal-200 dark:border-teal-800" data-i18n="dt_badge">
-            4 Excursion Options Compared
+            2 Optional Mitre Train Stops
           </span>
         </div>
       </div>
@@ -2077,83 +2007,6 @@
                 </td>
               </tr>
 
-              <!-- 3. Temaikèn -->
-              <tr class="hover:bg-teal-50/40 dark:hover:bg-teal-950/20 transition-colors">
-                <td class="py-3.5 px-3.5">
-                  <div class="flex items-center space-x-2">
-                    <span class="w-6 h-6 rounded-md bg-amber-500 text-slate-950 font-black text-xs flex items-center justify-center shrink-0">3</span>
-                    <div>
-                      <strong class="text-sm font-bold text-slate-900 dark:text-white block" data-i18n="dt_r3_name">Temaikèn Biopark</strong>
-                      <span class="text-[10px] font-bold text-amber-600 dark:text-amber-400" data-i18n="dt_r3_sub">Best Wildlife & Biopark</span>
-                    </div>
-                  </div>
-                </td>
-                <td class="py-3.5 px-3">
-                  <span class="font-bold text-slate-900 dark:text-white block" data-i18n="dt_r3_dist">50 km Northwest</span>
-                  <span class="text-[11px] text-slate-500 dark:text-slate-400" data-i18n="dt_r3_time">~1h 15m – 1h 30m</span>
-                </td>
-                <td class="py-3.5 px-3">
-                  <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 font-bold text-[10px] inline-block mb-1" data-i18n="dt_r3_mode_tag">Bus 60 + 2x Uber</span>
-                  <p class="text-[11px] text-slate-600 dark:text-slate-400" data-i18n="dt_r3_mode_desc">Bus 60 direct from Plaza Italia. Return: take 2 Ubers ($25/car) for tired kids.</p>
-                </td>
-                <td class="py-3.5 px-3">
-                  <div class="flex items-center text-amber-500 font-bold mb-0.5">★★★★★ <span class="text-slate-800 dark:text-slate-200 ml-1">4.9</span></div>
-                  <p class="text-[11px] text-slate-600 dark:text-slate-400" data-i18n="dt_r3_kids_desc">360° walk-through aviary, shark/ray tunnel, playgrounds next to dining!</p>
-                </td>
-                <td class="py-3.5 px-3">
-                  <span class="font-bold text-emerald-600 dark:text-emerald-400">~$120–$160 USD</span>
-                  <span class="text-[10px] text-slate-400 block" data-i18n="dt_r3_cost_sub">(Park tickets + Ubers)</span>
-                </td>
-                <td class="py-3.5 px-3">
-                  <span class="font-semibold text-rose-600 dark:text-rose-400" data-i18n="dt_r3_days">Wed–Sun Only</span>
-                  <span class="text-[10px] text-slate-400 block" data-i18n="dt_r3_days_sub">10 AM – 6 PM (Closed M/T)</span>
-                </td>
-                <td class="py-3.5 px-3.5">
-                  <span class="px-2.5 py-1 rounded-lg bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 font-bold text-[11px] inline-block" data-i18n="dt_r3_verdict_tag">
-                    Kids Absolute Favorite 🦒
-                  </span>
-                  <p class="text-[10.5px] text-slate-500 dark:text-slate-400 mt-1" data-i18n="dt_r3_verdict_desc">World-class zoo; incredible amenities & play areas.</p>
-                </td>
-              </tr>
-
-              <!-- 4. La Plata -->
-              <tr class="hover:bg-teal-50/40 dark:hover:bg-teal-950/20 transition-colors">
-                <td class="py-3.5 px-3.5">
-                  <div class="flex items-center space-x-2">
-                    <span class="w-6 h-6 rounded-md bg-purple-600 text-white font-black text-xs flex items-center justify-center shrink-0">4</span>
-                    <div>
-                      <strong class="text-sm font-bold text-slate-900 dark:text-white block" data-i18n="dt_r4_name">La Plata</strong>
-                      <span class="text-[10px] font-bold text-purple-600 dark:text-purple-400" data-i18n="dt_r4_sub">Best for Dinosaurs & History</span>
-                    </div>
-                  </div>
-                </td>
-                <td class="py-3.5 px-3">
-                  <span class="font-bold text-slate-900 dark:text-white block" data-i18n="dt_r4_dist">58 km Southeast</span>
-                  <span class="text-[11px] text-slate-500 dark:text-slate-400" data-i18n="dt_r4_time">~1h 30m – 1h 45m</span>
-                </td>
-                <td class="py-3.5 px-3">
-                  <span class="px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 font-bold text-[10px] inline-block mb-1" data-i18n="dt_r4_mode_tag">Roca Train / Bus</span>
-                  <p class="text-[11px] text-slate-600 dark:text-slate-400" data-i18n="dt_r4_mode_desc">Constitución train hub or direct express bus from Metrobus del Bajo.</p>
-                </td>
-                <td class="py-3.5 px-3">
-                  <div class="flex items-center text-amber-500 font-bold mb-0.5">★★★★☆ <span class="text-slate-800 dark:text-slate-200 ml-1">4.3</span></div>
-                  <p class="text-[11px] text-slate-600 dark:text-slate-400" data-i18n="dt_r4_kids_desc">Giant dinosaur skeletons, Ice Age fossils, mummies, sprawling Bosque park.</p>
-                </td>
-                <td class="py-3.5 px-3">
-                  <span class="font-bold text-emerald-600 dark:text-emerald-400">$20–$40 USD</span>
-                  <span class="text-[10px] text-slate-400 block" data-i18n="dt_r4_cost_sub">(Museum + Transit)</span>
-                </td>
-                <td class="py-3.5 px-3">
-                  <span class="font-semibold text-rose-600 dark:text-rose-400" data-i18n="dt_r4_days">Wed–Sun Only</span>
-                  <span class="text-[10px] text-slate-400 block" data-i18n="dt_r4_days_sub">10 AM – 6 PM (Closed M/T)</span>
-                </td>
-                <td class="py-3.5 px-3.5">
-                  <span class="px-2.5 py-1 rounded-lg bg-purple-100 dark:bg-purple-950/80 text-purple-800 dark:text-purple-300 font-bold text-[11px] inline-block" data-i18n="dt_r4_verdict_tag">
-                    Dino & Fossil Lovers 🦕
-                  </span>
-                  <p class="text-[10.5px] text-slate-500 dark:text-slate-400 mt-1" data-i18n="dt_r4_verdict_desc">Epic museum; transit transfer requires vigilance.</p>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -2191,7 +2044,7 @@
                 <span data-i18n="dt_transit_label">How to Get There (~1 hr 15 min total):</span>
               </span>
               <p class="text-slate-600 dark:text-slate-300" data-i18n="dt_t1_transit">
-                Take an Uber/Subte Line D to Retiro (Mitre Line) or Belgrano C, then catch the Mitre Line (Ramal Tigre) commuter train directly to Tigre terminal (~55 minutes on train, departing every 15–20 minutes). Or direct private 7-passenger van (~45 min via Panamericana).
+                Take a 10-min Uber from Palermo Suites directly to Lisandro de la Torre or Belgrano C (no need to go downtown to Retiro!), then ride the Mitre Line (Ramal Tigre) north to San Isidro (~25 min) or Tigre (~45 min).
               </p>
             </div>
 
@@ -2241,7 +2094,7 @@
 
           <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
             <span class="text-[11px] font-bold text-teal-600 dark:text-teal-400" data-i18n="dt_status_scheduled">
-              ✓ Featured on Day 4 of Proposed Master Itinerary
+              ✓ Optional Half-Day Add-On on Day 6 (Thu)
             </span>
             <a href="https://maps.google.com/?q=Estacion+Fluvial+Tigre" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs flex items-center space-x-1 shadow-sm">
               <span>🗺️ Tigre Pier Map</span>
@@ -2332,188 +2185,6 @@
             </span>
             <a href="https://maps.google.com/?q=Plaza+Mitre+San+Isidro" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center space-x-1 shadow-sm">
               <span>🗺️ San Isidro Map</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- CARD 3: TEMAIKÈN BIOPARK -->
-        <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-md space-y-4 flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="flex items-start justify-between gap-3">
-              <div>
-                <span class="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800" data-i18n="dt_t3_badge">
-                  4.5 ★ Rating · Best Wildlife & Biopark for Kids
-                </span>
-                <h3 class="text-xl font-black text-slate-900 dark:text-white mt-1.5 flex items-center space-x-2">
-                  <span>🦒</span>
-                  <span>Bioparque Temaikèn (Escobar)</span>
-                </h3>
-              </div>
-              <a href="https://maps.google.com/?q=Bioparque+Temaiken+Escobar" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors shrink-0" title="View Temaikèn on Google Maps">
-                <i data-lucide="map-pin" class="w-4 h-4 text-amber-600"></i>
-              </a>
-            </div>
-
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="dt_t3_desc">
-              Temaikèn is a massive, world-class biopark and aquarium in Belén de Escobar (~50 km northwest of Palermo) featuring walk-through aviaries, hippos, Patagonian wildlife, an underwater shark/ray tunnel, and shaded playgrounds next to restaurants.
-            </p>
-
-            <!-- How to Get There & Hours -->
-            <div class="rounded-2xl p-3.5 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs space-y-1">
-              <span class="font-bold text-amber-700 dark:text-amber-400 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
-                <span>🚌</span>
-                <span data-i18n="dt_transit_label">How to Get There (~1 hr 15m – 1 hr 30m):</span>
-              </span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="dt_t3_transit">
-                Catch Bus 60 (Ramal Escobar / Panamericana) directly from Avenida Santa Fe / Plaza Italia (a 7-minute walk from your hotel in Palermo) straight to Escobar/Temaikèn—no train transfer required.
-              </p>
-              <div class="pt-1 flex items-center space-x-2 text-[10.5px] font-bold text-rose-600 dark:text-rose-400">
-                <span>⏰ Hours:</span>
-                <span>Open Wed–Sun 10:00 AM – 6:00 PM (Closed Mondays & Tuesdays).</span>
-              </div>
-            </div>
-
-            <!-- What to do with Kids -->
-            <div class="rounded-2xl p-3.5 bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/50 text-xs space-y-1">
-              <span class="font-bold text-emerald-800 dark:text-emerald-300 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
-                <span>👶</span>
-                <span data-i18n="dt_kids_label">What to Do With Kids (Ages 6 & 4):</span>
-              </span>
-              <p class="text-emerald-900/90 dark:text-emerald-200" data-i18n="dt_t3_kids">
-                The gigantic 360° walk-through aviary with hundreds of birds, underwater shark and ray aquarium tunnel, Patagonian animals, and shaded play structures situated right next to food stands so parents can eat peacefully while kids play. Water spray fans around the park cool down warm summer afternoons!
-              </p>
-            </div>
-
-            <!-- 6-Person Tip -->
-            <div class="rounded-2xl p-3.5 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-xs space-y-1">
-              <span class="font-bold text-amber-800 dark:text-amber-300 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
-                <span>💡</span>
-                <span data-i18n="dt_tip_label">Tip for 6 People:</span>
-              </span>
-              <p class="text-amber-900 dark:text-amber-200 text-[11px]" data-i18n="dt_t3_tip">
-                On the return trip for 6 people, taking two Ubers back to Palermo costs ~$25 USD per car and saves waiting for a bus with tired kids. Ticket on the gate or direct in advance (avoid third-party marked-up tours).
-              </p>
-            </div>
-
-            <!-- Real Reviews -->
-            <div class="space-y-2 pt-1">
-              <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block" data-i18n="dt_reviews_label">
-                Google Traveler Reviews:
-              </span>
-              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
-                <div class="flex items-center justify-between text-[10px]">
-                  <span class="font-bold text-slate-900 dark:text-white">Emily Rose</span>
-                  <span class="text-amber-500 font-bold">★★★★★ · 2 y ago</span>
-                </div>
-                <p class="italic">"We visited with our toddler expecting a small little zoo. What we got was a very high-quality experience that I would recommend to anyone many times over... The amenities were also great - clean bathrooms, good food, playgrounds by the restaurants to make eating with kids so much smoother!"</p>
-              </div>
-              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
-                <div class="flex items-center justify-between text-[10px]">
-                  <span class="font-bold text-slate-900 dark:text-white">alberto pavoncelli</span>
-                  <span class="text-amber-500 font-bold">★★★★☆ · 2 y ago</span>
-                </div>
-                <p class="italic">"Nice park very well kept and animals are in great shape... Lot of kids. You can eat there and spend about 3 hours. There is a bus from Buenos Aires but I suggest a uber for 25$."</p>
-              </div>
-              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
-                <div class="flex items-center justify-between text-[10px]">
-                  <span class="font-bold text-slate-900 dark:text-white">Amanda Pressey</span>
-                  <span class="text-amber-500 font-bold">★★★★★ · 3 y ago</span>
-                </div>
-                <p class="italic">"Gorgeous birds and animals in lovely settings... Food and drinks available on site were great... For those coming from cooler climates, they have water spray fans at intervals around the park to help with the heat."</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-            <span class="text-[11px] font-bold text-amber-600 dark:text-amber-400">
-              Top Alternative to City Zoo
-            </span>
-            <a href="https://maps.google.com/?q=Bioparque+Temaiken" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs flex items-center space-x-1 shadow-sm">
-              <span>🗺️ Temaikèn Map</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- CARD 4: LA PLATA -->
-        <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-md space-y-4 flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="flex items-start justify-between gap-3">
-              <div>
-                <span class="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-800" data-i18n="dt_t4_badge">
-                  Best for Dinosaurs & Natural History
-                </span>
-                <h3 class="text-xl font-black text-slate-900 dark:text-white mt-1.5 flex items-center space-x-2">
-                  <span>🦕</span>
-                  <span>La Plata (Provincial Capital)</span>
-                </h3>
-              </div>
-              <a href="https://maps.google.com/?q=Museo+de+La+Plata" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors shrink-0" title="View La Plata Museum on Google Maps">
-                <i data-lucide="map-pin" class="w-4 h-4 text-purple-600"></i>
-              </a>
-            </div>
-
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="dt_t4_desc">
-              La Plata, the provincial capital ~58 km southeast of Buenos Aires, is famous for its diagonal street grid, massive Neo-Gothic cathedral, and South America's premier natural history museum.
-            </p>
-
-            <!-- How to Get There & Hours -->
-            <div class="rounded-2xl p-3.5 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs space-y-1">
-              <span class="font-bold text-purple-700 dark:text-purple-400 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
-                <span>🚆</span>
-                <span data-i18n="dt_transit_label">How to Get There (~1h 30m – 1h 45m total):</span>
-              </span>
-              <p class="text-slate-600 dark:text-slate-300" data-i18n="dt_t4_transit">
-                Take Subte Line D to Line C down to Plaza Constitución, then ride the electric Roca Line train (~1 hour 10 minutes) to Estación De Tren - La Plata. Alternatively, catch a direct express bus from Metrobus del Bajo.
-              </p>
-              <div class="pt-1 flex items-center space-x-2 text-[10.5px] font-bold text-purple-600 dark:text-purple-400">
-                <span>⏰ Museum Hours:</span>
-                <span>Open Wed–Sun 10:00 AM – 6:00 PM (Closed Mondays & Tuesdays).</span>
-              </div>
-            </div>
-
-            <!-- What to do with Kids -->
-            <div class="rounded-2xl p-3.5 bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/50 text-xs space-y-1">
-              <span class="font-bold text-emerald-800 dark:text-emerald-300 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
-                <span>👶</span>
-                <span data-i18n="dt_kids_label">What to Do With Kids (Ages 6 & 4):</span>
-              </span>
-              <p class="text-emerald-900/90 dark:text-emerald-200" data-i18n="dt_t4_kids">
-                Head straight to Museo de La Plata inside Paseo del Bosque park—the kids will be awed by the giant dinosaur skeletons, Ice Age mammal fossils (glyptodonts & giant ground sloths), and Egyptian mummies! Stroll down the diagonal boulevards to the grand Cathedral of La Plata.
-              </p>
-            </div>
-
-            <!-- Logistics Warning / Tip -->
-            <div class="rounded-2xl p-3.5 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800/60 text-xs space-y-1">
-              <span class="font-bold text-rose-800 dark:text-rose-300 block text-[11px] uppercase tracking-wider flex items-center space-x-1">
-                <span>⚠️</span>
-                <span data-i18n="dt_logistics_label">Logistics Note for Family of 6:</span>
-              </span>
-              <p class="text-rose-900 dark:text-rose-200 text-[11px]" data-i18n="dt_t4_tip">
-                Constitución is a very busy, crowded southern transit hub. Keep a close eye on belongings and kids during the transfer, or consider booking a direct private charter van from Palermo Suites for comfort.
-              </p>
-            </div>
-
-            <!-- Real Reviews -->
-            <div class="space-y-2 pt-1">
-              <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block" data-i18n="dt_reviews_label">
-                Local Resident & Traveler Review:
-              </span>
-              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
-                <div class="flex items-center justify-between text-[10px]">
-                  <span class="font-bold text-slate-900 dark:text-white">Local Resident (Google Review)</span>
-                  <span class="text-amber-500 font-bold">★★★★☆</span>
-                </div>
-                <p class="italic">"This is the city where I was born. It has many beer bars. Some good restaurants, museums, historic places and landmarks. Its architecture is wonderful and the way it was built can be confusing but it helps to go from one point of the city to the next in no time!... Also, La Plata is the city of our well-known Universidad de La Plata."</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-            <span class="text-[11px] font-bold text-purple-600 dark:text-purple-400">
-              Paleontology & Dinosaur Skeletons
-            </span>
-            <a href="https://maps.google.com/?q=Museo+de+La+Plata" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs flex items-center space-x-1 shadow-sm">
-              <span>🗺️ La Plata Museum Map</span>
             </a>
           </div>
         </div>
@@ -2678,18 +2349,17 @@
         nav_timeline: "📅 Daily Timeline",
         nav_routes: "🗺️ Hotel Routes",
         nav_daytrips: "🚆 Day Trips",
-        dt_main_title: "Top Day Trip Options & Family Comparison",
-        dt_main_sub: "4 vetted regional excursions from Palermo Suites for 4 Adults + 2 Kids (Ages 6 & 4). Compare transit ease, kid excitement, travel costs, and authentic Google traveler reviews.",
-        dt_badge: "4 Excursion Options Compared",
+        dt_main_title: "Optional Train Options: Tigre & San Isidro (Mitre Line)",
+        dt_main_sub: "Dropped all far out-of-town & ranch trips. Only Tigre and its middle train stop San Isidro remain as easy optional half-day trips on Day 6 (board at Lisandro de la Torre or Belgrano C, 10 min from Palermo Suites).",
+        dt_badge: "2 Optional Mitre Train Stops",
         dt_table_title: "Side-by-Side Family Comparison Matrix",
         dt_table_scroll_hint: "← Scroll horizontally on mobile →",
         dt_transit_label: "How to Get There:",
         dt_kids_label: "What to Do With Kids (Ages 6 & 4):",
         dt_tip_label: "Tip for 6 People:",
         dt_combo_tip_label: "Tigre Combo Strategy:",
-        dt_logistics_label: "Logistics Note for Family of 6:",
         dt_reviews_label: "Google Traveler Reviews:",
-        dt_status_scheduled: "✓ Featured on Day 4 of Proposed Master Itinerary",
+        dt_status_scheduled: "✓ Optional Half-Day Add-On on Day 6 (Thu)",
         route_pill: "Interactive Day-by-Day Routes",
         route_origin_badge: "Base: Palermo Suites (Paraguay 4646)",
         route_heading: "Interactive Daily Routes from Hotel",
@@ -2818,10 +2488,6 @@
         dl_90_title: "Don Julio Parrilla",
         dl_90_desc: "Michelin 1-star & #1 steakhouse in LatAm. Reservations open on Meitre at midnight 90 days out and sell out in 10 minutes. (Tip: Lunch slots are much easier than dinner).",
         btn_dj_book: "Don Julio Booking →",
-        dl_3w_tag: "3–4 WEEKS AHEAD",
-        dl_3w_title: "Gaucho Estancia Ranch Day",
-        dl_3w_desc: "Estancia El Ombú de Areco or Santa Susana. Daily guest capacity is strictly limited for horseback riding, horse-drawn carriage tours, folklore show, and outdoor asado BBQ.",
-        btn_estancia_info: "Estancia El Ombú Info →",
         dl_2w_tag: "2 WEEKS AHEAD",
         dl_2w_title: "La Cabrera & Airport Rideshare Strategy",
         dl_2w_desc: "Book a prime table at La Cabrera (famous mini-cazuelas for kids). For airport transfers, skip expensive shuttles/vans ($70+): install Uber & Cabify apps and call 2 cars on arrival/departure (~$18–$22/car, $36–$44 total) for maximum savings & flexibility!",
@@ -2902,12 +2568,6 @@
         att_2_badge: "🚨 MUST BOOK TIMED SLOT ONLINE 7–14 DAYS AHEAD",
         att_2_desc: "The newest, most modern children’s museum in Argentina. Divided into 3 immersive floors tailored by age group (0–3, 4–8, 9–12). Sensory tunnels, digital climbing labyrinths, slide systems, and creative games.",
         att_2_target: "Ideal for: Kids 2–12",
-        att_3_tag: "Rank #1 · Day Excursion",
-        att_3_title: "Estancia El Ombú de Areco / Santa Susana",
-        att_3_loc: "San Antonio de Areco (~90 min private van)",
-        att_3_badge: "⚠️ BOOK 2–4 WEEKS IN ADVANCE",
-        att_3_desc: "Full-day traditional pampas ranch fiesta. Gentle horseback riding and vintage sulky carriage rides for grandparents & kids. Massive open-flame asado BBQ feast, live folk guitars, dancing, and gaucho ring-race demonstrations.",
-        att_3_target: "Full Day (10 AM–5 PM) · All Ages",
         link_map: "Map",
         link_tickets: "Tickets",
         flights_heading: "Flight Confirmations (Nonstop Both Ways)",
@@ -2958,33 +2618,9 @@
         dt_r2_days_sub: "(Fairs on weekends)",
         dt_r2_verdict_tag: "Best Tigre Combo 🌿",
         dt_r2_verdict_desc: "Combine with Tigre on the same morning train line.",
-        dt_r3_name: "Temaikèn Biopark",
-        dt_r3_sub: "Best Wildlife & Biopark",
-        dt_r3_dist: "50 km Northwest",
-        dt_r3_time: "~1h 15m – 1h 30m",
-        dt_r3_mode_tag: "Bus 60 + 2x Uber",
-        dt_r3_mode_desc: "Bus 60 direct from Plaza Italia. Return: take 2 Ubers ($25/car) for tired kids.",
-        dt_r3_kids_desc: "360° walk-through aviary, shark/ray tunnel, playgrounds next to dining!",
-        dt_r3_cost_sub: "(Park tickets + Ubers)",
-        dt_r3_days: "Wed–Sun Only",
-        dt_r3_days_sub: "10 AM – 6 PM (Closed M/T)",
-        dt_r3_verdict_tag: "Kids Absolute Favorite 🦒",
-        dt_r3_verdict_desc: "World-class zoo; incredible amenities & play areas.",
-        dt_r4_name: "La Plata",
-        dt_r4_sub: "Best for Dinosaurs & History",
-        dt_r4_dist: "58 km Southeast",
-        dt_r4_time: "~1h 30m – 1h 45m",
-        dt_r4_mode_tag: "Roca Train / Bus",
-        dt_r4_mode_desc: "Constitución train hub or direct express bus from Metrobus del Bajo.",
-        dt_r4_kids_desc: "Giant dinosaur skeletons, Ice Age fossils, mummies, sprawling Bosque park.",
-        dt_r4_cost_sub: "(Museum + Transit)",
-        dt_r4_days: "Wed–Sun Only",
-        dt_r4_days_sub: "10 AM – 6 PM (Closed M/T)",
-        dt_r4_verdict_tag: "Dino & Fossil Lovers 🦕",
-        dt_r4_verdict_desc: "Epic museum; transit transfer requires vigilance.",
         dt_t1_badge: "#1 Best Overall Public Transit Day Trip",
         dt_t1_desc: "Tigre is the classic river-delta town north of Buenos Aires, offering boat cruises through wooded island canals, boardwalks, and waterfront markets with zero car needed once you step off the train.",
-        dt_t1_transit: "Take an Uber/Subte Line D to Retiro (Mitre Line) or Belgrano C, then catch the Mitre Line (Ramal Tigre) commuter train directly to Tigre terminal (~55 minutes on train, departing every 15–20 minutes). Or direct private 7-passenger van (~45 min via Panamericana).",
+        dt_t1_transit: "Take a 10-min Uber from Palermo Suites directly to Lisandro de la Torre or Belgrano C (no need to go downtown to Retiro!), then ride the Mitre Line (Ramal Tigre) north to San Isidro (~25 min) or Tigre (~45 min).",
         dt_t1_kids: "Board a 1-hour wooden catamaran cruise through the Paraná Delta right next to the train station, then walk along the riverside promenade to browse Puerto de Frutos for handmade crafts, snacks, and river views.",
         dt_t1_tip: "Reviewers note that Tigre Station can occasionally have issues recharging SUBE cards, so load your SUBE cards at a Palermo kiosk/Subte station before leaving (children under 3 ride free; ages 4 and 6 need standard SUBE taps, only ~$0.50–$1 USD each way).",
         dt_t2_badge: "Shortest, Most Relaxed Half-to-Full Day Trip",
@@ -2992,16 +2628,6 @@
         dt_t2_transit: "Take the Mitre Line (Ramal Tigre) from Retiro (or connect via Belgrano C) to San Isidro station (~35 minutes on train), or take local Bus 60 from Palermo along Av. Cabildo.",
         dt_t2_kids: "Walk up cobblestone streets to the soaring Neo-Gothic San Isidro Cathedral, let the kids run on the shaded lawns of Plaza Mitre, and browse the weekend artisan fair before stopping at a family-friendly café or riverside park.",
         dt_t2_tip: "Since San Isidro is halfway along the exact same Mitre train line to Tigre, you can stop off for 1.5 hours in the morning, tour the cathedral and park, and then hop back on the train for the final 20 minutes to Tigre!",
-        dt_t3_badge: "4.5 ★ Rating · Best Wildlife & Biopark for Kids",
-        dt_t3_desc: "Temaikèn is a massive, world-class biopark and aquarium in Belén de Escobar (~50 km northwest of Palermo) featuring walk-through aviaries, hippos, Patagonian wildlife, an underwater shark/ray tunnel, and shaded playgrounds next to restaurants.",
-        dt_t3_transit: "Catch Bus 60 (Ramal Escobar / Panamericana) directly from Avenida Santa Fe / Plaza Italia (a 7-minute walk from your hotel in Palermo) straight to Escobar/Temaikèn—no train transfer required.",
-        dt_t3_kids: "The gigantic 360° walk-through aviary with hundreds of birds, underwater shark and ray aquarium tunnel, Patagonian animals, and shaded play structures situated right next to food stands so parents can eat peacefully while kids play. Water spray fans around the park cool down warm summer afternoons!",
-        dt_t3_tip: "On the return trip for 6 people, taking two Ubers back to Palermo costs ~$25 USD per car and saves waiting for a bus with tired kids. Ticket on the gate or direct in advance (avoid third-party marked-up tours).",
-        dt_t4_badge: "Best for Dinosaurs & Natural History",
-        dt_t4_desc: "La Plata, the provincial capital ~58 km southeast of Buenos Aires, is famous for its diagonal street grid, massive Neo-Gothic cathedral, and South America's premier natural history museum.",
-        dt_t4_transit: "Take Subte Line D to Line C down to Plaza Constitución, then ride the electric Roca Line train (~1 hour 10 minutes) to Estación De Tren - La Plata. Alternatively, catch a direct express bus from Metrobus del Bajo.",
-        dt_t4_kids: "Head straight to Museo de La Plata inside Paseo del Bosque park—the kids will be awed by the giant dinosaur skeletons, Ice Age mammal fossils (glyptodonts & giant ground sloths), and Egyptian mummies! Stroll down the diagonal boulevards to the grand Cathedral of La Plata.",
-        dt_t4_tip: "Constitución is a very busy, crowded southern transit hub. Keep a close eye on belongings and kids during the transfer, or consider booking a direct private charter van from Palermo Suites for comfort."
       },
       zh: {
         nav_title: "布宜诺斯艾利斯家庭之旅导航站",
@@ -3125,10 +2751,6 @@
         dl_90_title: "Don Julio 牛排馆",
         dl_90_desc: "米其林一星 & 拉美排名第一牛排馆。Meitre官网在提前90天午夜准时放号，10分钟抢空。（秘诀：午餐场次比晚餐容易；现场排队可于下午5:30前往，排队免费喝香槟吃馅饼）。",
         btn_dj_book: "Don Julio 官网抢票 →",
-        dl_3w_tag: "提前 3–4 周",
-        dl_3w_title: "高乔牧场传统体验日营",
-        dl_3w_desc: "Estancia El Ombú de Areco 或 Santa Susana 庄园。骑马、马车漫游、高乔民俗马术秀与草地木炭烤肉，每日接待名额受限需提前锁定。",
-        btn_estancia_info: "高乔牧场预订详情 →",
         dl_2w_tag: "提前 2 周",
         dl_2w_title: "La Cabrera 烤肉订位 & 机场 Uber/Cabify 攻略",
         dl_2w_desc: "预订 La Cabrera 黄金时段餐位（赠送几十种儿童最爱小菜碟）。机场往返切勿预订昂贵的包车班车（单程需$70+）：提前下好 Uber 和 Cabify 并绑好信用卡，抵离时各叫2台车仅需每车约$18–$22美元（总共约$36–$44），省钱又灵活！",
@@ -3209,12 +2831,6 @@
         att_2_badge: "🚨 必须提前 7–14 天在布市官网预约时段",
         att_2_desc: "阿根廷最新、科技感最强的互动儿童馆。按年龄科学分层（0-3岁感官、4-8岁探索、9-12岁创意攀爬）。严格分批次控制入场人数，绝无嘈杂拥挤。",
         att_2_target: "适宜人群：2–12 岁儿童必去",
-        att_3_tag: "郊区榜 #1 · 传统高乔风情",
-        att_3_title: "Estancia El Ombú / Santa Susana 牧场日营",
-        att_3_loc: "圣安东尼奥·德·阿雷科 (~90分钟专车)",
-        att_3_badge: "⚠️ 建议提前 2–4 周预订锁定名额",
-        att_3_desc: "潘帕斯草原百年庄园一日游。温顺的马匹骑乘、马车观光（极适合长辈与幼童）、地道木炭烤肉盛宴(Asado)、现场探戈民乐与套绳索(Boleadoras)马术表演。",
-        att_3_target: "全程：上午10点至下午5点 · 全家皆宜",
         link_map: "地图",
         link_tickets: "购票",
         flights_heading: "航班确认详情（达美执飞 · 往返直飞）",
@@ -3280,35 +2896,10 @@
         dt_r2_days_sub: "(周末有手工艺市集)",
         dt_r2_verdict_tag: "最佳老虎洲顺路搭档 🌿",
         dt_r2_verdict_desc: "上午逛大教堂草坪，下午继续北上老虎洲坐船，完全不绕路。",
-        dt_r3_name: "Temaikèn 特迈肯生物乐园",
-        dt_r3_sub: "野生动物园与水族馆天花板",
-        dt_r3_dist: "50 km 西北",
-        dt_r3_time: "车程约 1小时15分–1小时30分",
-        dt_r3_mode_tag: "60路直达大巴 + 2台Uber返程",
-        dt_r3_mode_desc: "酒店旁 Plaza Italia 乘60路直达；回程建议打2台Uber（约$25/车）省力回酒店。",
-        dt_r3_kids_desc: "360°沉浸式飞鸟天网、水下鲨鱼全景隧道、就餐区配儿童游乐场！",
-        dt_r3_cost_sub: "(门票 + 往返交通)",
-        dt_r3_days: "仅周三至周日开放",
-        dt_r3_days_sub: "10:00–18:00 (周一周二闭园)",
-        dt_r3_verdict_tag: "孩子们的最爱乐园 🦒",
-        dt_r3_verdict_desc: "南美顶级生物公园，水雾降温、设施极佳、孩子流连忘返。",
-        dt_r4_name: "拉普拉塔（省府首府）",
-        dt_r4_sub: "恐龙骨架化石与自然历史圣地",
-        dt_r4_dist: "58 km 东南",
-        dt_r4_time: "单程约 1小时30分–1小时45分",
-        dt_r4_mode_tag: "Roca 线火车 / 快线大巴",
-        dt_r4_mode_desc: "宪法火车站转乘电力火车（70分钟），或市中心乘直达快线大巴。",
-        dt_r4_kids_desc: "巨型恐龙骨架标本、冰河期巨兽化石与木乃伊，森林公园绿地。",
-        dt_r4_cost_sub: "(博物馆门票 + 车票)",
-        dt_r4_days: "仅周三至周日开放",
-        dt_r4_days_sub: "10:00–18:00 (周一周二闭园)",
-        dt_r4_verdict_tag: "恐龙古生物迷必去 🦕",
-        dt_r4_verdict_desc: "古生物标本极震撼；但南站人流嘈杂，带小孩需特别照看。",
         dt_transit_label: "交通方式与单程耗时：",
         dt_kids_label: "适合 4岁与6岁 孩子的游玩亮点：",
         dt_tip_label: "6人家庭专属贴士：",
         dt_combo_tip_label: "与老虎洲串联游玩策略：",
-        dt_logistics_label: "6人出行安全与交通注意事项：",
         dt_reviews_label: "Google 真实游客评价：",
         dt_status_scheduled: "✓ 已纳入 Day 4 推荐主日程",
         dt_t1_badge: "#1 综合公共交通第1名",
@@ -3321,16 +2912,6 @@
         dt_t2_transit: "在 Belgrano C 或 Retiro 搭乘 Mitre 线火车到 San Isidro 站（车程约35分钟），或在巴勒莫沿 Av. Cabildo 乘 60 路公交车直达。",
         dt_t2_kids: "漫步漫长古朴的鹅卵石街巷，仰望高耸的新哥特式大教堂，让孩子们在 Plaza Mitre 广场茂密的树荫草坪上尽情撒欢跑动，逛手工艺集市，在家庭咖啡馆小憩。",
         dt_t2_tip: "圣伊西德罗位于老虎洲火车线正中间，上午可在此停留1.5小时逛教堂与公园，随后直接登上后续列车只需20分钟即可直达老虎洲！",
-        dt_t3_badge: "4.5 ★ 亲子动物园天花板",
-        dt_t3_desc: "特迈肯是位于贝伦德埃斯科瓦尔（距巴勒莫约50公里西北）的世界级巨型生态生物公园与水族馆，拥有贯通式飞鸟天网、河马区、巴塔哥尼亚野生动物群、水下鲨鱼隧道与餐厅旁遮荫游乐场。",
-        dt_t3_transit: "在酒店旁7分钟步行距离的 Plaza Italia / Av. Santa Fe 乘 60 路直达大巴（Ramal Escobar / Panamericana）直达乐园门口，无需转车。",
-        dt_t3_kids: "360°巨型飞鸟天网让百鸟从头顶掠过，360°水下鲨鱼与鳐鱼全景透明隧道，餐厅旁直接配有大型遮荫游乐滑梯秋千，园内沿途配备冷水微雾降温风扇！",
-        dt_t3_tip: "回程6人强烈建议直接叫2台Uber（每台车约$25美元）直达酒店，免去玩累的孩子在路边等公交。门票现场或官网直接购买即可，无须购买第三方溢价团。",
-        dt_t4_badge: "恐龙骨架化石与自然历史圣地",
-        dt_t4_desc: "拉普拉塔是布宜诺斯艾利斯省府首府（距市区约58公里东南），以对角线棋盘街区规划、巨型新哥特式大教堂和南美首屈一指的自然历史博物馆闻名。",
-        dt_t4_transit: "乘地铁到宪法火车站（Constitución），转乘电化 Roca 线列车（约1小时10分钟）直达拉普拉塔车站；或在市中心乘坐直达高速大巴。",
-        dt_t4_kids: "直奔森林公园内的拉普拉塔自然历史博物馆——巨型恐龙骨架化石标本、冰河期巨兽化石（雕齿兽、大地懒）和古埃及木乃伊让孩子们大开眼界！随后仰望宏伟的拉普拉塔大教堂。",
-        dt_t4_tip: "宪法火车站人流极度密集杂乱，带着4岁和6岁小朋友需时刻看管好孩子与背包；若确定前往，建议全家预订7座商务专车更安心舒适。"
       }
     };
 
@@ -3534,83 +3115,63 @@
       },
 
       d4: {
-        title_en: "Day 4 (Tue 12/8) — Tigre Delta Island Waterway Adventure",
-        title_zh: "第 4 天（12/8 周二）— 老虎洲三角洲水上森林一日游",
-        stats_en: "Loop: ~68 km round-trip · 🚐 Private 7-Passenger Van Excursion",
-        stats_zh: "环线全程：往返约 68 km · 🚐 预订7人座专属面包车往返",
-        family_tip_en: "👶 Family Tip: The private 7-passenger van picks your family up right at Palermo Suites front door. The wooden boat ride through island canals is smooth, shaded, and hypnotic for kids. Great fresh air away from the city!",
-        family_tip_zh: "👶 亲子贴士：私人7座商务车直接在酒店门口接送，免去全家换乘火车的奔波。运河木制游船平稳无大浪，两岸绿意葱茏，孩子吹着河风非常惬意！",
-        gmaps_url: "https://www.google.com/maps/dir/Palermo+Suites+Buenos+Aires,+Paraguay+4646/Estacion+Fluvial+de+Tigre/Restaurante+Vivanco,+Tigre/Puerto+de+Frutos,+Tigre/Palermo+Suites+Buenos+Aires,+Paraguay+4646",
-        path_d: "",
-        corridor_d: "M 410 220 Q 280 130 240 75",
+        title_en: "Day 4 (Tue 12/8) — Iguazú Falls Expedition (Flight JA 3140)",
+        title_zh: "第 4 天（12/8 周二）— 伊瓜苏大瀑布探险（航班 JA 3140）",
+        stats_en: "Palermo Suites ➔ AEP (10 min Uber) ➔ IGR ➔ Devil's Throat ➔ La Aldea de la Selva",
+        stats_zh: "Palermo Suites ➔ AEP机场（Uber 10分钟）➔ 伊瓜苏 IGR ➔ 魔鬼咽喉 ➔ La Aldea 度假村",
+        family_tip_en: "👶 Family Tip: Leave large suitcases at Palermo Suites! Bring only daypacks. Uber departs 04:30 AM for AEP (only 4.5 km away). See the dedicated Iguazú page for the full park map & timings.",
+        family_tip_zh: "👶 亲子贴士：大件行李留在布市套房！只背轻便双肩包。清晨04:30打车10分钟即达 AEP 机场。完整公园地图与小时行程请见伊瓜苏专属页面。",
+        gmaps_url: "https://www.google.com/maps/dir/Palermo+Suites+Buenos+Aires,+Paraguay+4646/Aeroparque+Jorge+Newbery,+Buenos+Aires",
+        path_d: "M 410 220 L 455 180",
+        corridor_d: "",
         stops: [
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店大堂出发", x: 410, y: 220, time: "9:00 AM", desc_en: "Private 7-passenger van arrives at hotel entrance on Paraguay 4646.", desc_zh: "预订的7人专属商务车准时在酒店正门口等候接驾。", dist: "Base", tip_en: "Van waits right at hotel door.", tip_zh: "商务包车在酒店大门口准时等候。", isHotel: true },
-          { num: "1", icon: "🚤", name_en: "Estación Fluvial de Tigre", name_zh: "老虎洲水上码头客运站", x: 80, y: 75, time: "10:15 AM", desc_en: "Board private wooden launch or catamaran through Paraná Delta.", desc_zh: "登上复古木制游船或全景双体船，穿越三角洲水系。", dist: "32 km", tip_en: "Boarding pier for scenic river boats.", tip_zh: "风景如画的三角洲游船登船码头。", gmaps: "https://maps.google.com/?q=Estacion+Fluvial+de+Tigre" },
-          { num: "2", icon: "🌿", name_en: "Paraná Delta Island Cruise", name_zh: "巴拉那河三角洲水上巡游", x: 140, y: 65, time: "10:30 AM", desc_en: "Scenic 1h15m cruise past stilt houses, water taxis & rowing clubs.", desc_zh: "1小时15分钟巡游，观赏高脚水上木屋与赛艇俱乐部。", dist: "12 km boat", tip_en: "Smooth water ride, zero waves, kids love watching floating grocery boats!", tip_zh: "水流平稳无风浪，看水上校车与水上流动超市！", gmaps: "https://maps.google.com/?q=Delta+del+Parana+Tigre" },
-          { num: "3", icon: "🍽️", name_en: "Restaurante Vivanco (Tigre)", name_zh: "Vivanco 河畔亲子餐厅", x: 95, y: 105, time: "1:00 PM", desc_en: "Historic rowing club setting overlooking the river; outdoor children's play area.", desc_zh: "百年赛艇俱乐部河景餐厅，设有户外儿童游乐区，招牌烤河鱼与脆香炸肉排。", dist: "400 m", tip_en: "Spacious riverside garden with play area.", tip_zh: "河畔宽敞花园，附设儿童游乐秋千滑梯。", gmaps: "https://maps.google.com/?q=Restaurante+Vivanco+Tigre" },
-          { num: "4", icon: "🧺", name_en: "Puerto de Frutos (Market)", name_zh: "水果市场露天工艺品集市", x: 165, y: 105, time: "2:45 PM", desc_en: "Bustling open-air riverfront bazaar for wicker crafts, wood toys, jams.", desc_zh: "河畔工艺品市集，柳条编制手袋、木制玩具与手工果酱。", dist: "900 m", tip_en: "Handmade wooden toy puzzles for kids.", tip_zh: "特色手作木玩益智积木与果酱点心。", gmaps: "https://maps.google.com/?q=Puerto+de+Frutos+Tigre" },
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", x: 410, y: 220, time: "5:30 PM", desc_en: "Private van whisks family smoothly back down Panamericana highway.", desc_zh: "私人专车沿高速平稳送全家返回酒店，车上午睡小憩。", dist: "33 km", tip_en: "Comfortable air-conditioned van nap for kids.", tip_zh: "车内打盹补觉，平稳回城。", isHotel: true }
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (04:30 AM)", name_zh: "Palermo Suites 出发 (04:30)", x: 410, y: 220, time: "4:30 AM", desc_en: "2x Uber to AEP (10 mins, 4.5 km). Big bags stay locked in suites.", desc_zh: "两台Uber 10分钟直达AEP机场，大行李留在酒店。", dist: "Base", tip_en: "Only 4.5 km to AEP!", tip_zh: "距AEP机场仅4.5公里！", isHotel: true },
+          { num: "✈️", icon: "✈️", name_en: "AEP Aeroparque ➔ Iguazú (JA 3140)", name_zh: "AEP 机场飞往伊瓜苏 (JA 3140)", x: 455, y: 180, time: "6:20 AM", desc_en: "Lands IGR 08:13 AM. Drop bags at La Aldea (#12324200), then Devil's Throat & Upper Circuit.", desc_zh: "08:13降落IGR。寄存背包后游览魔鬼咽喉与上层栈道。", dist: "4.5 km", tip_en: "PNR: TBG56D · Hotel: #12324200", tip_zh: "机票PNR: TBG56D · 酒店: #12324200", gmaps: "https://maps.google.com/?q=Aeroparque+Jorge+Newbery+Buenos+Aires" }
         ],
         legs: [
-          { from_en: "Palermo Suites", to_en: "Estación Fluvial Tigre", from_zh: "酒店", to_zh: "水运码头", dist: "32 km", time_en: "45 min van", time_zh: "商务专车45分钟", mode_en: "🚐 Private 7-Passenger Van (~$60 round-trip)", mode_zh: "🚐 7座商务专车（往返约$60美元）", tip_en: "Smooth highway trip via Acceso Norte. Driver waits on call.", tip_zh: "北部高速一路畅行，司机待命接送。" },
-          { from_en: "Estación Fluvial", to_en: "Delta Cruise Loop", from_zh: "水运码头", to_zh: "运河环游", dist: "12 km waterways", time_en: "1h 15m boat", time_zh: "木船巡游 1小时15分", mode_en: "🚤 Scenic Wooden Catamaran", mode_zh: "🚤 复古木船/双体游船", tip_en: "Sit on top deck or covered cabin for breeze and photos.", tip_zh: "坐上层吹微风看两岸水上人家，船舱有遮阴。" },
-          { from_en: "Estación Fluvial", to_en: "Restaurante Vivanco", from_zh: "码头", to_zh: "Vivanco 餐厅", dist: "400 m", time_en: "5 min walk", time_zh: "步行5分钟", mode_en: "🚶 Waterfront Promenade Walk", mode_zh: "🚶 河畔木栈道步行", tip_en: "Pleasant riverfront stroll right to restaurant entrance.", tip_zh: "顺着河堤木栈道轻松漫步5分钟即到餐厅正门。" },
-          { from_en: "Restaurante Vivanco", to_en: "Puerto de Frutos", from_zh: "Vivanco 餐厅", to_zh: "水果市场", dist: "900 m", time_en: "11 min walk / 3 min van", time_zh: "步行11分钟 / 专车3分钟", mode_en: "🚶 Stroll or 🚐 Quick Van Hop", mode_zh: "🚶 漫步 或 🚐 专车短驳", tip_en: "Driver can reposition van to Puerto de Frutos parking lot.", tip_zh: "司机可将车直接停在市场停车场等待接送。" },
-          { from_en: "Puerto de Frutos", to_en: "Palermo Suites", from_zh: "水果市场", to_zh: "返回酒店", dist: "33 km", time_en: "45 min van", time_zh: "商务专车45分钟", mode_en: "🚐 Private Van Back to Hotel", mode_zh: "🚐 7座商务专车平稳回城", tip_en: "Kids can nap comfortably in the air-conditioned van.", tip_zh: "空调车内小朋友可以舒舒服服小睡补觉。" }
+          { from_en: "Palermo Suites", to_en: "AEP Aeroparque", from_zh: "酒店", to_zh: "AEP 机场", dist: "4.5 km", time_en: "10 min Uber", time_zh: "Uber 10分钟", mode_en: "🚗 2x Uber (~$3–$5/car)", mode_zh: "🚗 2台Uber（约$3–$5/车）", tip_en: "Quick early morning hop along Av. Sarmiento.", tip_zh: "清晨一路畅通直达机场。" }
         ]
       },
 
       d5: {
-        title_en: "Day 5 (Wed 12/9) — Vibrant Colors, Street Tango & San Telmo Bodegón",
-        title_zh: "第 5 天（12/9 周三）— 色彩博卡、街头探戈与圣特尔莫平民美食",
-        stats_en: "Loop: ~16 km · 🚗 2x Uber to South + 🚶 Historic Market Stroll",
-        stats_zh: "环线全程：约 16 km · 🚗 2台Uber直抵南部 + 🚶 历史街区漫步",
-        family_tip_en: "👶 Family Tip: Stay strictly on main Caminito tourist strip in La Boca for safety. Head early before 11:30 AM to beat tour buses. In San Telmo, visit the comic character statues (Mafalda!) which kids love to pose with.",
-        family_tip_zh: "👶 亲子贴士：在博卡区请严格在 Caminito 核心步行街内活动。上午10点前抵达游客最少最安全。在圣特尔莫可以带孩子找可爱的“玛法达”（Mafalda）漫画长椅合影！",
-        gmaps_url: "https://www.google.com/maps/dir/Palermo+Suites+Buenos+Aires,+Paraguay+4646/Caminito,+La+Boca/Mercado+de+San+Telmo/Paseo+de+la+Historieta/Heladeria+Cadore,+Av.+Corrientes+1695/Club+Eros,+Honduras+4706/Palermo+Suites+Buenos+Aires,+Paraguay+4646",
-        path_d: "M 410 220 Q 580 390 685 570 Q 660 520 645 480 L 670 470 Q 640 430 615 410 Q 480 320 395 255 L 410 220",
+        title_en: "Day 5 (Wed 12/9) — Iguazú Wildlife & Return Flight JA 3153",
+        title_zh: "第 5 天（12/9 周三）— 伊瓜苏动物救助所与晚班机返程 (JA 3153)",
+        stats_en: "La Aldea Buffet Breakfast ➔ GuiráOga ➔ Three Borders ➔ IGR 20:57 ➔ AEP 22:58",
+        stats_zh: "La Aldea 早餐 ➔ GuiráOga 动物中心 ➔ 三界界标 ➔ IGR 20:57 ➔ AEP 22:58",
+        family_tip_en: "👶 Family Tip: Enjoy included buffet breakfast & check out by 10 AM (store backpacks at reception). Land at AEP 10:58 PM and take a quick 10-min Uber straight back to your beds at Palermo Suites!",
+        family_tip_zh: "👶 亲子贴士：享用免费自助早餐并10点退房（背包寄存前台）。晚22:58降落AEP后打车10分钟即回熟悉套房休息！",
+        gmaps_url: "https://www.google.com/maps/dir/Aeroparque+Jorge+Newbery,+Buenos+Aires/Palermo+Suites+Buenos+Aires,+Paraguay+4646",
+        path_d: "M 455 180 L 410 220",
         corridor_d: "",
         stops: [
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店出发", x: 410, y: 220, time: "9:00 AM", desc_en: "Call 2 Ubers directly to Caminito (Valle Iberlucea & Magallanes).", desc_zh: "酒店门口呼叫两台Uber直奔博卡彩色街。", dist: "Base", tip_en: "Rideshares arrive in 3-5 mins.", tip_zh: "门前叫车约3-5分钟即达。", isHotel: true },
-          { num: "1", icon: "🎨", name_en: "Caminito (La Boca)", name_zh: "博卡彩色步行街（Caminito）", x: 685, y: 570, time: "9:30 AM", desc_en: "Vivid colorful tin houses, open-air tango dancers, lively street artists.", desc_zh: "五彩斑斓的铁皮木屋、现场街头探戈起舞与街头画师。", dist: "10 km", tip_en: "Super colorful houses for photos; arrive early before midday crowd.", tip_zh: "五彩木屋色彩艳丽超好拍，上午早到避开人流。", gmaps: "https://maps.google.com/?q=Caminito+La+Boca+Buenos+Aires" },
-          { num: "2", icon: "🥟", name_en: "Mercado de San Telmo", name_zh: "圣特尔莫百年室内集市", x: 645, y: 480, time: "12:00 PM", desc_en: "1897 wrought-iron market: fresh empanadas from El Hornero & antiques.", desc_zh: "1897年老集市：品尝排队王 El Hornero 刚出炉的热肉馅饼与古董摊。", dist: "3.2 km", tip_en: "Get warm baked cheese & ham empanadas for kids at El Hornero.", tip_zh: "El Hornero 芝士火腿馅饼孩子们最爱吃。", gmaps: "https://maps.google.com/?q=Mercado+de+San+Telmo+Buenos+Aires" },
-          { num: "3", icon: "📸", name_en: "Paseo de la Historieta (Mafalda)", name_zh: "漫画大道与玛法达长椅雕像", x: 670, y: 470, time: "1:45 PM", desc_en: "Life-sized statues of iconic Argentine comic characters for fun family photos.", desc_zh: "街角等身阿根廷漫画主角雕像（玛法达），小朋友超喜欢的拍照打卡点。", dist: "350 m", tip_en: "Sit next to Mafalda for an iconic Buenos Aires family souvenir photo!", tip_zh: "坐在玛法达身边合影留念，阿根廷最萌地标！", gmaps: "https://maps.google.com/?q=Monumento+a+Mafalda+San+Telmo" },
-          { num: "4", icon: "🍨", name_en: "Heladería Cadore (Corrientes 1695)", name_zh: "Cadore 意大利百年传奇冰淇淋", x: 615, y: 410, time: "3:30 PM", desc_en: "Voted top 10 ice creams worldwide: legendary slow-cooked Dulce de Leche.", desc_zh: "全球排名前十的传世冰淇淋店：慢熬14小时的焦糖牛奶与开心果必尝。", dist: "2.8 km", tip_en: "World-famous Dulce de Leche Tradicional.", tip_zh: "世界排名前十的焦糖牛奶与开心果口味！", gmaps: "https://maps.google.com/?q=Heladeria+Cadore+Av+Corrientes+1695+Buenos+Aires" },
-          { num: "5", icon: "🥩", name_en: "Club Eros (Honduras 4706)", name_zh: "Club Eros 社区体育会小食堂", x: 395, y: 255, time: "6:30 PM", desc_en: "Neighborhood sports club: giant golden milanesas, steaks, cheap local prices.", desc_zh: "老社区体育俱乐部内部食堂：巨型黄金炸肉排、烤牛排，本地家庭最爱。", dist: "4.8 km", tip_en: "Huge plate-sized milanesas kids will love, very casual.", tip_zh: "比盘子还大的金黄炸肉排与现切牛排，极接地气。", gmaps: "https://maps.google.com/?q=Club+Eros+Honduras+4706+Buenos+Aires" },
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", x: 410, y: 220, time: "8:15 PM", desc_en: "Easy 15-minute walk down Honduras & Paraguay back to hotel.", desc_zh: "顺着林荫街道散步15分钟轻松返回酒店。", dist: "1.4 km", tip_en: "Pleasant, safe evening neighborhood walk.", tip_zh: "晚间安全惬意的巴勒莫林荫散步。", isHotel: true }
+          { num: "✈️", icon: "✈️", name_en: "AEP Aeroparque Arrival (10:58 PM)", name_zh: "AEP 机场降落 (22:58)", x: 455, y: 180, time: "10:58 PM", desc_en: "Flight JA 3153 (PNR: X7BI5C) lands from IGR.", desc_zh: "航班 JA 3153（预订码: X7BI5C）降落布市。", dist: "4.5 km", tip_en: "No checked bags to wait for!", tip_zh: "无托运行李，下机直接打车走！", gmaps: "https://maps.google.com/?q=Aeroparque+Jorge+Newbery+Buenos+Aires" },
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (11:25 PM)", name_zh: "返回 Palermo Suites (23:25)", x: 410, y: 220, time: "11:25 PM", desc_en: "Quick 10-min Uber back to Palermo Suites for a well-earned sleep-in.", desc_zh: "10分钟迅速回到酒店安睡。", dist: "Base", tip_en: "Sleep in on Thursday morning!", tip_zh: "周四上午睡到自然醒！", isHotel: true }
         ],
         legs: [
-          { from_en: "Palermo Suites", to_en: "Caminito (La Boca)", from_zh: "酒店", to_zh: "博卡彩色街", dist: "10 km", time_en: "22 min Uber", time_zh: "Uber 22分钟", mode_en: "🚗 2x Uber (~$6 total)", mode_zh: "🚗 2台Uber（共约$6美元）", tip_en: "Take Uber directly to tourist strip; never walk outside tourist perimeter.", tip_zh: "打车直达步行街核心入口，切勿在非旅游街区步行。" },
-          { from_en: "Caminito", to_en: "Mercado de San Telmo", from_zh: "博卡彩色街", to_zh: "圣特尔莫集市", dist: "3.2 km", time_en: "10 min Uber", time_zh: "Uber 10分钟", mode_en: "🚗 2x Uber to Defensa & Estados Unidos", mode_zh: "🚗 2台Uber直达集市大门", tip_en: "Quick ride straight north into historic cobblestone district.", tip_zh: "快速向北打车进入古老鹅卵石街区。" },
-          { from_en: "Mercado San Telmo", to_en: "Mafalda Statue", from_zh: "圣特尔莫集市", to_zh: "玛法达雕像", dist: "350 m", time_en: "4 min walk", time_zh: "步行4分钟", mode_en: "🚶 Cobblestone Walk down Defensa St", mode_zh: "🚶 顺着 Defensa 街漫步4分钟", tip_en: "Pedestrian-friendly colonial street to corner of Chile & Defensa.", tip_zh: "历史风貌步行街，到达 Chile 与 Defensa 街角即见长椅。" },
-          { from_en: "Mafalda Statue", to_en: "Heladería Cadore", from_zh: "玛法达雕像", to_zh: "Cadore 冰淇淋", dist: "2.8 km", time_en: "10 min Uber", time_zh: "Uber 10分钟", mode_en: "🚗 2x Uber to Theater District", mode_zh: "🚗 2台Uber直达剧院大街", tip_en: "Drops off at Av. Corrientes right by the gelato shop.", tip_zh: "直达 Corrientes 大道正门，品尝世界顶级冰淇淋。" },
-          { from_en: "Heladería Cadore", to_en: "Club Eros", from_zh: "Cadore 冰淇淋", to_zh: "Club Eros 食堂", dist: "4.8 km", time_en: "14 min Uber", time_zh: "Uber 14分钟", mode_en: "🚗 2x Uber back to Palermo neighborhood", mode_zh: "🚗 2台Uber返回巴勒莫生活区", tip_en: "Arrive at 6:30-7:00 PM to beat the 8:30 PM local dinner rush.", tip_zh: "傍晚6点半到7点到达免排队，避开阿根廷人8点半的用餐高峰。" },
-          { from_en: "Club Eros", to_en: "Palermo Suites", from_zh: "Club Eros", to_zh: "返回酒店", dist: "1.4 km", time_en: "15 min walk / 5 min Uber", time_zh: "步行15分钟 / Uber 5分钟", mode_en: "🚶 Peaceful neighborhood walk", mode_zh: "🚶 宁静街区散步", tip_en: "Safe, well-lit stroll back to hotel base.", tip_zh: "吃饱后吹着夏夜微风散步回酒店。" }
+          { from_en: "AEP Aeroparque", to_en: "Palermo Suites", from_zh: "AEP 机场", to_zh: "返回酒店", dist: "4.5 km", time_en: "10 min Uber", time_zh: "Uber 10分钟", mode_en: "🚗 2x Uber (~$3–$5/car)", mode_zh: "🚗 2台Uber（约$3–$5/车）", tip_en: "Fastest airport-to-bed transfer in South America.", tip_zh: "10分钟直达酒店床上休息。" }
         ]
       },
 
       d6: {
-        title_en: "Day 6 (Thu 12/10) — Pampas Gaucho Estancia Experience",
-        title_zh: "第 6 天（12/10 周四）— 潘帕斯草原高乔庄园一日游",
-        stats_en: "Loop: ~230 km round-trip · 🚐 Private 7-Passenger Van Excursion",
-        stats_zh: "环线全程：往返约 230 km · 🚐 预订7座专属商务车往返",
-        family_tip_en: "👶 Family Tip: Full day immersed in nature and fresh air! Friendly Argentine Criollo horses & pony rides for the kids, tractor rides, open soccer lawns, and an enormous wood-fired Asado lunch with endless meats and wine for adults.",
-        family_tip_zh: "👶 亲子贴士：远离城市喧嚣的一整天大自然体验！庄园有极其温顺的马匹供儿童和大人骑行，还可坐古董马车游草原。正宗原木炭火烤全牛盛宴，无限量供应顶级牛肉与红酒！",
-        gmaps_url: "https://www.google.com/maps/dir/Palermo+Suites+Buenos+Aires,+Paraguay+4646/Estancia+El+Omb%C3%BA+de+Areco,+San+Antonio+de+Areco/Palermo+Suites+Buenos+Aires,+Paraguay+4646",
-        path_d: "",
-        corridor_d: "M 410 220 Q 280 270 240 295",
+        title_en: "Day 6 (Thu 12/10) — Hands-On Science, Palermo (or Optional Tigre/San Isidro) & La Brigada",
+        title_zh: "第 6 天（12/10 周四）— “禁止不摸”科技馆（或可选蒂格雷火车）& 勺切牛排",
+        stats_en: "Loop: ~14 km · 🚗 2x Uber + 🚶 Walk (Optional: 🚆 Mitre Train to San Isidro / Tigre)",
+        stats_zh: "环线：约 14 km · 🚗 2台Uber + 🚶 漫步（可选：🚆 Mitre火车去 San Isidro / Tigre）",
+        family_tip_en: "👶 Family Tip: After sleeping in, visit Prohibido No Tocar (open Thursdays!). In the afternoon, either relax at Plaza Armenia or—if energized—board the Mitre train at Lisandro de la Torre (10m Uber) to San Isidro (~25m) or Tigre (~45m).",
+        family_tip_zh: "👶 亲子贴士：睡到自然醒后去周四开放的“禁止不摸”科技馆！下午可在巴勒莫广场玩耍，若精力充沛可打车10分钟到 Lisandro de la Torre 站乘火车去 San Isidro 或 Tigre。",
+        gmaps_url: "https://www.google.com/maps/dir/Palermo+Suites+Buenos+Aires,+Paraguay+4646/Museo+Participativo+de+Ciencias,+Recoleta/Plaza+Armenia,+Palermo/La+Brigada,+Estados+Unidos+465/Palermo+Suites+Buenos+Aires,+Paraguay+4646",
+        path_d: "M 410 220 L 560 280 L 395 255 L 645 480 L 410 220",
+        corridor_d: "",
         stops: [
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Hotel Base)", name_zh: "Palermo Suites 酒店出发", x: 410, y: 220, time: "8:45 AM", desc_en: "Private 7-passenger van picks family up at hotel front door.", desc_zh: "预订的7座商务专车准时在酒店正门口接驾出发。", dist: "Base", tip_en: "Full day private charter van on call.", tip_zh: "全天专属包车，司机随时待命。", isHotel: true },
-          { num: "1", icon: "🐎", name_en: "Estancia El Ombú de Areco", name_zh: "高乔庄园迎宾礼", x: 80, y: 285, time: "10:30 AM", desc_en: "300-hectare historic ranch; hot empanadas, fresh juices & Torrontés wine.", desc_zh: "抵达占地300公顷的百年传统牧场，品尝现烤迎宾肉馅饼、果汁与美酒。", dist: "115 km", tip_en: "Fresh warm empanadas & juices upon arrival.", tip_zh: "刚出炉的热肉馅饼与鲜榨果汁迎宾礼。", gmaps: "https://maps.google.com/?q=Estancia+El+Ombu+de+Areco" },
-          { num: "2", icon: "🏇", name_en: "Pampas Horseback & Sulky Rides", name_zh: "草原温顺骑马与马车巡游", x: 145, y: 285, time: "11:30 AM", desc_en: "Gentle horseback rides across wide pampas pastures or horse-drawn carriage for kids.", desc_zh: "在牛仔护卫下骑温顺良驹漫游大草原，或全家乘坐老式双轮木马车悠闲兜风。", dist: "Ranch", tip_en: "Very calm horses suitable for children & beginners.", tip_zh: "马匹经过专业训练，极度温顺适合小朋友与初学者。", gmaps: "https://maps.google.com/?q=Estancia+El+Ombu+de+Areco" },
-          { num: "3", icon: "🥩", name_en: "Grand Wood-Fire Asado Feast", name_zh: "露天原木炭火烤肉盛宴", x: 95, y: 320, time: "1:00 PM", desc_en: "All-you-can-eat wood-fired feast: Bife de Chorizo, ribs, chorizo sausages & Malbec wine.", desc_zh: "无限量现切阿根廷烤全肉盛宴：牛肋排、香肠、蔬菜沙拉与红酒。", dist: "Ranch", tip_en: "Unlimited premium grilled meats, salads & desserts.", tip_zh: "无限量牛排、烤香肠、沙拉与甜点大快朵颐。", gmaps: "https://maps.google.com/?q=Estancia+El+Ombu+de+Areco" },
-          { num: "4", icon: "🎸", name_en: "Gaucho Folklore & Horse Whisperer", name_zh: "高乔歌舞与神级驯马术", x: 160, y: 320, time: "2:30 PM", desc_en: "Live guitar, folklore dancing, and gentle gaucho horse whisperer demonstration.", desc_zh: "高乔民间吉他弹唱、欢快民族歌舞，以及令人惊叹的“马语者”温和驯马演示。", dist: "Ranch", tip_en: "Mind-blowing horse whisperer demonstration.", tip_zh: "令人惊叹的人马合一神级驯马表演。", gmaps: "https://maps.google.com/?q=Estancia+El+Ombu+de+Areco" },
-          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (Return)", name_zh: "返回 Palermo Suites 休息", x: 410, y: 220, time: "6:30 PM", desc_en: "Smooth private van ride back to Palermo Suites; relax in your suites for the evening.", desc_zh: "专属商务车平稳送回酒店，全家可在房间度过悠闲舒适的夜晚。", dist: "115 km", tip_en: "Scenic evening ride back to Palermo.", tip_zh: "欣赏傍晚潘帕斯田园风光，平稳回酒店。", isHotel: true }
+          { num: "🏨", icon: "🏨", name_en: "Palermo Suites (10:30 AM)", name_zh: "Palermo Suites 出发 (10:30)", x: 410, y: 220, time: "10:30 AM", desc_en: "Relaxed late morning start after Iguazú.", desc_zh: "伊瓜苏归来睡到自然醒后轻松出发。", dist: "Base", tip_en: "No rush!", tip_zh: "不赶时间！", isHotel: true },
+          { num: "1", icon: "🔬", name_en: "Prohibido No Tocar (Recoleta)", name_zh: "“禁止不摸”互动科技馆", x: 560, y: 280, time: "11:00 AM", desc_en: "Hands-on science museum (open Thu!), giant bubbles & Rapanui chocolate.", desc_zh: "周四开放的互动科技馆，巨型肥皂泡与Rapanui巧克力。", dist: "3.5 km", tip_en: "Inside Centro Cultural Recoleta.", tip_zh: "位于雷科莱塔文化中心内。", gmaps: "https://maps.google.com/?q=Museo+Participativo+de+Ciencias+Prohibido+No+Tocar+Recoleta" },
+          { num: "2", icon: "🛝", name_en: "Plaza Armenia (or Optional Tigre)", name_zh: "亚美尼亚广场（或可选蒂格雷）", x: 395, y: 255, time: "1:30 PM", desc_en: "Lunch at El Preferido + playground & helado (or Mitre train to San Isidro / Tigre).", desc_zh: "El Preferido午餐+滑梯冰淇淋（或乘火车去 San Isidro / Tigre）。", dist: "3.8 km", tip_en: "Board Mitre train at Lisandro de la Torre if doing Tigre.", tip_zh: "若去蒂格雷可在 Lisandro de la Torre 站上车。", gmaps: "https://maps.google.com/?q=Plaza+Armenia+Palermo+Buenos+Aires" },
+          { num: "3", icon: "🥩", name_en: "La Brigada (San Telmo)", name_zh: "La Brigada 勺切牛排", x: 645, y: 480, time: "7:30 PM", desc_en: "Famous tenderloin sliced with a metal spoon right at the table!", desc_zh: "侍应生当面用普通汤勺切开极嫩牛排！", dist: "6.8 km", tip_en: "Open Thursdays; reserve ahead.", tip_zh: "周四营业，建议提前订位。", gmaps: "https://maps.google.com/?q=La+Brigada+San+Telmo+Buenos+Aires" }
         ],
         legs: [
-          { from_en: "Palermo Suites", to_en: "Estancia El Ombú", from_zh: "酒店", to_zh: "高乔大庄园", dist: "115 km", time_en: "90 min van", time_zh: "商务专车90分钟", mode_en: "🚐 Private 7-Passenger Van (~$180-$220 day charter)", mode_zh: "🚐 7座专属包车（全天往返约$180-$220美元）", tip_en: "Scenic highway drive across open fertile plains of Buenos Aires province.", tip_zh: "沿8号国道平稳行驶，窗外是一望无际的潘帕斯广袤田野与牛群。" },
-          { from_en: "Estancia Grounds", to_en: "All-Day Activities on Site", from_zh: "庄园内", to_zh: "庄园内全天休闲活动", dist: "On-site", time_en: "All day", time_zh: "全天园内活动", mode_en: "🚶 Walking & 🐎 Horseback on Estate", mode_zh: "🚶 庄园草坪漫步与骑马", tip_en: "All activities, riding, food, wine and shows take place inside peaceful ranch grounds.", tip_zh: "迎宾、骑马、烤肉大餐、民谣演出均在庄园内一站式享受，毫无奔波感。" },
-          { from_en: "Estancia El Ombú", to_en: "Palermo Suites", from_zh: "高乔庄园", to_zh: "返回酒店", dist: "115 km", time_en: "90 min van", time_zh: "商务专车90分钟", mode_en: "🚐 Private Van Back to Hotel", mode_zh: "🚐 7座商务专车平稳回程", tip_en: "Family can nap peacefully in the van after a full day of open air and fresh country air.", tip_zh: "在郊外呼吸充足的新鲜空气后，小朋友可在车上安稳睡上一大觉。" }
+          { from_en: "Palermo Suites", to_en: "Prohibido No Tocar", from_zh: "酒店", to_zh: "科技馆", dist: "3.5 km", time_en: "12 min Uber", time_zh: "Uber 12分钟", mode_en: "🚗 2x Uber", mode_zh: "🚗 2台Uber", tip_en: "Open Thu!", tip_zh: "周四开放！" },
+          { from_en: "Recoleta", to_en: "Plaza Armenia / Palermo", from_zh: "雷科莱塔", to_zh: "亚美尼亚广场", dist: "3.8 km", time_en: "12 min Uber", time_zh: "Uber 12分钟", mode_en: "🚗 2x Uber (or 🚆 Mitre Train)", mode_zh: "🚗 2台Uber（或🚆 Mitre火车）", tip_en: "Optional San Isidro/Tigre train from Lisandro de la Torre.", tip_zh: "可选从 Lisandro de la Torre 乘火车去 San Isidro/Tigre。" },
+          { from_en: "Palermo", to_en: "La Brigada (San Telmo)", from_zh: "巴勒莫", to_zh: "La Brigada 餐厅", dist: "6.8 km", time_en: "18 min Uber", time_zh: "Uber 18分钟", mode_en: "🚗 2x Uber", mode_zh: "🚗 2台Uber", tip_en: "Farewell steak dinner!", tip_zh: "告别勺切牛排大餐！" }
         ]
       },
 
