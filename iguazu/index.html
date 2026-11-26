@@ -161,9 +161,9 @@
               <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span data-i18n="hero_badge_flights">JetSMART Flights Confirmed (PNRs: TBG56D & X7BI5C)</span>
             </span>
-            <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-amber-500/20 backdrop-blur-md border border-amber-400/30 text-xs font-bold text-amber-300">
-              <i data-lucide="clock" class="w-3 h-3"></i>
-              <span data-i18n="hero_badge_hotel">Hotel Booking in Progress</span>
+            <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-teal-500/20 backdrop-blur-md border border-teal-400/30 text-xs font-bold text-teal-200">
+              <i data-lucide="trees" class="w-3 h-3"></i>
+              <span data-i18n="hero_badge_hotel">La Aldea de la Selva Reserved (#12324200)</span>
             </span>
           </div>
 
@@ -411,100 +411,101 @@
       </div>
     </section>
 
-    <!-- SECTION 2: HOTEL STATUS & COMPARISON -->
+    <!-- SECTION 2: HOTEL RESERVATION -->
     <section id="hotel-status" class="scroll-mt-20 space-y-4">
       <div class="border-b border-slate-200 dark:border-slate-800 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div class="flex items-center space-x-2">
-          <span class="w-7 h-7 rounded-lg bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-300 flex items-center justify-center font-bold text-sm">2</span>
+          <span class="w-7 h-7 rounded-lg bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold text-sm">2</span>
           <div>
-            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white" data-i18n="hotel_heading">Iguazú 1-Night Hotel Decision Hub</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="hotel_sub">Tuesday night (Dec 8) · User is currently finalizing reservation · Top 4 family resorts compared</p>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white" data-i18n="hotel_heading">La Aldea de la Selva Lodge ("The Jungle Village")</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="hotel_sub">Reservation #12324200 · Tue Dec 8 – Wed Dec 9, 2026 (1 Night) · 2 Family Rooms w/ Buffet Breakfast</p>
           </div>
         </div>
         <span class="text-xs font-bold text-amber-800 dark:text-amber-200 bg-amber-100 dark:bg-amber-950/80 px-3 py-1.5 rounded-lg border border-amber-300 dark:border-amber-700 self-start sm:self-auto flex items-center gap-1.5">
-          <i data-lucide="loader-2" class="w-3.5 h-3.5 text-amber-600 animate-spin"></i>
-          <span data-i18n="badge_hotel_pending">Pending Final Selection</span>
+          <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-600"></i>
+          <span data-i18n="badge_hotel_pending">Pending Confirmation (Valid until Nov 29)</span>
         </span>
       </div>
 
-      <!-- Live Notice Banner -->
-      <div class="bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 rounded-2xl p-4 text-xs text-amber-900 dark:text-amber-200 space-y-1.5">
-        <div class="font-extrabold flex items-center space-x-2 text-sm text-amber-950 dark:text-amber-300">
-          <i data-lucide="info" class="w-4 h-4 text-amber-600 shrink-0"></i>
-          <span data-i18n="ht_banner_title">User Finalizing Hotel Selection Meanwhile</span>
-        </div>
-        <p class="leading-relaxed" data-i18n="ht_banner_desc">
-          Below are the four top-rated accommodations for families of 6 in Puerto Iguazú. Once you finalize your reservation, we will update the confirmation numbers and direct arrival logistics!
-        </p>
-      </div>
-
-      <!-- Hotel Options Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        
-        <!-- Hotel 1: Gran Meliá -->
-        <div class="bg-white dark:bg-slate-900/90 rounded-2xl border-2 border-emerald-500/50 dark:border-emerald-500/40 p-4 space-y-3 shadow-sm hover:shadow-md transition flex flex-col justify-between">
-          <div class="space-y-2">
-            <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-[10px] font-black uppercase" data-i18n="ht1_badge">#1 Inside National Park</span>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Gran Meliá Iguazú</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="ht1_loc">Inside Argentine Falls Park · View of Devil's Throat</p>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="ht1_desc">
-              The ONLY hotel situated directly inside the park. Step out your door onto the waterfall trails before public gates open! Infinity pool overlooking waterfall mist.
-            </p>
+      <!-- BookDirect Reservation Card -->
+      <div class="bg-white dark:bg-slate-900/90 rounded-2xl border-2 border-emerald-500/40 dark:border-emerald-500/30 shadow-md overflow-hidden">
+        <div class="bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 text-white px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
+              <i data-lucide="trees" class="w-5 h-5 text-emerald-300"></i>
+            </div>
+            <div>
+              <div class="text-[11px] uppercase tracking-wider font-bold text-emerald-300" data-i18n="ht_card_tag">BookDirect · Black Friday 40% OFF Web Exclusive</div>
+              <h3 class="text-lg font-bold">La Aldea de la Selva Lodge · Iryapú Jungle</h3>
+            </div>
           </div>
-          <div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center text-xs">
-            <span class="font-bold text-emerald-600 dark:text-emerald-400">Luxury / 5★</span>
-            <a href="https://maps.google.com/?q=Gran+Melia+Iguazu" target="_blank" class="map-link">Google Maps Pin &rarr;</a>
+          <div class="flex items-center gap-2">
+            <button onclick="copyToClipboard('12324200', 'Reservation #12324200 copied!')" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-mono font-bold transition flex items-center gap-1.5">
+              <span>#12324200</span>
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            </button>
+            <a href="https://maps.google.com/?q=La+Aldea+de+la+Selva+Lodge+Puerto+Iguazu" target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold transition flex items-center gap-1">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+              <span>Google Maps</span>
+            </a>
           </div>
         </div>
 
-        <!-- Hotel 2: Loi Suites -->
-        <div class="bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 space-y-3 shadow-sm hover:shadow-md transition flex flex-col justify-between">
-          <div class="space-y-2">
-            <span class="px-2 py-0.5 rounded bg-teal-100 dark:bg-teal-950 text-teal-800 dark:text-teal-300 text-[10px] font-black uppercase" data-i18n="ht2_badge">Top Jungle Eco-Resort</span>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Loi Suites Iguazú Hotel</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="ht2_loc">Iryapú Subtropical Rainforest · 15m to Park</p>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="ht2_desc">
-              Nestled inside the lush subtropical rainforest with elevated wooden suspension bridges. Giant multi-tiered outdoor pools with shallow areas for Charles & Felix.
-            </p>
+        <div class="p-5 grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
+          <!-- Col 1: Rooms & Rate -->
+          <div class="space-y-2.5">
+            <div class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+              <i data-lucide="bed-double" class="w-4 h-4 text-emerald-600"></i>
+              <span data-i18n="ht_rooms_title">Rooms & Total Rate</span>
+            </div>
+            <div class="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 space-y-1.5">
+              <div class="font-bold text-emerald-950 dark:text-emerald-200" data-i18n="ht_rooms_val">2 × Standard Family Plan (Double + Double)</div>
+              <p class="text-slate-600 dark:text-slate-300" data-i18n="ht_rooms_desc">2 double beds per room · Buffet Breakfast & Free Wi-Fi included · A/C, Safe, Minibar & Electric Kettle.</p>
+              <div class="pt-1.5 border-t border-emerald-200/70 dark:border-emerald-800/70 flex justify-between items-baseline">
+                <span class="text-slate-500 dark:text-slate-400" data-i18n="ht_price_sub">Subtotal $187 ($94+$93) + Tax $39:</span>
+                <span class="text-base font-black text-emerald-700 dark:text-emerald-300">USD $226</span>
+              </div>
+            </div>
           </div>
-          <div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center text-xs">
-            <span class="font-bold text-teal-600 dark:text-teal-400">Jungle Oasis / 5★</span>
-            <a href="https://maps.google.com/?q=Loi+Suites+Iguazu+Hotel" target="_blank" class="map-link">Google Maps Pin &rarr;</a>
+
+          <!-- Col 2: Schedule & Policies -->
+          <div class="space-y-2.5">
+            <div class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+              <i data-lucide="calendar-clock" class="w-4 h-4 text-teal-600"></i>
+              <span data-i18n="ht_sched_title">Check-In / Out & Policies</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-1.5">
+              <div class="flex justify-between">
+                <span class="text-slate-500 dark:text-slate-400" data-i18n="ht_checkin_lbl">Check-In:</span>
+                <span class="font-bold text-slate-900 dark:text-white" data-i18n="ht_checkin_val">Tue, Dec 8 · 2:00 PM (Bag drop ~8:45 AM)</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-500 dark:text-slate-400" data-i18n="ht_checkout_lbl">Check-Out:</span>
+                <span class="font-bold text-slate-900 dark:text-white" data-i18n="ht_checkout_val">Wed, Dec 9 · 10:00 AM (Bag storage)</span>
+              </div>
+              <p class="text-[11px] text-amber-700 dark:text-amber-300 pt-1" data-i18n="ht_policy_note">
+                Non-refundable prepaid rate · Quote #11955803 · Holder: Xutian Sun
+              </p>
+            </div>
+          </div>
+
+          <!-- Col 3: Location & Distances -->
+          <div class="space-y-2.5">
+            <div class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+              <i data-lucide="navigation" class="w-4 h-4 text-sky-600"></i>
+              <span data-i18n="ht_loc_title">Location & Travel Times</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-1.5">
+              <div class="text-slate-700 dark:text-slate-200 font-semibold">El Dorado S/N, N3370 Puerto Iguazú</div>
+              <div class="text-slate-500 dark:text-slate-400">+54 3757 53 1130 · info@laaldeadelaselva.com</div>
+              <ul class="space-y-0.5 pt-1 text-[11px] text-slate-600 dark:text-slate-300">
+                <li data-i18n="ht_dist_igr">• IGR Airport: ~18.7 km (20–25 min taxi)</li>
+                <li data-i18n="ht_dist_falls">• Iguazú Falls Park: ~15–17 km (20–25 min taxi)</li>
+                <li data-i18n="ht_dist_town">• Downtown / Dinners: ~5–7 km (10–15 min taxi)</li>
+              </ul>
+            </div>
           </div>
         </div>
-
-        <!-- Hotel 3: Panoramic Grand -->
-        <div class="bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 space-y-3 shadow-sm hover:shadow-md transition flex flex-col justify-between">
-          <div class="space-y-2">
-            <span class="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 text-[10px] font-black uppercase" data-i18n="ht3_badge">3-Borders Panoramic View</span>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Panoramic Grand</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="ht3_loc">Puerto Iguazú Bluff · Walking to Town Dining</p>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="ht3_desc">
-              Perched on a hill overlooking the confluence of the Iguazú and Paraná rivers (Argentina, Brazil, Paraguay). Walking distance to town restaurants (La Rueda, Aqva).
-            </p>
-          </div>
-          <div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center text-xs">
-            <span class="font-bold text-blue-600 dark:text-blue-400">Panoramic / 4★</span>
-            <a href="https://maps.google.com/?q=Panoramic+Grand+Iguazu" target="_blank" class="map-link">Google Maps Pin &rarr;</a>
-          </div>
-        </div>
-
-        <!-- Hotel 4: Amerian Portal -->
-        <div class="bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 space-y-3 shadow-sm hover:shadow-md transition flex flex-col justify-between">
-          <div class="space-y-2">
-            <span class="px-2 py-0.5 rounded bg-sky-100 dark:bg-sky-950 text-sky-800 dark:text-sky-300 text-[10px] font-black uppercase" data-i18n="ht4_badge">Opposite 3 Borders</span>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Amerian Portal del Iguazú</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="ht4_loc">Hito Tres Fronteras Landmark</p>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="ht4_desc">
-              Situated directly opposite the Three Borders landmark. Features indoor heated swimming pool, outdoor tropical garden pools, kids play area, and excellent breakfast.
-            </p>
-          </div>
-          <div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center text-xs">
-            <span class="font-bold text-sky-600 dark:text-sky-400">Family Comfort / 4.5★</span>
-            <a href="https://maps.google.com/?q=Amerian+Portal+del+Iguazu" target="_blank" class="map-link">Google Maps Pin &rarr;</a>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -903,7 +904,7 @@
         btn_print: "Print",
 
         hero_badge_flights: "JetSMART Flights Confirmed (PNRs: TBG56D & X7BI5C)",
-        hero_badge_hotel: "Hotel Booking in Progress",
+        hero_badge_hotel: "La Aldea de la Selva Reserved (#12324200)",
         hero_title: "Iguazú Falls 2-Day Family Expedition",
         hero_sub: "Tuesday Dec 8 – Wednesday Dec 9, 2026 · Buenos Aires (AEP) ⇄ Iguazú (IGR)",
         hero_desc: "A seamless, once-in-a-lifetime natural wonder excursion for our family of 6 (4 Adults + 2 Kids: Charles age 6 & Felix age 4). Enjoy early morning nonstop flights from Aeroparque (AEP), flat stroller-friendly boardwalks directly over Devil's Throat (Garganta del Diablo), the open-air Ecological Jungle Train, and tropical pool relaxation.",
@@ -936,23 +937,24 @@
         adv_luggage_desc: "Since your 2 confirmed suites at Palermo Suites are booked through Dec 11, leave your heavy rolling luggage safely locked in your rooms in Buenos Aires! For Iguazú, bring only lightweight daypacks (under 45x35x25cm, 10kg) with change of clothes, swimsuits, and rain ponchos. You bypass all baggage drop lines, avoid carousel waiting, and save on fees!",
         btn_manage_bags: "Add Bags / Seats if Needed",
 
-        hotel_heading: "Iguazú 1-Night Hotel Decision Hub",
-        hotel_sub: "Tuesday night (Dec 8) · User is currently finalizing reservation · Top 4 family resorts compared",
-        badge_hotel_pending: "Pending Final Selection",
-        ht_banner_title: "User Finalizing Hotel Selection Meanwhile",
-        ht_banner_desc: "Below are the four top-rated accommodations for families of 6 in Puerto Iguazú. Once you finalize your reservation, we will update the confirmation numbers and direct arrival logistics!",
-        ht1_badge: "#1 Inside National Park",
-        ht1_loc: "Inside Argentine Falls Park · View of Devil's Throat",
-        ht1_desc: "The ONLY hotel situated directly inside the park. Step out your door onto the waterfall trails before public gates open! Infinity pool overlooking waterfall mist.",
-        ht2_badge: "Top Jungle Eco-Resort",
-        ht2_loc: "Iryapú Subtropical Rainforest · 15m to Park",
-        ht2_desc: "Nestled inside the lush subtropical rainforest with elevated wooden suspension bridges. Giant multi-tiered outdoor pools with shallow areas for Charles & Felix.",
-        ht3_badge: "3-Borders Panoramic View",
-        ht3_loc: "Puerto Iguazú Bluff · Walking to Town Dining",
-        ht3_desc: "Perched on a hill overlooking the confluence of the Iguazú and Paraná rivers (Argentina, Brazil, Paraguay). Walking distance to town restaurants (La Rueda, Aqva).",
-        ht4_badge: "Opposite 3 Borders",
-        ht4_loc: "Hito Tres Fronteras Landmark",
-        ht4_desc: "Situated directly opposite the Three Borders landmark. Features indoor heated swimming pool, outdoor tropical garden pools, kids play area, and excellent breakfast.",
+        hotel_heading: "La Aldea de la Selva Lodge (\"The Jungle Village\")",
+        hotel_sub: "Reservation #12324200 · Tue Dec 8 – Wed Dec 9, 2026 (1 Night) · 2 Family Rooms w/ Buffet Breakfast",
+        badge_hotel_pending: "Pending Confirmation (Valid until Nov 29)",
+        ht_card_tag: "BookDirect · Black Friday 40% OFF Web Exclusive",
+        ht_rooms_title: "Rooms & Total Rate",
+        ht_rooms_val: "2 × Standard Family Plan (Double + Double)",
+        ht_rooms_desc: "2 double beds per room · Buffet Breakfast & Free Wi-Fi included · A/C, Safe, Minibar & Electric Kettle.",
+        ht_price_sub: "Subtotal $187 ($94+$93) + Tax $39:",
+        ht_sched_title: "Check-In / Out & Policies",
+        ht_checkin_lbl: "Check-In:",
+        ht_checkin_val: "Tue, Dec 8 · 2:00 PM (Bag drop ~8:45 AM)",
+        ht_checkout_lbl: "Check-Out:",
+        ht_checkout_val: "Wed, Dec 9 · 10:00 AM (Bag storage)",
+        ht_policy_note: "Non-refundable prepaid rate · Quote #11955803 · Holder: Xutian Sun",
+        ht_loc_title: "Location & Travel Times",
+        ht_dist_igr: "• IGR Airport: ~18.7 km (20–25 min taxi)",
+        ht_dist_falls: "• Iguazú Falls Park: ~15–17 km (20–25 min taxi)",
+        ht_dist_town: "• Downtown / Dinners: ~5–7 km (10–15 min taxi)",
 
         itin_heading: "Concrete 2-Day Hour-by-Hour Timeline",
         itin_sub: "Customized for 4 Adults + 2 Kids (Ages 6 & 4) with stroller-friendly paths and rest pauses",
@@ -961,18 +963,18 @@
         d1_s1_title: "10-Min Uber to AEP & Board Flight JA 3140",
         d1_s1_desc: "04:30 AM: Order 2x Uber from Palermo Suites (Paraguay 4646) to Aeroparque Jorge Newbery (AEP) — it's only 4.5 km away! 06:20 AM: Flight JA 3140 departs. Land at Cataratas del Iguazú (IGR) at 08:13 AM.",
         d1_s2_title: "Enter Iguazú National Park & Board Ecological Jungle Train",
-        d1_s2_desc: "Arrive at Parque Nacional Iguazú. Drop overnight bags at lockers or hotel. Board the open-air gas-powered green train (Tren Ecológico de la Selva) from Central Station to Garganta Station. Charles and Felix will love riding through the lush rainforest watching for butterflies!",
+        d1_s2_desc: "Take a ~20–25 min taxi from IGR to La Aldea de la Selva Lodge (~08:45 AM) to drop your daypacks (or use park lockers), then continue ~20–25 min to Parque Nacional Iguazú. Board the open-air gas-powered green train (Tren Ecológico de la Selva) from Central Station to Garganta Station. Charles and Felix will love riding through the lush rainforest watching for butterflies!",
         d1_s3_title: "Garganta del Diablo (Devil's Throat) — World's Mightiest Falls",
         d1_s3_desc: "Walk along the flat, steel-grated footbridge suspended over the Upper Iguazú River (100% stroller accessible). Reach the balcony looking straight into the thunderous 82-meter horseshoe chasm. Feel the mist, see permanent rainbows, and spot swifts (Great Dusky Swifts) diving behind the water wall!",
         d1_s4_title: "Lunch Buffet at El Fortín & Upper Circuit (Circuito Superior)",
         d1_s4_desc: "12:30 PM: Lunch at Restaurant El Fortín inside the park (buffet with grilled beef, salads, pastas, and dessert). 01:45 PM: Walk the Upper Circuit (1,750m) atop the cascades with panoramic views of Salto Bossetti and Salto San Martín. Totally flat, zero stairs, perfect for strollers.",
         d1_s5_title: "Hotel Check-In, Tropical Pool Rest & Dinner at La Rueda",
-        d1_s5_desc: "Check into your resort, swim in the tropical pools, and relax after the early wake-up call. 07:30 PM: Family dinner at La Rueda 1975 in Puerto Iguazú town (signature river fish Surubí and prime steaks).",
+        d1_s5_desc: "Check into La Aldea de la Selva Lodge (check-in opens 2:00 PM), swim in the rainforest pool & jacuzzis, and relax in the canopy hammocks. 07:30 PM: 10–15 min taxi to La Rueda 1975 in town for dinner.",
 
         d2_header_title: "Jungle Wildlife Sanctuary, Three Borders & Flight Back to BA",
         d2_header_tag: "Flight JA 3153 Departs 20:57 PM",
         d2_s1_title: "Tropical Breakfast & GuiráOga Wildlife Sanctuary (or Parque das Aves)",
-        d2_s1_desc: "Enjoy a relaxed resort breakfast. 09:45 AM: Visit GuiráOga Animal Refuge on the Argentine side — kids ride an open-air safari tractor through the jungle and meet rescued toucans, macaws, monkeys, and coatíes. (Alternative: Cross to Parque das Aves bird park on the Brazilian side).",
+        d2_s1_desc: "Enjoy the included buffet breakfast at La Aldea de la Selva and check out by 10:00 AM (leave daypacks at reception). 09:45 AM / 10:15 AM: Visit GuiráOga Animal Refuge on the Argentine side — kids ride an open-air safari tractor through the jungle and meet rescued toucans, macaws, monkeys, and coatíes. (Alternative: Cross to Parque das Aves bird park on the Brazilian side).",
         d2_s2_title: "Lunch at Aqva Restaurant & Hito Tres Fronteras",
         d2_s2_desc: "Lunch at Aqva Restaurant (famous local Surubí fish with maracuyá sauce, tender steaks, and kids pasta/chicken). Afterwards, visit Hito Tres Fronteras where Argentina, Brazil, and Paraguay meet at the river junction, with outdoor souvenir markets.",
         d2_s3_title: "Transfer to IGR Airport & Flight JA 3153 Home to Palermo Suites",
@@ -1005,7 +1007,7 @@
         btn_print: "打印 / 存PDF",
 
         hero_badge_flights: "智利航空 JetSMART 往返机票已出票（预订码: TBG56D & X7BI5C）",
-        hero_badge_hotel: "酒店正在敲定中",
+        hero_badge_hotel: "La Aldea de la Selva 已预订 (#12324200)",
         hero_title: "伊瓜苏大瀑布两日家庭探索之旅",
         hero_sub: "2026年12月8日周二 – 12月9日周三 · 布宜诺斯艾利斯 (AEP) ⇄ 伊瓜苏 (IGR)",
         hero_desc: "专为全家6人（4位大人 + 2位萌娃：Charles 6岁、Felix 4岁）定制的自然奇迹之旅。早班机由市区旁 Aeroparque 机场直飞，推婴儿车直通魔鬼咽喉（Garganta del Diablo）水上栈桥，乘坐露天生态森林小火车，下午入住热带度假酒店游泳放松。",
@@ -1038,23 +1040,24 @@
         adv_luggage_desc: "由于全家在布宜诺斯艾利斯 Palermo Suites 酒店已连续预订了6晚套房（直至12月11日），您的大件行李箱直接锁在布市酒店房间即可！去伊瓜苏只需每人背一个小双肩包（长宽高45x35x25cm以内，10kg内，符合免费登机随身规格），装一套换洗衣物、泳装和雨衣。下飞机无需等待行李转盘，直接出发游玩！",
         btn_manage_bags: "官网加购托运或自选座位",
 
-        hotel_heading: "伊瓜苏1晚酒店决策参考",
-        hotel_sub: "12月8日周二晚入住 · 您正在挑选酒店 · 为您整理当地排名前四的家庭度假酒店",
-        badge_hotel_pending: "等待最终预订",
-        ht_banner_title: "您正在挑选敲定酒店中",
-        ht_banner_desc: "以下是伊瓜苏当地最适合6人家庭入住的4家优质度假酒店。一旦您完成预订，我们将立即为您更新订单号和精准入住接驳指引！",
-        ht1_badge: "唯一国家公园内部",
-        ht1_loc: "阿根廷国家公园内部 · 正对瀑布水汽",
-        ht1_desc: "整个阿根廷瀑布公园内唯一的五星级奢华酒店。开门即是步道，可在开园前独享无人瀑布！拥有直面瀑布水汽的无边际泳池。",
-        ht2_badge: "雨林顶级生态度假村",
-        ht2_loc: "Iryapú 亚热带雨林保护区 · 距景区15分钟",
-        ht2_desc: "隐藏在繁茂的亚热带雨林中，建有悬空木栈桥。拥有超大热带多级泳池（带浅水区），附设儿童游乐角，与大自然完美交融。",
-        ht3_badge: "三国交界全景视野",
-        ht3_loc: "伊瓜苏港镇高崖 · 步行至镇上餐厅",
-        ht3_desc: "坐落于俯瞰伊瓜苏河与巴拉那河交汇的高地（同览阿根廷、巴西、巴拉圭三国）。设有全景泳池，步行即达 La Rueda 等热门餐厅。",
-        ht4_badge: "正对三国地标界碑",
-        ht4_loc: "三界地标 Hito Tres Fronteras 正对面",
-        ht4_desc: "正对三国分界界标。拥有室内恒温泳池与户外热带花园泳池，家庭大套房宽敞舒适，自助早餐丰富。",
+        hotel_heading: "La Aldea de la Selva 雨林木屋度假村（已预订）",
+        hotel_sub: "订单号 #12324200 · 12月8–9日（1晚）· 2间家庭双大床房（含自助早餐）",
+        badge_hotel_pending: "待最终确认（保留至11月29日）",
+        ht_card_tag: "官网直订 · 黑五专享6折优惠 (40% OFF)",
+        ht_rooms_title: "房型与总价明细",
+        ht_rooms_val: "2间 × 标准家庭双大床房 (Double + Double)",
+        ht_rooms_desc: "每间房配2张双人床 · 含每日自助早餐与免费 Wi-Fi · 配空调、保险箱、迷你吧与电热水壶。",
+        ht_price_sub: "房费小计 $187 ($94+$93) + 税费 $39:",
+        ht_sched_title: "入住/退房时间与政策",
+        ht_checkin_lbl: "入住时间:",
+        ht_checkin_val: "12月8日 周二 14:00（约08:45可先寄存背包）",
+        ht_checkout_lbl: "退房时间:",
+        ht_checkout_val: "12月9日 周三 10:00（行李免费寄存前台）",
+        ht_policy_note: "不可退改预付价 · 报价单 #11955803 · 预订人: Xutian Sun",
+        ht_loc_title: "位置与交通耗时",
+        ht_dist_igr: "• 距 IGR 机场：约 18.7 公里（打车 20–25 分钟）",
+        ht_dist_falls: "• 距伊瓜苏瀑布公园：约 15–17 公里（打车 20–25 分钟）",
+        ht_dist_town: "• 距伊瓜苏港镇中心餐厅：约 5–7 公里（打车 10–15 分钟）",
 
         itin_heading: "伊瓜苏2天1晚具体小时级行程表",
         itin_sub: "专为4位大人+2位幼儿（6岁与4岁）量身设计，无障碍平坦木栈道，适度留白休息",
@@ -1063,18 +1066,18 @@
         d1_s1_title: "打车10分钟至 AEP 机场搭乘直飞航班 JA 3140",
         d1_s1_desc: "清晨 04:30：在 Palermo Suites (Paraguay 4646) 叫两台 Uber 前往 Aeroparque (AEP) 机场（仅4.5公里路程，10分钟即到！）。06:20 航班起飞，08:13 降落伊瓜苏 IGR 机场。",
         d1_s2_title: "抵达国家公园 & 乘坐绿色森林生态小火车",
-        d1_s2_desc: "前往伊瓜苏国家公园。行李寄存前台或寄存柜。在中央车站（Estación Central）搭乘露天燃气绿色森林小火车（Tren Ecológico de la Selva）前往魔鬼咽喉站。孩子们穿行在热带雨林中，看飞舞的彩蝶，格外开心！",
+        d1_s2_desc: "从 IGR 机场打车约20–25分钟抵达 La Aldea de la Selva 度假村（约08:45）先寄存轻便背包（或存公园寄存柜），随后约20–25分钟直达伊瓜苏国家公园。在中央车站（Estación Central）搭乘露天燃气绿色森林小火车（Tren Ecológico de la Selva）前往魔鬼咽喉站。孩子们穿行在热带雨林中，看飞舞的彩蝶，格外开心！",
         d1_s3_title: "魔鬼咽喉（Garganta del Diablo）— 世界落差最壮观瀑布群",
         d1_s3_desc: "走上跨越伊瓜苏河上游的钢架木栈桥（全长1.1公里，全程平坦无阶梯，婴儿车通行无阻）。抵达终点观景台，直面82米高的马蹄形雷霆断崖！彩虹横跨，水雾漫天，看雨燕在水幕背后穿梭！",
         d1_s4_title: "公园内 El Fortín 自助午餐 & 漫步上层栈道（Circuito Superior）",
         d1_s4_desc: "中午 12:30：在公园内的 El Fortín 餐厅享用丰盛自助餐（现切阿根廷烤肉、新鲜沙拉、意大利面与甜点）。下午 13:45：漫步上层环线（1.7公里），在瀑布顶端俯瞰 Salto Bossetti 和 San Martín 瀑布奔流，完全平坦推车超轻松。",
         d1_s5_title: "入住酒店，热带泳池小憩 & La Rueda 1975 晚餐",
-        d1_s5_desc: "下午 16:00 前往度假酒店办理入住。早起后全家在热带泳池戏水放松，驱散疲惫。晚间 19:30 前往镇上百年名店 La Rueda 1975 品尝当地特色苏鲁比河鱼（Surubí）与顶级烤牛排。",
+        d1_s5_desc: "下午 16:00 前往 La Aldea de la Selva 办理入住（14:00起可入住），在雨林泳池与按摩池戏水放松。晚间 19:30 打车10–15分钟前往镇上百年名店 La Rueda 1975 享用特色河鱼与烤牛排。",
 
         d2_header_title: "热带雨林野生动物庇护所、三国交界地标与返程航班",
         d2_header_tag: "航班 JA 3153 于 20:57 起飞",
         d2_s1_title: "热带早餐 & 探访 GuiráOga 野生动物救助中心（或鸟园）",
-        d2_s1_desc: "享用酒店热带水果早餐。上午 09:45 探访阿根廷一侧的 GuiráOga 动物庇护所——全家乘坐露天丛林拖拉机进入雨林，探望救助的大嘴鸟、金刚鹦鹉、猴子和长鼻浣熊。（亦可选择过境前往巴西一侧鸟园 Parque das Aves）。",
+        d2_s1_desc: "享用酒店免费自助早餐并于 10:00 前办理退房（背包免费寄存前台）。上午 10:15 探访阿根廷一侧的 GuiráOga 动物庇护所——全家乘坐露天丛林拖拉机进入雨林，探望救助的大嘴鸟、金刚鹦鹉、猴子和长鼻浣熊。（亦可选择过境前往巴西一侧鸟园 Parque das Aves）。",
         d2_s2_title: "Aqva 水景餐厅特色午餐 & 三界界标（Hito Tres Fronteras）",
         d2_s2_desc: "午餐在知名餐厅 Aqva 享用（百香果酱汁烤河鱼与儿童肉酱面）。餐后游览阿根廷、巴西、巴拉圭三国交界的“三界界标”，逛逛瓜拉尼原住民手工木雕手工艺品市集。",
         d2_s3_title: "前往 IGR 机场 & 搭乘 JA 3153 航班返回布市酒店",
